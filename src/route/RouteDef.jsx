@@ -1,9 +1,9 @@
-import Main from '../components/Main/Main';
+import MainPage from '../pages/main/MainPage';
 
 const MainScreens = {
   Main: {
     path: '/',
-    element: <Main />,
+    element: <MainPage />,
   },
 };
 
