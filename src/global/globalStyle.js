@@ -1,6 +1,6 @@
 import styled, { createGlobalStyle } from 'styled-components';
 
-const colors = {
+export const colors = {
   orange: '#f09605',
   white: '#ffffff',
   black: '#000000',
