@@ -1,8 +1,8 @@
 import React from 'react';
-import Header from '../components/common/Header';
-import Footer from '../components/common/Footer';
 import AppPages from '../route/AppPages';
-import { BaseLayout, GlobalStyle } from '../global/GlobalStyle';
+import { BaseLayout, GlobalStyle } from '../global/globalStyle';
+import Header from '../components/common/Header/Header';
+import Footer from '../components/common/Footer/Footer';
 
 const DefaultLayout = () => {
   return (
