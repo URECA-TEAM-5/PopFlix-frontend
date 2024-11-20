@@ -1,9 +1,8 @@
 import React from 'react';
 import AppPages from '../route/AppPages';
-import { BaseLayout, GlobalStyle } from '../global/globalStyle';
+import { BaseLayout, GlobalStyle, MainContainer } from '../global/globalStyle';
 import Header from '../components/common/Header/Header';
 import Footer from '../components/common/Footer/Footer';
-
 
 const DefaultLayout = () => {
   return (
@@ -11,7 +10,9 @@ const DefaultLayout = () => {
       <GlobalStyle />
       <BaseLayout className="bold">
         <Header />
-        <AppPages />
+        <MainContainer>
+          <AppPages />
+        </MainContainer>
         <Footer />
       </BaseLayout>
     </>
