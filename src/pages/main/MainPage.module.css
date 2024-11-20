@@ -1,5 +1,6 @@
 .container{
     width: 920px;
+    height: 100vh;
 }
 .mainBanner{
     border-radius: 1rem;
