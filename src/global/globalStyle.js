@@ -55,8 +55,13 @@ export const GlobalStyle = createGlobalStyle`
 export const BaseLayout = styled.div`
   background-color: ${colors.black};
   width: 100vw;
-  height: 100%;
+  /* height: 100%; */
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+
+export const MainContainer = styled.div`
+  padding: 1.9rem 16.25rem;
 `;
