@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 
-export const FooterConatiner = styled.div`
+export const FooterContainer = styled.div`
   position: relative;
   height: 1rem;
   transform: translateY(-100%);

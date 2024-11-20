@@ -1,11 +1,11 @@
 import React from 'react';
-import { FooterConatiner } from './style/FooterStyle';
+import { FooterContainer } from './style/FooterStyle';
 
 const Footer = () => {
   return (
-    <FooterConatiner>
+    <FooterContainer >
       <span>Footer Section</span>
-    </FooterConatiner>
+    </FooterContainer>
   );
 };
 
