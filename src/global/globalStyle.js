@@ -45,7 +45,7 @@ export const GlobalStyle = createGlobalStyle`
 export const BaseLayout = styled.div`
   background-color: ${colors.black};
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;

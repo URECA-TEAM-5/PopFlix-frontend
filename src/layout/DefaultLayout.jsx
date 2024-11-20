@@ -4,6 +4,7 @@ import { BaseLayout, GlobalStyle } from '../global/globalStyle';
 import Header from '../components/common/Header/Header';
 import Footer from '../components/common/Footer/Footer';
 
+
 const DefaultLayout = () => {
   return (
     <>
