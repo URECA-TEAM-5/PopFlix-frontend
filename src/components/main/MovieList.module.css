@@ -1,7 +1,7 @@
 .movieGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  gap: 10px;
 }
 
 .movieImage{
@@ -16,10 +16,11 @@
   
 }
 .movieStats {
-  display: flex; /* 수평 정렬 */
+  display: flex; /*수평 정렬 */
+  
   justify-content: space-between; /* 요소 간의 여백 균등 분배 */
   align-items: center; /* 세로축 가운데 정렬 */
-  margin-top: 8px; /* 상단 여백 추가 */
+  height: 0.125rem;
 }
 
 .button {
