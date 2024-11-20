@@ -1,10 +1,10 @@
 import MoviList from '../../components/main/MovieList';
 import MainBanner from '/assets/main_banner.svg';
-import styled from './MainPage.module.css';
+import styles from './MainPage.module.css';
 const MainPage = () => {
     return (
-        <div className={styled.container}>
-            <img className={styled.mainBanner} src={MainBanner} alt="Main Banner" /> 
+        <div className={styles.container}>
+            <img className={styles.mainBanner} src={MainBanner} alt="Main Banner" /> 
             <MoviList/>
         </div>
     )
