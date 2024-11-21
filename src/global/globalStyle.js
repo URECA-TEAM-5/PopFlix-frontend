@@ -53,10 +53,10 @@ export const GlobalStyle = createGlobalStyle`
 `;
 
 export const BaseLayout = styled.div`
+  position: relative;
   background-color: ${colors.black};
-  width: 100vw;
-  /* height: 100%; */
-  height: 100vh;
+  min-width: 100vw;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;

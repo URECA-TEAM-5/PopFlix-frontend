@@ -1,6 +1,8 @@
 import React from 'react';
 import { HeaderContainer } from './style/HeaderStyle';
 import MenuItem from './MenuItem';
+import HeaderSearch from './HeaderSearch';
+import HeaderIconSection from './HeaderIconSection';
 
 const Header = () => {
   return (
@@ -11,6 +13,8 @@ const Header = () => {
         <MenuItem path="/" title="WatchList" />
         <MenuItem path="/" title="리뷰왕" />
       </div>
+      <HeaderSearch />
+      <HeaderIconSection />
     </HeaderContainer>
   );
 };
