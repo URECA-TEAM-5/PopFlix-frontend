@@ -89,11 +89,20 @@ const MovieList = () => {
 
   // 페이지 변경 함수
   const paginate = (pageNumber) => setPage(pageNumber);
+  const handleScroll = (direction) => {
+    const container = document.getElementById("genre-buttons-container");
+    const scrollAmount = 200; // 한번에 이동할 양
 
+    if (direction === 'left') {
+      container.scrollLeft -= scrollAmount; // 왼쪽으로 스크롤
+    } else if (direction === 'right') {
+      container.scrollLeft += scrollAmount; // 오른쪽으로 스크롤
+    }
+  };
   return (
     <div>
       {/* 장르 버튼 */}
-      <div>
+      <div id="genre-buttons-container" className={styles.genreButtonsContainer}>
         <button className={`${styles.genreButton} ${selectedGenre === 'All' ? styles.genreButtonSelected : ''}`} 
         onClick={() => setSelectedGenre('All')}>전체</button>
         {genres.map((genre, index) => (
@@ -110,13 +119,19 @@ const MovieList = () => {
         {currentMovies.map((movie, index) => (
           <div key={index} className={styles.movieCard}>
             <img className={styles.movieImage} src={movie.imageUrl} alt={movie.title} />
-            <h4>{movie.title}</h4>
+            <h4 className={styles.movieTitle}>{movie.title}</h4>
             <div className={styles.movieStats}>
-              <img className={styles.movieIcon} src={mainGPA} alt="평점" />
-            <p>{movie.rating}</p>
-            <img className={styles.movieIcon} src={heart} alt="좋아요" />
-            <p>{movie.likes}</p>
-            </div>
+        {/* 평점 아이콘과 평점 텍스트 */}
+        <div className={styles.movieRating}>
+          <img className={styles.movieIcon} src={mainGPA} alt="평점" />
+          <p>{movie.rating}</p>
+        </div>
+        {/* 좋아요 아이콘과 좋아요 텍스트 */}
+        <div className={styles.movieLikes}>
+          <img className={styles.movieIcon} src={heart} alt="좋아요" />
+          <p>{movie.likes}</p>
+        </div>
+      </div>
           </div>
         ))}
       </div>
