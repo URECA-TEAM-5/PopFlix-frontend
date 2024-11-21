@@ -1,4 +1,5 @@
 import MainPage from '../pages/main/MainPage';
+import WatchListPage from '../pages/watchlist/WatchListPage';
 
 const MainScreens = {
   Main: {
@@ -7,6 +8,13 @@ const MainScreens = {
   },
 };
 
+const WatchListScreens = {
+  WatchList: {
+    path: '/watchlist',
+    element: <WatchListPage />,
+  },
+};
+
 export const AppRouteDef = {
-  ...MainScreens,
+  ...MainScreens, ...WatchListScreens
 };
