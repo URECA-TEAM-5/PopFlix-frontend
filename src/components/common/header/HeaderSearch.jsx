@@ -15,7 +15,13 @@ const HeaderSearch = () => {
   return (
     <HeaderSearchSection>
       <div className="search__container">
-        <input className="input__section" type="text" placeholder="제목, 감독을 입력하세요." value={keyword} onChange={(e) => setKeyword(e.target.value)} />
+        <input
+          className="input__section regular"
+          type="text"
+          placeholder="제목, 감독을 입력하세요."
+          value={keyword}
+          onChange={(e) => setKeyword(e.target.value)}
+        />
         <FontAwesomeIcon className="search__icon" icon={faMagnifyingGlass} onClick={handleSubmit} />
       </div>
     </HeaderSearchSection>
