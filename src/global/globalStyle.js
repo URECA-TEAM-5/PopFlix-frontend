@@ -46,6 +46,7 @@ export const BaseLayout = styled.div`
   background-color: ${colors.black};
   width: 100vw;
   /* height: 100%; */
+  /* height: 100vh; */
   min-height: 100vh;
   display: flex;
   flex-direction: column;

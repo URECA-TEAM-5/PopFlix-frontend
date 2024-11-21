@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './MovieList.module.css'; // CSS 모듈 가져오기
-
+import mainGPA from '/assets/main_GPA.svg';
+import heart from '/assets/heart.svg';
 const MovieList = () => {
   const [movies, setMovies] = useState([]); // 영화 데이터 상태
   const [page, setPage] = useState(1); // 페이지 번호
@@ -93,9 +94,11 @@ const MovieList = () => {
     <div>
       {/* 장르 버튼 */}
       <div>
-        <button className={styles.button} onClick={() => setSelectedGenre('All')}>전체</button>
+        <button className={`${styles.genreButton} ${selectedGenre === 'All' ? styles.genreButtonSelected : ''}`} 
+        onClick={() => setSelectedGenre('All')}>전체</button>
         {genres.map((genre, index) => (
-          <button key={index} className={styles.button} onClick={() =>{
+          <button key={index} className={`${styles.genreButton} ${selectedGenre === genre ? styles.genreButtonSelected : ''}`} 
+          onClick={() =>{
             setSelectedGenre(genre)
             setPage(1);
           }} >{genre}</button>
@@ -107,10 +110,12 @@ const MovieList = () => {
         {currentMovies.map((movie, index) => (
           <div key={index} className={styles.movieCard}>
             <img className={styles.movieImage} src={movie.imageUrl} alt={movie.title} />
-            <h3>{movie.title}</h3>
+            <h4>{movie.title}</h4>
             <div className={styles.movieStats}>
-            <p>평점: {movie.rating}</p>
-            <p>좋아요: {movie.likes}</p>
+              <img className={styles.movieIcon} src={mainGPA} alt="평점" />
+            <p>{movie.rating}</p>
+            <img className={styles.movieIcon} src={heart} alt="좋아요" />
+            <p>{movie.likes}</p>
             </div>
           </div>
         ))}
