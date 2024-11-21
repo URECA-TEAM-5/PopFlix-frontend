@@ -25,19 +25,29 @@ export const GlobalStyle = createGlobalStyle`
     font-style: normal;
   }
 
+  @font-face {
+    font-family: 'SUIT-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Bold.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+  }
+
   h1, h2, h3, h4, h5, h6, p, button {
+    font-family: 'SUIT-Bold', sans-serif;
+  }
+
+  .extra-bold {
     font-family: 'Paperlogy-8ExtraBold', sans-serif; 
+    color: ${colors.white};
   }
 
   .bold {
-    font-family: 'Paperlogy-8ExtraBold', sans-serif; 
-    font-weight: 700;
+    font-family: 'SUIT-Bold', sans-serif; 
     color: ${colors.white};
   }
 
   .regular {
     font-family: 'SUIT-Regular', sans-serif; 
-    font-weight: 400;
     color: ${colors.white};
   }
 `;
