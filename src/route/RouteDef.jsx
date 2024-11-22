@@ -7,10 +7,7 @@ const MainScreens = {
     path: '/',
     element: <MainPage />,
   },
-};
-
-const LoginModals = {
-  Main: {
+  LoginModal: {
     path: '/login',
     element: <LoginModal />,
   },
@@ -25,7 +22,4 @@ const WatchListScreens = {
 
 export const AppRouteDef = {
   ...MainScreens,
-  ...LoginModals,
-  ...MainScreens,
-  ...WatchListScreens
 };

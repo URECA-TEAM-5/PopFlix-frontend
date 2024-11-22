@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Grid2, Box } from '@mui/material';
 import styles from './WatchList.module.css';
 import { data } from './data.js';
+import WatchListAll from '../../components/watchlist/WatchListAll.jsx';
 
 const WatchListPage = () => {
     const [month, setMonth] = useState([]);
@@ -47,6 +48,7 @@ const WatchListPage = () => {
                     );
                 })}
             </Grid2>
+            <WatchListAll />
         </>
     )
 }
