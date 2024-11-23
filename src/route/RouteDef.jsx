@@ -1,4 +1,4 @@
-import LoginModal from '../components/login/LoginModal';
+import LoginModal from '../components/Login/LoginModal';
 import AddUserInfo from '../pages/addUserInfo/AddUserInfo';
 
 import MainPage from '../pages/main/MainPage';
