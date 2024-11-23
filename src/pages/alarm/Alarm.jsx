@@ -1,9 +1,10 @@
 import React from 'react';
+import AlarmMessage from '../../components/alarm/AlarmMessage';
 
 const Alarm = () => {
   return (
     <div>
-      <h1>Alarm Page</h1>
+      <AlarmMessage />
     </div>
   );
 };

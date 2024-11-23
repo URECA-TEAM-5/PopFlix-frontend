@@ -8,7 +8,7 @@ const DefaultLayout = () => {
   return (
     <>
       <GlobalStyle />
-      <BaseLayout className="bold">
+      <BaseLayout className="regular">
         <Header />
         <MainContainer>
           <AppPages />
