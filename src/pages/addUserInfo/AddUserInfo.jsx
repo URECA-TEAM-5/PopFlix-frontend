@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import UserInfoImage from '../../components/userInfo/UserInfoImage';
-import UserInfoNickname from '../../components/userInfo/UserInfoNickname';
-import UserInfoGenre from '../../components/userInfo/UserInfoGenre';
-import UserInfoGender from '../../components/userInfo/UserInfoGender';
+import UserInfoImage from '../../components/UserInfo/UserInfoImage';
+import UserInfoNickname from '../../components/UserInfo/UserInfoNickname';
+import UserInfoGenre from '../../components/UserInfo/UserInfoGenre';
+import UserInfoGender from '../../components/UserInfo/UserInfoGender';
 import { Box, Button } from '@mui/material';
 import { colors } from '../../global/globalStyle';
 
