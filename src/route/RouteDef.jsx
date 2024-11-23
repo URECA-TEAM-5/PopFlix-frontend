@@ -6,10 +6,7 @@ const MainScreens = {
     path: '/',
     element: <MainPage />,
   },
-};
-
-const LoginModals = {
-  Main: {
+  LoginModal: {
     path: '/login',
     element: <LoginModal />,
   },
@@ -17,5 +14,4 @@ const LoginModals = {
 
 export const AppRouteDef = {
   ...MainScreens,
-  ...LoginModals,
 };
