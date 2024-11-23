@@ -83,7 +83,7 @@ const AddUserInfo = () => {
             outline: 'none',
           },
         }}
-        onClick={() => alert('등록 로직을 여기에 작성하세요!')}
+        onClick={() => alert('등록 로직을 여기에 작성하세요!!')}
       >
         <span className="bold">등록하기</span>
       </Button>
