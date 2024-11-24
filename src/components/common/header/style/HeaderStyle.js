@@ -32,10 +32,13 @@ export const HeaderMenuItem = styled.p`
   width: auto;
   padding: 0.05rem;
   font-size: 1rem;
-  color: ${(props) => props.$fontColor};
   cursor: pointer;
 
-  &:hover {
+  .text {
+    color: ${(props) => props.$fontColor || colors.white};
+  }
+
+  .text:hover {
     color: ${colors.orange};
     transition: 0.3s ease;
   }
@@ -51,7 +54,7 @@ export const IconSection = styled.div`
   align-items: center;
 
   .icon {
-    font-size: 1.4rem;
+    font-size: 1.8rem;
     color: ${colors.white};
 
     &:hover {
