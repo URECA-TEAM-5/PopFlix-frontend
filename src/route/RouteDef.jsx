@@ -21,13 +21,10 @@ const MainScreens = {
     path: '/alarm',
     element: <Alarm />,
   },
-};
-
-const WatchListScreens = {
   WatchList: {
     path: '/watchlist',
     element: <WatchListPage />,
-  },
+  }
 };
 
 export const AppRouteDef = {
