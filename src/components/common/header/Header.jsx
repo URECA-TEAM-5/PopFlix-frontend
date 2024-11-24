@@ -15,10 +15,17 @@ const Header = () => {
 
   return (
     <HeaderContainer className="bold">
-      <img className="img__logo" href="/" src="/assets/logo.svg" alt="로고 이미지" />
+      <img
+        className="img__logo"
+        onClick={() => {
+          window.location = '/';
+        }}
+        src="/assets/logo.svg"
+        alt="로고 이미지"
+      />
       <div className="header__menu">
         <MenuItem path="/" title="전체" />
-        <MenuItem path="/" title="WatchList" />
+        <MenuItem path="/watchlist" title="WatchList" />
         <MenuItem path="/" title="리뷰왕" />
       </div>
       <Search val={keyword} setVal={setKeyword} handleClick={handleSubmit} />
