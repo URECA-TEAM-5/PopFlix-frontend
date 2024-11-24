@@ -52,11 +52,18 @@ export const GlobalStyle = createGlobalStyle`
   }
 `;
 
+export const Thema = styled.div`
+  display: flex;
+  flex-direction: column;
+  background-color: ${colors.black};
+`;
+
 export const BaseLayout = styled.div`
   position: relative;
   background-color: ${colors.black};
   min-width: 100vw;
   min-height: 100vh;
+  padding: 1rem 0;
   display: flex;
   flex-direction: column;
   align-items: center;
