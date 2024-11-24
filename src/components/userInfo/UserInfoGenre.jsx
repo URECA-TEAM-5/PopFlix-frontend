@@ -12,7 +12,7 @@ const UserInfoGenre = ({ selectedGenre, genres, onGenreChange }) => {
         fullWidth
         sx={{
           backgroundColor: colors.navy_gray,
-          borderRadius: '0.3125rem',
+          borderRadius: '0.625rem',
           '& .MuiOutlinedInput-root': {
             '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
               borderColor: colors.orange,
