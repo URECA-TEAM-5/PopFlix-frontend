@@ -10,10 +10,10 @@ export const MessageContainer = styled.div`
   border-radius: 0.625rem;
   background-color: ${colors.navy_gray};
   align-items: center;
-  caret-color: transparent;
+  cursor: pointer;
 
   &:hover {
-    box-shadow: rgba(255, 255, 255, 0.3) 1px 8px 24px;
+    box-shadow: rgba(255, 255, 255, 0.4) 0 0 1.8rem;
     transition: 0.3s ease;
   }
 
@@ -33,7 +33,17 @@ export const MessageContainer = styled.div`
   .message__section {
     display: flex;
     flex-direction: row;
-    width: 28.875rem;
+    align-items: center;
+    gap: 1.7rem;
+  }
+
+  .profileImage__section {
+    padding: 0 0.5rem 0 0;
+  }
+
+  .profileImage {
+    width: 2rem;
+    height: 2rem;
   }
 `;
 
@@ -42,4 +52,75 @@ export const MessageText = styled.span`
   font-size: 1rem;
   color: ${(props) => props.$fontColor};
   width: ${(props) => (props.$width ? `${props.$width}rem` : 'auto')};
+
+  .text__highlight {
+    color: ${colors.orange};
+  }
+`;
+
+export const ListContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 0.4rem;
+  width: 100%;
+  gap: 1.8rem;
+`;
+
+export const CheckBoxConatiner = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  .checkbox__section {
+    padding: 0.6875rem;
+  }
+
+  .checkbox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1.125rem;
+    height: 1.125rem;
+    font-size: 0.8rem;
+    background-color: ${colors.orange};
+    color: ${colors.white};
+    border-radius: 0.12rem;
+    border: none;
+  }
+
+  .text__title {
+    font-size: 1rem;
+  }
+`;
+
+export const AlarmContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 2.8rem 0;
+  gap: 3rem;
+  height: 100vh;
+  caret-color: transparent;
+`;
+
+export const TopSection = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: end;
+  justify-content: center;
+
+  .image__section {
+    width: 6.375rem;
+    height: 6rem;
+  }
+
+  .text__section {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.75rem;
+  }
+
+  .text__highlight {
+    color: ${colors.orange};
+  }
 `;

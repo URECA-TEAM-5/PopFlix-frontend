@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Modal, Box, Button, Typography } from '@mui/material';
-import { colors } from '../../global/globalStyle.js';
+import { colors } from '../../global/globalStyle';
 
 const LoginModal = () => {
   const [open, setOpen] = useState(false);

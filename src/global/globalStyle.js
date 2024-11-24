@@ -52,6 +52,12 @@ export const GlobalStyle = createGlobalStyle`
   }
 `;
 
+export const Thema = styled.div`
+  display: flex;
+  flex-direction: column;
+  background-color: ${colors.black};
+`;
+
 export const BaseLayout = styled.div`
   position: relative;
   background-color: ${colors.black};
