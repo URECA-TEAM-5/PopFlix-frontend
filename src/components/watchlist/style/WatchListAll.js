@@ -13,6 +13,7 @@ export const WatchAllContainer = styled.div`
         border-radius: 1.875rem;
         display: flex;
         align-items: center;
+        justify-content: center;
         pointer-events: none;
         font-size: 0.9rem;
     }
@@ -34,7 +35,7 @@ export const WatchAllContainer = styled.div`
 
     .listContainer {
         display: flex;
-        justify-content: flex-start;
+        justify-content: center;
         padding: 2rem 0;
         width: 100%;
     }
@@ -102,7 +103,9 @@ export const Heart = styled.span`
 export const PaginationContainer = styled.div`
     display: flex;
     justify-content: center;
-    margin-top: 1.25rem;
+    padding: 1rem 0;
+    width: 100%;
+    height: 2.813rem;
 `;
 
 export const PageButton = styled.button`
