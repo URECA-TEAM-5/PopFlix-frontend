@@ -32,71 +32,29 @@ export const HeaderMenuItem = styled.p`
   width: auto;
   padding: 0.05rem;
   font-size: 1rem;
-  color: ${(props) => props.$fontColor};
   cursor: pointer;
 
-  &:hover {
+  .text {
+    color: ${(props) => props.$fontColor || colors.white};
+  }
+
+  .text:hover {
     color: ${colors.orange};
     transition: 0.3s ease;
   }
 `;
 
-export const HeaderSearchSection = styled.div`
-  width: 19.25rem;
-  caret-color: transparent;
-
-  .search__container {
-    background-color: ${colors.drak_gray};
-    color: ${colors.cement_gray};
-    width: 16.25rem;
-    height: 1.2rem;
-    padding: 0.7rem 0.7rem;
-    border: 0.01rem;
-    border-radius: 1.9rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .input__section {
-    background-color: ${colors.drak_gray};
-    color: ${colors.white};
-    border: none;
-    width: 14rem;
-  }
-
-  .input__section:focus {
-    outline: none;
-    caret-color: auto;
-  }
-
-  .search__container:hover {
-    opacity: 0.7;
-    transition: 0.3s ease;
-  }
-
-  .search__icon {
-    font-size: 1rem;
-    cursor: pointer;
-
-    &:hover {
-      color: ${colors.orange};
-      transition: 0.3s ease;
-    }
-  }
-`;
-
 export const IconSection = styled.div`
-  width: 10.4rem;
+  width: 16.56rem;
   height: 1.2rem;
   gap: 1.8rem;
   display: flex;
   flex-direction: row;
+  justify-content: center;
   align-items: center;
 
   .icon {
-    font-size: 1.4rem;
+    font-size: 1.8rem;
     color: ${colors.white};
 
     &:hover {
