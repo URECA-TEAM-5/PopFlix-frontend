@@ -1,4 +1,4 @@
-import styles from './WatchListBox.module.css';
+import styles from './style/WatchListBox.module.css';
 
 const WatchListBox = () => {
   const watchListData = [
@@ -10,8 +10,8 @@ const WatchListBox = () => {
   ];
 
   return (
-    <div>
-      <p className={styles.watchListTitle}>핫한 유저 PICK WatchList!</p>
+    <div className={styles.container}>
+      <p>핫한 유저 PICK WatchList!</p>
       <div className={styles.watchListBox}>
         {watchListData.map((item, index) => (
           <div key={index} className={styles.watchListCard}>
@@ -19,10 +19,11 @@ const WatchListBox = () => {
               <img src={item.image} alt={item.watchListTitle} className={styles.cardImage} />
             </div>
             <div className={styles.cardContent}>
-              <h3 className={styles.cardTitle}>{item.watchListTitle}</h3>
+              <p className={styles.cardTitle}>{item.watchListTitle}</p>
               <div className={styles.cardFooter}>
-                <span>❤️ {item.heart}</span>
-                <span>📜 {item.listItem} items</span>
+                <span>♡{item.heart}</span>
+                <span>|</span>
+                <span>{item.listItem}편</span>
               </div>
             </div>
           </div>

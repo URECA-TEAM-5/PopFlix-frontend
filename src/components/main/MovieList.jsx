@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styles from './MovieList.module.css'; // CSS 모듈 가져오기
+import styles from './style/MovieList.module.css'; // CSS 모듈 가져오기
 import mainGPA from '/assets/main_GPA.svg';
 import heart from '/assets/heart.svg';
 const MovieList = () => {

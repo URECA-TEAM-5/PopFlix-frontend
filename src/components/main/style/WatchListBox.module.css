@@ -1,4 +1,7 @@
 /* 전체 컨테이너 */
+.container{
+    margin-bottom: 2.8125rem;
+}
 .watchListTitle {
     font-size: 1.5rem;
     font-weight: bold;
@@ -9,28 +12,27 @@
   .watchListBox {
     display: flex;
     justify-content: space-between;
-    gap: 20px;
+    gap: 0.6125rem;
     flex-wrap: nowrap;
     overflow-x: auto;
   }
   
   /* 카드 스타일 */
   .watchListCard {
-    width: 200px;
-    height: 300px; /* 카드 높이를 고정 */
+    width: 10.9375rem;
+    height: 15rem; /* 카드 높이를 고정 */
     display: flex;
     flex-direction: column;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    border-radius: 0.3125rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
+    background-color: #25292e;
     flex-shrink: 0;
     overflow: hidden;
   }
   
   /* 이미지 영역 */
   .cardImageContainer {
-    height: 60%; /* 이미지가 카드 높이의 60% 차지 */
+    height: 65%; /* 이미지가 카드 높이의 60% 차지 */
     overflow: hidden;
   }
   
@@ -42,25 +44,29 @@
   
   /* 텍스트 및 좋아요 영역 */
   .cardContent {
-    height: 40%; /* 텍스트가 카드 높이의 40% 차지 */
+    font-weight: normal;
+    font-size:0.875rem;
+    color: white;
+    height: 35%; /* 텍스트가 카드 높이의 40% 차지 */
     padding: 10px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* 텍스트와 좋아요를 위아래로 배치 */
+    justify-content: space-between;
   }
   
   /* 제목 스타일 */
   .cardTitle {
-    font-size: 1rem;
-    font-weight: bold;
+    font-size: 0.875rem;
+    font-weight: normal;
     margin: 0;
   }
   
   /* 좋아요 및 리스트 항목 영역 */
   .cardFooter {
     font-size: 0.9rem;
-    color: #666;
+    color: white;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
+    gap:1rem;
   }
   
