@@ -1,6 +1,5 @@
 import React from 'react';
 import { FooterConatiner, FooterIcons } from './style/FooterStyle';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Footer = () => {
   const footer_datas = [
@@ -33,9 +32,9 @@ const Footer = () => {
         </div>
         <FooterIcons>
           <img className="icon" src="/assets/youtube_dark.svg" alt="유튜브 로고" />
-          <img className="icon" src="/assets/instagram_dark.svg" alt="유튜브 로고" />
-          <img className="icon" src="/assets/x_dark.svg" alt="유튜브 로고" />
-          <img className="icon" src="/assets/blog_dark.svg" alt="유튜브 로고" />
+          <img className="icon" src="/assets/instagram_dark.svg" alt="인스타그램 로고" />
+          <img className="icon" src="/assets/x_dark.svg" alt="X 로고" />
+          <img className="icon" src="/assets/blog_dark.svg" alt="네이버 블로그 로고" />
         </FooterIcons>
       </div>
     </FooterConatiner>
