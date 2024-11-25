@@ -11,6 +11,13 @@ export const colors = {
 };
 
 export const GlobalStyle = createGlobalStyle`
+  #root, body {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    background-color: ${colors.black};
+  }
+
   @font-face {
       font-family: 'Paperlogy-8ExtraBold';
       src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-8ExtraBold.woff2') format('woff2');
@@ -53,16 +60,12 @@ export const GlobalStyle = createGlobalStyle`
 `;
 
 export const Thema = styled.div`
-  display: flex;
-  flex-direction: column;
   background-color: ${colors.black};
 `;
 
 export const BaseLayout = styled.div`
   position: relative;
-  background-color: ${colors.black};
   min-width: 100vw;
-  min-height: 100vh;
   padding: 1rem 0;
   display: flex;
   flex-direction: column;

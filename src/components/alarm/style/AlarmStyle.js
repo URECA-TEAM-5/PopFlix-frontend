@@ -98,7 +98,7 @@ export const AlarmContainer = styled.div`
   flex-direction: column;
   padding: 2.8rem 0;
   gap: 3rem;
-  height: 100vh;
+  min-height: 90rem;
   caret-color: transparent;
 `;
 
