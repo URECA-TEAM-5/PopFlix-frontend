@@ -3,55 +3,70 @@ import { CardContentDiv, CardTextDiv, WatchAllContainer, WatchListCard } from '.
 import WatchListFilter from './WatchListFilter';
 import WatchListLike from './WatchListLike';
 import WatchListPagination from './WatchListPagenation';
-import { useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { allData } from './data/allData';
 
 const WatchListAll = () => {
-    const [sortedData, setSortedData] = useState(allData);
-    const [selectedFilter, setSelectedFilter] = useState("popular");
-    const [currentPage, setCurrentPage] = useState(1);
-
+    const originalDataRef = useRef(allData);
+    const [selectedFilter, setSelectedFilter] = useState();
+    const [currentPage, setCurrentPage] = useState();
     const itemsPerPage = 8;
-    const indexOfLastItem = currentPage * itemsPerPage;
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = sortedData.slice(indexOfFirstItem, indexOfLastItem);
 
-    const sortData = (filter) => {
+    const sortedData = useMemo(() => {
+        if (!selectedFilter) return [];
         let sorted;
-        if (filter === "popular") {
-            sorted = [...allData].sort((a, b) => b.like - a.like);
-        } else if (filter === "latest") {
-            sorted = [...allData].sort((a, b) => {
+        if (selectedFilter === "popular") {
+            sorted = [...originalDataRef.current].sort((a, b) => b.like - a.like);
+        } else if (selectedFilter === "latest") {
+            sorted = [...originalDataRef.current].sort((a, b) => {
                 const dateA = new Date(a.create_at);
                 const dateB = new Date(b.create_at);
                 return dateB - dateA;
             });
         }
-        setSortedData(sorted);
-        setSelectedFilter(filter);
+        return sorted;
+    }, [selectedFilter]);
+
+    const currentItems = useMemo(() => {
+        if (!sortedData) return [];
+        return sortedData.slice(
+            (currentPage - 1) * itemsPerPage,
+            currentPage * itemsPerPage
+        );
+    }, [sortedData, currentPage]);
+
+    const updateFilter = (newFilter) => {
+        setSelectedFilter(newFilter);
     };
 
-    const handlePageChange = (page) => {
-        setCurrentPage(page);
+    const updatePage = (newPage) => {
+        setCurrentPage(newPage);
     };
+
+    useEffect(() => {
+        setSelectedFilter("popular");
+        setCurrentPage(1);
+    }, []);
 
     return (
         <WatchAllContainer>
             <Grid2 container spacing={2} alignItems="center" justifyContent="space-between">
-                <WatchListFilter selectedFilter={selectedFilter} sortData={sortData} />
+                <WatchListFilter selectedFilter={selectedFilter} sortData={updateFilter} />
             </Grid2>
             <Grid2 className="listContainer" container spacing={3}>
                 {currentItems.map((data) => (
                     <Grid2 key={data.storage_id}>
                         <WatchListCard>
                             <div>
-                                <img src={data.movie_image} alt={data.storage_name} />
+                                <img src={data.movie_image} alt={data.storage_name} loading="lazy" />
                             </div>
                             <CardContentDiv>
                                 <CardTextDiv className="regular">
                                     <span>{data.storage_name}</span>
-                                    <span className="small">{data.user_nickname} | {data.movies}편</span>
-                                    <div className='likeDiv'>
+                                    <span className="small">
+                                        {data.user_nickname} | {data.movies}편
+                                    </span>
+                                    <div className="likeDiv">
                                         <WatchListLike />
                                         <span className="small">{data.like}</span>
                                     </div>
@@ -65,10 +80,10 @@ const WatchListAll = () => {
                 currentPage={currentPage}
                 totalItems={sortedData.length}
                 itemsPerPage={itemsPerPage}
-                onPageChange={handlePageChange}
+                onPageChange={updatePage}
             />
-        </WatchAllContainer >
-    )
-}
+        </WatchAllContainer>
+    );
+};
 
 export default WatchListAll;
