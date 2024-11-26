@@ -11,7 +11,7 @@ const WatchListBox = () => {
 
   return (
     <div className={styles.container}>
-      <p>핫한 유저 PICK WatchList!</p>
+      <p className={styles.p}>핫한 유저 PICK WatchList!</p>
       <div className={styles.watchListBox}>
         {watchListData.map((item, index) => (
           <div key={index} className={styles.watchListCard}>

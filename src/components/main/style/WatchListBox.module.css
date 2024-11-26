@@ -69,4 +69,7 @@
     justify-content: flex-end;
     gap:1rem;
   }
+  .p {
+    padding-bottom: 1rem;
+  }
   

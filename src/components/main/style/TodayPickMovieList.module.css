@@ -5,6 +5,7 @@
     margin-bottom: 2.8125rem; /* 하단 마진 */
   }
   
+  
   /* todayPickMovieList: 카드들을 flexbox로 정렬 */
   .todayPickMovieList {
     padding-top: 1.2rem;
@@ -63,4 +64,6 @@
   .rightButton {
     right: 0;
   }
-  
+  .p {
+    padding-bottom: 1rem;
+  }
