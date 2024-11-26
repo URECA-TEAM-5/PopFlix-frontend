@@ -2,26 +2,26 @@
   height: 40rem;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
+  gap: 0.625rem;
   justify-content: center; /* 가로 중앙 정렬 */
-  
 }
 
-.movieImage{
+.movieImage {
   width: 10.625rem;
   height: 14.125rem;
   border-radius: 0.313rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* 애니메이션 효과 */
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease; /* 애니메이션 효과 */
 }
 .movieImage:hover {
   transform: scale(1.02); /* 이미지 확대 효과 */
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3); /* 그림자 효과 */
 }
 .movieCard {
-  padding: 10px;
-  border-radius: 10px;
+  padding: 0.625rem;
+  border-radius: 0.625rem;
   text-align: center;
-  
 }
 .movieTitle {
   text-align: center;
@@ -47,44 +47,46 @@
   align-items: center;
 }
 
-.movieRating, .movieLikes {
+.movieRating,
+.movieLikes {
   display: flex;
   align-items: center;
-
 }
 
-
+.genreButtonsContainer {
+  margin: 1.5rem;
+  
+}
 
 
 .genreButton {
   width: 5rem;
   height: 2.5rem;
-  font-size: 0.7rem; 
-  margin: 5px;
+  font-size: 0.7rem;
   text-align: center;
   background-color: #000000;
-  color: #84868D;
+  color: #84868d;
   border: none;
-  border:  0.111rem solid #2e2f31;
+  border: 0.111rem solid #2e2f31;
   border-radius: 30px;
   cursor: pointer;
 }
 
 .genreButton:hover {
-  background-color: #F09605;
-  border-color: #F09605;
+  background-color: #f09605;
+  border-color: #f09605;
   color: white;
 }
 
 .genreButtonSelected {
-  border-color: #F09605;
-  background-color: #F09605; /* 선택된 버튼의 배경색 */
+  border-color: #f09605;
+  background-color: #f09605; /* 선택된 버튼의 배경색 */
   color: white;
 }
 .genreButton:focus {
   outline: none;
 }
-.moviePage{
+.moviePage {
   text-align: center;
   margin-top: 0.125rem;
 }

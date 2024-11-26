@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import styles from './style/MovieList.module.css'; // CSS 모듈 가져오기
 import mainGPA from '/assets/main_GPA.svg';
 import heart from '/assets/heart.svg';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 const MovieList = () => {
   const [movies, setMovies] = useState([]); // 영화 데이터 상태
   const [page, setPage] = useState(1); // 페이지 번호
@@ -27,7 +30,7 @@ const MovieList = () => {
     'TV 영화',
     '스릴러',
     '전쟁',
-    '서부'
+    '서부',
   ];
   // 더미 영화 데이터
   const dummyMovies = [
@@ -70,7 +73,7 @@ const MovieList = () => {
     { title: 'Movie 37', imageUrl: 'https://via.placeholder.com/150', rating: 7.4, likes: 220, genre: '액션' },
     { title: 'Movie 38', imageUrl: 'https://via.placeholder.com/150', rating: 8.7, likes: 270, genre: '모험' },
     { title: 'Movie 39', imageUrl: 'https://via.placeholder.com/150', rating: 7.6, likes: 200, genre: '애니메이션' },
-    { title: 'Movie 40', imageUrl: 'https://via.placeholder.com/150', rating: 8.4, likes: 260, genre: '코미디' }
+    { title: 'Movie 40', imageUrl: 'https://via.placeholder.com/150', rating: 8.4, likes: 260, genre: '코미디' },
   ];
 
   useEffect(() => {
@@ -78,7 +81,7 @@ const MovieList = () => {
     if (selectedGenre === 'All') {
       setMovies(dummyMovies);
     } else {
-      setMovies(dummyMovies.filter(movie => movie.genre === selectedGenre));
+      setMovies(dummyMovies.filter((movie) => movie.genre === selectedGenre));
     }
   }, [selectedGenre]);
 
@@ -89,29 +92,35 @@ const MovieList = () => {
 
   // 페이지 변경 함수
   const paginate = (pageNumber) => setPage(pageNumber);
-  const handleScroll = (direction) => {
-    const container = document.getElementById("genre-buttons-container");
-    const scrollAmount = 200; // 한번에 이동할 양
 
-    if (direction === 'left') {
-      container.scrollLeft -= scrollAmount; // 왼쪽으로 스크롤
-    } else if (direction === 'right') {
-      container.scrollLeft += scrollAmount; // 오른쪽으로 스크롤
-    }
+  const setting = {
+    dots: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 10, // 한 화면에 5개의 버튼을 보여주기
+    slidesToScroll: 10,
   };
   return (
     <div>
       {/* 장르 버튼 */}
       <div id="genre-buttons-container" className={styles.genreButtonsContainer}>
-        <button className={`${styles.genreButton} ${selectedGenre === 'All' ? styles.genreButtonSelected : ''}`} 
-        onClick={() => setSelectedGenre('All')}>전체</button>
-        {genres.map((genre, index) => (
-          <button key={index} className={`${styles.genreButton} ${selectedGenre === genre ? styles.genreButtonSelected : ''}`} 
-          onClick={() =>{
-            setSelectedGenre(genre)
-            setPage(1);
-          }} >{genre}</button>
-        ))}
+        <Slider {...setting}>
+          <button className={`${styles.genreButton} ${selectedGenre === 'All' ? styles.genreButtonSelected : ''}`} onClick={() => setSelectedGenre('All')}>
+            전체
+          </button>
+          {genres.map((genre, index) => (
+            <button
+              key={index}
+              className={`${styles.genreButton} ${selectedGenre === genre ? styles.genreButtonSelected : ''}`}
+              onClick={() => {
+                setSelectedGenre(genre);
+                setPage(1);
+              }}
+            >
+              {genre}
+            </button>
+          ))}
+        </Slider>
       </div>
 
       {/* 영화 리스트 */}
@@ -121,17 +130,17 @@ const MovieList = () => {
             <img className={styles.movieImage} src={movie.imageUrl} alt={movie.title} />
             <h4 className={styles.movieTitle}>{movie.title}</h4>
             <div className={styles.movieStats}>
-        {/* 평점 아이콘과 평점 텍스트 */}
-        <div className={styles.movieRating}>
-          <img className={styles.movieIcon} src={mainGPA} alt="평점" />
-          <p>{movie.rating}</p>
-        </div>
-        {/* 좋아요 아이콘과 좋아요 텍스트 */}
-        <div className={styles.movieLikes}>
-          <img className={styles.movieIcon} src={heart} alt="좋아요" />
-          <p>{movie.likes}</p>
-        </div>
-      </div>
+              {/* 평점 아이콘과 평점 텍스트 */}
+              <div className={styles.movieRating}>
+                <img className={styles.movieIcon} src={mainGPA} alt="평점" />
+                <p>{movie.rating}</p>
+              </div>
+              {/* 좋아요 아이콘과 좋아요 텍스트 */}
+              <div className={styles.movieLikes}>
+                <img className={styles.movieIcon} src={heart} alt="좋아요" />
+                <p>{movie.likes}</p>
+              </div>
+            </div>
           </div>
         ))}
       </div>
@@ -140,7 +149,9 @@ const MovieList = () => {
       {movies.length > moviesPerPage && (
         <div className={styles.moviePage}>
           {[...Array(Math.ceil(movies.length / moviesPerPage))].map((_, index) => (
-            <button key={index} onClick={() => paginate(index + 1)}>{index + 1}</button>
+            <button key={index} onClick={() => paginate(index + 1)}>
+              {index + 1}
+            </button>
           ))}
         </div>
       )}
