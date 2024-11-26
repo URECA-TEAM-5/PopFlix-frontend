@@ -3,7 +3,7 @@ import AddUserInfo from '../pages/addUserInfo/AddUserInfo';
 import Alarm from '../pages/alarm/Alarm';
 import MainPage from '../pages/main/MainPage';
 import WatchListPage from '../pages/watchlist/WatchListPage';
-
+import MovieDetailPage from '../pages/movie/MovieDetailPage';
 const MainScreens = {
   Main: {
     path: '/',
@@ -24,6 +24,10 @@ const MainScreens = {
   WatchList: {
     path: '/watchlist',
     element: <WatchListPage />,
+  },
+  MovieDetail: {
+    path: '/movieDetail',
+    element: <MovieDetailPage />,
   }
 };
 
