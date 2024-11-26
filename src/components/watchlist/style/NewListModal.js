@@ -28,13 +28,12 @@ export const InputText = styled.input`
     height: 1rem;
     border-width: 0 0 0.063rem;
     background-color: transparent;
-    color: ${colors.cement_gray};
+    color: ${colors.white};
     font-size: 0.875rem;
     line-height: 1rem;
     margin: 0 auto;
     &:focus {
         outline: none;
-        color: ${colors.white};
     }
 `;
 
@@ -44,12 +43,11 @@ export const InputTextArea = styled.textarea`
     resize: none;
     background-color: transparent;
     border-radius: 0.313rem;
-    color: ${colors.cement_gray};
+    color: ${colors.white};
     font-size: 0.875rem;
     margin: 0 auto;
     &:focus {
         outline: none;
-        color: ${colors.white};
     }
 `;
 
