@@ -8,6 +8,7 @@ export const colors = {
   cement_gray: '#84868d',
   space_gray: '#2e2f31',
   drak_gray: '#1c1e1f',
+  beige: '#ece1c3',
 };
 
 export const GlobalStyle = createGlobalStyle`
@@ -41,6 +42,13 @@ export const GlobalStyle = createGlobalStyle`
 
   h1, h2, h3, h4, h5, h6, p, button {
     font-family: 'SUIT-Bold', sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  div, p, span {
+    margin: 0;
+    padding: 0;
   }
 
   .extra-bold {
