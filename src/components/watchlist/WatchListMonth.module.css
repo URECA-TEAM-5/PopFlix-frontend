@@ -1,0 +1,124 @@
+.container {
+    width: 100%;
+    height: 28.125rem;
+}
+
+.box1 {
+    width: 18.438rem;
+    height: 18.75rem;
+    background-color: #f09605;
+    border-radius: 0.313rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 0.938rem;
+    div {
+        width: 100%;
+        height: 14.375rem;
+        background-color: #d58400;
+        border-radius: 0.313rem;
+        text-align: left;
+        display: flex;
+        align-items: center;
+    }
+    li {
+        list-style-type: none;
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.5rem;
+    }
+    p {
+        padding: 0.6rem;
+    }
+    .box__image {
+        width: 3.75rem;
+        height: 3.75rem;
+        object-fit: cover;
+        border-radius: 0.313rem;
+    }
+    span {
+        margin-left: 0.7rem;
+        word-wrap: break-word;
+    }
+}
+
+.box2 {
+    width: 18.438rem;
+    height: 18.75rem;
+    background-color: #f44280;
+    border-radius: 0.313rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 0.938rem;
+    div {
+        width: 100%;
+        height: 14.375rem;
+        background-color: #d1336A;
+        border-radius: 0.313rem;
+        text-align: left;
+        display: flex;
+        align-items: center;
+    }
+    li {
+        list-style-type: none;
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.5rem;
+    }
+    p {
+        padding: 0.6rem;
+    }
+    .box__image {
+        width: 3.75rem;
+        height: 3.75rem;
+        object-fit: cover;
+        border-radius: 0.313rem;
+    }
+    span {
+        margin-left: 0.7rem;
+        word-wrap: break-word;
+    }
+}
+
+.box3 {
+    width: 18.438rem;
+    height: 18.75rem;
+    background-color: #a442f4;
+    border-radius: 0.313rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 0.938rem;
+    div {
+        width: 100%;
+        height: 14.375rem;
+        background-color: #8937cb;
+        border-radius: 0.313rem;
+        text-align: left;
+        display: flex;
+        align-items: center;
+    }
+    li {
+        list-style-type: none;
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.5rem;
+    }
+    p {
+        padding: 0.6rem;
+    }
+    .box__image {
+        width: 3.75rem;
+        height: 3.75rem;
+        object-fit: cover;
+        border-radius: 0.313rem;
+    }
+    span {
+        margin-left: 0.7rem;
+        word-wrap: break-word;
+    }
+}
