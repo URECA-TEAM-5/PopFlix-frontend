@@ -2,6 +2,7 @@ import LoginModal from '../components/Login/LoginModal';
 import AddUserInfo from '../pages/addUserInfo/AddUserInfo';
 import Alarm from '../pages/alarm/Alarm';
 import MainPage from '../pages/main/MainPage';
+import PhotoReviewDetail from '../pages/review/photo/PhotoReviewDetail';
 import WatchListPage from '../pages/watchlist/WatchListPage';
 
 const MainScreens = {
@@ -24,7 +25,11 @@ const MainScreens = {
   WatchList: {
     path: '/watchlist',
     element: <WatchListPage />,
-  }
+  },
+  PhotoReview: {
+    path: '/photo-review',
+    element: <PhotoReviewDetail />,
+  },
 };
 
 export const AppRouteDef = {
