@@ -98,7 +98,7 @@ export const AlarmContainer = styled.div`
   flex-direction: column;
   padding: 2.8rem 0;
   gap: 3rem;
-  height: 100vh;
+  min-height: 90rem;
   caret-color: transparent;
 `;
 
@@ -122,5 +122,89 @@ export const TopSection = styled.div`
 
   .text__highlight {
     color: ${colors.orange};
+  }
+`;
+
+export const EmptyMessageContainer = styled.div`
+  padding-top: 21.5rem;
+  margin: 0;
+  height: 43rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .image__empty {
+    width: 21.4375rem;
+    height: 14.6875rem;
+  }
+
+  .text__section {
+    width: 27rem;
+    height: 8.75rem;
+    padding: 1.375rem 2.75rem;
+    font-size: 2.5rem;
+    line-height: 1.2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .text__highlight {
+    color: ${colors.orange};
+  }
+
+  .button__section {
+    padding-top: 5rem;
+    width: 32.875rem;
+    height: 16.625rem;
+  }
+
+  .button__image {
+    width: 3rem;
+    height: 2.75rem;
+  }
+
+  .button__message {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .button {
+    width: 100%;
+    height: 5.5rem;
+    border-radius: 2.5rem;
+    font-size: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: ${colors.navy_gray};
+    background-color: ${colors.beige};
+
+    &:hover {
+      box-shadow: rgba(255, 255, 255, 0.4) 0 0 2.8rem;
+      transform: translateY(-0.4rem);
+      transition: 0.3s ease;
+
+      .text__subMessage {
+        border-color: ${colors.beige};
+        color: ${colors.orange};
+        transition: 0.3s ease;
+      }
+    }
+
+    &:not(:hover) {
+      transition: 0.3s ease-out;
+    }
+  }
+
+  .text__subMessage {
+    font-size: 1rem;
+    color: ${colors.cement_gray};
+    border-bottom: 0.05rem solid ${colors.cement_gray};
   }
 `;
