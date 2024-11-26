@@ -1,7 +1,6 @@
 import { Grid2 } from '@mui/material';
-import { CardContentDiv, CardTextDiv, WatchAllContainer, WatchListCard } from './style/WatchListAll';
+import { WatchAllContainer } from './style/WatchListAll';
 import WatchListFilter from './WatchListFilter';
-import WatchListLike from './WatchListLike';
 import WatchListPagination from './WatchListPagenation';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { allData } from './data/allData';
