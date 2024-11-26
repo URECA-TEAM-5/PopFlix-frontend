@@ -1,4 +1,5 @@
 import LoginModal from '../components/Login/LoginModal';
+import NewListModal from '../components/mypage/NewListModal';
 import AddUserInfo from '../pages/addUserInfo/AddUserInfo';
 import Alarm from '../pages/alarm/Alarm';
 import MainPage from '../pages/main/MainPage';
@@ -24,6 +25,10 @@ const MainScreens = {
   WatchList: {
     path: '/watchlist',
     element: <WatchListPage />,
+  },
+  NewListModal: {
+    path: '/mypage',
+    element: <NewListModal />,
   }
 };
 
