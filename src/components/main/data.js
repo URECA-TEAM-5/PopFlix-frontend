@@ -23,6 +23,13 @@ export const genres = [
   '전쟁',
   '서부',
 ];
+export const watchListData = [
+    { image: 'https://via.placeholder.com/150', watchListTitle: '외국인을 위한 찐 한국인의 한국맛 영화 추천', heart: 50, listItem: 5 },
+    { image: 'https://via.placeholder.com/150', watchListTitle: '외국인을 위한 찐 한국인의 한국맛 영화 추천', heart: 50, listItem: 5 },
+    { image: 'https://via.placeholder.com/150', watchListTitle: '외국인을 위한 찐 한국인의 한국맛 영화 추천', heart: 50, listItem: 5 },
+    { image: 'https://via.placeholder.com/150', watchListTitle: '외국인을 위한 찐 한국인의 한국맛 영화 추천', heart: 50, listItem: 5 },
+    { image: 'https://via.placeholder.com/150', watchListTitle: '외국인을 위한 찐 한국인의 한국맛 영화 추천', heart: 50, listItem: 5 }
+  ];
 export const pickContentData = [
     {id:1,movieImage:'https://via.placeholder.com/150'},
     {id:2,movieImage:'https://via.placeholder.com/150'},

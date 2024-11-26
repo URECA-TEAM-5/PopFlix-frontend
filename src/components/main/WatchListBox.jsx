@@ -1,13 +1,7 @@
 import styles from './style/WatchListBox.module.css';
-
+import  {watchListData} from './data';
 const WatchListBox = () => {
-  const watchListData = [
-    { image: 'https://via.placeholder.com/150', watchListTitle: '외국인을 위한 찐 한국인의 한국맛 영화 추천', heart: 50, listItem: 5 },
-    { image: 'https://via.placeholder.com/150', watchListTitle: '외국인을 위한 찐 한국인의 한국맛 영화 추천', heart: 50, listItem: 5 },
-    { image: 'https://via.placeholder.com/150', watchListTitle: '외국인을 위한 찐 한국인의 한국맛 영화 추천', heart: 50, listItem: 5 },
-    { image: 'https://via.placeholder.com/150', watchListTitle: '외국인을 위한 찐 한국인의 한국맛 영화 추천', heart: 50, listItem: 5 },
-    { image: 'https://via.placeholder.com/150', watchListTitle: '외국인을 위한 찐 한국인의 한국맛 영화 추천', heart: 50, listItem: 5 }
-  ];
+  
 
   return (
     <div className={styles.container}>
