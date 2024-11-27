@@ -4,8 +4,9 @@ import { colors } from '../../../../global/globalStyle';
 export const FooterConatiner = styled.div`
   width: 100%;
   height: 9.7rem;
-  margin-bottom: 3rem;
   line-height: 1.2;
+  margin-top: 3rem;
+  padding: 3rem 0;
   border-top: 0.05rem solid ${colors.space_gray};
   display: flex;
   flex-direction: column;
