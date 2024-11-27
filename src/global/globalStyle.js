@@ -96,4 +96,8 @@ export const BaseLayout = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  .app-pages__section {
+    min-height: 95rem;
+  }
 `;
