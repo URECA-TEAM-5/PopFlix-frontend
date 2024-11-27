@@ -19,7 +19,7 @@ const Alarm = () => {
   return (
     <>
       <AlarmContainer>
-        {alarm.length === 0 ? (
+        {alarm.length !== 0 ? (
           <AlaramEmpty />
         ) : (
           <>
