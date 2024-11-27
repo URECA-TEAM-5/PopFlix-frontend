@@ -2,15 +2,22 @@ import { styled } from 'styled-components';
 import { colors } from '../../../global/globalStyle';
 
 export const WatchAllContainer = styled.div`
-    width: 50rem;
-    margin: 0 auto;
-
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .list__header {
+        width: 70%;
+        padding-top: 3rem;
+    }
     .pointBtn {
         width: 5rem;
         height: 2.5rem;
-        background-color: ${colors.orange};
+        background-color: transparent;
         color: ${colors.white};
         border-radius: 1.875rem;
+        border: 0.063rem solid ${colors.orange};
         display: flex;
         align-items: center;
         justify-content: center;
@@ -33,24 +40,24 @@ export const WatchAllContainer = styled.div`
         color: ${colors.orange};
     }
 
-    .listContainer {
+    .list__container {
         display: flex;
         justify-content: center;
         padding: 2rem 0;
-        width: 100%;
+        width: 80%;
     }
 `;
 
 export const WatchListCard = styled.div`
     display: flex;
-    width: 22.813rem;
+    width: 100%;
     height: 9.375rem;
     border-radius: 0.313rem;
     background-color: transparent;
     cursor: pointer;
     &:hover {
         transition: box-shadow 0.1s;
-        box-shadow: 0 0 0.12rem 0.12rem rgb(132, 134, 141, 0.8);
+        box-shadow: 0 0 0.1rem 0.1rem rgb(132, 134, 141, 0.8);
     }
     &:focus {
         outline: none;
@@ -70,6 +77,7 @@ export const CardContentDiv = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    width: 100%;
 `;
 
 export const CardTextDiv = styled.div`
@@ -104,8 +112,7 @@ export const PaginationContainer = styled.div`
     display: flex;
     justify-content: center;
     padding: 1rem 0;
-    width: 100%;
-    height: 2.813rem;
+    width: 80%;
 `;
 
 export const PageButton = styled.button`

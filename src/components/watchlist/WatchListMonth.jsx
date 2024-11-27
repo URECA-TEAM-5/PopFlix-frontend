@@ -1,9 +1,16 @@
 import { Box, Grid2 } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { data } from './data/data';
-import { WatchMonthContainer } from './style/WatchListMonth';
+import { BoxDiv, WatchMonthContainer } from './style/WatchListMonth';
+import { colors } from '../../global/globalStyle';
 
 const WatchListMonth = () => {
+    const Colors = [
+        { boxcolor: colors.orange, deepcolor: "#d58400" },
+        { boxcolor: "#f44280", deepcolor: "#d1336A" },
+        { boxcolor: "#a442f4", deepcolor: "#8937cb" },
+    ];
+
     const [month, setMonth] = useState([]);
 
     useEffect(() => {
@@ -25,12 +32,18 @@ const WatchListMonth = () => {
 
     return (
         <WatchMonthContainer>
+            <img src="/assets/watchlist_banner.svg" alt="WatchList Banner" />
             <h4 className="extra-bold title">이 달의 인기 WatchList를 알려드려요!</h4>
-            <Grid2 container spacing={2}>
+            <BoxDiv>
                 {Object.values(filterMonth).map((data, index) => {
-                    const boxClass = `box${index + 1}`;
+                    const { boxcolor, deepcolor } = Colors[index] || Colors[0];
                     return (
-                        <Box key={data.storage_id} className={boxClass}>
+                        <Box key={data.storage_id}
+                            sx={{
+                                backgroundColor: boxcolor,
+                                '& div': { backgroundColor: deepcolor }
+                            }}
+                            className="box">
                             <p>{data.storage_name}</p>
                             <div>
                                 <ul>
@@ -45,7 +58,7 @@ const WatchListMonth = () => {
                         </Box>
                     );
                 })}
-            </Grid2>
+            </BoxDiv>
         </WatchMonthContainer>
     )
 }
