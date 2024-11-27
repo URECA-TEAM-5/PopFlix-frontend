@@ -12,12 +12,27 @@ export const colors = {
 };
 
 export const GlobalStyle = createGlobalStyle`
-  #root, body {
+  #root {
     display: flex;
+    width: 100vw;
+    min-width: 37.5rem;
+    height: 100vh;
     margin: 0;
     padding: 0;
     background-color: ${colors.black};
   }
+
+  @media (prefers-color-scheme: light) {
+    :root {
+        display: flex;
+        width: 100vw;
+        min-width: 37.5rem;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+        background-color: ${colors.black};
+    }
+}
 
   @font-face {
       font-family: 'Paperlogy-8ExtraBold';
@@ -67,19 +82,14 @@ export const GlobalStyle = createGlobalStyle`
   }
 `;
 
-export const Thema = styled.div`
-  background-color: ${colors.black};
-`;
-
 export const BaseLayout = styled.div`
+  background-color: ${colors.black};
   position: relative;
-  min-width: 100vw;
-  padding: 1rem 0;
+  min-width: 37.5rem;
+  width: 100%;
+  /* max-width: 90rem; */
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-`;
-
-export const MainContainer = styled.div`
-  padding: 1.9rem 16.25rem;
 `;

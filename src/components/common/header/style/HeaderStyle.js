@@ -3,12 +3,14 @@ import { colors } from '../../../../global/globalStyle';
 
 export const HeaderContainer = styled.div`
   position: sticky;
-  width: 75rem;
+  width: 100%;
+  min-width: 37.5rem;
   height: 5rem;
-  padding: 0 2.25rem;
+  /* padding: 0 2.25rem; */
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-evenly;
 
   .img__logo {
     width: 7.25rem;
