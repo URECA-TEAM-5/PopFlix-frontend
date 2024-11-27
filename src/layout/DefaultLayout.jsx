@@ -10,7 +10,9 @@ const DefaultLayout = () => {
       <GlobalStyle />
       <BaseLayout className="base-layout regular">
         <Header className="header" />
-        <AppPages />
+        <div className="app-pages__section">
+          <AppPages />
+        </div>
         <Footer className="footer" />
       </BaseLayout>
     </>
