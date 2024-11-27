@@ -14,25 +14,27 @@ export const colors = {
 export const GlobalStyle = createGlobalStyle`
   #root {
     display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
     width: 100vw;
     min-width: 37.5rem;
-    height: 100vh;
+    min-height: 100vh;
+    height: 100%;
     margin: 0;
     padding: 0;
+  }
+  .body {
+    width: 100vw;
+    min-height: 100vh;
     background-color: ${colors.black};
   }
 
   @media (prefers-color-scheme: light) {
     :root {
-        display: flex;
-        width: 100vw;
-        min-width: 37.5rem;
-        height: 100vh;
-        margin: 0;
-        padding: 0;
-        background-color: ${colors.black};
+      background-color: ${colors.black};
     }
-}
+  }
 
   @font-face {
       font-family: 'Paperlogy-8ExtraBold';
@@ -86,10 +88,12 @@ export const BaseLayout = styled.div`
   background-color: ${colors.black};
   position: relative;
   min-width: 37.5rem;
+  max-width: 90rem;
   width: 100%;
-  /* max-width: 90rem; */
-  padding: 2rem;
+  height: 100%;
+  padding: 1.5rem 0;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
 `;
