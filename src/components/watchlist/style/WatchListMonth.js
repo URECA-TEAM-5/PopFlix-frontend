@@ -13,7 +13,8 @@ export const WatchMonthContainer = styled.div`
     width: 57.5rem;
     height: 26.25rem;
     .title {
-        letter-spacing: 0.05rem;
+        letter-spacing: 0.04rem;
+        padding-bottom: 1.5rem;
     }
     .box1 {
         width: 18.125rem;
@@ -42,7 +43,7 @@ export const WatchMonthContainer = styled.div`
             margin-bottom: 0.5rem;
         }
         p {
-            padding: 0.6rem;
+            padding-top: 1.4rem;
         }
         .box__image {
             width: 3.75rem;
@@ -84,7 +85,7 @@ export const WatchMonthContainer = styled.div`
             margin-bottom: 0.5rem;
         }
         p {
-            padding: 0.6rem;
+            padding-top: 1.4rem;
         }
         .box__image {
             width: 3.75rem;
@@ -126,7 +127,7 @@ export const WatchMonthContainer = styled.div`
             margin-bottom: 0.5rem;
         }
         p {
-            padding: 0.6rem;
+            padding-top: 1.4rem;
         }
         .box__image {
             width: 3.75rem;

@@ -13,7 +13,7 @@ export const colors = {
 
 export const GlobalStyle = createGlobalStyle`
   #root, body {
-    display: flex;
+    display: block;
     margin: 0;
     padding: 0;
     background-color: ${colors.black};

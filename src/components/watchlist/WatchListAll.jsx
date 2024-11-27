@@ -1,10 +1,10 @@
 import { Grid2 } from '@mui/material';
-import { CardContentDiv, CardTextDiv, WatchAllContainer, WatchListCard } from './style/WatchListAll';
+import { WatchAllContainer } from './style/WatchListAll';
 import WatchListFilter from './WatchListFilter';
-import WatchListLike from './WatchListLike';
 import WatchListPagination from './WatchListPagenation';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { allData } from './data/allData';
+import WatchListCardItem from './WatchListCardItem';
 
 const WatchListAll = () => {
     const originalDataRef = useRef(allData);
@@ -55,25 +55,7 @@ const WatchListAll = () => {
             </Grid2>
             <Grid2 className="listContainer" container spacing={3}>
                 {currentItems.map((data) => (
-                    <Grid2 key={data.storage_id}>
-                        <WatchListCard>
-                            <div>
-                                <img src={data.movie_image} alt={data.storage_name} loading="lazy" />
-                            </div>
-                            <CardContentDiv>
-                                <CardTextDiv className="regular">
-                                    <span>{data.storage_name}</span>
-                                    <span className="small">
-                                        {data.user_nickname} | {data.movies}편
-                                    </span>
-                                    <div className="likeDiv">
-                                        <WatchListLike />
-                                        <span className="small">{data.like}</span>
-                                    </div>
-                                </CardTextDiv>
-                            </CardContentDiv>
-                        </WatchListCard>
-                    </Grid2>
+                    <WatchListCardItem key={data.storage_id} data={data} />
                 ))}
             </Grid2>
             <WatchListPagination
