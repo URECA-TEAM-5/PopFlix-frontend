@@ -24,7 +24,7 @@ const MainScreens = {
   WatchList: {
     path: '/watchlist',
     element: <WatchListPage />,
-  }
+  },
 };
 
 export const AppRouteDef = {
