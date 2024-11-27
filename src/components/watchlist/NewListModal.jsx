@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Dialog } from '@mui/material';
 import { BtnDiv, DiaglogBtn } from './style/NewListModal';
 import { colors } from '../../global/globalStyle';
@@ -38,12 +38,12 @@ const NewListModal = () => {
     const handleInput = (e) => {
         const { name, value } = e.target;
         setError('');
+        const maxLength = name === 'storage_name' ? NAME_MAX_LENGTH : INFO_MAX_LENGTH;
+        const limitedValue = value.slice(0, maxLength);
         if (name === 'storage_name') {
-            const limitedValue = value.slice(0, NAME_MAX_LENGTH);
             setStorageNameLength(limitedValue.length);
             storageNameRef.current.value = limitedValue;
         } else if (name === 'storage_info') {
-            const limitedValue = value.slice(0, INFO_MAX_LENGTH);
             setStorageInfoLength(limitedValue.length);
             storageInfoRef.current.value = limitedValue;
         }

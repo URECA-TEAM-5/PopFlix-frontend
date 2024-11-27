@@ -1,5 +1,4 @@
 import LoginModal from '../components/Login/LoginModal';
-import SearchMovieModal from '../components/watchlist/SearchMovieModal';
 import AddUserInfo from '../pages/addUserInfo/AddUserInfo';
 import Alarm from '../pages/alarm/Alarm';
 import MainPage from '../pages/main/MainPage';
@@ -26,10 +25,6 @@ const MainScreens = {
     path: '/watchlist',
     element: <WatchListPage />,
   },
-  SearchMovieModal: {
-    path: '/mypage',
-    element: <SearchMovieModal />,
-  }
 };
 
 export const AppRouteDef = {

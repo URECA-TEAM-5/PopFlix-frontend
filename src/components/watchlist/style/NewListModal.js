@@ -42,7 +42,7 @@ export const InputTextArea = styled.textarea`
     height: 5rem;
     resize: none;
     background-color: transparent;
-    border-radius: 0.313rem;
+    border: 0;
     color: ${colors.white};
     font-size: 0.875rem;
     margin: 0 auto;
@@ -61,7 +61,7 @@ export const InputLength = styled.span`
 export const BtnDiv = styled.div`
     border-top: 0.063rem solid ${colors.white};
     width: 25rem;
-    height: 2.5rem;
+    height: 2rem;
     padding: 0.5rem 0 0.7rem 0;
     display: flex;
     flex-direction: row;
