@@ -50,10 +50,10 @@ const WatchListAll = () => {
 
     return (
         <WatchAllContainer>
-            <Grid2 container spacing={2} alignItems="center" justifyContent="space-between">
+            <div className="list__header">
                 <WatchListFilter selectedFilter={selectedFilter} sortData={updateFilter} />
-            </Grid2>
-            <Grid2 className="listContainer" container spacing={3}>
+            </div>
+            <Grid2 className="list__container" container spacing={4}>
                 {currentItems.map((data) => (
                     <WatchListCardItem key={data.storage_id} data={data} />
                 ))}
