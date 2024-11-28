@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { FooterConatiner, FooterIcons } from './style/FooterStyle';
 
 const Footer = () => {
-  const footer_datas = [
+  const footer_datas = useRef([
     { title: '고객센터 이용문의', info: 'cs@popflix.co.kr / 02-123-1234 (유료)' },
     { title: '회사명', info: 'POPFLIX' },
     { title: '대표', info: '귀엽조' },
     { title: '주소', info: '서울특별시 용산구 한강대로 32' },
     { title: '사업자등록번호', info: '123-12-123456' },
-  ];
+  ]);
 
   return (
     <FooterConatiner>
@@ -16,7 +16,7 @@ const Footer = () => {
         <div className="info__section">
           <div className="info__top">Popflix 서비스 이용약관 &nbsp; | &nbsp; 개인정보 처리 방침 &nbsp; | &nbsp; 고객센터</div>
           <div className="info__section info__mid ">
-            {footer_datas.map((data, index) => {
+            {footer_datas.current.map((data, index) => {
               return (
                 <div className="div__row regular" key={data.title + index}>
                   <div className="info__left">{data.title}</div>

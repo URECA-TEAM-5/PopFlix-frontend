@@ -8,13 +8,15 @@ const HeaderIconSection = () => {
   return (
     <>
       <IconSection>
-        <FontAwesomeIcon className="icon" icon={faMoon} size="xl" />
-        <Link to="/alarm">
-          <FontAwesomeIcon className="icon" icon={faBell} size="xl" />
-        </Link>
-        <Link to="/mypage">
-          <FontAwesomeIcon className="icon" icon={faUser} size="xl" />
-        </Link>
+        <div className="inner__section">
+          <FontAwesomeIcon className="icon" icon={faMoon} size="xl" />
+          <Link to="/alarm">
+            <FontAwesomeIcon className="icon" icon={faBell} size="xl" />
+          </Link>
+          <Link to="/mypage">
+            <FontAwesomeIcon className="icon" icon={faUser} size="xl" />
+          </Link>
+        </div>
       </IconSection>
     </>
   );

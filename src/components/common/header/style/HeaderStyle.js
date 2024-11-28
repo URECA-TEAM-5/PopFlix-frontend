@@ -3,14 +3,13 @@ import { colors } from '../../../../global/globalStyle';
 
 export const HeaderContainer = styled.div`
   position: sticky;
+  min-width: 51.25rem;
   width: 100%;
-  min-width: 37.5rem;
   height: 5rem;
-  /* padding: 0 2.25rem; */
   display: flex;
   flex-direction: row;
+  justify-content: center;
   align-items: center;
-  justify-content: space-evenly;
 
   .img__logo {
     width: 7.25rem;
@@ -19,18 +18,38 @@ export const HeaderContainer = styled.div`
     caret-color: transparent;
   }
 
-  .header__menu {
-    width: 31.875rem;
-    padding: 0 2.5rem;
+  .menu__section {
+    max-width: 34.75rem;
+    min-width: 17.625rem;
+    width: 100%;
     display: flex;
     flex-direction: row;
+    justify-content: flex-start;
     align-items: center;
-    gap: 2.5rem;
     caret-color: transparent;
+  }
+
+  .header__menu {
+    min-width: 24.5625rem;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 5%;
+    align-items: center;
+    caret-color: transparent;
+  }
+
+  .search__section {
+    display: flex;
+    justify-content: flex-end;
+    max-width: 20.625rem;
+    width: 100%;
   }
 `;
 
 export const HeaderMenuItem = styled.p`
+  display: block;
   width: auto;
   padding: 0.05rem;
   font-size: 1rem;
@@ -47,13 +66,22 @@ export const HeaderMenuItem = styled.p`
 `;
 
 export const IconSection = styled.div`
-  width: 16.56rem;
-  height: 1.2rem;
-  gap: 1.8rem;
+  max-width: 12.5rem;
+  width: 100%;
+  min-height: 1.2rem;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
+
+  .inner__section {
+    max-width: 10rem;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
 
   .icon {
     font-size: 1.8rem;
