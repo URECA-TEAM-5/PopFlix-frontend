@@ -87,7 +87,7 @@ export const GlobalStyle = createGlobalStyle`
 export const BaseLayout = styled.div`
   background-color: ${colors.black};
   position: relative;
-  min-width: 37.5rem;
+  min-width: 51.25rem;
   max-width: 90rem;
   width: 100%;
   height: 100%;
