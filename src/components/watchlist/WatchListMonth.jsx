@@ -1,5 +1,5 @@
 import { Box, Grid2 } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { data } from './data/monthData';
 import { WatchMonthContainer } from './style/WatchListMonth';
 import { colors } from '../../global/globalStyle';
@@ -17,26 +17,28 @@ const WatchListMonth = () => {
         setMonth(data);
     }, []);
 
-    const filterMonth = month.reduce((acc, item) => {
-        const { storage, movies } = item;
-        const { id: storage_id, storageName: storage_name, storageImage: movie_image } = storage;
+    const filterMonth = useMemo(() => {
+        return month.reduce((acc, item) => {
+            const { storage, movies } = item;
+            const { id: storage_id, storageName: storage_name, storageImage: storage_image } = storage;
 
-        if (!acc[storage_id]) {
-            acc[storage_id] = {
-                storage_id,
-                storage_name,
-                movie_image,
-                movies: [],
-            };
-        }
+            if (!acc[storage_id]) {
+                acc[storage_id] = {
+                    storage_id,
+                    storage_name,
+                    storage_image,
+                    movies: [],
+                };
+            }
 
-        movies.forEach(movie => {
-            const { posterPath: movie_image, title: movie_title } = movie;
-            acc[storage_id].movies.push({ movie_image, movie_title });
-        });
+            movies.forEach(movie => {
+                const { posterPath, title } = movie;
+                acc[storage_id].movies.push({ posterPath, title });
+            });
 
-        return acc;
-    }, {});
+            return acc;
+        }, {});
+    }, [month]);
 
     return (
         <WatchMonthContainer>
@@ -48,7 +50,7 @@ const WatchListMonth = () => {
                     return (
                         <Grid2
                             key={data.storage_id}
-                            xs={12} sm={4}
+                            xs={12} sm={6}
                             sx={{
                                 display: "flex",
                                 justifyContent: "center",
@@ -75,8 +77,8 @@ const WatchListMonth = () => {
                                     <ul className="box__ul">
                                         {data.movies.slice(0, 3).map((movie, index) => (
                                             <li key={index} className="box__li">
-                                                <img className="box__image" src={movie.movie_image} alt={movie.movie_title} />
-                                                <span className="regular box__span">{movie.movie_title}</span>
+                                                <img className="box__image" src={movie.posterPath} alt={movie.title} />
+                                                <span className="regular box__span">{movie.title}</span>
                                             </li>
                                         ))}
                                     </ul>
