@@ -1,7 +1,7 @@
 import { Box, Grid2 } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { data } from './data/data';
-import { BoxDiv, WatchMonthContainer } from './style/WatchListMonth';
+import { WatchMonthContainer } from './style/WatchListMonth';
 import { colors } from '../../global/globalStyle';
 
 const WatchListMonth = () => {
@@ -34,32 +34,51 @@ const WatchListMonth = () => {
         <WatchMonthContainer>
             <img src="/assets/watchlist_banner.svg" alt="WatchList Banner" />
             <h4 className="extra-bold title">이 달의 인기 WatchList를 알려드려요!</h4>
-            <BoxDiv>
+            <Grid2 container spacing={2} sx={{ justifyContent: "center", width: "85%" }}>
                 {Object.values(filterMonth).map((data, index) => {
                     const { boxcolor, deepcolor } = Colors[index] || Colors[0];
                     return (
-                        <Box key={data.storage_id}
+                        <Grid2
+                            key={data.storage_id}
+                            xs={12} sm={4}
                             sx={{
-                                backgroundColor: boxcolor,
-                                '& div': { backgroundColor: deepcolor }
+                                display: "flex",
+                                justifyContent: "center",
                             }}
-                            className="box">
-                            <p>{data.storage_name}</p>
-                            <div>
-                                <ul>
-                                    {data.movies.slice(0, 3).map((movie, index) => (
-                                        <li key={index}>
-                                            <img className="box__image" src={movie.movie_image} alt={movie.movie_title} />
-                                            <span className="regular">{movie.movie_title}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        </Box>
+                        >
+                            <Box
+                                sx={{
+                                    width: "19rem",
+                                    height: "18.5rem",
+                                    backgroundColor: boxcolor,
+                                    borderRadius: "0.313rem",
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    justifyContent: "space-between",
+                                    div: {
+                                        width: "100%",
+                                        backgroundColor: deepcolor,
+                                        borderRadius: '0.313rem',
+                                    },
+                                }}
+                            >
+                                <p className="box__p">{data.storage_name}</p>
+                                <div>
+                                    <ul className="box__ul">
+                                        {data.movies.slice(0, 3).map((movie, index) => (
+                                            <li key={index} className="box__li">
+                                                <img className="box__image" src={movie.movie_image} alt={movie.movie_title} />
+                                                <span className="regular box__span">{movie.movie_title}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </Box>
+                        </Grid2>
                     );
                 })}
-            </BoxDiv>
-        </WatchMonthContainer>
+            </Grid2>
+        </WatchMonthContainer >
     )
 }
 

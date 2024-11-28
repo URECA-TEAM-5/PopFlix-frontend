@@ -11,42 +11,12 @@ export const WatchMonthContainer = styled.div`
         padding: 2% 0;
     }
     .title {
-        width: 78%;
+        width: 81%;
         text-align: left;
         letter-spacing: 0.01rem;
         padding-bottom: 1.5rem;
     }
-`;
-
-export const BoxDiv = styled.div`
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-
-    .box {
-        width: 25.5%;
-        background-color: ${props => props.boxcolor};
-        border-radius: 0.313rem;
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        font-size: 0.938rem;
-    }
-
-    .box div {
-        width: 100%;
-        background-color: ${props => props.deepcolor};
-        border-radius: 0.313rem;
-        text-align: left;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .box ul {
-        width: 100%;
+    .box__ul {
         list-style-type: none;
         display: flex;
         flex-direction: column;
@@ -54,27 +24,29 @@ export const BoxDiv = styled.div`
         padding: 0.5rem 1.5rem;
         margin: 0;
     }
-
-    .box li {
+    .box__li {
         width: 100%;
         display: flex;
         flex-direction: row;
         align-items: center;
     }
-
-    .box p {
-        padding: 1rem;
+    .box__p {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 2rem;
+        font: 0.938rem;
+        padding: 1rem 1.5rem 1.3rem 1.5rem;
+        text-align: center;
         word-wrap: break-word;
     }
-
-    .box .box__image {
+    .box__image {
         width: 3.75rem;
         height: 3.75rem;
         object-fit: cover;
         border-radius: 0.313rem;
     }
-
-    .box span {
+    .box__span {
         width: 73%;
         padding-left: 0.7rem;
         word-wrap: break-word;
