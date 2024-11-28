@@ -98,6 +98,8 @@ export const BaseLayout = styled.div`
   align-items: center;
 
   .app-pages__section {
+    width: 100%;
+    height: 100%;
     min-height: 95rem;
   }
 `;
