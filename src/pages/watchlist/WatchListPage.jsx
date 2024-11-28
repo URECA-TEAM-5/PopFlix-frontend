@@ -4,7 +4,7 @@ import WatchListMonth from '../../components/watchlist/WatchListMonth.jsx';
 
 const WatchListPage = () => {
     return (
-        <Container className="container">
+        <Container>
             <WatchListMonth />
             <WatchListAll />
         </Container>

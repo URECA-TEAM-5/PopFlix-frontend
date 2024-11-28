@@ -1,6 +1,6 @@
 import React from 'react';
 import AppPages from '../route/AppPages';
-import { BaseLayout, GlobalStyle, MainContainer, Thema } from '../global/globalStyle';
+import { BaseLayout, GlobalStyle } from '../global/globalStyle';
 import Header from '../components/common/header/Header';
 import Footer from '../components/common/footer/Footer';
 
@@ -8,15 +8,13 @@ const DefaultLayout = () => {
   return (
     <>
       <GlobalStyle />
-      <Thema className="thema regular">
-        <BaseLayout className="base-layout">
-          <Header className="header" />
-          <MainContainer className="mainContainer">
-            <AppPages />
-          </MainContainer>
-          <Footer className="footer" />
-        </BaseLayout>
-      </Thema>
+      <BaseLayout className="base-layout regular">
+        <Header className="header" />
+        <div className="app-pages__section">
+          <AppPages />
+        </div>
+        <Footer className="footer" />
+      </BaseLayout>
     </>
   );
 };
