@@ -5,9 +5,7 @@ import UserInfoGenre from '../../components/userInfo/UserInfoGenre';
 import UserInfoGender from '../../components/userInfo/UserInfoGender';
 import { Box, Button } from '@mui/material';
 import { colors } from '../../global/globalStyle';
-import ImageSelectModal from '../../components/userInfo/modal/ImageSelectModal';
-import DefaultImageSelectModal from '../../components/userInfo/modal/DefaultImageSelectModal';
-import WithdrawalModal from '../../components/userInfo/modal/withdrawalModal';
+import WithdrawalModal from '../../components/userInfo/modal/WithdrawalModal';
 
 const UpdateUserInfo = () => {
   // 회원탈퇴 모달
@@ -67,8 +65,6 @@ const UpdateUserInfo = () => {
         padding: '2rem',
       }}
     >
-      {/*<DefaultImageSelectModal />*/}
-      {/*<ImageSelectModal />*/}
       {/* 프로필 사진 등록 */}
       <UserInfoImage profileImage={profileImage} onImageUpload={handleImageUpload} />
 
