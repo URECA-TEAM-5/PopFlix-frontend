@@ -27,6 +27,7 @@ export const FooterConatiner = styled.div`
   .info__section {
     display: flex;
     flex-direction: column;
+    padding-left: 1.2rem;
   }
 
   .info__top {
@@ -62,7 +63,7 @@ export const FooterIcons = styled.div`
   display: flex;
   flex-direction: row;
   height: 2.5rem;
-  padding: 0.1rem;
+  padding-right: 1.2rem;
   align-items: end;
   gap: 1.5rem;
 

@@ -87,7 +87,7 @@ export const GlobalStyle = createGlobalStyle`
 export const BaseLayout = styled.div`
   background-color: ${colors.black};
   position: relative;
-  min-width: 37.5rem;
+  min-width: 51.25rem;
   max-width: 90rem;
   width: 100%;
   height: 100%;
@@ -97,6 +97,8 @@ export const BaseLayout = styled.div`
   justify-content: center;
   align-items: center;
   .app-pages__section {
+    width: 100%;
+    height: 100%;
     min-height: 95rem;
   }
 `;
