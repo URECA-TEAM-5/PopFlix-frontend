@@ -2,7 +2,7 @@ import React from 'react';
 import { Modal, Box, Typography, Divider } from '@mui/material';
 import { colors } from '../../../global/globalStyle';
 
-const DefaultImageSelectModal = ({ open, onClose, onSelectImage }) => {
+const DefaultImageSelectModal = ({ onSelectImage, onClose }) => {
   const imageLinks = [
     '/assets/profile_1.svg',
     '/assets/profile_2.svg',
@@ -11,11 +11,6 @@ const DefaultImageSelectModal = ({ open, onClose, onSelectImage }) => {
     '/assets/profile_5.svg',
     '/assets/profile_6.svg',
   ];
-
-  const handleImageClick = (imageLink) => {
-    if (onSelectImage) onSelectImage(imageLink);
-    onClose();
-  };
 
   return (
     <Modal open={true} onClose={onClose}>
@@ -35,7 +30,7 @@ const DefaultImageSelectModal = ({ open, onClose, onSelectImage }) => {
           },
         }}
       >
-        <h2 className="bold" style={{ textAlign: 'left', margin: '1.75rem 0rem', paddingLeft: '2.5rem' }}>
+        <h2 className="bold" style={{ textAlign: 'left', margin: '1.5rem 0rem', paddingLeft: '2.5rem' }}>
           기본 이미지 선택
         </h2>
 
@@ -77,7 +72,7 @@ const DefaultImageSelectModal = ({ open, onClose, onSelectImage }) => {
                   borderColor: colors.orange, // 호버 시 테두리 색상
                 },
               }}
-              onClick={() => handleImageClick(image)}
+              onClick={() => onSelectImage(image)}
             >
               <Box
                 component="img"

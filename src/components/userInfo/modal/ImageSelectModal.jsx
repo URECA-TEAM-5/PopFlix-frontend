@@ -1,99 +1,112 @@
 import React, { useState } from 'react';
-import { Modal, Box, Typography, Divider, Button } from '@mui/material';
-import { colors } from '../../../global/globalStyle'; // colors의 정확한 경로 확인 필요
+import { Modal, Box, Divider, Button } from '@mui/material';
+import { colors } from '../../../global/globalStyle';
 
-const ImageSelectModal = () => {
-  const [open, setOpen] = useState(false);
-
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
+const ImageSelectModal = ({ onSelectDefaultImage, onSelectDeviceImage, onClose }) => {
   return (
-    <div>
-      <Modal open={true} onClose={handleClose}>
+    <Modal open={true} onClose={onClose}>
+      <Box
+        sx={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          width: '28rem',
+          height: '15rem',
+          bgcolor: colors.navy_gray,
+          borderRadius: '0.625rem',
+          textAlign: 'center',
+          '&:focus': {
+            outline: 'none',
+          },
+        }}
+      >
         <Box
           sx={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            width: '37.5rem',
-            height: '24.688rem',
-            bgcolor: colors.navy_gray,
-            borderRadius: '0.625rem',
-
-            textAlign: 'center',
-            '&:focus': {
-              outline: 'none',
-            },
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '100%',
+            px: 4,
           }}
         >
-          <Box
+          {/* 텍스트 - 기본 이미지 적용 */}
+          <Button
+            fullWidth
             sx={{
-              display: 'flex',
-              flexDirection: 'column', // 세로 배치
-              justifyContent: 'center', // 수직 가운데 정렬
-              alignItems: 'center', // 가로 가운데 정렬
-              height: '100%', // 부모 Box의 높이에 맞춤
-              px: 4, // 좌우 padding 추가
+              '&:focus': {
+                outline: 'none',
+              },
+              '&:hover': {
+                '& p': {
+                  color: colors.orange,
+                },
+              },
+              marginBottom: '1rem',
             }}
+            onClick={onSelectDefaultImage}
           >
-            {/* 텍스트 - 기본 이미지 적용 */}
-            <Button
-              onClick={handleClose}
-              fullWidth
-              sx={{
-                '&:focus': {
-                  outline: 'none',
-                },
-              }}
-            >
-              <p style={{ color: colors.orange, fontSize: '1.875rem', margin: '0rem' }} className="bold">
-                기본 이미지 적용
-              </p>
-            </Button>
+            <p style={{ fontSize: '1.5rem', margin: '0rem' }} className="bold">
+              기본 이미지 적용
+            </p>
+          </Button>
 
-            {/* 버튼 - 디바이스에서 사진 선택 */}
-            <Button
-              fullWidth
-              onClick={handleClose}
-              sx={{
-                '&:focus': {
-                  outline: 'none',
+          {/* 버튼 - 디바이스에서 사진 선택 */}
+          <Button
+            fullWidth
+            sx={{
+              '&:focus': {
+                outline: 'none',
+              },
+              '&:hover': {
+                '& p': {
+                  color: colors.orange,
                 },
-              }}
-            >
-              <p className="bold" style={{ fontSize: '1.875rem', margin: '0rem' }}>
-                디바이스에서 사진 선택
-              </p>
-            </Button>
+              },
+              marginBottom: '1.5rem', // 디바이스에서 사진 선택과 구분선 사이 간격
+            }}
+            onClick={onSelectDeviceImage}
+          >
+            <p className="bold" style={{ fontSize: '1.5rem', margin: '0rem' }}>
+              디바이스에서 사진 선택
+            </p>
+          </Button>
 
-            {/* 구분선 */}
-            <Divider
-              sx={{
-                bgcolor: colors.cement_gray,
-                width: '100%',
-              }}
-            />
+          {/* 구분선 */}
+          <Divider
+            sx={{
+              bgcolor: colors.cement_gray,
+              width: '100%',
+              marginBottom: '0.5rem',
+            }}
+          />
 
-            {/* 취소 버튼 */}
-            <Button
-              fullWidth
-              onClick={handleClose}
-              sx={{
-                '&:focus': {
-                  outline: 'none',
+          {/* 취소 버튼 */}
+          <Button
+            fullWidth
+            sx={{
+              '&:focus': {
+                outline: 'none',
+              },
+              '&:hover': {
+                '& p': {
+                  color: colors.orange,
                 },
-              }}
-            >
-              <p className="bold" style={{ fontSize: '1.875rem', margin: '0rem' }}>
-                취소
-              </p>
-            </Button>
-          </Box>
+              },
+              '& p': {
+                margin: '0rem',
+              },
+            }}
+            onClick={onClose}
+          >
+            <p className="bold" style={{ fontSize: '1.5rem' }}>
+              취소
+            </p>
+          </Button>
         </Box>
-      </Modal>
-    </div>
+      </Box>
+    </Modal>
   );
 };
 

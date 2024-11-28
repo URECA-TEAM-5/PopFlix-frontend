@@ -5,8 +5,16 @@ import UserInfoGenre from '../../components/userInfo/UserInfoGenre';
 import UserInfoGender from '../../components/userInfo/UserInfoGender';
 import { Box, Button } from '@mui/material';
 import { colors } from '../../global/globalStyle';
+import ImageSelectModal from '../../components/userInfo/modal/ImageSelectModal';
+import DefaultImageSelectModal from '../../components/userInfo/modal/DefaultImageSelectModal';
+import WithdrawalModal from '../../components/userInfo/modal/withdrawalModal';
 
-const AddUserInfo = () => {
+const UpdateUserInfo = () => {
+  // 회원탈퇴 모달
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = () => setIsModalOpen(true);
+  const handleCloseModal = () => setIsModalOpen(false);
   // 프로필 사진 상태
   const [profileImage, setProfileImage] = useState(null);
   const handleImageUpload = (event) => {
@@ -59,6 +67,8 @@ const AddUserInfo = () => {
         padding: '2rem',
       }}
     >
+      {/*<DefaultImageSelectModal />*/}
+      {/*<ImageSelectModal />*/}
       {/* 프로필 사진 등록 */}
       <UserInfoImage profileImage={profileImage} onImageUpload={handleImageUpload} />
 
@@ -85,10 +95,34 @@ const AddUserInfo = () => {
         }}
         onClick={() => alert('등록 로직을 여기에 작성하세요!!')}
       >
-        <span className="bold">등록하기</span>
+        <span className="bold">수정하기</span>
       </Button>
+      <Box
+        sx={{
+          textAlign: 'right',
+          width: '100%',
+          pr: '2rem',
+          pt: '1rem',
+        }}
+      >
+        <a
+          href="#"
+          style={{
+            textDecoration: 'none',
+            fontSize: '0.7rem',
+            marginTop: '1rem',
+            cursor: 'pointer',
+            color: colors.cement_gray,
+          }}
+          className="bold"
+          onClick={handleOpenModal}
+        >
+          회원탈퇴
+        </a>
+      </Box>
+      <WithdrawalModal open={isModalOpen} onClose={handleCloseModal} />
     </Box>
   );
 };
 
-export default AddUserInfo;
+export default UpdateUserInfo;

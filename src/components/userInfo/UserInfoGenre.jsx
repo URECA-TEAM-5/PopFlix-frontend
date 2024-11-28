@@ -28,6 +28,14 @@ const UserInfoGenre = ({ selectedGenre, genres, onGenreChange }) => {
             fontFamily: 'SUIT-Bold, sans-serif',
             '.MuiSelect-icon': { color: 'white' },
           }}
+          MenuProps={{
+            PaperProps: {
+              sx: {
+                maxHeight: '18rem',
+                overflowY: 'auto',
+              },
+            },
+          }}
         >
           {genres.map((genre, index) => (
             <MenuItem key={index} value={genre} sx={{ fontFamily: 'SUIT-Bold, sans-serif' }}>
