@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Dialog } from '@mui/material';
-import { colors } from '../../global/globalStyle';
-import Search from '../common/search/Search';
-import { BtnDiv, DiaglogBtn, DiaglogContent } from './style/SearchMovieModal';
+import { colors } from '../../../global/globalStyle';
+import Search from '../../common/search/Search';
+import { BtnDiv, DiaglogBtn, DiaglogContent } from '../style/SearchMovieModal';
 
 const SearchMovieModal = () => {
     const [open, setOpen] = useState(true);

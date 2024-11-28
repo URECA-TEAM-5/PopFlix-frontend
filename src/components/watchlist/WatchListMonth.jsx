@@ -1,6 +1,6 @@
 import { Box, Grid2 } from '@mui/material';
 import { useEffect, useState } from 'react';
-import { data } from './data/data';
+import { data } from './data/monthData';
 import { WatchMonthContainer } from './style/WatchListMonth';
 import { colors } from '../../global/globalStyle';
 
@@ -17,22 +17,30 @@ const WatchListMonth = () => {
         setMonth(data);
     }, []);
 
-    const filterMonth = month.reduce((acc, movie) => {
-        const { storage_id, storage_name, movie_image, movie_title } = movie;
+    const filterMonth = month.reduce((acc, item) => {
+        const { storage, movies } = item;
+        const { id: storage_id, storageName: storage_name, storageImage: movie_image } = storage;
+
         if (!acc[storage_id]) {
             acc[storage_id] = {
                 storage_id,
                 storage_name,
+                movie_image,
                 movies: [],
             };
         }
-        acc[storage_id].movies.push({ movie_image, movie_title });
+
+        movies.forEach(movie => {
+            const { posterPath: movie_image, title: movie_title } = movie;
+            acc[storage_id].movies.push({ movie_image, movie_title });
+        });
+
         return acc;
     }, {});
 
     return (
         <WatchMonthContainer>
-            <img src="/assets/watchlist_banner.svg" alt="WatchList Banner" />
+            <img className="banner" src="/assets/watchlist_banner.svg" alt="WatchList Banner" />
             <h4 className="extra-bold title">이 달의 인기 WatchList를 알려드려요!</h4>
             <Grid2 container spacing={2} sx={{ justifyContent: "center", width: "85%" }}>
                 {Object.values(filterMonth).map((data, index) => {
@@ -78,7 +86,7 @@ const WatchListMonth = () => {
                     );
                 })}
             </Grid2>
-        </WatchMonthContainer >
+        </WatchMonthContainer>
     )
 }
 
