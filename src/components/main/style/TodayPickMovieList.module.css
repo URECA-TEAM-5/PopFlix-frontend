@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inria+Serif&display=swap');
 
 .container {
-    width: 57.5rem;
+  max-width: 57.5rem;
+  width: 100vh;
     margin-bottom: 2.8125rem; /* 하단 마진 */
   }
   

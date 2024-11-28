@@ -1,8 +1,10 @@
 .container{
-    width: 920px;
-    /* height: 100vh; */
+    min-width: 37.5rem;
+    max-width: 57.5rem;
+    width: 100vh;
 }
 .mainBanner{
+    width: 100%;         /* 부모 컨테이너의 너비에 맞게 크기를 조정 */
+    height: auto; 
     border-radius: 1rem;
-    width: 920px;
 }
