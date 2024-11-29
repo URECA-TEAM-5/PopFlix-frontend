@@ -3,50 +3,44 @@ import { WatchAllContainer } from './style/WatchListAll';
 import WatchListFilter from './WatchListFilter';
 import WatchListPagination from './WatchListPagenation';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { allData } from './data/allData';
+import { popular, newest } from './data/allData';
 import WatchListCardItem from './WatchListCardItem';
 
 const WatchListAll = () => {
-    const originalDataRef = useRef(allData);
-    const [selectedFilter, setSelectedFilter] = useState();
-    const [currentPage, setCurrentPage] = useState();
+    const dataRef = useRef({
+        popular: popular,
+        newest: newest,
+    });
+    const [selectedFilter, setSelectedFilter] = useState('popular');
+    const [currentPage, setCurrentPage] = useState(1);
+    const [filteredData, setFilteredData] = useState([]);
     const itemsPerPage = 8;
 
-    const sortedData = useMemo(() => {
-        if (!selectedFilter) return [];
-        let sorted;
-        if (selectedFilter === "popular") {
-            sorted = [...originalDataRef.current].sort((a, b) => b.like - a.like);
-        } else if (selectedFilter === "latest") {
-            sorted = [...originalDataRef.current].sort((a, b) => {
-                const dateA = new Date(a.create_at);
-                const dateB = new Date(b.create_at);
-                return dateB - dateA;
-            });
+
+    useEffect(() => {
+        if (selectedFilter === 'popular') {
+            setFilteredData(dataRef.current.popular);
+        } else if (selectedFilter === 'newest') {
+            setFilteredData(dataRef.current.newest);
         }
-        return sorted;
     }, [selectedFilter]);
 
     const currentItems = useMemo(() => {
-        if (!sortedData) return [];
-        return sortedData.slice(
+        if (!filteredData || filteredData.length === 0) return [];
+        return filteredData.slice(
             (currentPage - 1) * itemsPerPage,
             currentPage * itemsPerPage
         );
-    }, [sortedData, currentPage]);
+    }, [filteredData, currentPage]);
 
     const updateFilter = (newFilter) => {
         setSelectedFilter(newFilter);
+        setCurrentPage(1);
     };
 
     const updatePage = (newPage) => {
         setCurrentPage(newPage);
     };
-
-    useEffect(() => {
-        setSelectedFilter("popular");
-        setCurrentPage(1);
-    }, []);
 
     return (
         <WatchAllContainer>
@@ -55,12 +49,12 @@ const WatchListAll = () => {
             </div>
             <Grid2 className="list__container" container spacing={4}>
                 {currentItems.map((data) => (
-                    <WatchListCardItem key={data.storage_id} data={data} />
+                    <WatchListCardItem key={data.id} data={data} />
                 ))}
             </Grid2>
             <WatchListPagination
                 currentPage={currentPage}
-                totalItems={sortedData.length}
+                totalItems={filteredData.length}
                 itemsPerPage={itemsPerPage}
                 onPageChange={updatePage}
             />

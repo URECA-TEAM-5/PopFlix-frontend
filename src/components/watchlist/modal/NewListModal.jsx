@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { Dialog } from '@mui/material';
-import { BtnDiv, DiaglogBtn } from './style/NewListModal';
-import { colors } from '../../global/globalStyle';
+import { BtnDiv, DiaglogBtn } from '../style/NewListModal';
+import { colors } from '../../../global/globalStyle';
 import NewListInput from './NewListInput';
 
 const NewListModal = () => {
