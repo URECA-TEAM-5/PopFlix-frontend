@@ -8,7 +8,8 @@ export const WatchAllContainer = styled.div`
     justify-content: center;
     align-items: center;
     .list__header {
-        width: 70%;
+        max-width: 100%;
+        min-width: 90%;
         padding-top: 3rem;
     }
     .pointBtn {
@@ -44,7 +45,8 @@ export const WatchAllContainer = styled.div`
         display: flex;
         justify-content: center;
         padding: 2rem 0;
-        width: 80%;
+        max-width: 100%;
+        min-width: 95%;
     }
 `;
 
@@ -112,7 +114,8 @@ export const PaginationContainer = styled.div`
     display: flex;
     justify-content: center;
     padding: 1rem 0;
-    width: 80%;
+    max-width: 100%;
+    min-width: 95%;
 `;
 
 export const PageButton = styled.button`
