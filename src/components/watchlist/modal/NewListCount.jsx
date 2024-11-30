@@ -1,4 +1,4 @@
-import { InputLength } from "./style/NewListModal";
+import { InputLength } from "../style/NewListModal";
 
 const NewListCount = ({ length, maxLength }) => {
     return (

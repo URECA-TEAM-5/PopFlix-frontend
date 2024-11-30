@@ -18,27 +18,29 @@ const Alarm = () => {
 
   return (
     <>
-      <AlarmContainer>
-        {alarm.length === 0 ? (
+      <AlarmContainer className="alarm-container">
+        {alarm.length !== 0 ? (
           <AlaramEmpty />
         ) : (
-          <>
+          <div className="alarm-inner__section">
+            {/* <div className="inner__wrap"> */}
             <AlarmTop />
-            <div className="alarm__current">
+            <div className="alarm-current alarm-list__wrap">
               <TitleCheckBox title={'오늘 받은 알림'} />
-              <ListContainer>
+              <ListContainer className="alarm-list">
                 <AlarmMessage />
                 <AlarmMessage />
               </ListContainer>
             </div>
-            <div className="alarm__previous">
+            <div className="alarm__previous ">
               <TitleCheckBox title={'이전 알림'} />
               <ListContainer>
                 <AlarmMessage />
                 <AlarmMessage />
               </ListContainer>
             </div>
-          </>
+            {/* </div> */}
+          </div>
         )}
       </AlarmContainer>
     </>

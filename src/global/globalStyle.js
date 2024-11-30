@@ -12,11 +12,25 @@ export const colors = {
 };
 
 export const GlobalStyle = createGlobalStyle`
-  #root, body {
+  body {
+    justify-content: center;
+    overflow: overlay;
+  }
+
+  #root{
     display: block;
+    justify-content: center;
+    max-width: 110rem;
+    width: 100%;
+    height: 100%;
     margin: 0;
-    padding: 0;
-    background-color: ${colors.black};
+    padding: 1rem 0;
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root {
+      background-color: ${colors.black};
+    }
   }
 
   @font-face {
@@ -67,19 +81,24 @@ export const GlobalStyle = createGlobalStyle`
   }
 `;
 
-export const Thema = styled.div`
-  background-color: ${colors.black};
-`;
-
 export const BaseLayout = styled.div`
-  position: relative;
-  min-width: 100vw;
-  padding: 1rem 0;
+  background-color: ${colors.black};
+  min-width: 45rem;
+  max-width: 75rem;
+  width: 100%;
+  min-height: 90rem;
+  max-height: 200rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-`;
 
-export const MainContainer = styled.div`
-  padding: 1.9rem 16.25rem;
+  .app-pages__section {
+    width: 100%;
+    max-width: 57.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    align-items: center;
+  }
 `;

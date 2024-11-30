@@ -1,5 +1,5 @@
 import NewListCount from "./NewListCount";
-import { DiaglogContent, ErrorDiv, InputText, InputTextArea } from "./style/NewListModal";
+import { DiaglogContent, ErrorDiv, InputText, InputTextArea } from "../style/NewListModal";
 
 const NewListInput = ({ storageNameRef, storageInfoRef, error, NAME_MAX_LENGTH, INFO_MAX_LENGTH, handleInput, storageNameLength, storageInfoLength }) => {
     return (

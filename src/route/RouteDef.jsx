@@ -2,6 +2,7 @@ import LoginModal from '../components/Login/LoginModal';
 import AddUserInfo from '../pages/addUserInfo/AddUserInfo';
 import Alarm from '../pages/alarm/Alarm';
 import MainPage from '../pages/main/MainPage';
+import WatchListDetailPage from '../pages/watchlist/WatchListDetailPage';
 import PhotoReviewDetail from '../pages/review/photo/PhotoReviewDetail';
 import WatchListPage from '../pages/watchlist/WatchListPage';
 
@@ -25,6 +26,10 @@ const MainScreens = {
   WatchList: {
     path: '/watchlist',
     element: <WatchListPage />,
+  },
+  WatchListDetail: {
+    path: '/watchlist/:id',
+    element: <WatchListDetailPage />,
   },
   PhotoReview: {
     path: '/photo-review',

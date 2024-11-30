@@ -2,13 +2,16 @@ import { styled } from 'styled-components';
 import { colors } from '../../../../global/globalStyle';
 
 export const SearchSection = styled.div`
-  width: ${(props) => (props.$width ? `${props.$width}rem` : '16.25rem')};
+  display: flex;
+  min-width: ${(props) => (props.$width ? `${props.$width}rem` : '10.25rem')};
+  width: 100%;
   caret-color: transparent;
 
   .search__main {
     background-color: ${(props) => props.$bgColor || colors.drak_gray};
     color: ${(props) => props.$fontColor || colors.cement_gray};
 
+    width: 100%;
     height: 1.2rem;
     padding: ${(props) => (props.$padding ? `${props.$padding}rem` : '0.8rem')};
     border: 0.01rem;
@@ -23,7 +26,7 @@ export const SearchSection = styled.div`
     background-color: ${(props) => props.$bgColor || colors.drak_gray};
     color: ${(props) => props.$fontColor || colors.cement_gray};
     font-size: ${(props) => (props.$fontSize ? `${props.$fontSize}rem` : '1rem')};
-    width: ${(props) => (props.$width ? `${props.$width < 14 ? props.$width - 3.5 : props.$width - 2}rem` : '14rem')};
+    min-width: ${(props) => (props.$width ? `${props.$width < 14 ? props.$width - 3.5 : props.$width - 2}rem` : '10rem')};
     border: none;
   }
 

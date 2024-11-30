@@ -2,13 +2,14 @@ import { styled } from 'styled-components';
 import { colors } from '../../../../global/globalStyle';
 
 export const FooterConatiner = styled.div`
-  width: 70rem;
+  max-width: 75rem;
+  width: 100%;
   height: 9.7rem;
-  margin-bottom: 3rem;
   line-height: 1.2;
-  padding: 3rem;
+  margin-top: 3rem;
+  padding: 3rem 0;
   border-top: 0.05rem solid ${colors.space_gray};
-  display: flex;
+  display: block;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -27,6 +28,10 @@ export const FooterConatiner = styled.div`
   .info__section {
     display: flex;
     flex-direction: column;
+  }
+
+  .info__wrap {
+    padding: 0 1rem;
   }
 
   .info__top {
@@ -59,14 +64,14 @@ export const FooterConatiner = styled.div`
 `;
 
 export const FooterIcons = styled.div`
+  max-width: 10rem;
+  width: 100%;
   display: flex;
   flex-direction: row;
   height: 2.5rem;
-  padding: 0.1rem;
-  align-items: end;
-  gap: 1.5rem;
+  gap: 1rem;
 
   .icon {
-    width: 1.5rem;
+    max-width: 1.5rem;
   }
 `;
