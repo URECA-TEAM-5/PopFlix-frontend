@@ -12,7 +12,7 @@ const WatchListFilter = ({ selectedFilter, sortData }) => {
                 </Grid2>
                 <Grid2 xs={8} container spacing={2} direction="row" alignItems="center">
                     <span className={`regular filter ${selectedFilter === "popular" ? "selected" : ""}`} onClick={() => sortData("popular")}>인기순</span>
-                    <span className={`regular filter ${selectedFilter === "latest" ? "selected" : ""}`} onClick={() => sortData("latest")}>최신순</span>
+                    <span className={`regular filter ${selectedFilter === "newest" ? "selected" : ""}`} onClick={() => sortData("newest")}>최신순</span>
                 </Grid2>
             </Grid2 >
         </>

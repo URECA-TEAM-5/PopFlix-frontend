@@ -6,7 +6,7 @@ export const WatchMonthContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    img {
+    .banner {
         width: 80%;
         padding: 2% 0;
     }
@@ -29,6 +29,7 @@ export const WatchMonthContainer = styled.div`
         display: flex;
         flex-direction: row;
         align-items: center;
+        padding: 0.3rem 0;
     }
     .box__p {
         display: flex;
@@ -36,7 +37,7 @@ export const WatchMonthContainer = styled.div`
         justify-content: center;
         height: 2rem;
         font: 0.938rem;
-        padding: 1rem 1.5rem 1.3rem 1.5rem;
+        padding: 1.2rem 1.5rem 1rem 1.5rem;
         text-align: center;
         word-wrap: break-word;
     }
