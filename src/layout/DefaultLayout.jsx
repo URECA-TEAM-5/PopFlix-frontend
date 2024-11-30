@@ -3,6 +3,7 @@ import AppPages from '../route/AppPages';
 import { BaseLayout, GlobalStyle } from '../global/globalStyle';
 import Header from '../components/common/header/Header';
 import Footer from '../components/common/footer/Footer';
+import ScrollToTop from './ScrollToTop';
 
 const DefaultLayout = () => {
   return (
@@ -10,6 +11,7 @@ const DefaultLayout = () => {
       <GlobalStyle />
       <BaseLayout className="base-layout regular">
         <Header className="header" />
+        <ScrollToTop />
         <div className="app-pages__section">
           <AppPages />
         </div>
