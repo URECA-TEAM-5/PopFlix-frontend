@@ -1,8 +1,6 @@
 import styles from './style/WatchListBox.module.css';
-import  {watchListData} from './data';
+import { watchListData } from './data';
 const WatchListBox = () => {
-  
-
   return (
     <div className={styles.container}>
       <p className={styles.p}>핫한 유저 PICK WatchList!</p>

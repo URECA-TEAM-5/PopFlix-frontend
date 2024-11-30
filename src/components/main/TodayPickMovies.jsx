@@ -10,11 +10,11 @@ const TodayPickMovies = () => {
     speed: 500, // 슬라이드 전환 속도
     slidesToShow: 1, // 한 번에 하나의 슬라이드 표시
     slidesToScroll: 1, // 한 번에 한 슬라이드씩 이동
-    autoplay: true, // 자동 슬라이드
-    autoplaySpeed: 3000, // 자동 슬라이드 속도 (3초마다 전환)
+    // autoplay: true, // 자동 슬라이드
+    // autoplaySpeed: 3000, // 자동 슬라이드 속도 (3초마다 전환)
   };
   return (
-    <div>
+    <div className={styles.slideContainer}>
       <Slider {...settings}>
       {todayPickMoviesData.map((movie) => (
         <div key={movie.id} className={styles.container}>

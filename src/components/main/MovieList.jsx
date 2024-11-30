@@ -66,6 +66,7 @@ const MovieList = () => {
       </div>
 
       {/* 영화 리스트 */}
+      <div className={styles.movieGrid}>
       <Grid2 container spacing={2} justifyContent="center">
         {currentMovies.map((movie, index) => (
           <Grid2 item xs={12} sm={6} md={4} lg={3} key={index}>
@@ -86,6 +87,8 @@ const MovieList = () => {
           </Grid2>
         ))}
       </Grid2>
+      </div>
+      
 
       {/* 페이지네이션 */}
       {movies.length > moviesPerPage && (
@@ -97,6 +100,9 @@ const MovieList = () => {
           ))}
         </div>
       )}
+      <button className={styles.viewMoreBtn}>
+        더 보기
+      </button>
 
       {/* 로딩 상태 */}
       {isLoading && <div>Loading...</div>}

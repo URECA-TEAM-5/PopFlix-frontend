@@ -1,14 +1,13 @@
 .container {
+  position: relative;
   max-width: 57.5rem;
+  width: 100%;
 }
 .movieGrid {
-  height: 40rem;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  height: 36rem;
   gap: 0.625rem;
-  justify-content: center; /* 가로 중앙 정렬 */
-  justify-items: center;
-  align-items: center;
+  display: flex;
+ 
 }
 
 .movieImage {
@@ -94,6 +93,20 @@
   outline: none;
 }
 .moviePage {
-  text-align: center;
-  margin-top: 0.125rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.625rem;
+}
+.moviePage > button {
+  background-color: #000000;
+}
+.viewMoreBtn {
+  position: absolute; /* 절대 위치 지정 */
+  display: flex;
+  justify-content: flex-end;
+  right: 1rem; /* 우측 여백 */
+  background-color: #000000;
+  color: #F09605;
+  border-color: #2E2F31;
+  font-size: bold;
 }
