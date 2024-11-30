@@ -14,7 +14,7 @@ const UserInfoNickname = ({ nickname, onChange, onCheckDuplicate }) => {
           onChange={onChange}
           placeholder="공백없이 10자 이내로 입력해주세요."
           sx={{
-            width: '18.375rem',
+            width: '100%',
             backgroundColor: '#25292e',
             borderRadius: '0.625rem',
             input: { color: 'white', height: '1.063rem', fontFamily: 'SUIT-Bold, sans-serif' },

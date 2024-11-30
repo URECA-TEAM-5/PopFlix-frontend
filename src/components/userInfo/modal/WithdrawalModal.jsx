@@ -58,13 +58,29 @@ const WithdrawalModal = ({ open, onClose }) => {
           gap: '6.25rem',
         }}
       >
-        <Button onClick={handleConfirm}>
+        <Button
+          onClick={handleConfirm}
+          sx={{
+            '&:hover': {
+              '& p': {
+                color: colors.orange,
+              },
+            },
+          }}
+        >
           <p className="regular">탈퇴</p>
         </Button>
-        <Button onClick={onClose}>
-          <p className="regular" style={{ color: colors.orange }}>
-            취소
-          </p>
+        <Button
+          onClick={onClose}
+          sx={{
+            '&:hover': {
+              '& p': {
+                color: colors.orange,
+              },
+            },
+          }}
+        >
+          <p className="regular">취소</p>
         </Button>
       </DialogActions>
     </Dialog>

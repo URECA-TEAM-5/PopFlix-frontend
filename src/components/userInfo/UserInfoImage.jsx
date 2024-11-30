@@ -1,44 +1,44 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { Box } from '@mui/material';
 import { colors } from '../../global/globalStyle';
 import ImageSelectModal from './modal/ImageSelectModal';
 import DefaultImageSelectModal from './modal/DefaultImageSelectModal';
 
 const UserInfoImage = ({ profileImage, setProfileImage }) => {
-  const [modalOpen, setModalOpen] = useState({
-    imageSelectModalOpen: false,
-    defaultImageSelectModalOpen: false,
-  });
+  const [isImageSelectModalOpen, setIsImageSelectModalOpen] = useState(false);
+  const [isDefaultImageSelectModalOpen, setIsDefaultImageSelectModalOpen] = useState(false);
   const fileInputRef = useRef(null);
 
-  const updateModalState = (updates) => {
-    setModalOpen((prev) => ({
-      ...prev, // 기존 상태 복사
-      ...updates, // 업데이트할 값 덮어쓰기
-    }));
+  // 파일 업로드 핸들러
+  const handleFileUpload = useCallback(
+    (event) => {
+      const file = event.target.files[0];
+      if (file) {
+        setProfileImage(URL.createObjectURL(file));
+      }
+    },
+    [setProfileImage]
+  );
+
+  // 모달 열기 함수
+  const handleOpenImageSelectModal = () => {
+    console.log('모달 열기 요청');
+    setIsImageSelectModalOpen(true);
   };
 
-  // 이미지 선택 모달 열기/닫기
-  const setImageSelectModalOpen = (isOpen) => {
-    setModalOpen((prev) => {
-      const updatedState = { ...prev, imageSelectModalOpen: isOpen };
-      console.log('Updated Modal State:', updatedState); // 상태가 정확히 변경되는지 확인
-      return updatedState;
+  // 모달 닫기 함수 delay 안넣으면 안닫힘
+  const closeModalWithDelay = () => {
+    console.log('모달 닫기 요청');
+    setTimeout(() => {
+      setIsImageSelectModalOpen(false);
     });
   };
 
-  // 기본 이미지 선택 모달 열기/닫기
-  const setDefaultImageSelectModalOpen = (isOpen) => {
-    setModalOpen((prev) => ({ ...prev, defaultImageSelectModalOpen: isOpen }));
-  };
+  // 디버그용
+  useEffect(() => {
+    console.log('ImageSelectModal 상태 변경:', isImageSelectModalOpen ? '열림' : '닫힘');
+  }, [isImageSelectModalOpen]);
 
-  const handleFileUpload = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      setProfileImage(URL.createObjectURL(file));
-      setImageSelectModalOpen(false);
-    }
-  };
   return (
     <Box
       sx={{
@@ -73,7 +73,7 @@ const UserInfoImage = ({ profileImage, setProfileImage }) => {
           alignItems: 'center',
           cursor: 'pointer',
         }}
-        onClick={() => updateModalState({ imageSelectModalOpen: true })} // 모달 열기
+        onClick={handleOpenImageSelectModal}
       >
         {profileImage && (
           <img
@@ -112,35 +112,30 @@ const UserInfoImage = ({ profileImage, setProfileImage }) => {
         </Box>
 
         {/* ImageSelectModal */}
-        {modalOpen.imageSelectModalOpen && (
+        {isImageSelectModalOpen && (
           <ImageSelectModal
             onSelectDefaultImage={() => {
-              updateModalState({ imageSelectModalOpen: false, defaultImageSelectModalOpen: true });
-              console.log('Switched to DefaultImageSelectModal');
+              setIsDefaultImageSelectModalOpen(true);
+              closeModalWithDelay();
             }}
             onSelectDeviceImage={() => {
-              fileInputRef.current.click(); // 파일 업로드 창 열기
-              updateModalState({ imageSelectModalOpen: false });
-              console.log('File upload triggered and ImageSelectModal closed'); // 디버깅용 로그
+              fileInputRef.current.click();
+              closeModalWithDelay();
             }}
-            onClose={() => {
-              updateModalState({ imageSelectModalOpen: false });
-              console.log('ImageSelectModal closed'); // 디버깅용 로그
-            }}
+            onClose={closeModalWithDelay}
           />
         )}
 
         {/* DefaultImageSelectModal */}
-        {modalOpen.defaultImageSelectModalOpen && (
+        {isDefaultImageSelectModalOpen && (
           <DefaultImageSelectModal
+            open={isDefaultImageSelectModalOpen}
             onSelectImage={(image) => {
-              setProfileImage(image); // 기본 이미지 설정
-              updateModalState({ defaultImageSelectModalOpen: false });
-              console.log('DefaultImageSelectModal closed with selected image'); // 디버깅용 로그
+              setProfileImage(image);
+              setIsDefaultImageSelectModalOpen(false);
             }}
             onClose={() => {
-              updateModalState({ defaultImageSelectModalOpen: false });
-              console.log('DefaultImageSelectModal closed'); // 디버깅용 로그
+              setIsDefaultImageSelectModalOpen(false);
             }}
           />
         )}

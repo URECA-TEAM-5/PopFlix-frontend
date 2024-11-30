@@ -13,12 +13,9 @@ const UpdateUserInfo = () => {
 
   const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
+
   // 프로필 사진 상태
   const [profileImage, setProfileImage] = useState(null);
-  const handleImageUpload = (event) => {
-    const file = event.target.files[0];
-    if (file) setProfileImage(URL.createObjectURL(file));
-  };
 
   // 닉네임 상태
   const [nickname, setNickname] = useState('');
@@ -56,65 +53,66 @@ const UpdateUserInfo = () => {
   ];
 
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: '2rem',
-      }}
-    >
-      {/* 프로필 사진 등록 */}
-      <UserInfoImage profileImage={profileImage} onImageUpload={handleImageUpload} />
-
-      {/* 닉네임 입력 */}
-      <UserInfoNickname nickname={nickname} onChange={handleNicknameChange} onCheckDuplicate={checkDuplicate} />
-
-      {/* 장르 선택 */}
-      <UserInfoGenre selectedGenre={selectedGenre} genres={genres} onGenreChange={handleGenreChange} />
-
-      {/* 성별 선택 */}
-      <UserInfoGender gender={gender} onChange={handleGenderChange} />
-
-      {/* 등록 버튼 */}
-      <Button
-        sx={{
-          display: 'flex',
-          width: '25rem',
-          height: '3.125rem',
-          backgroundColor: colors.orange,
-          borderRadius: '0.6125rem',
-          '&:focus': {
-            outline: 'none',
-          },
-        }}
-        onClick={() => alert('등록 로직을 여기에 작성하세요!!')}
-      >
-        <span className="bold">수정하기</span>
-      </Button>
+    <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%' }}>
       <Box
         sx={{
-          textAlign: 'right',
           width: '100%',
-          pr: '2rem',
-          pt: '1rem',
+          maxWidth: '500px',
+          display: 'flex',
+          flexDirection: 'column',
+          pt: '5rem',
+          gap: '1.5rem',
         }}
       >
-        <a
-          href="#"
-          style={{
-            textDecoration: 'none',
-            fontSize: '0.7rem',
-            marginTop: '1rem',
-            cursor: 'pointer',
-            color: colors.cement_gray,
+        {/* 프로필 사진 등록 */}
+        <UserInfoImage profileImage={profileImage} setProfileImage={setProfileImage} />
+
+        {/* 닉네임 입력 */}
+        <UserInfoNickname nickname={nickname} onChange={handleNicknameChange} onCheckDuplicate={checkDuplicate} />
+
+        {/* 장르 선택 */}
+        <UserInfoGenre selectedGenre={selectedGenre} genres={genres} onGenreChange={handleGenreChange} />
+
+        {/* 성별 선택 */}
+        <UserInfoGender gender={gender} onChange={handleGenderChange} />
+
+        {/* 등록 버튼 */}
+        <Button
+          sx={{
+            display: 'flex',
+            width: '100%',
+            height: '3.125rem',
+            backgroundColor: colors.orange,
+            borderRadius: '0.6125rem',
+            '&:focus': {
+              outline: 'none',
+            },
           }}
-          className="bold"
-          onClick={handleOpenModal}
+          onClick={() => alert('등록 로직을 여기에 작성하세요!!')}
         >
-          회원탈퇴
-        </a>
+          <span className="bold">등록하기</span>
+        </Button>
+        <Box
+          sx={{
+            textAlign: 'right',
+            width: '100%',
+          }}
+        >
+          <a
+            href="#"
+            style={{
+              textDecoration: 'none',
+              fontSize: '0.7rem',
+              paddingRight: '0.8rem',
+              cursor: 'pointer',
+              color: colors.cement_gray,
+            }}
+            className="bold"
+            onClick={handleOpenModal}
+          >
+            회원탈퇴
+          </a>
+        </Box>
       </Box>
       <WithdrawalModal open={isModalOpen} onClose={handleCloseModal} />
     </Box>

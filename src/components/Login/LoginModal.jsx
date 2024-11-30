@@ -32,6 +32,9 @@ const LoginModal = () => {
             borderRadius: '0.5rem',
             p: '2rem',
             textAlign: 'center',
+            '&:focus': {
+              outline: 'none',
+            },
           }}
         >
           <h3 className="bold" style={{ margin: '0rem', paddingBottom: '1rem' }}>
@@ -40,11 +43,7 @@ const LoginModal = () => {
             영화에 대한 생각을 공유해주세요!
           </h3>
 
-          <img
-            style={{ width: '9.375rem', marginBottom: '1.25rem' }} // 로고
-            src={'public/assets/logo.svg'}
-            alt="로고"
-          />
+          <img style={{ width: '9.375rem', marginBottom: '1.25rem' }} src={'public/assets/logo.svg'} alt="로고" />
           {/*네이버 버튼*/}
           <Button
             variant="contained"
@@ -78,7 +77,7 @@ const LoginModal = () => {
               fontWeight: 'bold',
               backgroundColor: '#fff',
               color: '#000',
-              height: '2.5rem', // 버튼 높이
+              height: '2.5rem',
               border: '1px solid #ccc',
               '&:hover': {
                 opacity: 0.9,
