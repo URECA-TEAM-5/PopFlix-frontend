@@ -23,6 +23,7 @@ const TodayPickMovieList = () => {
     return (
         <div className={styles.container}>
             <p className={styles.p}>오늘은 이 콘텐츠 어때요?</p>
+            <div className={styles.todayPickMovieList}>
             <Slider {...settings.current} className={styles.slideContainer}>
             {pickContentData.map((item) => (
                 <div key={item.id} className={styles.todayPickMovieCard}>
@@ -33,6 +34,8 @@ const TodayPickMovieList = () => {
                 </div>
             ))}
             </Slider>
+            </div>
+            
         </div>
     )
 }

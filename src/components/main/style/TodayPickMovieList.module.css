@@ -5,14 +5,12 @@
   width: 100%;
   margin-bottom: 2.8125rem; /* 하단 마진 */
 }
-
+.todayPickMovieListContainer {
+  padding: 0 2rem;
+}
 /* todayPickMovieList: 카드들을 flexbox로 정렬 */
 .todayPickMovieList {
-  padding-top: 1.2rem;
-  display: flex;
-  justify-content: center;
-  gap: 0.6125rem;
-  position: relative;
+  padding: 0 2rem;
 }
 
 /* todayPickMovieCard: 각 카드의 크기 */
@@ -64,4 +62,5 @@
 }
 .p {
   padding-bottom: 1rem;
+  padding: 1rem 2rem;
 }

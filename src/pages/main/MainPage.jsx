@@ -10,7 +10,10 @@ const MainPage = () => {
             <TodayPickMovies/>
             <WatchListBox/>
             <TodayPickMovieList/>
+            <div className={styles.mainBannerContainer}>
             <img className={styles.mainBanner} src={MainBanner} alt="Main Banner" /> 
+            </div>
+           
             <MoviList/>
         </div>
     )
