@@ -12,22 +12,19 @@ export const colors = {
 };
 
 export const GlobalStyle = createGlobalStyle`
-  #root {
+  body {
+    justify-content: center;
+    overflow: overlay;
+  }
+
+  #root{
     display: flex;
-    flex-direction: column;
-    /* justify-content: center; */
-    align-items: center;
-    width: 100vw;
-    min-width: 37.5rem;
-    min-height: 100vh;
+    justify-content: center;
+    max-width: 110rem;
+    width: 100%;
     height: 100%;
     margin: 0;
-    padding: 0;
-  }
-  .body {
-    width: 100vw;
-    min-height: 100vh;
-    background-color: ${colors.black};
+    padding: 1rem 0;
   }
 
   @media (prefers-color-scheme: light) {
@@ -86,20 +83,22 @@ export const GlobalStyle = createGlobalStyle`
 
 export const BaseLayout = styled.div`
   background-color: ${colors.black};
-  position: relative;
-  min-width: 51.25rem;
-  max-width: 90rem;
+  min-width: 45rem;
+  max-width: 75rem;
   width: 100%;
-  height: 100%;
-  padding: 1.5rem 0;
+  min-height: 90rem;
+  max-height: 200rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 
   .app-pages__section {
     width: 100%;
-    height: 100%;
-    min-height: 95rem;
+    max-width: 57.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    align-items: center;
   }
 `;

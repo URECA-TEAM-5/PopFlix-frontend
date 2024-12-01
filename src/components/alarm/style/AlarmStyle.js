@@ -4,7 +4,9 @@ import { colors } from '../../../global/globalStyle';
 export const MessageContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 57.5rem;
+  min-width: 25rem;
+  max-width: 57.375rem;
+  width: 100%;
   height: 9.36rem;
   border: 0.06rem solid ${colors.cement_gray};
   border-radius: 0.625rem;
@@ -24,13 +26,14 @@ export const MessageContainer = styled.div`
   .inner__section {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    padding: 2.3rem 2.56rem;
-    width: -webkit-fill-available;
+    justify-content: center;
+    line-height: 3;
+    width: 100%;
     height: 100%;
   }
 
   .message__section {
+    padding: 0 1rem;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -61,7 +64,7 @@ export const MessageText = styled.span`
 export const ListContainer = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 2rem 0.4rem;
+  align-items: center;
   width: 100%;
   gap: 1.8rem;
 `;
@@ -94,11 +97,20 @@ export const CheckBoxConatiner = styled.div`
 `;
 
 export const AlarmContainer = styled.div`
+  min-width: 46.875rem;
+  width: 100%;
   display: flex;
-  flex-direction: column;
   padding: 2.8rem 0;
-  gap: 3rem;
   caret-color: transparent;
+
+  .alarm-inner__section {
+    padding: 0 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    gap: 3rem;
+  }
 `;
 
 export const TopSection = styled.div`
