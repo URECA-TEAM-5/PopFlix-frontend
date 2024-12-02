@@ -13,13 +13,12 @@ export const colors = {
 
 export const GlobalStyle = createGlobalStyle`
   body {
-    justify-content: center;
+    display: block;
     overflow: overlay;
   }
 
   #root{
-    display: block;
-    justify-content: center;
+    display: flex;
     max-width: 110rem;
     width: 100%;
     height: 100%;
