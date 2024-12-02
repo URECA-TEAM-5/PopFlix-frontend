@@ -3,12 +3,12 @@ import { PhotoReviewContainer } from '../../../components/review/photo/style/Pho
 import ReviewHeader from '../../../components/review/photo/ReviewHeader';
 import ReviewImage from '../../../components/review/photo/ReviewImage';
 import ReviewBody from '../../../components/review/photo/ReviewBody';
-import CommentList from '../../../components/review/photo/CommentList';
+import CommentList from '../../../components/review/comments/CommentList';
 
 const PhotoReviewDetail = () => {
   return (
-    <PhotoReviewContainer>
-      <ReviewHeader />
+    <PhotoReviewContainer className="photo-review-container">
+      <ReviewHeader title={'리뷰'} subTitle={'비트박스'} />
       <ReviewImage />
       <ReviewBody />
       <CommentList />
