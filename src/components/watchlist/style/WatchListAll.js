@@ -112,8 +112,8 @@ export const PaginationContainer = styled.div`
     display: flex;
     justify-content: center;
     padding: 1rem 0;
-    max-width: 100%;
     min-width: 95%;
+    width: 100%;
 `;
 
 export const PageButton = styled.button`
