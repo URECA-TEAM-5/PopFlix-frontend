@@ -1,12 +1,20 @@
 import { Grid2 } from '@mui/material';
 import { CardContentDiv, CardTextDiv, WatchListCard } from './style/WatchListAll';
-import WatchListLike from './WatchListLike';
 import { Link } from 'react-router-dom';
+import { useCallback, useState } from 'react';
+import WatchListLikeButton from './WatchListLikeButton';
 
 const WatchListCardItem = ({ data }) => {
-    const handleClickLike = (event) => {
+    const [liked, setLiked] = useState(data.isLiked);
+
+    const handleClickLike = useCallback((event) => {
         event.preventDefault();
-    };
+        const updatedLikeStatus = !liked;
+        console.log("현재 상태:", liked);
+        console.log("변경될 상태:", updatedLikeStatus);
+        setLiked(updatedLikeStatus);
+    }, [liked]);
+
     return (
         <Grid2 key={data.id}>
             <Link to={`/watchlist/${data.id}`}>
@@ -21,7 +29,12 @@ const WatchListCardItem = ({ data }) => {
                                 {data.username} | {data.movieCount}편
                             </span>
                             <div className="likeDiv" onClick={handleClickLike}>
-                                <WatchListLike />
+                                <WatchListLikeButton
+                                    isLiked={liked}
+                                    likeCount={data.likeCount}
+                                    className={liked ? 'heartlike' : ''}
+                                    onClick={handleClickLike}
+                                />
                                 <span className="small">{data.isLiked}</span>
                             </div>
                         </CardTextDiv>

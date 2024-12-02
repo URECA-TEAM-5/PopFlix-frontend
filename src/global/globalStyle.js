@@ -18,7 +18,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   #root{
-    display: flex;
+    display: block;
     justify-content: center;
     max-width: 110rem;
     width: 100%;
