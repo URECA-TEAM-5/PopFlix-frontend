@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { genres, moviesData } from './data';
 import styles from './style/MovieList.module.css';
 import mainGPA from '/assets/main_GPA.svg';
@@ -14,6 +15,7 @@ const MovieList = () => {
   const [moviesPerPage] = useState(8); // 한 페이지에 보여줄 영화 개수
   const [selectedGenre, setSelectedGenre] = useState('All'); // 선택된 장르
   const [isLoading, setIsLoading] = useState(false); // 로딩 상태
+  const navigate = useNavigate();
   const settings = useRef({
     dots: false,
     infinite: false,
@@ -38,6 +40,10 @@ const MovieList = () => {
 
   // 페이지 변경 함수
   const paginate = (pageNumber) => setPage(pageNumber);
+  
+  const handleMovieDetail = (id) => {
+    navigate(`/movieDetail/${id}`);
+  }
 
   return (
     <div className={styles.container}>
@@ -68,10 +74,14 @@ const MovieList = () => {
       {/* 영화 리스트 */}
       <div className={styles.movieGrid}>
       <Grid2 container spacing={2} justifyContent="center">
-        {currentMovies.map((movie, index) => (
-          <Grid2 item xs={12} sm={6} md={4} lg={3} key={index}>
+        {currentMovies.map((movie) => (
+          <Grid2 item xs={12} sm={6} md={4} lg={3} key={movie.id}>
             <div className={styles.movieCard}>
-              <img className={styles.movieImage} src={movie.imageUrl} alt={movie.title} />
+              <img 
+              className={styles.movieImage} 
+              src={movie.imageUrl} 
+              alt={movie.title} 
+              onClick={()=> handleMovieDetail(movie.id)}/>
               <h4 className={styles.movieTitle}>{movie.title}</h4>
               <div className={styles.movieStats}>
                 <div className={styles.movieRating}>

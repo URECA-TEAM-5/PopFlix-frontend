@@ -31,7 +31,7 @@ const MainScreens = {
     element: <WatchListDetailPage />,
   },
   MovieDetail: {
-    path: '/movieDetail',
+    path: '/movieDetail/:id',
     element: <MovieDetailPage />,
   }
 };
