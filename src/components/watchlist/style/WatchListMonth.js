@@ -7,11 +7,13 @@ export const WatchMonthContainer = styled.div`
     justify-content: center;
     align-items: center;
     .banner {
-        width: 80%;
+        max-width: 100%;
+        min-width: 80%;
         padding: 2% 0;
     }
     .title {
-        width: 81%;
+        max-width: 100%;
+        min-width: 98%;
         text-align: left;
         letter-spacing: 0.01rem;
         padding-bottom: 1.5rem;
