@@ -103,12 +103,10 @@ export const CardTextDiv = styled.div`
         text-align: right;
         padding: 1rem 0.9rem 0 0;
     }
+    .heartlike {
+        color: red;
+    }
 `;
-
-export const Heart = styled.span`
-    color: ${props => (props.$isLiked ? 'red' : 'white')};
-`;
-
 
 export const PaginationContainer = styled.div`
     display: flex;

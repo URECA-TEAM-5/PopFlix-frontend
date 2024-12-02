@@ -58,12 +58,14 @@ const WatchListMonth = () => {
                             <Box
                                 sx={{
                                     width: "17rem",
-                                    minWidth: "17rem",
+                                    maxWidth: "17rem",
+                                    minHeight: "15rem",
                                     backgroundColor: boxcolor,
                                     borderRadius: "0.313rem",
                                     display: "flex",
                                     flexDirection: "column",
                                     justifyContent: "space-between",
+                                    transition: "all 0.3s ease",
                                     div: {
                                         width: "100%",
                                         backgroundColor: deepcolor,
@@ -76,7 +78,7 @@ const WatchListMonth = () => {
                                     <ul className="box__ul">
                                         {data.movies.slice(0, 3).map((movie, index) => (
                                             <li key={index} className="box__li">
-                                                <img className="box__image" src={movie.posterPath} alt={movie.title} />
+                                                <img className="box__image" src={movie.posterPath} alt={movie.title} loading="lazy" />
                                                 <span className="regular box__span">{movie.title}</span>
                                             </li>
                                         ))}
