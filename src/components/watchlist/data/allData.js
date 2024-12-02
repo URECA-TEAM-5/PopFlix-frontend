@@ -4,7 +4,8 @@ export const popular = [
         storageName: "외국인을 위한 찐 한국인의 한국맛 영화 추천",
         username: "동동희",
         movieCount: 5,
-        isLiked: 60,
+        likeCount: 60,
+        isLiked: true,
         storageImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIg9fBmr-ro74oo8wEpKtTFXj1R5u29a4sOg&s"
     },
     {
@@ -12,7 +13,8 @@ export const popular = [
         storageName: "우울한 날 보기 좋은 인생 영화 추천 모음",
         username: "징징이",
         movieCount: 6,
-        isLiked: 45,
+        likeCount: 45,
+        isLiked: true,
         storageImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIg9fBmr-ro74oo8wEpKtTFXj1R5u29a4sOg&s"
     },
     {
@@ -20,7 +22,8 @@ export const popular = [
         storageName: "울고 싶은 날 보기 좋은 슬픔 가득 감성 영화 추천",
         username: "버럭이",
         movieCount: 10,
-        isLiked: 42,
+        likeCount: 42,
+        isLiked: false,
         storageImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIg9fBmr-ro74oo8wEpKtTFXj1R5u29a4sOg&s"
     },
     {
@@ -28,7 +31,8 @@ export const popular = [
         storageName: "짜릿한 액션을 원하는 당신을 위한 인생 액션 영화",
         username: "콩알이",
         movieCount: 7,
-        isLiked: 30,
+        likeCount: 30,
+        isLiked: false,
         storageImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIg9fBmr-ro74oo8wEpKtTFXj1R5u29a4sOg&s"
     },
     {
@@ -36,7 +40,8 @@ export const popular = [
         storageName: "음악을 좋아하는 당신을 위한 신나는 뮤지컬 영화 모음",
         username: "동동희",
         movieCount: 3,
-        isLiked: 20,
+        likeCount: 20,
+        isLiked: false,
         storageImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIg9fBmr-ro74oo8wEpKtTFXj1R5u29a4sOg&s"
     },
     {
@@ -44,7 +49,8 @@ export const popular = [
         storageName: "혼술하며 보는 영화 Top 4",
         username: "콩알이",
         movieCount: 4,
-        isLiked: 19,
+        likeCount: 19,
+        isLiked: false,
         storageImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIg9fBmr-ro74oo8wEpKtTFXj1R5u29a4sOg&s"
     },
     {
@@ -52,7 +58,8 @@ export const popular = [
         storageName: "사랑은 오랜 시간 희석되지 않는다.",
         username: "동동희",
         movieCount: 5,
-        isLiked: 15,
+        likeCount: 15,
+        isLiked: false,
         storageImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIg9fBmr-ro74oo8wEpKtTFXj1R5u29a4sOg&s"
     },
     {
@@ -60,7 +67,8 @@ export const popular = [
         storageName: "우리가 사랑한 계절 가을",
         username: "콩알이",
         movieCount: 3,
-        isLiked: 10,
+        likeCount: 10,
+        isLiked: false,
         storageImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIg9fBmr-ro74oo8wEpKtTFXj1R5u29a4sOg&s"
     },
     {
@@ -68,7 +76,8 @@ export const popular = [
         storageName: "모름",
         username: "1",
         movieCount: 5,
-        isLiked: 9,
+        likeCount: 9,
+        isLiked: false,
         storageImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIg9fBmr-ro74oo8wEpKtTFXj1R5u29a4sOg&s"
     },
     {
@@ -76,7 +85,8 @@ export const popular = [
         storageName: "모름",
         username: "1",
         movieCount: 5,
-        isLiked: 9,
+        likeCount: 9,
+        isLiked: false,
         storageImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIg9fBmr-ro74oo8wEpKtTFXj1R5u29a4sOg&s"
     },
     {
@@ -84,7 +94,8 @@ export const popular = [
         storageName: "모름",
         username: "1",
         movieCount: 5,
-        isLiked: 9,
+        likeCount: 9,
+        isLiked: false,
         storageImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIg9fBmr-ro74oo8wEpKtTFXj1R5u29a4sOg&s"
     },
     {
@@ -92,7 +103,8 @@ export const popular = [
         storageName: "모름",
         username: "1",
         movieCount: 5,
-        isLiked: 8,
+        likeCount: 8,
+        isLiked: false,
         storageImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIg9fBmr-ro74oo8wEpKtTFXj1R5u29a4sOg&s"
     }
 ]
@@ -103,7 +115,8 @@ export const newest = [
         storageName: "우울한 날 보기 좋은 인생 영화 추천 모음",
         username: "징징이",
         movieCount: 6,
-        isLiked: 45,
+        likeCount: 45,
+        isLiked: true,
         storageImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIg9fBmr-ro74oo8wEpKtTFXj1R5u29a4sOg&s"
     },
     {
@@ -111,7 +124,8 @@ export const newest = [
         storageName: "짜릿한 액션을 원하는 당신을 위한 인생 액션 영화",
         username: "콩알이",
         movieCount: 7,
-        isLiked: 30,
+        likeCount: 30,
+        isLiked: false,
         storageImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIg9fBmr-ro74oo8wEpKtTFXj1R5u29a4sOg&s"
     },
     {
@@ -119,7 +133,8 @@ export const newest = [
         storageName: "모름",
         username: "1",
         movieCount: 5,
-        isLiked: 9,
+        likeCount: 9,
+        isLiked: false,
         storageImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIg9fBmr-ro74oo8wEpKtTFXj1R5u29a4sOg&s"
     },
     {
@@ -127,7 +142,8 @@ export const newest = [
         storageName: "모름",
         username: "1",
         movieCount: 5,
-        isLiked: 9,
+        likeCount: 9,
+        isLiked: false,
         storageImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIg9fBmr-ro74oo8wEpKtTFXj1R5u29a4sOg&s"
     },
     {
@@ -135,7 +151,8 @@ export const newest = [
         storageName: "음악을 좋아하는 당신을 위한 신나는 뮤지컬 영화 모음",
         username: "동동희",
         movieCount: 3,
-        isLiked: 20,
+        likeCount: 20,
+        isLiked: false,
         storageImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIg9fBmr-ro74oo8wEpKtTFXj1R5u29a4sOg&s"
     },
     {
@@ -143,7 +160,9 @@ export const newest = [
         storageName: "외국인을 위한 찐 한국인의 한국맛 영화 추천",
         username: "동동희",
         movieCount: 5,
-        isLiked: 60,
+        likeCount: 60,
+        isLiked: true,
+        isLiked: false,
         storageImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIg9fBmr-ro74oo8wEpKtTFXj1R5u29a4sOg&s"
     },
     {
@@ -151,7 +170,8 @@ export const newest = [
         storageName: "울고 싶은 날 보기 좋은 슬픔 가득 감성 영화 추천",
         username: "버럭이",
         movieCount: 10,
-        isLiked: 42,
+        likeCount: 42,
+        isLiked: false,
         storageImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIg9fBmr-ro74oo8wEpKtTFXj1R5u29a4sOg&s"
     },
     {
@@ -159,7 +179,8 @@ export const newest = [
         storageName: "혼술하며 보는 영화 Top 4",
         username: "콩알이",
         movieCount: 4,
-        isLiked: 19,
+        likeCount: 19,
+        isLiked: false,
         storageImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIg9fBmr-ro74oo8wEpKtTFXj1R5u29a4sOg&s"
     },
     {
@@ -167,7 +188,8 @@ export const newest = [
         storageName: "사랑은 오랜 시간 희석되지 않는다.",
         username: "동동희",
         movieCount: 5,
-        isLiked: 15,
+        likeCount: 15,
+        isLiked: false,
         storageImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIg9fBmr-ro74oo8wEpKtTFXj1R5u29a4sOg&s"
     },
     {
@@ -175,7 +197,8 @@ export const newest = [
         storageName: "우리가 사랑한 계절 가을",
         username: "콩알이",
         movieCount: 3,
-        isLiked: 10,
+        likeCount: 10,
+        isLiked: false,
         storageImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIg9fBmr-ro74oo8wEpKtTFXj1R5u29a4sOg&s"
     },
     {
@@ -183,7 +206,8 @@ export const newest = [
         storageName: "모름",
         username: "1",
         movieCount: 5,
-        isLiked: 9,
+        likeCount: 9,
+        isLiked: false,
         storageImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIg9fBmr-ro74oo8wEpKtTFXj1R5u29a4sOg&s"
     },
     {
@@ -191,7 +215,8 @@ export const newest = [
         storageName: "모름",
         username: "1",
         movieCount: 5,
-        isLiked: 8,
+        likeCount: 8,
+        isLiked: false,
         storageImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIg9fBmr-ro74oo8wEpKtTFXj1R5u29a4sOg&s"
     }
 ]
