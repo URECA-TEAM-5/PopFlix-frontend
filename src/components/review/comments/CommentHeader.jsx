@@ -2,8 +2,11 @@ import React from 'react';
 import { CommentListHeader } from './style/CommentStyle';
 import DefaultButton from '../../common/buttons/DefaultButton';
 import { colors } from '../../../global/globalStyle';
+import { usePhotoReview } from '../../../stores/review/PhotoReviewStore';
 
 const CommentHeader = () => {
+  const { reviewData } = usePhotoReview();
+
   return (
     <CommentListHeader>
       <div className="comments__head">

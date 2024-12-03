@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { getReviewById } from '../../api/review/photoReview';
 
 export const usePhotoReview = create((set) => ({
   reviewData: {},
