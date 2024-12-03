@@ -109,14 +109,6 @@ export const CommentItemContainer = styled.div`
     align-items: center;
     gap: 0.75rem;
   }
-
-  .div__buttons {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: end;
-  }
 `;
 
 export const AddCommentContainer = styled.div`
