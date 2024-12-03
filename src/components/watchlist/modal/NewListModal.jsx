@@ -4,8 +4,7 @@ import { BtnDiv, DiaglogBtn } from '../style/NewListModal';
 import { colors } from '../../../global/globalStyle';
 import NewListInput from './NewListInput';
 
-const NewListModal = () => {
-    const [open, setOpen] = useState(true);
+const NewListModal = ({ open, setOpen, onCreateList }) => {
     const [error, setError] = useState();
     const [storageNameLength, setStorageNameLength] = useState(0);
     const [storageInfoLength, setStorageInfoLength] = useState(0);
@@ -15,7 +14,6 @@ const NewListModal = () => {
     const NAME_MAX_LENGTH = 30;
     const INFO_MAX_LENGTH = 100;
 
-    const handleClickOpen = () => setOpen(true);
     const handleClose = (e) => {
         if (e) e.preventDefault();
         setError('');
@@ -32,6 +30,9 @@ const NewListModal = () => {
         }
         console.log('이름:', storage_name, '소개:', storage_info);
         setError('');
+
+        onCreateList({ storage_name });
+
         handleClose();
     };
 

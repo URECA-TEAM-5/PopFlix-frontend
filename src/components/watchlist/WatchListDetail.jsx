@@ -1,63 +1,87 @@
-import { useEffect, useRef, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { useParams } from 'react-router-dom';
 import { data } from './data/detailData';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleLeft, faList } from '@fortawesome/free-solid-svg-icons';
-import { MovieList } from './style/WatchListDetail';
+import { otherData } from './data/otherData';
+import DetailOtherStorage from './DetailOtherStorage';
+import DetailStorage from './DetailStorage';
+import DetailMovieList from './DetailMovieList';
+
+const fetchDetailData = async ({ queryKey }) => {
+    const id = queryKey[1];
+    return data.find(item => item.storage.id === parseInt(id));
+};
+
+const fetchOtherData = async () => {
+    return otherData;
+};
+
+const updateLikeStatus = async (storageData) => {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve({
+                ...storageData,
+                isLiked: !storageData.isLiked,
+                likeCount: storageData.isLiked ? storageData.likeCount - 1 : storageData.likeCount + 1,
+            });
+        }, 500);
+    });
+};
 
 const WatchListDetail = () => {
-    const dataRef = useRef(data);
     const { id } = useParams();
-    const [filterData, setFilterData] = useState({});
-    const navigate = useNavigate();
+    const queryClient = useQueryClient();
 
-    const onClickBack = () => {
-        navigate(-1);
+    const { data: detailData } = useQuery({
+        queryKey: ['detailData', id],
+        queryFn: fetchDetailData,
+    });
+
+    const { data: otherStorage } = useQuery({
+        queryKey: ['otherData'],
+        queryFn: fetchOtherData,
+    });
+
+    const { mutate: toggleLikeStatus } = useMutation({
+        mutationFn: updateLikeStatus,
+        onSuccess: (updatedStorage) => {
+            queryClient.setQueryData(['detailData', id], (prevData) => ({
+                ...prevData,
+                storage: updatedStorage,
+            }));
+        },
+    });
+
+    const handleClickLike = () => {
+        if (detailData) {
+            toggleLikeStatus(detailData.storage);
+        }
     };
 
-    useEffect(() => {
-        const filteredData = dataRef.current.filter(item => item.storage.id === parseInt(id));
-
-        if (filteredData.length > 0) {
-            const storage = filteredData[0].storage;
-            const movies = filteredData[0].movies;
-
-            const detailData = {
-                id: storage.id,
-                storageName: storage.storageName,
-                storageImage: storage.storageImage,
-                movies: movies.map(movie => ({
-                    id: movie.id,
-                    title: movie.title,
-                    posterPath: movie.posterPath,
-                }))
-            };
-
-            setFilterData(detailData);
-        }
-    }, [id]);
+    const handleCopy = () => {
+        const url = window.location.href;
+        navigator.clipboard.writeText(url).then(() => {
+            alert('링크를 복사했어요. 원하는 곳에 공유하세요!');
+        }).catch(err => {
+            console.error('복사 실패 ', err);
+        });
+    };
 
     return (
-        <div>
-            <FontAwesomeIcon icon={faAngleLeft} onClick={onClickBack} />
-            {filterData.movies && (
-                <img src={filterData.movies[0].posterPath} alt={filterData.movies[0].title} />
+        <>
+            {detailData?.storage && (
+                <DetailStorage
+                    storage={detailData.storage}
+                    handleClickLike={handleClickLike}
+                    handleCopy={handleCopy}
+                />
             )}
-            <h3>{filterData.storageName}</h3>
-            <div>
-                <FontAwesomeIcon icon={faList} />
-                <span className="bold">List</span>
-            </div>
-            <MovieList>
-                {filterData.movies && filterData.movies.map((movie) => (
-                    <li key={movie.id}>
-                        <img src={movie.posterPath} alt={movie.title} />
-                        <h3>{movie.title}</h3>
-                    </li>
-                ))}
-            </MovieList>
-        </div>
+            <DetailMovieList movies={detailData?.movies} />
+            <DetailOtherStorage
+                otherStorage={otherStorage}
+                username={detailData?.storage?.username}
+            />
+        </>
     );
-}
+};
 
 export default WatchListDetail;

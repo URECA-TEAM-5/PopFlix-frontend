@@ -23,7 +23,6 @@ const Alarm = () => {
           <AlaramEmpty />
         ) : (
           <div className="alarm-inner__section">
-            {/* <div className="inner__wrap"> */}
             <AlarmTop />
             <div className="alarm-current alarm-list__wrap">
               <TitleCheckBox title={'오늘 받은 알림'} />
@@ -39,7 +38,6 @@ const Alarm = () => {
                 <AlarmMessage />
               </ListContainer>
             </div>
-            {/* </div> */}
           </div>
         )}
       </AlarmContainer>
