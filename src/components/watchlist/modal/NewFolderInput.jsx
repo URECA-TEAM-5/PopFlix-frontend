@@ -1,7 +1,7 @@
-import NewListCount from "./NewListCount";
-import { DiaglogContent, ErrorDiv, InputText, InputTextArea } from "../style/NewListModal";
+import NewFolderCount from "./NewFolderCount";
+import { DiaglogContent, ErrorDiv, InputText, InputTextArea } from "../style/NewFolderModal";
 
-const NewListInput = ({ storageNameRef, storageInfoRef, error, NAME_MAX_LENGTH, INFO_MAX_LENGTH, handleInput, storageNameLength, storageInfoLength }) => {
+const NewFolderInput = ({ storageNameRef, storageInfoRef, error, NAME_MAX_LENGTH, INFO_MAX_LENGTH, handleInput, storageNameLength, storageInfoLength }) => {
     return (
         <DiaglogContent>
             <h3>WatchList 폴더를 생성해주세요.</h3>
@@ -18,7 +18,7 @@ const NewListInput = ({ storageNameRef, storageInfoRef, error, NAME_MAX_LENGTH, 
                 ref={storageNameRef}
                 onInput={handleInput}
             />
-            <NewListCount length={storageNameLength} maxLength={NAME_MAX_LENGTH} />
+            <NewFolderCount length={storageNameLength} maxLength={NAME_MAX_LENGTH} />
             <InputTextArea
                 className="regular"
                 id="storage_info"
@@ -29,9 +29,9 @@ const NewListInput = ({ storageNameRef, storageInfoRef, error, NAME_MAX_LENGTH, 
                 ref={storageInfoRef}
                 onInput={handleInput}
             />
-            <NewListCount length={storageInfoLength} maxLength={INFO_MAX_LENGTH} />
+            <NewFolderCount length={storageInfoLength} maxLength={INFO_MAX_LENGTH} />
         </DiaglogContent>
     );
 };
 
-export default NewListInput;
+export default NewFolderInput;

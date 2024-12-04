@@ -18,7 +18,7 @@ export const WatchMonthContainer = styled.div`
         letter-spacing: 0.01rem;
         padding-bottom: 1.5rem;
     }
-    .box__ul {
+    .boxUl {
         list-style-type: none;
         display: flex;
         flex-direction: column;
@@ -26,14 +26,14 @@ export const WatchMonthContainer = styled.div`
         padding: 0.5rem 1.5rem;
         margin: 0;
     }
-    .box__li {
+    .boxLi {
         width: 100%;
         display: flex;
         flex-direction: row;
         align-items: center;
         padding: 0.3rem 0;
     }
-    .box__p {
+    .boxP {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -43,13 +43,13 @@ export const WatchMonthContainer = styled.div`
         text-align: center;
         word-wrap: break-word;
     }
-    .box__image {
+    .boxImage {
         width: 3.75rem;
         height: 3.75rem;
         object-fit: cover;
         border-radius: 0.313rem;
     }
-    .box__span {
+    .boxSpan {
         width: 73%;
         padding-left: 0.7rem;
         word-wrap: break-word;

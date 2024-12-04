@@ -1,10 +1,10 @@
 import React, { useRef, useState } from 'react';
 import { Dialog } from '@mui/material';
-import { BtnDiv, DiaglogBtn } from '../style/NewListModal';
+import { BtnDiv, DiaglogBtn } from '../style/NewFolderModal';
 import { colors } from '../../../global/globalStyle';
-import NewListInput from './NewListInput';
+import NewFolderInput from './NewFolderInput';
 
-const NewListModal = ({ open, setOpen, onCreateList }) => {
+const NewFolderModal = ({ open, setOpen, onCreateList }) => {
     const [error, setError] = useState();
     const [storageNameLength, setStorageNameLength] = useState(0);
     const [storageInfoLength, setStorageInfoLength] = useState(0);
@@ -63,7 +63,7 @@ const NewListModal = ({ open, setOpen, onCreateList }) => {
                 }
             }}
         >
-            <NewListInput
+            <NewFolderInput
                 storageNameRef={storageNameRef}
                 storageInfoRef={storageInfoRef}
                 error={error}
@@ -81,4 +81,4 @@ const NewListModal = ({ open, setOpen, onCreateList }) => {
     );
 };
 
-export default NewListModal;
+export default NewFolderModal;

@@ -1,6 +1,6 @@
-import { InputLength } from "../style/NewListModal";
+import { InputLength } from "../style/NewFolderModal";
 
-const NewListCount = ({ length, maxLength }) => {
+const NewFolderCount = ({ length, maxLength }) => {
     return (
         <InputLength>
             <span>{length}</span>
@@ -9,4 +9,4 @@ const NewListCount = ({ length, maxLength }) => {
     );
 };
 
-export default NewListCount;
+export default NewFolderCount;

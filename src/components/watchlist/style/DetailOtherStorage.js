@@ -6,7 +6,7 @@ export const OtherList = styled.div`
     h4 {
         padding: 1rem 0;
     }
-    .image-container {
+    .imageContainer {
         width: 100%;
         display: flex;
         justify-content: flex-start;
@@ -18,7 +18,7 @@ export const OtherList = styled.div`
             border-radius: 0.313rem;
         }
     }
-    .text-container {
+    .textContainer {
         width: 100%;
         display: flex;
         justify-content: flex-start;
@@ -39,7 +39,7 @@ export const OtherList = styled.div`
         align-items: center;
         font-size: 0.875rem;
     }
-    .like__count {
+    .likeCount {
         display: flex;
         justify-content: flex-end;
         align-items: center;
