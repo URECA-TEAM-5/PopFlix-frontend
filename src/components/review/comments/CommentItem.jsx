@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { CommentItemContainer } from './style/CommentStyle';
+import React, { useRef } from 'react';
+import { CommentItemContainer, IconCheckLiked } from './style/CommentStyle';
 import DefaultButton from '../../common/buttons/DefaultButton';
 import OutlineButton from '../../common/buttons/OutlineButton';
 import DefaultBadge from '../../common/badge/DefaultBadge';
@@ -7,9 +7,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMessage, faHeart as heartEmpty } from '@fortawesome/free-regular-svg-icons';
 import { faHeart as heartFilled } from '@fortawesome/free-solid-svg-icons';
 import { colors } from '../../../global/globalStyle';
+import { usePhotoReview } from '../../../stores/review/PhotoReviewStore';
 
-const CommentItem = () => {
-  const [isClicked, setIsClicked] = useState(false);
+const CommentItem = ({ isBest, commentId, nickname, createdAt, comment, likeCount, isLiked }) => {
+  const { setIsLiked } = usePhotoReview();
+  const likedState = useRef(isLiked);
+
+  const handleIsLiked = async () => {
+    console.log('[ handleIsLiked ]');
+    likedState.current = !likedState.current;
+    await setIsLiked(commentId, likedState.current);
+  };
 
   return (
     <CommentItemContainer>
@@ -21,23 +29,25 @@ const CommentItem = () => {
         </div>
         <div className="div__column">
           <div className="div__row">
-            <DefaultBadge title={'BEST'} w={3.4375} h={1.25} fontSize={0.875} fontWeight={'bold'} />
-            <span className="text__nickname">디용</span>
-            <span className="text__date">2024. 11. 10</span>
+            {isBest && <DefaultBadge title={'BEST'} w={3.4375} h={1.25} fontSize={0.875} fontWeight={'bold'} />}
+            <span className="text__nickname">{nickname ? nickname : 'nickname'}</span>
+            <span className="text__date">{createdAt ? new Date(createdAt).toLocaleDateString() : 'createAt'}</span>
           </div>
-          <p className="text__review">쿠키영상 개수 알려주셔서 감사해요~</p>
-
+          <p className="text__review">{comment ? comment : 'comment'}</p>
           <div className="div__row">
             <div className="div__row">
               <OutlineButton
                 w={5}
                 h={1.5625}
                 name={
-                  <div className="div__row">
-                    <FontAwesomeIcon className="icon" icon={isClicked ? heartFilled : heartEmpty} onClick={() => setIsClicked(!isClicked)} />
-                    <span>300</span>
+                  <div className="div__row icon__section">
+                    <IconCheckLiked $isClicked={likedState.current}>
+                      <FontAwesomeIcon icon={likedState.current ? heartFilled : heartEmpty} />
+                    </IconCheckLiked>
+                    <span>{likeCount ? likeCount : 'likeCount'}</span>
                   </div>
                 }
+                onClick={handleIsLiked}
               />
             </div>
             <div className="div__row">
@@ -45,7 +55,7 @@ const CommentItem = () => {
                 w={5}
                 h={1.5625}
                 name={
-                  <div className="div__row">
+                  <div className="div__row icon__section">
                     <FontAwesomeIcon icon={faMessage} />
                     <span>10</span>
                   </div>

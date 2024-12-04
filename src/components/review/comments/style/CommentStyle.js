@@ -35,6 +35,7 @@ export const CommentListHeader = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  caret-color: transparent;
 
   .comments__head {
     width: 100%;
@@ -44,6 +45,21 @@ export const CommentListHeader = styled.div`
     justify-content: space-between;
     align-items: center;
   }
+
+  .div__row {
+    max-width: 5rem;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+`;
+
+export const TextFilter = styled.div`
+  font-size: 0.75rem;
+  color: ${(props) => (props.$isClicked ? colors.orange : colors.cement_gray)};
+  cursor: pointer;
 `;
 
 export const CommentItemContainer = styled.div`
@@ -54,6 +70,7 @@ export const CommentItemContainer = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: end;
+  caret-color: transparent;
 
   .comments__item {
     display: flex;
@@ -90,10 +107,6 @@ export const CommentItemContainer = styled.div`
     justify-content: start;
   }
 
-  .text__nickname {
-    padding: 0 1rem;
-  }
-
   .text__date {
     color: ${colors.cement_gray};
   }
@@ -109,6 +122,14 @@ export const CommentItemContainer = styled.div`
     align-items: center;
     gap: 0.75rem;
   }
+
+  .icon__section {
+    color: ${colors.white};
+  }
+`;
+
+export const IconCheckLiked = styled.div`
+  color: ${(props) => (props.$isClicked ? '#ff0000' : colors.white)};
 `;
 
 export const AddCommentContainer = styled.div`
