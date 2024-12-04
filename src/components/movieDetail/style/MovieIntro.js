@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-
+import { colors } from '../../../global/globalStyle';
 export const MovieIntroContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -13,12 +13,23 @@ export const Header = styled.div`
 export const MovieDetailContainer = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
+  padding: 1rem 2.375rem;
+  gap: 2rem;
 `;
 
-export const Genre = styled.div`
-  width: 172px;
+export const GenreContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+export const GenreButton = styled.button`
+  border-color: ${colors.space_gray};
+  background-color: ${colors.black};
+  color: ${colors.cement_gray};
+  width: 80px;
   height: 30px;
+  font-size: 14px;
+  border-radius: 30px;
+  pointer-events: none;
 `;
 
 export const MovieImage = styled.img`
@@ -27,6 +38,5 @@ export const MovieImage = styled.img`
 `;
 
 export const MovieOverview = styled.div`
-  width: 391px;
-  height: 225px;
+  width: 100%;
 `;
