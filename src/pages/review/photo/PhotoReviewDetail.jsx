@@ -10,7 +10,7 @@ import { useQuery } from '@tanstack/react-query';
 const PhotoReviewDetail = () => {
   const { reviewData, setReviewData } = usePhotoReview();
 
-  useQuery({
+  const { data } = useQuery({
     queryKey: ['photoReviewDetail'],
     queryFn: async () => {
       return await setReviewData(1);
