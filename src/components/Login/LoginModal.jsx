@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Modal, Box, Button, Typography } from '@mui/material';
 import { colors } from '../../global/globalStyle';
+import { LoginModalGoogleLogo, LoginModalImage, LoginModalNaverLogo, LoginModalTitle } from './style/LoginModalStyle';
 
 const LoginModal = () => {
   const [open, setOpen] = useState(false);
@@ -37,13 +38,13 @@ const LoginModal = () => {
             },
           }}
         >
-          <h3 className="bold" style={{ margin: '0rem', paddingBottom: '1rem' }}>
-            오랜만이에요! 로그인하고
-            <br />
+          <LoginModalTitle className="bold">
+            오랜만이에요! 로그인하고 <br />
             영화에 대한 생각을 공유해주세요!
-          </h3>
+          </LoginModalTitle>
 
-          <img style={{ width: '9.375rem', marginBottom: '1.25rem' }} src={'public/assets/logo.svg'} alt="로고" />
+          <LoginModalImage src={'public/assets/logo.svg'} alt="로고" />
+
           {/*네이버 버튼*/}
           <Button
             variant="contained"
@@ -64,7 +65,7 @@ const LoginModal = () => {
                 margin: 0,
               },
             }}
-            startIcon={<img src="public/assets/naver_login_btn.svg" alt="N" style={{ width: '1.88rem', height: '1.88rem' }} />}
+            startIcon={<LoginModalNaverLogo src="/assets/naver_login_btn.svg" alt="N" />}
           >
             <p>네이버 로그인</p>
           </Button>
@@ -87,7 +88,7 @@ const LoginModal = () => {
               },
             }}
             onClick={handleGoogleLogin}
-            startIcon={<img src="public/assets/google_login_btn.svg" alt="N" style={{ width: '1rem', height: '1rem' }} />}
+            startIcon={<LoginModalGoogleLogo src="public/assets/google_login_btn.svg" alt="G" />}
           >
             <p>구글 로그인</p>
           </Button>

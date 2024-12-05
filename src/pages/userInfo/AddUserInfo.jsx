@@ -5,6 +5,8 @@ import UserInfoGenre from '../../components/userInfo/UserInfoGenre';
 import UserInfoGender from '../../components/userInfo/UserInfoGender';
 import { Box, Button } from '@mui/material';
 import { colors } from '../../global/globalStyle';
+import LoginModal from '../../components/Login/LoginModal';
+import MyInfoModal from '../../components/userInfo/modal/MyInfoModal';
 
 const AddUserInfo = () => {
   // 프로필 사진 상태

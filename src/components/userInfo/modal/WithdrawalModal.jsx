@@ -1,10 +1,10 @@
 import React from 'react';
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Divider } from '@mui/material';
 import { colors } from '../../../global/globalStyle';
+import { WithdrawalModalButtonHover, WithdrawalModalContent } from './style/UserInfoModalStyle';
 
 const WithdrawalModal = ({ open, onClose }) => {
   const handleConfirm = () => {
-    console.log('탈퇴 확인');
     onClose();
   };
 
@@ -41,9 +41,7 @@ const WithdrawalModal = ({ open, onClose }) => {
           fontSize: '0.875rem',
         }}
       >
-        <p className="regular" style={{ color: colors.cement_gray }}>
-          탈퇴 시 계정은 삭제되며 복구되지 않습니다.
-        </p>
+        <WithdrawalModalContent className="regular">탈퇴 시 계정은 삭제되며 복구되지 않습니다.</WithdrawalModalContent>
       </DialogContent>
 
       {/* 구분선 */}
@@ -58,30 +56,17 @@ const WithdrawalModal = ({ open, onClose }) => {
           gap: '6.25rem',
         }}
       >
-        <Button
-          onClick={handleConfirm}
-          sx={{
-            '&:hover': {
-              '& p': {
-                color: colors.orange,
-              },
-            },
-          }}
-        >
-          <p className="regular">탈퇴</p>
-        </Button>
-        <Button
-          onClick={onClose}
-          sx={{
-            '&:hover': {
-              '& p': {
-                color: colors.orange,
-              },
-            },
-          }}
-        >
-          <p className="regular">취소</p>
-        </Button>
+        <WithdrawalModalButtonHover>
+          <Button onClick={handleConfirm}>
+            <p className="regular">탈퇴</p>
+          </Button>
+        </WithdrawalModalButtonHover>
+
+        <WithdrawalModalButtonHover>
+          <Button onClick={onClose}>
+            <p className="regular">취소</p>
+          </Button>
+        </WithdrawalModalButtonHover>
       </DialogActions>
     </Dialog>
   );

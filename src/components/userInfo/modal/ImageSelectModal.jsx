@@ -1,12 +1,13 @@
 import React from 'react';
 import { Dialog, Box, Divider, Button } from '@mui/material';
 import { colors } from '../../../global/globalStyle';
+import { ImageSelectModalButton } from './style/UserInfoModalStyle';
 
 const ImageSelectModal = ({ onSelectDefaultImage, onSelectDeviceImage, onClose }) => {
   return (
     <Dialog
-      open={true} // 모달 열림 상태
-      onClose={onClose} // 닫기 이벤트
+      open={true}
+      onClose={onClose}
       PaperProps={{
         sx: {
           width: '28rem',
@@ -42,12 +43,10 @@ const ImageSelectModal = ({ onSelectDefaultImage, onSelectDeviceImage, onClose }
             marginBottom: '1rem',
           }}
           onClick={() => {
-            onSelectDefaultImage(); // 기본 이미지 선택 함수 호출
+            onSelectDefaultImage();
           }}
         >
-          <p style={{ fontSize: '1.5rem', margin: '0rem' }} className="bold">
-            기본 이미지 적용
-          </p>
+          <ImageSelectModalButton className="bold">기본 이미지 적용</ImageSelectModalButton>
         </Button>
 
         {/* 디바이스에서 사진 선택 버튼 */}
@@ -65,12 +64,10 @@ const ImageSelectModal = ({ onSelectDefaultImage, onSelectDeviceImage, onClose }
             marginBottom: '1.5rem',
           }}
           onClick={() => {
-            onSelectDeviceImage(); // 디바이스에서 사진 선택 함수 호출
+            onSelectDeviceImage();
           }}
         >
-          <p className="bold" style={{ fontSize: '1.5rem', margin: '0rem' }}>
-            디바이스에서 사진 선택
-          </p>
+          <ImageSelectModalButton className="bold">디바이스에서 사진 선택</ImageSelectModalButton>
         </Button>
 
         {/* 구분선 */}
@@ -98,11 +95,9 @@ const ImageSelectModal = ({ onSelectDefaultImage, onSelectDeviceImage, onClose }
               margin: '0rem',
             },
           }}
-          onClick={onClose} // 모달 닫기
+          onClick={onClose}
         >
-          <p className="bold" style={{ fontSize: '1.5rem' }}>
-            취소
-          </p>
+          <ImageSelectModalButton className="bold">취소</ImageSelectModalButton>
         </Button>
       </Box>
     </Dialog>

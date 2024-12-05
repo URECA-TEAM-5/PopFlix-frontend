@@ -3,6 +3,7 @@ import { Box } from '@mui/material';
 import { colors } from '../../global/globalStyle';
 import ImageSelectModal from './modal/ImageSelectModal';
 import DefaultImageSelectModal from './modal/DefaultImageSelectModal';
+import { UserInfoImageCameraIcon, UserInfoImageDeviceInput, UserInfoImageProfileImage } from './style/UserInfoStyle';
 
 const UserInfoImage = ({ profileImage, setProfileImage }) => {
   const [isImageSelectModalOpen, setIsImageSelectModalOpen] = useState(false);
@@ -75,18 +76,7 @@ const UserInfoImage = ({ profileImage, setProfileImage }) => {
         }}
         onClick={handleOpenImageSelectModal}
       >
-        {profileImage && (
-          <img
-            src={profileImage}
-            alt="프로필"
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              borderRadius: '50%',
-            }}
-          />
-        )}
+        {profileImage && <UserInfoImageProfileImage src={profileImage} alt="프로필" />}
         <Box
           sx={{
             position: 'absolute',
@@ -101,14 +91,7 @@ const UserInfoImage = ({ profileImage, setProfileImage }) => {
             alignItems: 'center',
           }}
         >
-          <img
-            src="public/assets/camera.svg"
-            alt="카메라 아이콘"
-            style={{
-              width: '1.25rem',
-              height: '1.25rem',
-            }}
-          />
+          <UserInfoImageCameraIcon src="public/assets/camera.svg" alt="카메라 아이콘" />
         </Box>
 
         {/* ImageSelectModal */}
@@ -140,7 +123,7 @@ const UserInfoImage = ({ profileImage, setProfileImage }) => {
           />
         )}
 
-        <input type="file" accept="image/*" onChange={handleFileUpload} style={{ display: 'none' }} ref={fileInputRef} />
+        <UserInfoImageDeviceInput type="file" accept="image/*" onChange={handleFileUpload} ref={fileInputRef} />
       </Box>
     </Box>
   );

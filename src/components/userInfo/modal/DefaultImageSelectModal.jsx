@@ -1,6 +1,7 @@
 import React from 'react';
 import { Modal, Box, Typography, Divider } from '@mui/material';
 import { colors } from '../../../global/globalStyle';
+import { DefaultImageSelectModalTitle } from './style/UserInfoModalStyle';
 
 const DefaultImageSelectModal = ({ onSelectImage, onClose }) => {
   const imageLinks = [
@@ -30,9 +31,7 @@ const DefaultImageSelectModal = ({ onSelectImage, onClose }) => {
           },
         }}
       >
-        <h2 className="bold" style={{ textAlign: 'left', margin: '1.5rem 0rem', paddingLeft: '2.5rem' }}>
-          기본 이미지 선택
-        </h2>
+        <DefaultImageSelectModalTitle className="bold">기본 이미지 선택</DefaultImageSelectModalTitle>
 
         {/* 구분선 */}
         <Divider
@@ -62,14 +61,14 @@ const DefaultImageSelectModal = ({ onSelectImage, onClose }) => {
                 alignItems: 'center',
                 justifyContent: 'center',
                 borderRadius: '50%',
-                bgcolor: colors.navy_gray, // 배경색 (모달 배경색과 동일)
+                bgcolor: colors.navy_gray,
                 border: '0.063rem solid',
                 borderColor: colors.cement_gray,
                 transition: 'border-color 0.3s ease',
                 cursor: 'pointer',
                 mb: '0.625rem',
                 '&:hover': {
-                  borderColor: colors.orange, // 호버 시 테두리 색상
+                  borderColor: colors.orange,
                 },
               }}
               onClick={() => onSelectImage(image)}

@@ -1,13 +1,13 @@
 import React from 'react';
 import { Box, FormControl, Select, MenuItem } from '@mui/material';
 import { colors } from '../../global/globalStyle';
+import { UserInfoGenreTitle } from './style/UserInfoStyle';
 
 const UserInfoGenre = ({ selectedGenre, genres, onGenreChange }) => {
   return (
     <Box sx={{ pb: '2.125rem', width: '100%' }}>
-      <p className="bold" style={{ margin: '0', paddingBottom: '1.25rem' }}>
-        장르
-      </p>
+      <UserInfoGenreTitle className="bold">장르</UserInfoGenreTitle>
+
       <FormControl
         fullWidth
         sx={{
@@ -38,8 +38,8 @@ const UserInfoGenre = ({ selectedGenre, genres, onGenreChange }) => {
           }}
         >
           {genres.map((genre, index) => (
-            <MenuItem key={index} value={genre} sx={{ fontFamily: 'SUIT-Bold, sans-serif' }}>
-              {genre}
+            <MenuItem key={index} value={genre} sx={{ span: { color: '#000' } }}>
+              <span className="bold">{genre}</span>
             </MenuItem>
           ))}
         </Select>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Dialog, DialogContent, Typography, Button, Box } from '@mui/material';
 import { colors } from '../../../global/globalStyle';
+import { MyInfoModalButton, MyInfoModalUserName } from './style/UserInfoModalStyle';
 
 export default function MyInfoModal() {
   const [open, setOpen] = useState(false);
@@ -30,7 +31,7 @@ export default function MyInfoModal() {
           textAlign: 'center',
         }}
       >
-        <h5 style={{ color: colors.orange }}>User 회원님</h5> {/*유저이름으로 변경 필요*/}
+        <MyInfoModalUserName>User 님</MyInfoModalUserName> {/*유저이름으로 변경 필요*/}
         <h6 style={{ color: '#fff', paddingBottom: '0.5rem' }}>반갑습니다.</h6>
         <Box
           sx={{
@@ -52,9 +53,7 @@ export default function MyInfoModal() {
             }}
             onClick={() => alert('마이페이지 이동')}
           >
-            <p className="bold" style={{ fontSize: '0.7rem' }}>
-              마이페이지
-            </p>
+            <MyInfoModalButton className="bold">마이페이지</MyInfoModalButton>
           </Button>
           <Button
             variant="text"
@@ -70,9 +69,7 @@ export default function MyInfoModal() {
             }}
             onClick={() => alert('로그아웃')}
           >
-            <p className="bold" style={{ fontSize: '0.7rem' }}>
-              로그아웃
-            </p>
+            <MyInfoModalButton className="bold">로그아웃</MyInfoModalButton>
           </Button>
         </Box>
       </DialogContent>

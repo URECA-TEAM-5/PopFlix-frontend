@@ -1,13 +1,12 @@
 import React from 'react';
 import { Box, TextField, Button } from '@mui/material';
 import { colors } from '../../global/globalStyle';
+import { UserInfoNickNameTitle } from './style/UserInfoStyle';
 
 const UserInfoNickname = ({ nickname, onChange, onCheckDuplicate }) => {
   return (
     <Box sx={{ pb: '2.25rem', width: '100%' }}>
-      <p className="bold" style={{ margin: '0rem', paddingBottom: '0.938rem' }}>
-        닉네임
-      </p>
+      <UserInfoNickNameTitle className="bold">닉네임</UserInfoNickNameTitle>
       <Box sx={{ display: 'flex', gap: '0.438rem', alignItems: 'center' }}>
         <TextField
           value={nickname}
