@@ -10,7 +10,7 @@ const MovieDetailPage = () =>{
             <MovieIntro movieId={id}/>
             <PoppleTip movieId={id}/>
             <ShortReview movieId={id}/>
-            <MovieReviewTabs movieId={id}/>
+            <MovieReviewTabs/>
         </div>
     )
 }
