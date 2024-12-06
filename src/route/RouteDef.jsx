@@ -6,7 +6,7 @@ import MainPage from '../pages/main/MainPage';
 import WatchListDetailPage from '../pages/watchlist/WatchListDetailPage';
 import PhotoReviewDetail from '../pages/review/photo/PhotoReviewDetail';
 import WatchListPage from '../pages/watchlist/WatchListPage';
-import MyPage from '../pages/mypage/mypage';
+import MyPage from '../pages/mypage/Mypage';
 import WatchListEditPage from '../pages/watchlist/WatchListEditPage';
 
 const MainScreens = {
