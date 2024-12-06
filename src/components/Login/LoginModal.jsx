@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Modal, Box, Button, Typography } from '@mui/material';
 import { colors } from '../../global/globalStyle';
+import { LoginModalGoogleLogo, LoginModalImage, LoginModalNaverLogo, LoginModalTitle } from './style/LoginModalStyle';
 
 const LoginModal = () => {
   const [open, setOpen] = useState(false);
@@ -26,44 +27,48 @@ const LoginModal = () => {
             top: '50%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
-            width: 400,
+            width: '25rem',
             height: 'auto',
             bgcolor: colors.navy_gray,
-            borderRadius: 2,
-            boxShadow: 24,
-            p: 4,
+            borderRadius: '0.5rem',
+            p: '2rem',
             textAlign: 'center',
+            '&:focus': {
+              outline: 'none',
+            },
           }}
         >
-          <Typography variant="h6" sx={{ mb: 2, fontWeight: 'bold', color: '#fff' }}>
-            오랜만이에요! 로그인하고
-            <br />
-            영화에 대한 생각 공유해주세요!
-          </Typography>
-          <img
-            style={{ width: '150px', marginBottom: '20px' }} // 로고
-            src={'public/assets/logo.svg'}
-            alt="로고"
-          />
+          <LoginModalTitle className="bold">
+            오랜만이에요! 로그인하고 <br />
+            영화에 대한 생각을 공유해주세요!
+          </LoginModalTitle>
+
+          <LoginModalImage src={'public/assets/logo.svg'} alt="로고" />
+
           {/*네이버 버튼*/}
           <Button
             variant="contained"
+            onClick={handleNaverLogin}
             sx={{
-              width: '100%',
-              mb: 2,
-              textTransform: 'none',
-              fontWeight: 'bold',
+              backgroundRepeat: 'no-repeat',
               backgroundColor: '#03C75A',
-              color: '#fff',
+              width: '100%',
+              height: '2.5rem',
+              mb: '15px',
+              '&:focus': {
+                outline: 'none',
+              },
               '&:hover': {
-                backgroundColor: '#028a3b',
+                opacity: 0.9,
+              },
+              '.MuiButton-startIcon': {
+                margin: 0,
               },
             }}
-            onClick={handleNaverLogin}
+            startIcon={<LoginModalNaverLogo src="/assets/naver_login_btn.svg" alt="N" />}
           >
-            네이버로 계속하기
+            <p>네이버 로그인</p>
           </Button>
-
           {/*구글 버튼*/}
           <Button
             variant="contained"
@@ -73,14 +78,19 @@ const LoginModal = () => {
               fontWeight: 'bold',
               backgroundColor: '#fff',
               color: '#000',
+              height: '2.5rem',
               border: '1px solid #ccc',
               '&:hover': {
-                backgroundColor: '#f5f5f5',
+                opacity: 0.9,
+              },
+              '&:focus': {
+                outline: 'none',
               },
             }}
             onClick={handleGoogleLogin}
+            startIcon={<LoginModalGoogleLogo src="public/assets/google_login_btn.svg" alt="G" />}
           >
-            구글로 계속하기
+            <p>구글 로그인</p>
           </Button>
         </Box>
       </Modal>

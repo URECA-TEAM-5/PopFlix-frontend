@@ -1,8 +1,45 @@
-import React from 'react';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { Box } from '@mui/material';
 import { colors } from '../../global/globalStyle';
+import ImageSelectModal from './modal/ImageSelectModal';
+import DefaultImageSelectModal from './modal/DefaultImageSelectModal';
+import { UserInfoImageCameraIcon, UserInfoImageDeviceInput, UserInfoImageProfileImage } from './style/UserInfoStyle';
 
-const UserInfoImage = ({ profileImage, onImageUpload }) => {
+const UserInfoImage = ({ profileImage, setProfileImage }) => {
+  const [isImageSelectModalOpen, setIsImageSelectModalOpen] = useState(false);
+  const [isDefaultImageSelectModalOpen, setIsDefaultImageSelectModalOpen] = useState(false);
+  const fileInputRef = useRef(null);
+
+  // 파일 업로드 핸들러
+  const handleFileUpload = useCallback(
+    (event) => {
+      const file = event.target.files[0];
+      if (file) {
+        setProfileImage(URL.createObjectURL(file));
+      }
+    },
+    [setProfileImage]
+  );
+
+  // 모달 열기 함수
+  const handleOpenImageSelectModal = () => {
+    console.log('모달 열기 요청');
+    setIsImageSelectModalOpen(true);
+  };
+
+  // 모달 닫기 함수 delay 안넣으면 안닫힘
+  const closeModalWithDelay = () => {
+    console.log('모달 닫기 요청');
+    setTimeout(() => {
+      setIsImageSelectModalOpen(false);
+    });
+  };
+
+  // 디버그용
+  useEffect(() => {
+    console.log('ImageSelectModal 상태 변경:', isImageSelectModalOpen ? '열림' : '닫힘');
+  }, [isImageSelectModalOpen]);
+
   return (
     <Box
       sx={{
@@ -18,7 +55,7 @@ const UserInfoImage = ({ profileImage, onImageUpload }) => {
         style={{
           textAlign: 'center',
           margin: '0rem',
-          paddingBottom: '2.188rem',
+          paddingBottom: '3.5rem',
         }}
       >
         프로필을 작성해 주시면
@@ -35,19 +72,11 @@ const UserInfoImage = ({ profileImage, onImageUpload }) => {
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
+          cursor: 'pointer',
         }}
+        onClick={handleOpenImageSelectModal}
       >
-        {profileImage && (
-          <img
-            src={profileImage}
-            alt="프로필"
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-            }}
-          />
-        )}
+        {profileImage && <UserInfoImageProfileImage src={profileImage} alt="프로필" />}
         <Box
           sx={{
             position: 'absolute',
@@ -56,31 +85,45 @@ const UserInfoImage = ({ profileImage, onImageUpload }) => {
             width: '2rem',
             height: '2rem',
             borderRadius: '50%',
-            backgroundColor: '#84868c',
+            backgroundColor: colors.cement_gray,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
           }}
         >
-          {/*<PhotoCameraIcon
-            sx={{
-              fontSize: '1.5rem',
-              color: colors.black,
-            }}
-          />*/}
+          <UserInfoImageCameraIcon src="public/assets/camera.svg" alt="카메라 아이콘" />
         </Box>
-        <input
-          type="file"
-          accept="image/*"
-          onChange={onImageUpload}
-          style={{
-            position: 'absolute',
-            width: '100%',
-            height: '100%',
-            opacity: 0,
-            cursor: 'pointer',
-          }}
-        />
+
+        {/* ImageSelectModal */}
+        {isImageSelectModalOpen && (
+          <ImageSelectModal
+            onSelectDefaultImage={() => {
+              setIsDefaultImageSelectModalOpen(true);
+              closeModalWithDelay();
+            }}
+            onSelectDeviceImage={() => {
+              fileInputRef.current.click();
+              closeModalWithDelay();
+            }}
+            onClose={closeModalWithDelay}
+          />
+        )}
+
+        {/* DefaultImageSelectModal */}
+        {isDefaultImageSelectModalOpen && (
+          <DefaultImageSelectModal
+            open={isDefaultImageSelectModalOpen}
+            onSelectImage={(image) => {
+              setProfileImage(image);
+              setIsDefaultImageSelectModalOpen(false);
+            }}
+            onClose={() => {
+              setIsDefaultImageSelectModalOpen(false);
+            }}
+          />
+        )}
+
+        <UserInfoImageDeviceInput type="file" accept="image/*" onChange={handleFileUpload} ref={fileInputRef} />
       </Box>
     </Box>
   );

@@ -9,10 +9,6 @@ import { colors } from '../../global/globalStyle';
 const AddUserInfo = () => {
   // 프로필 사진 상태
   const [profileImage, setProfileImage] = useState(null);
-  const handleImageUpload = (event) => {
-    const file = event.target.files[0];
-    if (file) setProfileImage(URL.createObjectURL(file));
-  };
 
   // 닉네임 상태
   const [nickname, setNickname] = useState('');
@@ -50,43 +46,45 @@ const AddUserInfo = () => {
   ];
 
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: '2rem',
-      }}
-    >
-      {/* 프로필 사진 등록 */}
-      <UserInfoImage profileImage={profileImage} onImageUpload={handleImageUpload} />
-
-      {/* 닉네임 입력 */}
-      <UserInfoNickname nickname={nickname} onChange={handleNicknameChange} onCheckDuplicate={checkDuplicate} />
-
-      {/* 장르 선택 */}
-      <UserInfoGenre selectedGenre={selectedGenre} genres={genres} onGenreChange={handleGenreChange} />
-
-      {/* 성별 선택 */}
-      <UserInfoGender gender={gender} onChange={handleGenderChange} />
-
-      {/* 등록 버튼 */}
-      <Button
+    <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%', p: '5rem 0rem' }}>
+      <Box
         sx={{
+          width: '100%',
+          maxWidth: '31.25rem',
           display: 'flex',
-          width: '25rem',
-          height: '3.125rem',
-          backgroundColor: colors.orange,
-          borderRadius: '0.6125rem',
-          '&:focus': {
-            outline: 'none',
-          },
+          flexDirection: 'column',
+          gap: '1rem',
         }}
-        onClick={() => alert('등록 로직을 여기에 작성하세요!')}
       >
-        <span className="bold">등록하기</span>
-      </Button>
+        {/* 프로필 사진 등록 */}
+        <UserInfoImage profileImage={profileImage} setProfileImage={setProfileImage} />
+
+        {/* 닉네임 입력 */}
+        <UserInfoNickname nickname={nickname} onChange={handleNicknameChange} onCheckDuplicate={checkDuplicate} />
+
+        {/* 장르 선택 */}
+        <UserInfoGenre selectedGenre={selectedGenre} genres={genres} onGenreChange={handleGenreChange} />
+
+        {/* 성별 선택 */}
+        <UserInfoGender gender={gender} onChange={handleGenderChange} />
+
+        {/* 등록 버튼 */}
+        <Button
+          sx={{
+            display: 'flex',
+            width: '100%',
+            height: '3.125rem',
+            backgroundColor: colors.orange,
+            borderRadius: '0.6125rem',
+            '&:focus': {
+              outline: 'none',
+            },
+          }}
+          onClick={() => alert('등록 로직을 여기에 작성하세요!!')}
+        >
+          <span className="bold">등록하기</span>
+        </Button>
+      </Box>
     </Box>
   );
 };
