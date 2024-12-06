@@ -14,6 +14,7 @@ const WithdrawalModal = ({ open, onClose }) => {
       onClose={onClose}
       PaperProps={{
         sx: {
+          margin: '0rem',
           width: '21.88rem',
           borderRadius: '0.63rem',
           backgroundColor: colors.navy_gray,
@@ -36,12 +37,11 @@ const WithdrawalModal = ({ open, onClose }) => {
       <DialogContent
         sx={{
           textAlign: 'center',
-          padding: '0.5rem 1.5rem 1rem',
-          color: '#A0A0A0',
+          pb: '1rem',
           fontSize: '0.875rem',
         }}
       >
-        <WithdrawalModalContent className="regular">탈퇴 시 계정은 삭제되며 복구되지 않습니다.</WithdrawalModalContent>
+        <WithdrawalModalContent className="bold">탈퇴 시 계정은 삭제되며 복구되지 않습니다.</WithdrawalModalContent>
       </DialogContent>
 
       {/* 구분선 */}

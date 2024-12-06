@@ -14,7 +14,7 @@ const UserInfoNickname = ({ nickname, onChange, onCheckDuplicate }) => {
           placeholder="공백없이 10자 이내로 입력해주세요."
           sx={{
             width: '100%',
-            backgroundColor: '#25292e',
+            backgroundColor: colors.navy_gray,
             borderRadius: '0.625rem',
             input: { color: 'white', height: '1.063rem', fontFamily: 'SUIT-Bold, sans-serif' },
             '& .MuiInputBase-input::placeholder': {
@@ -32,7 +32,7 @@ const UserInfoNickname = ({ nickname, onChange, onCheckDuplicate }) => {
           onClick={onCheckDuplicate}
           sx={{
             backgroundColor: colors.orange,
-            color: '#fff',
+            color: colors.white,
             borderRadius: '0.3125rem',
             height: '3.2rem',
             width: '6.188rem',

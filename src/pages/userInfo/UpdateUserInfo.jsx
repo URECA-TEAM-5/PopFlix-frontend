@@ -53,15 +53,14 @@ const UpdateUserInfo = () => {
   ];
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%' }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%', p: '5rem 0rem' }}>
       <Box
         sx={{
           width: '100%',
-          maxWidth: '500px',
+          maxWidth: '31.25rem',
           display: 'flex',
           flexDirection: 'column',
-          pt: '5rem',
-          gap: '1.5rem',
+          gap: '1rem',
         }}
       >
         {/* 프로필 사진 등록 */}

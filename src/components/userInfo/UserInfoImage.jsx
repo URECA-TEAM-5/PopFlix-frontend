@@ -55,7 +55,7 @@ const UserInfoImage = ({ profileImage, setProfileImage }) => {
         style={{
           textAlign: 'center',
           margin: '0rem',
-          paddingBottom: '2.188rem',
+          paddingBottom: '3.5rem',
         }}
       >
         프로필을 작성해 주시면
@@ -85,7 +85,7 @@ const UserInfoImage = ({ profileImage, setProfileImage }) => {
             width: '2rem',
             height: '2rem',
             borderRadius: '50%',
-            backgroundColor: '#84868c',
+            backgroundColor: colors.cement_gray,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',

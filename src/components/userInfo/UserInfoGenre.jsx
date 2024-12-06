@@ -24,9 +24,9 @@ const UserInfoGenre = ({ selectedGenre, genres, onGenreChange }) => {
           value={selectedGenre}
           onChange={onGenreChange}
           sx={{
-            color: 'white',
+            color: colors.white,
             fontFamily: 'SUIT-Bold, sans-serif',
-            '.MuiSelect-icon': { color: 'white' },
+            '.MuiSelect-icon': { color: colors.white },
           }}
           MenuProps={{
             PaperProps: {
@@ -38,7 +38,7 @@ const UserInfoGenre = ({ selectedGenre, genres, onGenreChange }) => {
           }}
         >
           {genres.map((genre, index) => (
-            <MenuItem key={index} value={genre} sx={{ span: { color: '#000' } }}>
+            <MenuItem key={index} value={genre} sx={{ span: { color: colors.black } }}>
               <span className="bold">{genre}</span>
             </MenuItem>
           ))}

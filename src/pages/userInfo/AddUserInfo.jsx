@@ -5,8 +5,6 @@ import UserInfoGenre from '../../components/userInfo/UserInfoGenre';
 import UserInfoGender from '../../components/userInfo/UserInfoGender';
 import { Box, Button } from '@mui/material';
 import { colors } from '../../global/globalStyle';
-import LoginModal from '../../components/Login/LoginModal';
-import MyInfoModal from '../../components/userInfo/modal/MyInfoModal';
 
 const AddUserInfo = () => {
   // 프로필 사진 상태
@@ -48,15 +46,14 @@ const AddUserInfo = () => {
   ];
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%' }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%', p: '5rem 0rem' }}>
       <Box
         sx={{
           width: '100%',
-          maxWidth: '500px',
+          maxWidth: '31.25rem',
           display: 'flex',
           flexDirection: 'column',
-          pt: '5rem',
-          gap: '1.5rem',
+          gap: '1rem',
         }}
       >
         {/* 프로필 사진 등록 */}

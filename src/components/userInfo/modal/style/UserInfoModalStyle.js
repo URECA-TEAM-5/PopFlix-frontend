@@ -14,22 +14,23 @@ export const ImageSelectModalButton = styled.p`
 `;
 
 /* MyInfoModal */
-export const MyInfoModalUserName = styled.h5`
+export const MyInfoModalUserName = styled.h3`
   color: ${colors.orange};
 `;
 
-export const MyInfoModalUserGreet = styled.h6`
+export const MyInfoModalUserGreet = styled.h4`
   padding-bottom: 0.5rem;
-  color: ${colors.black};
+  color: ${colors.white};
 `;
 
 export const MyInfoModalButton = styled.p`
-  font-size: 0.7rem;
+  font-size: 1.2rem;
 `;
 
 /* WithdrawalModal */
 export const WithdrawalModalContent = styled.p`
-  color: ${colors.orange};
+  color: ${colors.orange}; !important
+  font-size: 1rem; !important
 `;
 
 export const WithdrawalModalButtonHover = styled.div`
