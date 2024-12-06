@@ -1,9 +1,8 @@
-export const data = [
+export const detailData = [
     {
         "storage": {
             "id": 1,
             "storageName": "외국인을 위한 찐 한국인의 한국맛 영화 추천",
-            "userId": "3", 
             "username": "동동희",
             "createAt": "2024-11-27",
             "likeCount": 5,

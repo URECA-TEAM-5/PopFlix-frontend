@@ -129,7 +129,9 @@ export const PageButton = styled.button`
         background-color: ${colors.drak_gray};
         border-color: ${colors.cement_gray};
     }
-
+    &:focus {
+        outline: none;
+    }
     ${(props) => props.$isSelected &&
         `
         background-color: ${colors.drak_gray};

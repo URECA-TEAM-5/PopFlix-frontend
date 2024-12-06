@@ -2,13 +2,11 @@ import React, { useState } from 'react';
 import { Dialog } from '@mui/material';
 import { colors } from '../../../global/globalStyle';
 import Search from '../../common/search/Search';
-import { BtnDiv, DiaglogBtn, DiaglogContent } from '../style/SearchMovieModal';
+import { BtnDiv, DiaglogBtn, DiaglogContent } from './style/NewFolderModal';
 
-const SearchMovieModal = () => {
-    const [open, setOpen] = useState(true);
+const SearchMovieModal = ({ open, setOpen }) => {
     const [keyword, setKeyword] = useState('');
 
-    const handleClickOpen = () => setOpen(true);
     const handleClose = (e) => {
         setOpen(false);
     };
@@ -38,7 +36,6 @@ const SearchMovieModal = () => {
                     setVal={setKeyword}
                     handleClick={handleSubmit}
                     fontSize={1}
-                    w={19}
                 />
             </DiaglogContent>
             <BtnDiv className="bold">

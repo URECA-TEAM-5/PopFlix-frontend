@@ -1,4 +1,4 @@
-import { InputLength } from "../style/NewFolderModal";
+import { InputLength } from "./style/NewFolderModal";
 
 const NewFolderCount = ({ length, maxLength }) => {
     return (

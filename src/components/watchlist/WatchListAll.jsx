@@ -44,10 +44,10 @@ const WatchListAll = () => {
 
     return (
         <WatchAllContainer>
-            <div className="list__header">
+            <div className="listHeader">
                 <WatchListFilter selectedFilter={selectedFilter} sortData={updateFilter} />
             </div>
-            <Grid2 className="list__container" container spacing={4}>
+            <Grid2 className="listContainer" container spacing={4}>
                 {currentItems.map((data) => (
                     <WatchListCardItem key={data.id} data={data} />
                 ))}

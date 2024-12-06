@@ -12,6 +12,13 @@ export const MovieListTitle = styled.div`
             color: ${colors.orange};
         }
     }
+    .editButton {
+        width: 3rem;
+        height: 1.3rem;
+        background-color: ${colors.orange};
+        color: ${colors.white};
+        font-size: 0.938rem;
+    }
 `;
 
 export const MovieList = styled.div`

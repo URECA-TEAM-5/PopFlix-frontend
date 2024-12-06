@@ -23,11 +23,16 @@ export const Storage = styled.div`
         font-size: 0.938rem;
         padding: 0.3rem 0;
     }
+    .editBtnDiv {
+        display: flex;
+        justify-content: right;
+    }
     .editButton {
         width: 3rem;
         height: 1.3rem;
         background-color: ${colors.orange};
         color: ${colors.white};
+        font-size: 0.938rem;
     }
     .contentLine {
         border-top: 0.063rem solid ${colors.cement_gray};
