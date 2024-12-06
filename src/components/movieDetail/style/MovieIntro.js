@@ -15,6 +15,7 @@ export const MovieDetailContainer = styled.div`
   flex-direction: row;
   padding: 1rem 2.375rem;
   gap: 2rem;
+  font-size: 0.938rem;
 `;
 
 export const GenreContainer = styled.div`
