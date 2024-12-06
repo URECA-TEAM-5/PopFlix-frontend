@@ -1,13 +1,12 @@
 import React from 'react';
 import { Box, RadioGroup, FormControlLabel, Radio } from '@mui/material';
 import { colors } from '../../global/globalStyle';
+import { UserInfoGenderTitle } from './style/UserInfoStyle';
 
 const UserInfoGender = ({ gender, onChange }) => {
   return (
     <Box sx={{ width: '100%', pb: '2.75rem' }}>
-      <p className="bold" style={{ margin: '0rem' }}>
-        성별
-      </p>
+      <UserInfoGenderTitle className="bold">성별</UserInfoGenderTitle>
       <RadioGroup
         row
         value={gender}

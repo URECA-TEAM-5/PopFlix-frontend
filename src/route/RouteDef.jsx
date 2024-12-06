@@ -1,5 +1,6 @@
 import LoginModal from '../components/Login/LoginModal';
-import AddUserInfo from '../pages/addUserInfo/AddUserInfo';
+import AddUserInfo from '../pages/userInfo/AddUserInfo';
+import UpdateUserInfo from '../pages/userInfo/UpdateUserInfo';
 import Alarm from '../pages/alarm/Alarm';
 import MainPage from '../pages/main/MainPage';
 import WatchListDetailPage from '../pages/watchlist/WatchListDetailPage';
@@ -15,9 +16,13 @@ const MainScreens = {
     path: '/login',
     element: <LoginModal />,
   },
-  UserInfo: {
+  AddUserInfo: {
     path: '/AddUserInfo',
     element: <AddUserInfo />,
+  },
+  UpdateUserInfo: {
+    path: '/UpdateUserInfo',
+    element: <UpdateUserInfo />,
   },
   Alarm: {
     path: '/alarm',
