@@ -1,14 +1,21 @@
 import { PoppleTipContainer, PoppleCard, PoppleIcon, PoppleText, PoppleCardContainer } from './style/PoppleTip';
 import { poppleTipData, moviesData } from '../main/data';
-import { useEffect } from 'react';
-
+// import { useEffect } from 'react';
+import PhotoReviewModal from './PhotoReviewModal';
+import { useState } from 'react';
 const PoppleTip = ({ movieId }) => {
   const movie = moviesData[movieId - 1];
   const popple = poppleTipData[movie];
-  useEffect(() => {
-    console.log('추출한 Id : ', movie);
-    console.log('추출한 데이터 2 : ', popple);
-  });
+  const [openModal,setOpenModal] = useState(false);
+  const handleModalOpen = () =>{
+    setOpenModal(true);
+  }
+  const handleModalClose = () =>{
+    setOpenModal(false);
+  }
+  const handleModalSubmit= () => {
+    setOpenModal(false);
+  }
   return (
     <PoppleTipContainer>
       <PoppleText>
@@ -36,7 +43,7 @@ const PoppleTip = ({ movieId }) => {
           ) : part === '작성' ? (
             <span
               key={index}
-              onClick={() => console.log('작성 클릭')}
+              onClick={handleModalOpen}
               style={{ color: '#F09605', cursor: 'pointer' }}
             >
               {part}
@@ -54,6 +61,12 @@ const PoppleTip = ({ movieId }) => {
           </PoppleCard>
         ))}
       </PoppleCardContainer>
+       
+       <PhotoReviewModal
+        open={openModal}
+        onClose={handleModalClose}
+        onSubmit={handleModalSubmit}
+      />
     </PoppleTipContainer>
   );
 };
