@@ -27,7 +27,7 @@ const PhotoReviewDetail = () => {
             <ReviewHeader title={'리뷰'} subTitle={reviewData.user.nickname} />
             <ReviewImage />
             <ReviewBody />
-            <CommentList />
+            <CommentList reviewData={reviewData} />
           </PhotoReviewContainer>
         )}
       </Suspense>
