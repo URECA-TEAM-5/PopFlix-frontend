@@ -86,12 +86,10 @@ export const BaseLayout = styled.div`
   min-width: 45rem;
   max-width: 75rem;
   width: 100%;
-  min-height: 90rem;
   max-height: 200rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-
   .app-pages__section {
     width: 100%;
     max-width: 57.5rem;

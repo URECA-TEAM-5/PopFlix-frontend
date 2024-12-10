@@ -186,3 +186,7 @@ export const AddCommentContainer = styled.div`
     transform: rotate(90deg);
   }
 `;
+
+export const AccordionContainer = styled.div`
+  display: ${(props) => (props.$isClicked ? 'block' : 'none')};
+`;

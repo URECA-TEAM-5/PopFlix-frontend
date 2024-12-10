@@ -6,6 +6,8 @@ import MainPage from '../pages/main/MainPage';
 import WatchListDetailPage from '../pages/watchlist/WatchListDetailPage';
 import PhotoReviewDetail from '../pages/review/photo/PhotoReviewDetail';
 import WatchListPage from '../pages/watchlist/WatchListPage';
+import NotFound from '../pages/error/NotFound';
+import MovieDetailPage from '../pages/movie/MovieDetailPage';
 import MyPage from '../pages/mypage/Mypage';
 import WatchListEditPage from '../pages/watchlist/WatchListEditPage';
 
@@ -45,6 +47,14 @@ const MainScreens = {
   PhotoReview: {
     path: '/photo-review',
     element: <PhotoReviewDetail />,
+  },
+  NotFound: {
+    path: '/not-found',
+    element: <NotFound />,
+  },
+  MovieDetail: {
+    path: '/movieDetail/:id',
+    element: <MovieDetailPage />,
   },
   Mypage: {
     path: '/mypage',

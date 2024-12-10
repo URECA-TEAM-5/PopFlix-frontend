@@ -4,43 +4,47 @@ import { AlarmContainer, ListContainer } from '../../components/alarm/style/Alar
 import TitleCheckBox from '../../components/alarm/TitleCheckBox';
 import AlarmTop from '../../components/alarm/AlarmTop';
 import AlaramEmpty from '../../components/alarm/AlaramEmpty';
+import { useQuery } from '@tanstack/react-query';
+import { useAlarm } from '../../stores/alarm/AlarmStore';
 
 const Alarm = () => {
-  const [alarm, setAlarm] = useState([]);
-  const isLoaded = useRef(false);
+  const { setAlarmList } = useAlarm();
 
-  useEffect(() => {
-    if (!isLoaded.current) {
-      isLoaded.current = true;
-      setAlarm([]);
-    }
-  }, [alarm]);
+  const { data } = useQuery({
+    queryKey: ['userAlarmList'],
+    queryFn: async () => {
+      return await setAlarmList();
+    },
+    staleTime: 1000 * 10,
+  });
 
   return (
     <>
-      <AlarmContainer className="alarm-container">
-        {alarm.length !== 0 ? (
-          <AlaramEmpty />
-        ) : (
-          <div className="alarm-inner__section">
-            <AlarmTop />
-            <div className="alarm-current alarm-list__wrap">
-              <TitleCheckBox title={'오늘 받은 알림'} />
-              <ListContainer className="alarm-list">
-                <AlarmMessage />
-                <AlarmMessage />
-              </ListContainer>
+      {data && (
+        <AlarmContainer className="alarm-container">
+          {data.length == 0 ? (
+            <AlaramEmpty />
+          ) : (
+            <div className="alarm-inner__section">
+              <AlarmTop />
+              <div className="alarm-current alarm-list__wrap">
+                <TitleCheckBox title={'오늘 받은 알림'} />
+                <ListContainer className="alarm-list">
+                  <AlarmMessage />
+                  <AlarmMessage />
+                </ListContainer>
+              </div>
+              <div className="alarm__previous ">
+                <TitleCheckBox title={'이전 알림'} />
+                <ListContainer>
+                  <AlarmMessage />
+                  <AlarmMessage />
+                </ListContainer>
+              </div>
             </div>
-            <div className="alarm__previous ">
-              <TitleCheckBox title={'이전 알림'} />
-              <ListContainer>
-                <AlarmMessage />
-                <AlarmMessage />
-              </ListContainer>
-            </div>
-          </div>
-        )}
-      </AlarmContainer>
+          )}
+        </AlarmContainer>
+      )}
     </>
   );
 };

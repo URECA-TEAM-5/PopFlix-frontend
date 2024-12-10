@@ -97,19 +97,16 @@ export const CheckBoxConatiner = styled.div`
 `;
 
 export const AlarmContainer = styled.div`
-  min-width: 46.875rem;
+  display: block;
   width: 100%;
-  display: flex;
-  padding: 2.8rem 0;
   caret-color: transparent;
 
   .alarm-inner__section {
-    padding: 0 3rem;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    width: 100%;
+    min-height: 80rem;
     gap: 3rem;
+    padding: 3rem 1rem;
   }
 `;
 
@@ -137,13 +134,10 @@ export const TopSection = styled.div`
 `;
 
 export const EmptyMessageContainer = styled.div`
-  padding-top: 21.5rem;
-  margin: 0;
-  height: 43rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  min-height: 80rem;
+  display: block;
+  justify-items: center;
+  align-content: center;
 
   .image__empty {
     width: 21.4375rem;
