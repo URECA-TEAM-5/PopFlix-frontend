@@ -86,7 +86,6 @@ export const BaseLayout = styled.div`
   min-width: 45rem;
   max-width: 75rem;
   width: 100%;
-  min-height: 90rem;
   max-height: 200rem;
   display: flex;
   flex-direction: column;
