@@ -12,6 +12,10 @@ import MyPage from '../pages/mypage/Mypage';
 import WatchListEditPage from '../pages/watchlist/WatchListEditPage';
 
 const MainScreens = {
+  NotFound: {
+    path: '*',
+    element: <NotFound />,
+  },
   Main: {
     path: '/',
     element: <MainPage />,
@@ -47,10 +51,6 @@ const MainScreens = {
   PhotoReview: {
     path: '/photo-review',
     element: <PhotoReviewDetail />,
-  },
-  NotFound: {
-    path: '/not-found',
-    element: <NotFound />,
   },
   MovieDetail: {
     path: '/movieDetail/:id',

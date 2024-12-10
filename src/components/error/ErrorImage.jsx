@@ -1,7 +1,7 @@
 import React from 'react';
 import { ErrorImageContainer } from './style/errorStyle';
 
-function ErrorImage(props) {
+const ErrorImage = () => {
   return (
     <ErrorImageContainer className="image-container">
       <span className="text bold">4</span>
@@ -9,6 +9,6 @@ function ErrorImage(props) {
       <span className="text bold">4</span>
     </ErrorImageContainer>
   );
-}
+};
 
 export default ErrorImage;
