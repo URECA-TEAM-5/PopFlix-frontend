@@ -5,9 +5,9 @@ const MovieListPage = () => {
   return (
     <MovieListContainer>
       <MainBannerContainer>
-        <img className="main-banner"src={MainBannerBlack}/>
-        <MovieList />
+      <img className="main-banner"src={MainBannerBlack}/>
       </MainBannerContainer>
+      <MovieList  rows={5} columns={4} showMoreButton={false}/>
     </MovieListContainer>
   );
 };

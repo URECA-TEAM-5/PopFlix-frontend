@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Card, CardMedia } from '@mui/material';
+import { Grid2, Card, CardMedia } from '@mui/material';
 
 const photoReviews = [
   { id: 1, image: 'https://via.placeholder.com/300' },
@@ -12,7 +12,7 @@ const photoReviews = [
 
 const PhotoReviewTab = () => {
   return (
-    <PhotoReviewTabContainer>
+    
       <Grid2 container justifyContent="center" alignItems="center" spacing={0.5}>
         {photoReviews.map((review) => (
           <Grid2 xs={4} sm={4} md={4} key={review.id}>
@@ -31,7 +31,7 @@ const PhotoReviewTab = () => {
           </Grid2>
         ))}
       </Grid2>
-    </PhotoReviewTabContainer>
+   
   );
 };
 
