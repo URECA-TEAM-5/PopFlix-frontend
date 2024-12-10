@@ -1,75 +1,157 @@
 /* 전체 컨테이너 */
-.container{
-    margin-bottom: 2.8125rem;
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; /* watchListBox를 중앙 정렬 */
+  margin-bottom: 2.8125rem;
+  width: 100%;
 }
+.watchListBoxContainer {
+  padding: 0 2rem;
+}
+
+/* 제목 스타일 */
 .watchListTitle {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
-  
-  /* WatchList 박스 - 카드들이 가로로 나열되도록 설정 */
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1.25rem;
+}
+
+/* WatchList 박스 - 카드들이 가로로 나열되도록 설정 */
+.watchListBox {
+  width: 100%;
+  max-width: 57.5rem; /* 컴포넌트 크기 제한*/
+  min-width: 51.25rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.6125rem;
+  flex-wrap: nowrap; /* 카드들이 한 줄로 나열되도록 */
+  overflow-x: auto;
+  justify-content: center;  /* 리스트박스를 수평 중앙 정렬 */
+}
+
+/* 카드 스타일 */
+.watchListCard {
+  width: 100%;
+  height: 100%;
+  width: 10.9375rem;
+  height: 15rem; /* 카드 높이를 고정 */
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.3125rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #25292e;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+/* 이미지 영역 */
+.cardImageContainer {
+  height: 65%; /* 이미지가 카드 높이의 60% 차지 */
+  overflow: hidden;
+}
+
+.cardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 이미지가 잘리더라도 비율에 맞게 채움 */
+}
+
+/* 텍스트 및 좋아요 영역 */
+.cardContent {
+  font-weight: normal;
+  font-size: 0.875rem;
+  color: white;
+  height: 35%; /* 텍스트가 카드 높이의 40% 차지 */
+  padding: 0.625rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* 제목 스타일 */
+.cardTitle {
+  font-size: 0.875rem;
+  font-weight: normal;
+  margin: 0;
+}
+
+/* 좋아요 및 리스트 항목 영역 */
+.cardFooter {
+  font-size: 0.9rem;
+  color: white;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.p {
+  width: 100%;
+  max-width: 57.5rem;
+  justify-content: flex-start;
+  padding-bottom: 1rem;
+}
+
+/* 반응형 디자인을 위한 미디어 쿼리 */
+@media (max-width: 90rem) {
   .watchListBox {
-    display: flex;
-    justify-content: space-between;
-    gap: 0.6125rem;
-    flex-wrap: nowrap;
+    max-width: 57.5rem;
+    width: 100%;
+  }
+}
+
+@media (max-width: 64rem) {
+  /* 화면 크기가 1024px 이하일 때, 카드들 간 간격을 줄이고 2개씩 표시 */
+  .watchListBox {
+    gap: 1.25rem;
+    flex-wrap: nowrap;  /* 카드들을 여러 줄로 나열 */
+    justify-content: space-around;  /* 카드들을 중앙 정렬 */
     overflow-x: auto;
   }
-  
-  /* 카드 스타일 */
+
   .watchListCard {
-    width: 10.9375rem;
-    height: 15rem; /* 카드 높이를 고정 */
-    display: flex;
-    flex-direction: column;
-    border-radius: 0.3125rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: #25292e;
-    flex-shrink: 0;
-    overflow: hidden;
+    width: 20%; /* 카드의 너비를 화면에 맞게 조정 */
+    height: auto; /* 세로로 나열되도록 높이를 자동으로 설정 */
   }
-  
-  /* 이미지 영역 */
-  .cardImageContainer {
-    height: 65%; /* 이미지가 카드 높이의 60% 차지 */
-    overflow: hidden;
+}
+
+@media (max-width: 48rem) {
+  /* 화면 크기가 768px 이하일 때, 카드들을 한 줄로 표시 */
+  .watchListBox {
+    gap: 1rem;
+    justify-content: space-around;
+    overflow-x: auto;
   }
-  
-  .cardImage {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* 이미지가 잘리더라도 비율에 맞게 채움 */
+
+  .watchListCard {
+    width: 20%; /* 카드의 너비를 화면에 맞게 조정 */
+    height: auto; /* 세로로 나열되도록 높이를 자동으로 설정 */
   }
-  
-  /* 텍스트 및 좋아요 영역 */
+
   .cardContent {
-    font-weight: normal;
-    font-size:0.875rem;
-    color: white;
-    height: 35%; /* 텍스트가 카드 높이의 40% 차지 */
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    font-size: 0.8rem;
   }
-  
-  /* 제목 스타일 */
-  .cardTitle {
-    font-size: 0.875rem;
-    font-weight: normal;
-    margin: 0;
+}
+
+@media (max-width: 30rem) {
+  /* 화면 크기가 480px 이하일 때, 카드의 크기를 줄이고 한 줄로 표시 */
+  .watchListBox {
+    flex-wrap: nowrap;
+    align-items: center;
+    overflow-x: auto;
   }
-  
-  /* 좋아요 및 리스트 항목 영역 */
-  .cardFooter {
-    font-size: 0.9rem;
-    color: white;
-    display: flex;
-    justify-content: flex-end;
-    gap:1rem;
+
+  .watchListCard {
+    width: 20%; /* 카드의 너비를 화면에 맞게 조정 */
+    height: auto; /* 세로로 나열되도록 높이를 자동으로 설정 */
   }
+
+  .cardImageContainer {
+    height: 50%; /* 작은 화면에서는 이미지 영역을 적당히 줄임 */
+  }
+
   .p {
-    padding-bottom: 1rem;
+    padding: 1rem 0;
   }
-  
+}

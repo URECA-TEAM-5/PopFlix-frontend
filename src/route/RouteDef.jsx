@@ -6,7 +6,7 @@ import MainPage from '../pages/main/MainPage';
 import WatchListDetailPage from '../pages/watchlist/WatchListDetailPage';
 import PhotoReviewDetail from '../pages/review/photo/PhotoReviewDetail';
 import WatchListPage from '../pages/watchlist/WatchListPage';
-
+import MovieDetailPage from '../pages/movie/MovieDetailPage';
 const MainScreens = {
   Main: {
     path: '/',
@@ -40,6 +40,10 @@ const MainScreens = {
     path: '/photo-review',
     element: <PhotoReviewDetail />,
   },
+  MovieDetail: {
+    path: '/movieDetail/:id',
+    element: <MovieDetailPage />,
+  }
 };
 
 export const AppRouteDef = {
