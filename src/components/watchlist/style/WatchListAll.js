@@ -7,7 +7,7 @@ export const WatchAllContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    .list__header {
+    .listHeader {
         max-width: 100%;
         min-width: 90%;
         padding-top: 3rem;
@@ -41,7 +41,7 @@ export const WatchAllContainer = styled.div`
         color: ${colors.orange};
     }
 
-    .list__container {
+    .listContainer {
         display: flex;
         justify-content: center;
         padding: 2rem 0;
@@ -129,7 +129,9 @@ export const PageButton = styled.button`
         background-color: ${colors.drak_gray};
         border-color: ${colors.cement_gray};
     }
-
+    &:focus {
+        outline: none;
+    }
     ${(props) => props.$isSelected &&
         `
         background-color: ${colors.drak_gray};

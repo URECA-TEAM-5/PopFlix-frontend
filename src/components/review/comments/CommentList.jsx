@@ -3,11 +3,8 @@ import { CommentListContainer } from './style/CommentStyle';
 import CommentHeader from './CommentHeader';
 import CommentItem from './CommentItem';
 import AddComment from './AddComment';
-import { usePhotoReview } from '../../../stores/review/PhotoReviewStore';
 
-const CommentList = () => {
-  const { reviewData } = usePhotoReview();
-
+const CommentList = ({ reviewData }) => {
   return (
     <>
       {reviewData && (

@@ -73,13 +73,13 @@ const WatchListMonth = () => {
                                     },
                                 }}
                             >
-                                <p className="box__p">{data.storage_name}</p>
+                                <p className="boxP">{data.storage_name}</p>
                                 <div>
-                                    <ul className="box__ul">
+                                    <ul className="boxUl">
                                         {data.movies.slice(0, 3).map((movie, index) => (
-                                            <li key={index} className="box__li">
-                                                <img className="box__image" src={movie.posterPath} alt={movie.title} loading="lazy" />
-                                                <span className="regular box__span">{movie.title}</span>
+                                            <li key={index} className="boxLi">
+                                                <img className="boxImage" src={movie.posterPath} alt={movie.title} loading="lazy" />
+                                                <span className="regular boxSpan">{movie.title}</span>
                                             </li>
                                         ))}
                                     </ul>

@@ -8,8 +8,15 @@ import PhotoReviewDetail from '../pages/review/photo/PhotoReviewDetail';
 import WatchListPage from '../pages/watchlist/WatchListPage';
 import NotFound from '../pages/error/NotFound';
 import MovieDetailPage from '../pages/movie/MovieDetailPage';
+import MyPage from '../pages/mypage/Mypage';
+import WatchListEditPage from '../pages/watchlist/WatchListEditPage';
+
 import MovieListPage from '../pages/movie/MovieListPage';
 const MainScreens = {
+  NotFound: {
+    path: '*',
+    element: <NotFound />,
+  },
   Main: {
     path: '/',
     element: <MainPage />,
@@ -38,17 +45,21 @@ const MainScreens = {
     path: '/watchlist/:id',
     element: <WatchListDetailPage />,
   },
+  WatchListEdit: {
+    path: '/watchlist/:id/edit',
+    element: <WatchListEditPage />,
+  },
   PhotoReview: {
     path: '/photo-review',
     element: <PhotoReviewDetail />,
   },
-  NotFound: {
-    path: '/not-found',
-    element: <NotFound />,
-  },
   MovieDetail: {
     path: '/movieDetail/:id',
     element: <MovieDetailPage />,
+  },
+  Mypage: {
+    path: '/mypage',
+    element: <MyPage />,
   },
   MovieList: {
     path: '/movieList',

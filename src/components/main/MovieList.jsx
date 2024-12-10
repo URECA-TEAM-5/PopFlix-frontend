@@ -7,6 +7,7 @@ import heart from '/assets/heart.svg';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import Grid2 from '@mui/material/Grid2'; // Grid2 import
 import Grid2 from '@mui/material/Grid2'; // MUI Grid
 
 const MovieList = ({ rows = 2, columns = 4, showMoreButton = true }) => {
@@ -63,10 +64,7 @@ const MovieList = ({ rows = 2, columns = 4, showMoreButton = true }) => {
       {/* 장르 버튼 */}
       <div id="genre-buttons-container" className={styles.genreButtonsContainer}>
         <Slider {...settings.current}>
-          <button
-            className={`${styles.genreButton} ${selectedGenre === 'All' ? styles.genreButtonSelected : ''}`}
-            onClick={() => setSelectedGenre('All')}
-          >
+          <button className={`${styles.genreButton} ${selectedGenre === 'All' ? styles.genreButtonSelected : ''}`} onClick={() => setSelectedGenre('All')}>
             전체
           </button>
           {genres.map((genre, index) => (

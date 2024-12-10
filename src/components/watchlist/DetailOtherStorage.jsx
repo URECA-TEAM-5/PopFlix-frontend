@@ -1,27 +1,15 @@
 import WatchListLikeButton from "./WatchListLikeButton";
 import { OtherList } from "./style/DetailOtherStorage";
-import { useCallback, useState } from "react";
 
-const DetailOtherStorage = ({ otherStorage = [], username }) => {
-    const [likedItems, setLikedItems] = useState(
-        otherStorage.map(() => false)
-    );
-
-    const handleClick = useCallback((index) => {
-        setLikedItems(prevState => {
-            const newLikedItems = [...prevState];
-            newLikedItems[index] = !newLikedItems[index];
-            return newLikedItems;
-        });
-    });
+const DetailOtherStorage = ({ otherData = [], username, handleClickLike }) => {
 
     return (
         <OtherList>
             {username && <h4>{username}님의 다른 WatchList</h4>}
-            {otherStorage.length > 0 ? (
+            {otherData.length > 0 ? (
                 <>
-                    <div className="image-container">
-                        {otherStorage.map((item, index) => (
+                    <div className="imageContainer">
+                        {otherData.map((item, index) => (
                             <img
                                 key={index}
                                 src={item.storageImage}
@@ -30,19 +18,19 @@ const DetailOtherStorage = ({ otherStorage = [], username }) => {
                             />
                         ))}
                     </div>
-                    <div className="text-container">
-                        {otherStorage.map((item, index) => (
+                    <div className="textContainer">
+                        {otherData.map((item, index) => (
                             <div key={index}>
                                 <p className="title regular">{item.storageName}</p>
                                 <div className="count regular">
                                     <span>{item.movieCount}</span>
                                     <span>편</span>
-                                    <div className="like__count">
+                                    <div className="likeCount">
                                         <WatchListLikeButton
-                                            isLiked={likedItems[index]}
+                                            isLiked={item.isLiked}
                                             likeCount={item.likeCount}
-                                            className={likedItems[index] ? 'heartlike' : ''}
-                                            onClick={() => handleClick(index)}
+                                            className={item.isLiked ? 'heartlike' : ''}
+                                            onClick={() => handleClickLike(item.id, !item.isLiked ? 'like' : 'unlike', 'other')}
                                         />
                                     </div>
                                 </div>
