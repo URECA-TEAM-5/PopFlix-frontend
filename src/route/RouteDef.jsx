@@ -8,6 +8,9 @@ import PhotoReviewDetail from '../pages/review/photo/PhotoReviewDetail';
 import WatchListPage from '../pages/watchlist/WatchListPage';
 import NotFound from '../pages/error/NotFound';
 import MovieDetailPage from '../pages/movie/MovieDetailPage';
+import MyPage from '../pages/mypage/Mypage';
+import WatchListEditPage from '../pages/watchlist/WatchListEditPage';
+
 const MainScreens = {
   Main: {
     path: '/',
@@ -37,6 +40,10 @@ const MainScreens = {
     path: '/watchlist/:id',
     element: <WatchListDetailPage />,
   },
+  WatchListEdit: {
+    path: '/watchlist/:id/edit',
+    element: <WatchListEditPage />,
+  },
   PhotoReview: {
     path: '/photo-review',
     element: <PhotoReviewDetail />,
@@ -48,6 +55,10 @@ const MainScreens = {
   MovieDetail: {
     path: '/movieDetail/:id',
     element: <MovieDetailPage />,
+  },
+  Mypage: {
+    path: '/mypage',
+    element: <MyPage />,
   },
 };
 

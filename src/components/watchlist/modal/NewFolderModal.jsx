@@ -1,18 +1,18 @@
 import React, { useRef, useState } from 'react';
 import { Dialog } from '@mui/material';
-import { BtnDiv, DiaglogBtn } from '../style/NewListModal';
+import { BtnDiv, DiaglogBtn } from './style/NewFolderModal';
 import { colors } from '../../../global/globalStyle';
-import NewListInput from './NewListInput';
+import NewFolderInput from './NewFolderInput';
 
-const NewListModal = ({ open, setOpen, onCreateList }) => {
+const NewFolderModal = ({ open, setOpen }) => {
     const [error, setError] = useState();
     const [storageNameLength, setStorageNameLength] = useState(0);
-    const [storageInfoLength, setStorageInfoLength] = useState(0);
+    const [storageOverviewLength, setStorageOverviewLength] = useState(0);
     const storageNameRef = useRef(null);
-    const storageInfoRef = useRef(null);
+    const storageOverviewRef = useRef(null);
 
     const NAME_MAX_LENGTH = 30;
-    const INFO_MAX_LENGTH = 100;
+    const OVERVIEW_MAX_LENGTH = 100;
 
     const handleClose = (e) => {
         if (e) e.preventDefault();
@@ -22,16 +22,14 @@ const NewListModal = ({ open, setOpen, onCreateList }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const storage_name = storageNameRef.current.value;
-        const storage_info = storageInfoRef.current.value;
-        if (!storage_name || !storage_info) {
+        const storageName = storageNameRef.current.value;
+        const storageOverview = storageOverviewRef.current.value;
+        if (!storageName || !storageOverview) {
             setError('내용을 입력해주세요.');
             return;
         }
-        console.log('이름:', storage_name, '소개:', storage_info);
+        console.log('이름:', storageName, '소개:', storageOverview);
         setError('');
-
-        onCreateList({ storage_name });
 
         handleClose();
     };
@@ -39,14 +37,14 @@ const NewListModal = ({ open, setOpen, onCreateList }) => {
     const handleInput = (e) => {
         const { name, value } = e.target;
         setError('');
-        const maxLength = name === 'storage_name' ? NAME_MAX_LENGTH : INFO_MAX_LENGTH;
+        const maxLength = name === 'storageName' ? NAME_MAX_LENGTH : OVERVIEW_MAX_LENGTH;
         const limitedValue = value.slice(0, maxLength);
-        if (name === 'storage_name') {
+        if (name === 'storageName') {
             setStorageNameLength(limitedValue.length);
             storageNameRef.current.value = limitedValue;
-        } else if (name === 'storage_info') {
-            setStorageInfoLength(limitedValue.length);
-            storageInfoRef.current.value = limitedValue;
+        } else if (name === 'storageOverview') {
+            setStorageOverviewLength(limitedValue.length);
+            storageOverviewRef.current.value = limitedValue;
         }
     };
 
@@ -63,15 +61,15 @@ const NewListModal = ({ open, setOpen, onCreateList }) => {
                 }
             }}
         >
-            <NewListInput
+            <NewFolderInput
                 storageNameRef={storageNameRef}
-                storageInfoRef={storageInfoRef}
+                storageOverviewRef={storageOverviewRef}
                 error={error}
                 NAME_MAX_LENGTH={NAME_MAX_LENGTH}
-                INFO_MAX_LENGTH={INFO_MAX_LENGTH}
+                OVERVIEW_MAX_LENGTH={OVERVIEW_MAX_LENGTH}
                 handleInput={handleInput}
                 storageNameLength={storageNameLength}
-                storageInfoLength={storageInfoLength}
+                storageOverviewLength={storageOverviewLength}
             />
             <BtnDiv className="bold">
                 <DiaglogBtn type="button" onClick={handleClose}>취소</DiaglogBtn>
@@ -81,4 +79,4 @@ const NewListModal = ({ open, setOpen, onCreateList }) => {
     );
 };
 
-export default NewListModal;
+export default NewFolderModal;

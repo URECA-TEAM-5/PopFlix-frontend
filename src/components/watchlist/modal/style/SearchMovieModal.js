@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import { colors } from '../../../global/globalStyle';
+import { colors } from '../../../../global/globalStyle';
 
 export const DiaglogContent = styled.div`
     width: 25rem;

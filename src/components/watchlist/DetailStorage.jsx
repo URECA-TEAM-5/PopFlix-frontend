@@ -3,7 +3,15 @@ import { faArrowUpFromBracket, faMicrophone } from '@fortawesome/free-solid-svg-
 import { Storage, StorageInfo } from "./style/DetailStorage";
 import WatchListLikeButton from "./WatchListLikeButton";
 
-const DetailStorage = ({ storage, handleClickLike, handleCopy }) => {
+const DetailStorage = ({ storage, handleClickLike }) => {
+    const handleCopy = () => {
+        const url = window.location.href;
+        navigator.clipboard.writeText(url).then(() => {
+            alert('링크를 복사했어요. 원하는 곳에 공유하세요!');
+        }).catch(err => {
+            console.error('복사 실패 ', err);
+        });
+    };
     return (
         <>
             <Storage>
@@ -28,13 +36,13 @@ const DetailStorage = ({ storage, handleClickLike, handleCopy }) => {
                         </p>
                     </div>
                 </StorageInfo>
-                <div className="content__line"></div>
+                <div className="contentLine"></div>
                 <div>
                     <FontAwesomeIcon icon={faMicrophone} />
                     <span className="bold"> 소개글</span>
                     <p className="regular overview">{storage.overview}</p>
                 </div>
-                <div className="content__line"></div>
+                <div className="contentLine"></div>
             </Storage>
         </>
     );

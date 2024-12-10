@@ -2,7 +2,23 @@ import { styled } from 'styled-components';
 import { colors } from '../../../global/globalStyle';
 
 export const MovieListTitle = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding-bottom: 1rem;
+    p {
+        cursor: pointer;
+        &:hover {
+            color: ${colors.orange};
+        }
+    }
+    .editButton {
+        width: 3rem;
+        height: 1.3rem;
+        background-color: ${colors.orange};
+        color: ${colors.white};
+        font-size: 0.938rem;
+    }
 `;
 
 export const MovieList = styled.div`
@@ -18,7 +34,7 @@ export const MovieList = styled.div`
         object-fit: cover;
         border-radius: 0.313rem;
     }
-    .content__line {
+    .contentLine {
         border-top: 0.063rem solid ${colors.cement_gray};
         margin: 1.5rem auto;
         width: 100%;
@@ -42,7 +58,7 @@ export const MovieDetails = styled.div`
         padding: 0 0.5rem;
         font-size: 0.938rem;
     }
-    .point__span {
+    .pointSpan {
         cursor: pointer;
         &:hover {
             color: ${colors.orange}
