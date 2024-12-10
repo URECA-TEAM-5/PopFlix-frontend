@@ -1,11 +1,31 @@
 .container {
   position: relative;
   max-width: 57.5rem;
-  width: 100%;
+  /* width: 100%; */
+}
+.movieGridContainer {
+  display: flex;
+  justify-content: center;
 }
 .movieGrid {
   gap: 0.625rem;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+@media (max-width: 820px) {
+  .movieGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .movieGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 400px) {
+  .movieGrid {
+    grid-template-columns: 1fr; /* 화면이 600px 이하일 때 1열로 변경 */
+  }
 }
 
 .movieImage {
@@ -58,7 +78,7 @@
 }
 
 .genreButtonsContainer {
-  padding:1rem 2rem;
+  padding: 1rem 2rem;
 }
 
 .genreButton {
@@ -102,7 +122,7 @@
   justify-content: flex-end;
   right: 1rem; /* 우측 여백 */
   background-color: #000000;
-  color: #F09605;
-  border-color: #2E2F31;
+  color: #f09605;
+  border-color: #2e2f31;
   font-size: bold;
 }

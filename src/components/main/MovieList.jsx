@@ -82,33 +82,36 @@ const MovieList = ({ rows = 2, columns = 4, showMoreButton = true }) => {
       </div>
 
       {/* 영화 리스트 */}
+      <div className={styles.movieGridContainer}>
       <div className={styles.movieGrid}>
-        <Grid2 container spacing={2} justifyContent="center">
-          {currentMovies.map((movie) => (
-            <Grid2 xs={12 / columns} key={movie.id}>
-              <div className={styles.movieCard}>
-                <img
-                  className={styles.movieImage}
-                  src={movie.imageUrl}
-                  alt={movie.title}
-                  onClick={() => handleMovieDetail(movie.id)}
-                />
-                <h4 className={styles.movieTitle}>{movie.title}</h4>
-                <div className={styles.movieStats}>
-                  <div className={styles.movieRating}>
-                    <img className={styles.movieIcon} src={mainGPA} alt="평점" />
-                    <p>{movie.rating}</p>
-                  </div>
-                  <div className={styles.movieLikes}>
-                    <img className={styles.movieIcon} src={heart} alt="좋아요" />
-                    <p>{movie.likes}</p>
-                  </div>
+        
+        {currentMovies.map((movie) => (
+          
+            <div className={styles.movieCard}>
+              <img
+                className={styles.movieImage}
+                src={movie.imageUrl}
+                alt={movie.title}
+                onClick={() => handleMovieDetail(movie.id)}
+              />
+              <h4 className={styles.movieTitle}>{movie.title}</h4>
+              <div className={styles.movieStats}>
+                <div className={styles.movieRating}>
+                  <img className={styles.movieIcon} src={mainGPA} alt="평점" />
+                  <p>{movie.rating}</p>
+                </div>
+                <div className={styles.movieLikes}>
+                  <img className={styles.movieIcon} src={heart} alt="좋아요" />
+                  <p>{movie.likes}</p>
                 </div>
               </div>
-            </Grid2>
-          ))}
-        </Grid2>
+            </div>
+        
+        ))}
+     
+    </div>
       </div>
+     
 
       {/* 페이지네이션 */}
       {filteredMovies.length > moviesPerPage && (
