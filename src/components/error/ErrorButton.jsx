@@ -1,7 +1,7 @@
 import React from 'react';
-import { ErrorButtonContainer } from './style/errorStyle';
 import DefaultButton from '../common/buttons/DefaultButton';
 import { useNavigate } from 'react-router-dom';
+import { ErrorButtonContainer } from './style/errorStyle';
 
 const ErrorButton = () => {
   const navigate = useNavigate();
