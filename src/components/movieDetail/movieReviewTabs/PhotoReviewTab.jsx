@@ -31,21 +31,20 @@ const photoReviews = [
 const PhotoReviewTab = () => {
   return (
     <PhotoReviewTabContainer>
-      <Grid2 container 
-      justifyContent="center" 
-      alignItems="center" 
-      spacing={0.5}>
+      <Grid2 container justifyContent="center" alignItems="center" spacing={0.5}>
         {photoReviews.map((review) => (
-          <Grid2 item xs={4} sm={4} md={4} key={review.id}>
+          <Grid2 xs={4} sm={4} md={4} key={review.id}>
             <Card>
-              <CardMedia  component="img"
+              <CardMedia
+                component="img"
                 sx={{
                   width: '100%',
                   height: 'auto',
                   objectFit: 'cover',
                 }}
                 image={review.image}
-                alt={`Photo Review ${review.id}`} />
+                alt={`Photo Review ${review.id}`}
+              />
             </Card>
           </Grid2>
         ))}
