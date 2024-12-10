@@ -9,9 +9,31 @@ export default function MyInfoModal() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const handleLogout = async () => {
+    try {
+      const response = await fetch('http://localhost:8080/auth/logout', {
+        method: 'POST',
+        credentials: 'include', // HttpOnly 쿠키를 포함
+      });
+
+      if (response.ok) {
+        alert('로그아웃 되었습니다.');
+        window.location.href = '/main';
+      } else {
+        const errorData = await response.json();
+        console.error('로그아웃 실패:', errorData.message);
+        alert('로그아웃 실패: ' + errorData.message);
+      }
+    } catch (error) {
+      console.error('로그아웃 요청 중 에러 발생:', error);
+      alert('로그아웃 중 문제가 발생했습니다.');
+    }
+  };
+
   {
     /*나중에 위치 박을떄 anchorEl로 아이콘 밑에 박기*/
   }
+
   return (
     <Dialog
       open={true}
@@ -73,7 +95,7 @@ export default function MyInfoModal() {
                 },
               },
             }}
-            onClick={() => alert('로그아웃')}
+            onClick={handleLogout}
           >
             <MyInfoModalButton className="bold">로그아웃</MyInfoModalButton>
           </Button>

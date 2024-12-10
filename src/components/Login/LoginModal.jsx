@@ -10,11 +10,11 @@ const LoginModal = () => {
   const handleClose = () => setOpen(false);
 
   const handleNaverLogin = () => {
-    window.location.href = '/'; // 네이버 로그인 엔드포인트
+    window.location.href = 'http://localhost:8080/oauth2/authorization/naver';
   };
 
   const handleGoogleLogin = () => {
-    window.location.href = '/'; // 구글 로그인 엔드포인트
+    window.location.href = 'http://localhost:8080/oauth2/authorization/google';
   };
 
   return (
