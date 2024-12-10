@@ -12,7 +12,10 @@ import Grid2 from '@mui/material/Grid2';  // Grid2 import
 const MovieList = () => {
   const [movies, setMovies] = useState([]); // 영화 데이터 상태
   const [page, setPage] = useState(1); // 페이지 번호
-  const [moviesPerPage] = useState(8); // 한 페이지에 보여줄 영화 개수
+
+    const [moviesPerPage] = useState(8); // 한 페이지에 보여줄 영화 개수
+ 
+  
   const [selectedGenre, setSelectedGenre] = useState('All'); // 선택된 장르
   const [isLoading, setIsLoading] = useState(false); // 로딩 상태
   const navigate = useNavigate();

@@ -16,9 +16,9 @@ export const MovieReviewTabMenu = styled.div`
 export const MovieReviewTab = styled.div`
   padding: 0.5rem 1rem;
   cursor: pointer;
-  font-weight: ${(props) => (props.isActive ? 'bold' : 'normal')};
-  border-bottom: ${(props) => (props.isActive ? `2px solid ${colors.white}` : 'none')};
-  color: ${(props) => (props.isActive ? colors.white : colors.cement_gray)};
+  font-weight: ${(props) => (props.$isActive ? 'bold' : 'normal')};
+  border-bottom: ${(props) => (props.$isActive ? `2px solid ${colors.white}`: 'none')};
+  color: ${(props) => (props.$isActive ? `${colors.white}` : `${colors.cement_gray}`)};
 `;
 
 export const Content = styled.div`

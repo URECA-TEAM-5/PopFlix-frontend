@@ -7,6 +7,7 @@ import WatchListDetailPage from '../pages/watchlist/WatchListDetailPage';
 import PhotoReviewDetail from '../pages/review/photo/PhotoReviewDetail';
 import WatchListPage from '../pages/watchlist/WatchListPage';
 import MovieDetailPage from '../pages/movie/MovieDetailPage';
+import MovieListPage from '../pages/movie/MovieListPage';
 const MainScreens = {
   Main: {
     path: '/',
@@ -43,6 +44,10 @@ const MainScreens = {
   MovieDetail: {
     path: '/movieDetail/:id',
     element: <MovieDetailPage />,
+  },
+  MovieList: {
+    path: '/movieList',
+    element: <MovieListPage />,
   }
 };
 
