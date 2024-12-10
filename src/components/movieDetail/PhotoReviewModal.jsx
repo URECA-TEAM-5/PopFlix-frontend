@@ -59,7 +59,6 @@ const PhotoReviewModal = ({ open, onClose, onSubmit }) => {
           maxWidth:920,
           bgcolor: '#25292E',
           boxShadow: 24,
-          p: 4,
           borderRadius: 2,
         }}
       >
@@ -94,12 +93,14 @@ const PhotoReviewModal = ({ open, onClose, onSubmit }) => {
         {/* 이미지 미리보기 또는 이미지 첨부 */}
         <Box sx={{
             borderBottom: '1px solid white',
+            padding: '1rem',
         }}>
         <Box
           sx={{
             mb: 2,
             cursor: 'pointer',
             display: 'inline-block',
+            p: 1,
           }}
           onClick={handleImageClick} // 클릭 이벤트 연결
         >
@@ -143,7 +144,7 @@ const PhotoReviewModal = ({ open, onClose, onSubmit }) => {
           ref={fileInputRef} // 숨겨진 파일 입력 필드 참조
           onChange={handleImageChange}
         />
-        <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 1,paddingTop:1 }}>
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 1,paddingTop:1,p: 1, }}>
           {/* 취소 버튼 */}
           <Button
             variant="outlined"
