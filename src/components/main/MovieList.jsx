@@ -7,8 +7,8 @@ import heart from '/assets/heart.svg';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import Grid2 from '@mui/material/Grid2'; // Grid2 import
-import Grid2 from '@mui/material/Grid2'; // MUI Grid
+
+
 
 const MovieList = ({ rows = 2, columns = 4, showMoreButton = true }) => {
   const [movies, setMovies] = useState([]); // 전체 영화 리스트
