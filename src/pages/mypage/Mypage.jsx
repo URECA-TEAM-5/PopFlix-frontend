@@ -1,8 +1,8 @@
 import { Container, Divider } from '@mui/material';
 import MyWatchList from '../../components/mypage/MyWatchList';
 import MyFavoriteWatchList from '../../components/mypage/MyFavoriteWatchList';
-import UserProfile from '../../components/myPage/UserProfile';
 import { colors } from '../../global/globalStyle';
+import UserProfile from '../../components/myPage/UserProfile';
 
 const MyPage = () => {
   return (

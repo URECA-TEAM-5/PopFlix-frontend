@@ -2,7 +2,7 @@ import { Box, Button } from '@mui/material';
 import React from 'react';
 import { colors } from '../../global/globalStyle';
 
-function UserProfile(props) {
+const UserProfile = () => {
   return (
     <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', pt: '3rem' }}>
       <Box
@@ -42,6 +42,6 @@ function UserProfile(props) {
       </Box>
     </Box>
   );
-}
+};
 
 export default UserProfile;
