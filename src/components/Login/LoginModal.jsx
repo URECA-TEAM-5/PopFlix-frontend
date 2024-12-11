@@ -2,14 +2,15 @@ import React from 'react';
 import { Modal, Box, Button } from '@mui/material';
 import { colors } from '../../global/globalStyle';
 import { LoginModalGoogleLogo, LoginModalImage, LoginModalNaverLogo, LoginModalTitle } from './style/LoginModalStyle';
+import serverBaseUrl from '../../config/serverConfig';
 
 const LoginModal = ({ isOpen, setIsOpen }) => {
   const handleNaverLogin = () => {
-    window.location.href = 'http://localhost:8080/oauth2/authorization/naver';
+    window.location.href = `${serverBaseUrl}/oauth2/authorization/naver`;
   };
 
   const handleGoogleLogin = () => {
-    window.location.href = 'http://localhost:8080/oauth2/authorization/google';
+    window.location.href = `${serverBaseUrl}/oauth2/authorization/google`;
   };
 
   return (
