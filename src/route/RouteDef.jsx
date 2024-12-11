@@ -20,10 +20,6 @@ const MainScreens = {
     path: '/',
     element: <MainPage />,
   },
-  LoginModal: {
-    path: '/login',
-    element: <LoginModal />,
-  },
   AddUserInfo: {
     path: '/AddUserInfo',
     element: <AddUserInfo />,

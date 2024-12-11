@@ -1,14 +1,9 @@
-import React, { useState } from 'react';
-import { Modal, Box, Button, Typography } from '@mui/material';
+import React from 'react';
+import { Modal, Box, Button } from '@mui/material';
 import { colors } from '../../global/globalStyle';
 import { LoginModalGoogleLogo, LoginModalImage, LoginModalNaverLogo, LoginModalTitle } from './style/LoginModalStyle';
 
-const LoginModal = () => {
-  const [open, setOpen] = useState(false);
-
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
+const LoginModal = ({ isOpen, setIsOpen }) => {
   const handleNaverLogin = () => {
     window.location.href = 'http://localhost:8080/oauth2/authorization/naver';
   };
@@ -19,8 +14,12 @@ const LoginModal = () => {
 
   return (
     <div>
-      {/*확인하기 위해 true로 해두었음 나중에 open으로 변경 */}
-      <Modal open={true} onClose={handleClose}>
+      <Modal
+        open={isOpen}
+        onClose={() => {
+          setIsOpen(false);
+        }}
+      >
         <Box
           sx={{
             position: 'absolute',
