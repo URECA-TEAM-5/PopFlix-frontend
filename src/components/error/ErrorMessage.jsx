@@ -1,5 +1,5 @@
 import React from 'react';
-import { ErrorMessageContainer } from './style/errorStyle';
+import { ErrorMessageContainer } from './style/ErrorStyle';
 
 const ErrorMessage = () => {
   return (

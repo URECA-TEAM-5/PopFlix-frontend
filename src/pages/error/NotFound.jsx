@@ -2,7 +2,7 @@ import React from 'react';
 import ErrorImage from '../../components/error/ErrorImage';
 import ErrorMessage from '../../components/error/ErrorMessage';
 import ErrorButton from '../../components/error/ErrorButton';
-import { ErrorContainer } from '../../components/error/style/errorStyle';
+import { ErrorContainer } from '../../components/error/style/ErrorStyle';
 
 const NotFound = () => {
   return (
