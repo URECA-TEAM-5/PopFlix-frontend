@@ -6,17 +6,17 @@
 
 <br>
 
-## ⭐ **_`팀원 소개`_**
+## ⭐ **_`Member`_**
 
-| 조동희                                                                                              | 김은진                                                                                              | 유성현                                                                                              | 위지훈                                                                                              |
-| --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| 팀장                                                                                                | 팀원                                                                                                | 팀원                                                                                                | 팀원                                                                                                |
-| 💻 [chodonghee-hub](https://github.com/chodonghee-hub)                                              | 🐣 [iam-eunjin](https://github.com/iam-eunjin)                                                      | 🦖 [Hyun9811](https://github.com/Hyun9811)                                                          | 🦒 [wijihooooon](https://github.com/wijihooooon)                                                    |
-| ![조동희_깃프로필](https://github.com/user-attachments/assets/a5b30b6f-310c-4e8a-9492-4a1badea3d01) | ![김은진_깃프로필](https://github.com/user-attachments/assets/0329c95f-7071-424e-b934-4a1ae06f3566) | ![유성현_깃프로필](https://github.com/user-attachments/assets/d397afa9-b5fd-4ebe-b10f-732e9e6aafd5) | ![위지훈_깃프로필](https://github.com/user-attachments/assets/6100f2e5-2a2a-48d6-a96c-fec3375f2cf8) |
+| 조동희                                                                                        | 김은진                                                                                         | 유성현                                                                                         | 위지훈                                                                                                                                                                                                                         |
+| --------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 팀장                                                                                          | 팀원                                                                                           | 팀원                                                                                           | 팀원                                                                                                                                                                                                                           |
+| 💻 [chodonghee-hub](https://github.com/chodonghee-hub)                                        | 🐣 [iam-eunjin](https://github.com/iam-eunjin)                                                 | 🦖 [Hyun9811](https://github.com/Hyun9811)                                                     | 🦒 [wijihooooon](https://github.com/wijihooooon)                                                                                                                                                                               |
+| <img src="https://avatars.githubusercontent.com/u/67031025?v=4" width="300" align="center" /> | <img src="https://avatars.githubusercontent.com/u/169453687?v=4" width="326" align="center" /> | <img src="https://avatars.githubusercontent.com/u/145583411?v=4" width="314" align="center" /> | <img src="https://cdn.discordapp.com/attachments/1308352356148183060/1316419177376124938/image.png?ex=675afa65&is=6759a8e5&hm=87f203f35f16325a6ff84dc3c1e84498a5257d090ec082784eff42f7142072c1&" width="300" align="center" /> |
 
 <br>
 
-## 🏃 **_`프로젝트 세팅`_**
+## ☢️ **_`Settings`_**
 
 1. git clone
 2. npm install

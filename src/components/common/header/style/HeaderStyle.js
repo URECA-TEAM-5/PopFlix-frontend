@@ -9,6 +9,7 @@ export const HeaderContainer = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  caret-color: transparent;
 
   .img__logo {
     padding-left: 1rem;
@@ -91,5 +92,14 @@ export const IconSection = styled.div`
       color: ${colors.orange};
       transition: 0.3s ease;
     }
+  }
+
+  .profile {
+    width: 2.875rem;
+    height: 2.875rem;
+    object-fit: fill;
+    overflow: hidden;
+    border: 0.05rem solid ${colors.orange};
+    border-radius: 30rem;
   }
 `;

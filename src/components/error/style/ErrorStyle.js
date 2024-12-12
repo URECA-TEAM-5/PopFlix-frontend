@@ -19,6 +19,7 @@ export const ErrorImageContainer = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: start;
+
   .text {
     font-size: 11.25rem;
   }

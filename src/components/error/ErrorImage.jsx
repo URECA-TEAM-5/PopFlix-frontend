@@ -1,5 +1,5 @@
 import React from 'react';
-import { ErrorImageContainer } from './style/errorStyle';
+import { ErrorImageContainer } from './style/ErrorStyle';
 
 const ErrorImage = () => {
   return (
