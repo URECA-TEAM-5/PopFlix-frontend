@@ -7,15 +7,18 @@ import heart from '/assets/heart.svg';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import Grid2 from '@mui/material/Grid2'; // Grid2 import
+import {getMovieList} from '../../api/movieList/movieList';
 
-const MovieList = () => {
-  const [movies, setMovies] = useState([]); // 영화 데이터 상태
-  const [page, setPage] = useState(1); // 페이지 번호
-  const [moviesPerPage] = useState(8); // 한 페이지에 보여줄 영화 개수
-  const [selectedGenre, setSelectedGenre] = useState('All'); // 선택된 장르
-  const [isLoading, setIsLoading] = useState(false); // 로딩 상태
+
+const MovieList = ({ rows = 2, columns = 4, showMoreButton = true }) => {
+  const [movies, setMovies] = useState([]); // 전체 영화 리스트
+  const [filteredMovies, setFilteredMovies] = useState([]); // 선택된 장르에 따른 영화 리스트
+  const [page, setPage] = useState(1); // 현재 페이지 번호
+  const [selectedGenre, setSelectedGenre] = useState('All');
   const navigate = useNavigate();
+  const size = 100;
+  const moviesPerPage = rows * columns; // 한 번에 보여줄 영화 개수
+
   const settings = useRef({
     dots: false,
     infinite: false,
@@ -23,26 +26,46 @@ const MovieList = () => {
     slidesToShow: 10,
     slidesToScroll: 10,
   });
+  const fetchMovies = async () => {
+    try {
+      const response = await getMovieList();
+
+      console.log("영화 리스트 :",response.response);
+      setMovies(response.response.content);
+      
+    } catch (error) {
+      console.error('Failed to fetch movies:', error);
+    }
+  };
+  useEffect(() => {
+    fetchMovies();
+  }, []);
 
   useEffect(() => {
-    // 선택된 장르에 맞는 영화 데이터를 필터링하여 표시
-    if (selectedGenre === 'All') {
-      setMovies(moviesData);
-    } else {
-      setMovies(moviesData.filter((movie) => movie.genre === selectedGenre));
-    }
-  }, [selectedGenre]);
+    // 선택된 장르에 맞게 영화 리스트 필터링
+    const filtered =
+      selectedGenre === 'All'
+        ? movies
+        : movies.filter((movie) => movie.genre === selectedGenre);
+    setFilteredMovies(filtered);
+    setPage(1); // 장르 변경 시 페이지 초기화
+  }, [selectedGenre, movies]);
 
-  // 페이지네이션 처리
+  // 현재 페이지에 표시할 영화 계산
   const indexOfLastMovie = page * moviesPerPage;
   const indexOfFirstMovie = indexOfLastMovie - moviesPerPage;
-  const currentMovies = movies.slice(indexOfFirstMovie, indexOfLastMovie);
-
-  // 페이지 변경 함수
-  const paginate = (pageNumber) => setPage(pageNumber);
+  const currentMovies = filteredMovies.slice(indexOfFirstMovie, indexOfLastMovie);
 
   const handleMovieDetail = (id) => {
     navigate(`/movieDetail/${id}`);
+  };
+
+  const handleMoreMovies = () => {
+    navigate('/movieList'); // 영화 리스트 페이지로 이동
+  };
+
+  const handlePageChange = (pageNumber) => {
+    setPage(pageNumber);
   };
 
   return (
@@ -57,10 +80,7 @@ const MovieList = () => {
             <button
               key={index}
               className={`${styles.genreButton} ${selectedGenre === genre ? styles.genreButtonSelected : ''}`}
-              onClick={() => {
-                setSelectedGenre(genre);
-                setPage(1);
-              }}
+              onClick={() => setSelectedGenre(genre)}
             >
               {genre}
             </button>
@@ -69,43 +89,58 @@ const MovieList = () => {
       </div>
 
       {/* 영화 리스트 */}
+      <div className={styles.movieGridContainer}>
       <div className={styles.movieGrid}>
-        <Grid2 container spacing={2} justifyContent="center">
-          {currentMovies.map((movie) => (
-            <Grid2 xs={12} sm={6} md={4} lg={3} key={movie.id}>
-              <div className={styles.movieCard}>
-                <img className={styles.movieImage} src={movie.imageUrl} alt={movie.title} onClick={() => handleMovieDetail(movie.id)} />
-                <h4 className={styles.movieTitle}>{movie.title}</h4>
-                <div className={styles.movieStats}>
-                  <div className={styles.movieRating}>
-                    <img className={styles.movieIcon} src={mainGPA} alt="평점" />
-                    <p>{movie.rating}</p>
-                  </div>
-                  <div className={styles.movieLikes}>
-                    <img className={styles.movieIcon} src={heart} alt="좋아요" />
-                    <p>{movie.likes}</p>
-                  </div>
+        
+        {currentMovies.map((movie) => (
+          
+            <div className={styles.movieCard}key={movie.movieId}>
+              <img
+                className={styles.movieImage}
+                src={movie.posterUrl}
+                alt={movie.title}
+                onClick={() => handleMovieDetail(movie.movieId)}
+              />
+              <h4 className={styles.movieTitle}>{movie.title}</h4>
+              <div className={styles.movieStats}>
+                <div className={styles.movieRating}>
+                  <img className={styles.movieIcon} src={mainGPA} alt="평점" />
+                  <p>{movie.popcornScore}</p>
+                </div>
+                <div className={styles.movieLikes}>
+                  <img className={styles.movieIcon} src={heart} alt="좋아요" />
+                  <p>{movie.likeCount}</p>
                 </div>
               </div>
-            </Grid2>
-          ))}
-        </Grid2>
+            </div>
+        
+        ))}
+     
+    </div>
       </div>
+     
 
       {/* 페이지네이션 */}
-      {movies.length > moviesPerPage && (
+      {filteredMovies.length > moviesPerPage && (
         <div className={styles.moviePage}>
-          {[...Array(Math.ceil(movies.length / moviesPerPage))].map((_, index) => (
-            <button key={index} onClick={() => paginate(index + 1)}>
+          {[...Array(Math.ceil(filteredMovies.length / moviesPerPage))].map((_, index) => (
+            <button
+              key={index}
+              className={`${styles.pageButton} ${page === index + 1 ? styles.activePageButton : ''}`}
+              onClick={() => handlePageChange(index + 1)}
+            >
               {index + 1}
             </button>
           ))}
         </div>
       )}
-      <button className={styles.viewMoreBtn}>더 보기</button>
 
-      {/* 로딩 상태 */}
-      {isLoading && <div>Loading...</div>}
+      {/* 더 보기 버튼 */}
+      {showMoreButton && (
+        <button className={styles.viewMoreBtn} onClick={handleMoreMovies}>
+          더 보기
+        </button>
+      )}
     </div>
   );
 };

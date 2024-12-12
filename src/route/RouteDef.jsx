@@ -11,6 +11,7 @@ import MovieDetailPage from '../pages/movie/MovieDetailPage';
 import MyPage from '../pages/mypage/Mypage';
 import WatchListEditPage from '../pages/watchlist/WatchListEditPage';
 
+import MovieListPage from '../pages/movie/MovieListPage';
 const MainScreens = {
   NotFound: {
     path: '*',
@@ -56,6 +57,10 @@ const MainScreens = {
     path: '/mypage',
     element: <MyPage />,
   },
+  MovieList: {
+    path: '/movieList',
+    element: <MovieListPage />,
+  }
 };
 
 export const AppRouteDef = {
