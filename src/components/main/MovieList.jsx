@@ -7,7 +7,7 @@ import heart from '/assets/heart.svg';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-
+import {getMovieList} from '../../api/movieList/movieList';
 
 
 const MovieList = ({ rows = 2, columns = 4, showMoreButton = true }) => {
@@ -16,7 +16,7 @@ const MovieList = ({ rows = 2, columns = 4, showMoreButton = true }) => {
   const [page, setPage] = useState(1); // 현재 페이지 번호
   const [selectedGenre, setSelectedGenre] = useState('All');
   const navigate = useNavigate();
-
+  const size = 100;
   const moviesPerPage = rows * columns; // 한 번에 보여줄 영화 개수
 
   const settings = useRef({
@@ -26,10 +26,19 @@ const MovieList = ({ rows = 2, columns = 4, showMoreButton = true }) => {
     slidesToShow: 10,
     slidesToScroll: 10,
   });
+  const fetchMovies = async () => {
+    try {
+      const response = await getMovieList();
 
+      console.log("영화 리스트 :",response.response);
+      setMovies(response.response.content);
+      
+    } catch (error) {
+      console.error('Failed to fetch movies:', error);
+    }
+  };
   useEffect(() => {
-    // 전체 영화 리스트를 로드
-    setMovies(moviesData);
+    fetchMovies();
   }, []);
 
   useEffect(() => {
@@ -85,22 +94,22 @@ const MovieList = ({ rows = 2, columns = 4, showMoreButton = true }) => {
         
         {currentMovies.map((movie) => (
           
-            <div className={styles.movieCard}>
+            <div className={styles.movieCard}key={movie.movieId}>
               <img
                 className={styles.movieImage}
-                src={movie.imageUrl}
+                src={movie.posterUrl}
                 alt={movie.title}
-                onClick={() => handleMovieDetail(movie.id)}
+                onClick={() => handleMovieDetail(movie.movieId)}
               />
               <h4 className={styles.movieTitle}>{movie.title}</h4>
               <div className={styles.movieStats}>
                 <div className={styles.movieRating}>
                   <img className={styles.movieIcon} src={mainGPA} alt="평점" />
-                  <p>{movie.rating}</p>
+                  <p>{movie.popcornScore}</p>
                 </div>
                 <div className={styles.movieLikes}>
                   <img className={styles.movieIcon} src={heart} alt="좋아요" />
-                  <p>{movie.likes}</p>
+                  <p>{movie.likeCount}</p>
                 </div>
               </div>
             </div>
