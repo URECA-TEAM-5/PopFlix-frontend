@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { fetchDetailData, fetchOtherStorage, handleOtherStorageLike, handleStorageLike } from '../../api/watchlist/watchlist';
+import { fetchDetailData, fetchOtherStorage, handleOtherStorageLike, handleStorageLike } from '../../api/watchlistDetail/watchlistDetail';
 
 export const useWatchList = create((set) => ({
     watchListDetail: null,

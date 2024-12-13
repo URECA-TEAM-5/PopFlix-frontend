@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { MovieDetails, MovieItem, MovieList, MovieListTitle } from "./style/DetailMovieList";
+import { MovieDetails, MovieItem, MovieList, MovieListTitle } from "./style/WatchListDetailMovieList";
 import { faList } from "@fortawesome/free-solid-svg-icons";
 
 const DetailMovieList = ({ movies }) => {

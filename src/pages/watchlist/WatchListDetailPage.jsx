@@ -1,9 +1,9 @@
 import { Container } from '@mui/material';
-import WatchListDetail from '../../components/watchlist/WatchListDetail';
 import { BackIcon } from './style/WatchListDetailPage';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
+import WatchListDetail from '../../components/watchlistDetail/WatchListDetail';
 
 const WatchListDetailPage = () => {
     const navigate = useNavigate();
