@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { getUserInfo } from '../../api/auth/auth';
+import { apiGetUserInfo, apiPostSignup } from '../../api/auth/auth';
 
 export const useUserInfo = create((set) => ({
   userInfo: '',
@@ -7,11 +7,20 @@ export const useUserInfo = create((set) => ({
     set({ isLoading: true, error: null, message: null });
     try {
       console.log(`[ setUserInfo ]`);
-      const response = getUserInfo();
+      const response = apiGetUserInfo();
       set({ userInfo: response });
-      console.log(userInfo);
     } catch (e) {
       set({ error: '[ setUserInfo ] >> error', isLoading: false });
+    }
+  },
+
+  signup: (info) => {
+    set({ isLoading: true, error: null, message: null });
+    try {
+      console.log(`[ signup ]`);
+      apiPostSignup(info);
+    } catch (e) {
+      set({ error: '[ signup ] >> error', isLoading: false });
     }
   },
 }));

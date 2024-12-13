@@ -37,8 +37,8 @@ const UserInfoGenre = ({ selectedGenre, genres, onGenreChange }) => {
             },
           }}
         >
-          {genres.map((genre, index) => (
-            <MenuItem key={index} value={genre} sx={{ span: { color: colors.black } }}>
+          {genres.map(({ genre, id }, index) => (
+            <MenuItem key={index + id} value={genre} sx={{ span: { color: colors.black } }}>
               <span className="bold">{genre}</span>
             </MenuItem>
           ))}
