@@ -5,11 +5,11 @@ import { LoginModalGoogleLogo, LoginModalImage, LoginModalNaverLogo, LoginModalT
 
 const LoginModal = ({ isOpen, setIsOpen }) => {
   const handleNaverLogin = () => {
-    window.location.href = 'https://popflix.org/oauth2/authorization/naver'; // 네이버 로그인 엔드포인트
+    window.location.href = 'https://popflix.org/oauth2/authorization/naver';
   };
 
   const handleGoogleLogin = () => {
-    window.location.href = 'https://popflix.org/oauth2/authorization/google'; // 구글 로그인 엔드포인트
+    window.location.href = 'https://popflix.org/oauth2/authorization/google';
   };
 
   return (
@@ -42,7 +42,7 @@ const LoginModal = ({ isOpen, setIsOpen }) => {
             영화에 대한 생각을 공유해주세요!
           </LoginModalTitle>
 
-          <LoginModalImage src={'public/assets/logo.svg'} alt="로고" />
+          <LoginModalImage src={'/assets/logo.svg'} alt="로고" />
 
           {/*네이버 버튼*/}
           <Button
@@ -87,7 +87,7 @@ const LoginModal = ({ isOpen, setIsOpen }) => {
               },
             }}
             onClick={handleGoogleLogin}
-            startIcon={<LoginModalGoogleLogo src="public/assets/google_login_btn.svg" alt="G" />}
+            startIcon={<LoginModalGoogleLogo src="/assets/google_login_btn.svg" alt="G" />}
           >
             <p>구글 로그인</p>
           </Button>

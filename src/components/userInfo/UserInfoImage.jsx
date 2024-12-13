@@ -91,7 +91,7 @@ const UserInfoImage = ({ profileImage, setProfileImage }) => {
             alignItems: 'center',
           }}
         >
-          <UserInfoImageCameraIcon src="public/assets/camera.svg" alt="카메라 아이콘" />
+          <UserInfoImageCameraIcon src="/assets/camera.svg" alt="카메라 아이콘" />
         </Box>
 
         {/* ImageSelectModal */}
