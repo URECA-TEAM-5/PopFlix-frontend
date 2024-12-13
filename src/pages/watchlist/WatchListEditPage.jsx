@@ -1,6 +1,6 @@
 import { Container } from "@mui/material";
-import EditStorage from "../../components/watchlist/EditStorage";
-import EditMovieList from "../../components/watchlist/EditMovieList";
+import EditStorage from "../../components/watchlistEdit/EditStorage";
+import EditMovieList from "../../components/watchlistEdit/EditMovieList";
 
 const WatchListEditPage = () => {
     return (

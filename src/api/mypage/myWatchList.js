@@ -22,7 +22,7 @@ export const handleChangePublic = (id, state) => {
 
 export const updateStorage = async (id, storageName, overview) => {
     try {
-        const response = await request.put(`${API_URL}/update-name/${id}`, {
+        const response = await request.put(`/api/update-name/${id}`, {
             storageName,
             overview,
         });

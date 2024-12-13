@@ -1,5 +1,5 @@
-import { detailData } from '../../components/watchlist/data/detailData';
-import { otherData } from '../../components/watchlist/data/otherData';
+import { detailData } from '../../components/watchlistDetail/data/detailData';
+import { otherData } from '../../components/watchlistDetail/data/otherData';
 import request from '../axios';
 
 export const fetchDetailData = async ({ queryKey }) => {

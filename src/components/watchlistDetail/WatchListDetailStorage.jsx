@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpFromBracket, faMicrophone } from '@fortawesome/free-solid-svg-icons';
-import { Storage, StorageInfo } from "./style/DetailStorage";
-import WatchListLikeButton from "./WatchListLikeButton";
+import { Storage, StorageInfo } from "./style/WatchListDetailStorage";
+import WatchListLikeButton from "../watchlist/WatchListLikeButton";
 
 const DetailStorage = ({ storage, handleClickLike }) => {
     const handleCopy = () => {
