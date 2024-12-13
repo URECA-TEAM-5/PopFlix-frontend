@@ -5,11 +5,11 @@ import { LoginModalGoogleLogo, LoginModalImage, LoginModalNaverLogo, LoginModalT
 
 const LoginModal = ({ isOpen, setIsOpen }) => {
   const handleNaverLogin = () => {
-    window.location.href = '/'; // 네이버 로그인 엔드포인트
+    window.location.href = 'https://popflix.org/oauth2/authorization/naver'; // 네이버 로그인 엔드포인트
   };
 
   const handleGoogleLogin = () => {
-    window.location.href = '/'; // 구글 로그인 엔드포인트
+    window.location.href = 'https://popflix.org/oauth2/authorization/google'; // 구글 로그인 엔드포인트
   };
 
   return (
