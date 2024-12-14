@@ -35,11 +35,6 @@ const UserInfoImage = ({ profileImage, setProfileImage }) => {
     });
   };
 
-  // 디버그용
-  useEffect(() => {
-    console.log('ImageSelectModal 상태 변경:', isImageSelectModalOpen ? '열림' : '닫힘');
-  }, [isImageSelectModalOpen]);
-
   return (
     <Box
       sx={{
@@ -48,6 +43,7 @@ const UserInfoImage = ({ profileImage, setProfileImage }) => {
         alignItems: 'center',
         flexDirection: 'column',
         pb: '3.5rem',
+        position: 'relative',
       }}
     >
       <h2
@@ -64,7 +60,6 @@ const UserInfoImage = ({ profileImage, setProfileImage }) => {
       </h2>
       <Box
         sx={{
-          position: 'relative',
           width: '6rem',
           height: '6rem',
           borderRadius: '50%',
@@ -73,6 +68,7 @@ const UserInfoImage = ({ profileImage, setProfileImage }) => {
           justifyContent: 'center',
           alignItems: 'center',
           cursor: 'pointer',
+          overflow: 'hidden',
         }}
         onClick={handleOpenImageSelectModal}
       >
@@ -80,8 +76,8 @@ const UserInfoImage = ({ profileImage, setProfileImage }) => {
         <Box
           sx={{
             position: 'absolute',
-            bottom: '0rem',
-            right: '-0.2rem',
+            bottom: '3.7rem',
+            right: '12.4rem',
             width: '2rem',
             height: '2rem',
             borderRadius: '50%',

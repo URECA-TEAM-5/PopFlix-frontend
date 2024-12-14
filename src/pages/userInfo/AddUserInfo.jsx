@@ -6,6 +6,7 @@ import UserInfoGender from '../../components/userInfo/UserInfoGender';
 import { Box, Button } from '@mui/material';
 import { colors } from '../../global/globalStyle';
 import { useUserInfo } from '../../stores/userInfo/userStore';
+import { apiCheckDuplicate } from '../../api/auth/auth';
 
 const AddUserInfo = () => {
   const { signup } = useUserInfo();
@@ -15,15 +16,48 @@ const AddUserInfo = () => {
 
   // 닉네임 상태
   const [nickname, setNickname] = useState('');
-  const handleNicknameChange = (event) => setNickname(event.target.value);
-  const checkDuplicate = () => alert('중복 확인 로직을 여기에 작성하세요.');
+  // 닉네임 사용가능 여부
+  const [isNicknameValid, setIsNicknameValid] = useState(false);
+  // 실시간으로 입력된 닉네임이 유효한지
+  const handleNicknameChange = (event) => {
+    const value = event.target.value;
+
+    // 유효성 검사
+    if (value.length > 10) {
+      alert('닉네임은 10자 이내로 작성해주세요.');
+      return;
+    }
+    if (/\s/.test(value)) {
+      alert('공백은 입력할 수 없습니다.');
+      return;
+    }
+    setNickname(value);
+    setIsNicknameValid(false);
+  };
+  // 닉네임 중복 확인
+  const checkDuplicate = async () => {
+    try {
+      const isAvailable = await apiCheckDuplicate(nickname);
+
+      if (isAvailable) {
+        alert('사용 가능한 닉네임입니다.');
+        setIsNicknameValid(true); // 닉네임 유효 상태 업데이트
+      } else {
+        alert('이미 사용 중인 닉네임입니다.');
+        setIsNicknameValid(false);
+      }
+    } catch (error) {
+      console.error('닉네임 중복 확인 실패:', error);
+      alert('중복 확인 중 오류가 발생했습니다.');
+    }
+  };
 
   // 장르 상태
   const [selectedGenre, setSelectedGenre] = useState('액션');
   const handleGenreChange = (e) => setSelectedGenre(e.target.value);
 
   // 성별 상태
-  const [gender, setGender] = useState('');
+  const [gender, setGender] = useState(null);
   const handleGenderChange = (event) => setGender(event.target.value);
 
   // 장르 리스트
@@ -50,16 +84,54 @@ const AddUserInfo = () => {
 
   const handleSignUp = async (e) => {
     e.preventDefault();
-    let data = {
+
+    // 필수 입력 확인
+    if (!gender) {
+      alert('성별을 선택해주세요.');
+      return;
+    }
+    if (!profileImage) {
+      alert('프로필 사진을 선택해주세요.');
+      return;
+    }
+    if (!isNicknameValid) {
+      alert('닉네임 중복 확인을 해주세요.');
+      return;
+    }
+
+    // FormData 생성
+    const formData = new FormData();
+
+    // 데이터 생성
+    const userData = {
       nickname: nickname,
       genreId: genre_sample.find((item) => item.genre === selectedGenre).id,
-      gender: 'MALE',
-      defaultProfileImage: 'https://bucket-uplus-1.s3.amazonaws.com/defaults/profile1.png',
+      gender: gender,
+      defaultProfileImage: typeof profileImage === 'string' ? profileImage : null, // 기본 이미지 또는 null
     };
-    console.log(data);
 
-    // await signup(data); <<< API 연동 후 작업 진행
-    alert('회원가입 버튼 클릭');
+    formData.append('data', JSON.stringify(userData)); // JSON 데이터 추가
+
+    // 업로드된 파일 추가 (기본 이미지가 아닌 경우)
+    if (typeof profileImage !== 'string') {
+      formData.append('profileImage', profileImage);
+    }
+    /*
+    // FormData 내용 확인
+    console.log('FormData 내용:');
+    for (let pair of formData.entries()) {
+      console.log(pair[0], pair[1]);
+    }
+      */
+
+    try {
+      // API 요청 (주석 처리된 signup 함수 활성화 필요)
+      const response = await signup(formData);
+      console.log('회원가입 성공:', response.data);
+    } catch (error) {
+      console.error('회원가입 실패:', error);
+      alert('회원가입 중 오류가 발생했습니다.');
+    }
   };
 
   return (

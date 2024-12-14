@@ -16,7 +16,7 @@ const UserInfoGender = ({ gender, onChange }) => {
         }}
       >
         <FormControlLabel
-          value="female"
+          value="FEMALE"
           control={
             <Radio
               sx={{
@@ -30,7 +30,7 @@ const UserInfoGender = ({ gender, onChange }) => {
           label={<p className="bold">여성</p>}
         />
         <FormControlLabel
-          value="male"
+          value="MALE"
           control={
             <Radio
               sx={{
