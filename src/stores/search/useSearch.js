@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { searchMovies } from '../../api/search/search';
+import { apiGetSearchMovies } from '../../api/search/search';
 
 export const useSearch = create((set) => ({
   searchResponse: '',
@@ -7,7 +7,7 @@ export const useSearch = create((set) => ({
     set({ isLoading: true, error: null, message: null });
     try {
       console.log(`[ searchByKeyword ]`);
-      const response = searchMovies(keyword);
+      const response = apiGetSearchMovies(keyword);
       set({ searchResponse: response });
     } catch (e) {
       set({ error: '[ searchByKeyword ] >> error', isLoading: false });
