@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const request = axios.create({
   baseURL: 'https://popflix.org',
-  withCredentials: true,
+  // withCredentials: true,
 });
 
 let accessToken = null;
