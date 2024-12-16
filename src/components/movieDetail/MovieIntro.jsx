@@ -1,6 +1,6 @@
 import { moviesData } from '../main/data.js';
 import { useEffect, useState } from 'react';
-import { MovieIntroContainer,MovieCast, Header, MovieDetailContainer, GenreContainer, MovieImage, MovieOverview, GenreButton } from './style/MovieIntro';
+import { MovieIntroContainer, MovieCast,  MovieDetailContainer, GenreContainer, MovieImage, MovieOverview, GenreButton } from './style/MovieIntro';
 import { getMovieDetail } from '../../api/movieDetail/movieDetail.js';
 import ReviewHeader from '../review/photo/ReviewHeader.jsx';
 const MovieIntro = ({ movieId }) => {
@@ -38,12 +38,12 @@ const MovieIntro = ({ movieId }) => {
         <MovieImage src={movieDetail.poster_path} alt={movieDetail.title} />
         <MovieOverview>
           <MovieCast>
-          <p>#{director ? director.name : ''}</p>
-          {casts.map((cast) => (
-            <p key={cast.id}>#{cast.name}</p>
-          ))}
+            <p>#{director ? director.name : ''}</p>
+            {casts.map((cast) => (
+              <p key={cast.id}>#{cast.name}</p>
+            ))}
           </MovieCast>
-         <br />
+          <br />
           <p>{movieDetail.overview}</p>
         </MovieOverview>
       </MovieDetailContainer>
