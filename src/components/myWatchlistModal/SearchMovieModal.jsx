@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Dialog } from '@mui/material';
-import { colors } from '../../../global/globalStyle';
-import Search from '../../common/search/Search';
+import { colors } from '../../global/globalStyle';
+import Search from '../common/search/Search';
 import { BtnDiv, DiaglogBtn, DiaglogContent } from './style/NewFolderModal';
 
 const SearchMovieModal = ({ open, setOpen }) => {

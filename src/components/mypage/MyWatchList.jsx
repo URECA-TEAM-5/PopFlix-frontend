@@ -2,10 +2,10 @@ import { faFolder, faSquarePlus } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
 import { ImageGrid, Placeholder, PosterImage, TitleDiv, ToggleDiv, WatchListContainer, WatchListItem, WatchListItemDiv } from './style/MyWatchList';
-import NewFolderModal from '../watchlist/modal/NewFolderModal';
 import { useMyWatchList } from '../../stores/mypage/MyWatchListStore';
 import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
+import NewFolderModal from '../myWatchlistModal/NewFolderModal';
 
 const MyWatchList = () => {
     const [open, setOpen] = useState(false);

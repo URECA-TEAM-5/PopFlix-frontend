@@ -1,5 +1,5 @@
-import WatchListLikeButton from "./WatchListLikeButton";
-import { OtherList } from "./style/DetailOtherStorage";
+import WatchListLikeButton from "../watchlist/WatchListLikeButton";
+import { OtherList } from "./style/WatchListDetailOtherStorage";
 
 const DetailOtherStorage = ({ otherData = [], username, handleClickLike }) => {
 

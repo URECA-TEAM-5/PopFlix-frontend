@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { Dialog } from '@mui/material';
 import { BtnDiv, DiaglogBtn } from './style/NewFolderModal';
-import { colors } from '../../../global/globalStyle';
+import { colors } from '../../global/globalStyle';
 import NewFolderInput from './NewFolderInput';
 
 const NewFolderModal = ({ open, setOpen }) => {

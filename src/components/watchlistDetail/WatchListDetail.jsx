@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
-import DetailOtherStorage from './DetailOtherStorage';
-import DetailStorage from './DetailStorage';
-import DetailMovieList from './DetailMovieList';
-import { useWatchList } from '../../stores/watchlist/WatchListStore';
-import { fetchDetailData, fetchOtherStorage } from '../../api/watchlist/watchlist';
+import DetailOtherStorage from './WatchListDetailOtherStorage';
+import DetailStorage from './WatchListDetailStorage';
+import DetailMovieList from './WatchListDetailMovieList';
+import { useWatchList } from '../../stores/watchlist/WatchListDetailStore';
+import { fetchDetailData, fetchOtherStorage } from '../../api/watchlistDetail/watchlistDetail';
 
 const WatchListDetail = () => {
     const { id } = useParams();
