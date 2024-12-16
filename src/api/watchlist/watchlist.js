@@ -1,14 +1,12 @@
 import request from '../axios';
 
-const API_URL = '/api/storages?sort=popular';
-
-export const getWatchlistPopular = async () => {
+export const getWatchlistMonthlyTop = async (storageId) => {
     try {
-        const response = await request.get(API_URL);
-        console.log(response);
-        return response;
+        const response = await request.get(`/api/storages/${storageId}?sort=newest`);
+        console.log('getWatchlistMonthlyTop:', response.data);
+        return response.data;
     } catch (e) {
-        console.log(`[WatchlistPopluar] >> ${e}`);
+        console.log(`[getWatchlistMonthlyTop] >> ${e}`);
     }
 };
 

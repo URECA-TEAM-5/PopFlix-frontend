@@ -56,13 +56,13 @@ const EditStorage = () => {
         const file = fileInputRef.current?.files[0];
 
         const formData = new FormData();
-        formData.append('storageName', storageName);
-        formData.append('overview', overview);
-        formData.append('storageImage', file);
+        formData.append('newName', storageName);
+        formData.append('newOverview', overview);
+        formData.append('newStorageImage', file);
 
         try {
             const response = await updateStorage(id, userId, formData);
-            console.log('성공:', response);
+            console.log('결과:', response);
             alert("제목, 소개글이 수정되었습니다.");
         } catch (error) {
             console.error('Error:', error);

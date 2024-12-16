@@ -45,10 +45,14 @@ export const deleteMyWatchList = async (storageId, userId) => {
 
 export const updateStorage = async (storageId, userId, formData) => {
     try {
-        const response = await request.put(`/api/update-name/${storageId}?userId=${userId}`, formData);
+        const response = await request.put(`/api/update/${storageId}?userId=${userId}`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        });
         console.log('updateStorage:', response.data);
         return response.data;
-    } catch (error) {
+    } catch (e) {
         console.log(`[updateStorage] >> ${e}`);
     }
 };
