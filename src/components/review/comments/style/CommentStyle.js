@@ -3,6 +3,7 @@ import { colors } from '../../../../global/globalStyle';
 
 export const CommentListContainer = styled.div`
   display: block;
+  width: 100%;
   justify-items: center;
   padding-top: 3.75rem;
 
@@ -135,6 +136,7 @@ export const IconCheckLiked = styled.div`
 export const AddCommentContainer = styled.div`
   display: block;
   padding-top: 3rem;
+  padding-right: 1.5rem;
   justify-items: flex-end;
 
   .comment__wrap {
@@ -184,6 +186,21 @@ export const AddCommentContainer = styled.div`
   .button__icon {
     font-size: 1.4rem;
     transform: rotate(90deg);
+  }
+`;
+
+export const EmptyComments = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 32.5rem;
+  caret-color: transparent;
+
+  .line {
+    display: flex;
+    width: 100%;
+    height: 0.05rem;
+    background-color: ${colors.cement_gray};
   }
 `;
 

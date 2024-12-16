@@ -11,7 +11,7 @@ const ReviewImage = () => {
         <ImageContainer className="ImageContainer">
           <div className="inner__section">
             <div className="text__date">{new Date(reviewData.createdAt).toLocaleDateString()}</div>
-            <img className="image__thumbnail" src={reviewData.reviewImageUrl} alt="썸네일 이미지" />
+            <img className="image__thumbnail" src={reviewData.reviewImage} alt="썸네일 이미지" />
           </div>
         </ImageContainer>
       )}

@@ -6,14 +6,16 @@ import ReviewBody from '../../../components/review/photo/ReviewBody';
 import CommentList from '../../../components/review/comments/CommentList';
 import { usePhotoReview } from '../../../stores/review/PhotoReviewStore';
 import { useQuery } from '@tanstack/react-query';
+import { useParams } from 'react-router-dom';
 
 const PhotoReviewDetail = () => {
   const { reviewData, setReviewData } = usePhotoReview();
+  const { id } = useParams();
 
   const { data } = useQuery({
     queryKey: ['photoReviewDetail'],
     queryFn: async () => {
-      return await setReviewData(1);
+      return await setReviewData(id);
     },
     staleTime: 1000 * 10,
   });

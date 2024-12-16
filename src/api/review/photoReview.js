@@ -11,6 +11,7 @@ export const apiGetPhtoReview = async (id) => {
     return response.data;
   } catch (e) {
     console.log(`[ apiGetPhtoReview ] >> ${e}`);
+    window.location.href = `/error`;
   }
   return '';
 };
