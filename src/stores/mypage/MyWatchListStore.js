@@ -1,27 +1,28 @@
 import { create } from 'zustand';
-import { getMyWatchList } from '../../api/mypage/myWatchList';
+import { getMyWatchList, patchSwitchPublic } from '../../api/mypage/myWatchList';
 
 export const useMyWatchList = create((set) => ({
   myWatchList: [],
-  setMyWatchList: () => {
+  setMyWatchList: async (userId) => {
     set({ isLoading: true, error: null, message: null });
     try {
-      console.log(`[ setMyWatchList ]`);
-      const response = getMyWatchList();
-      set({ myWatchList: response });
-      return response;
+      console.log(`[ setMyWatchlist ]`);
+      const response = await getMyWatchList(userId);
+      set({ myWatchList: response.response, isLoading: false});
     } catch (e) {
-      set({ error: '[ setMyWatchList ] >> error', isLoading: false });
+      set({ error: '[ setMyWatchlist] >> error', isLoading: false});
     }
   },
 
-  setIsPublic: (id, state) => {
+  setIsPublic: async (storageId, userId) => {
     set({ isLoading: true, error: null, message: null });
     try {
       console.log(`[ setIsPublic ]`);
-      handleChangePublic(id, state);
+      const switchResponse = await patchSwitchPublic(storageId, userId);
+      set({ isLoading: false });
+      return switchResponse.status;
     } catch (e) {
-      set({ error: '[ setMyWatchList ] >> error', isLoading: false });
+      set({ error: '[ setIsPublic ] >> error', isLoading: false });
     }
-  },
+  }
 }));

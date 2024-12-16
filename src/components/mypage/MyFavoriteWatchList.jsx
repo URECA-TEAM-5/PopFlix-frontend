@@ -4,24 +4,25 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import { CarouselButton, Contatiner, ItemInfo, Movie, MovieImage, MovieInfo, Movies, NullDiv, TitleDiv, WatchListItem, WatchListItemWrapper } from './style/MyFavoriteWatchList';
 import { useEffect, useRef, useState } from 'react';
-import { useFavoriteStore } from '../../stores/mypage/MyFavoriteWatchListStore';
-import { data } from '../../components/mypage/data/myFavoriteStorage';
+import { useMyFavoriteWatchList } from '../../stores/mypage/MyFavoriteWatchListStore';
 
 const MyFavoriteWatchList = () => {
-    const { favoriteData, setFavoriteData } = useFavoriteStore();
+    const { myFavoriteWatchList, setMyFavoriteWatchList, setStorageLike } = useMyFavoriteWatchList();
     const isLoaded = useRef(false);
+
+    const userId = 1;
 
     useEffect(() => {
         if (!isLoaded.current) {
             isLoaded.current = true;
-            setFavoriteData(data);
+            setMyFavoriteWatchList(userId);
         }
-    }, [setFavoriteData]);
+    }, [userId, setMyFavoriteWatchList]);
 
     const [currentIndex, setCurrentIndex] = useState(0);
 
     const handleNext = () => {
-        if (currentIndex < favoriteData.length - 1) {
+        if (currentIndex < myFavoriteWatchList.length - 1) {
             setCurrentIndex(currentIndex + 1);
         }
     };
@@ -32,13 +33,18 @@ const MyFavoriteWatchList = () => {
         }
     };
 
+    const handleLikeToggle = async (storageId) => {
+        await setStorageLike(storageId, userId);
+        setMyFavoriteWatchList(userId);
+    };
+
     return (
         <>
             <TitleDiv>
                 <FontAwesomeIcon icon={faHeart} />
                 <span className="bold"> 관심있는 WatchList</span>
             </TitleDiv>
-            {favoriteData.length === 0 ? (
+            {myFavoriteWatchList.length === 0 ? (
                 <NullDiv>
                     <p className="regular">좋아요를 누른 Watchlist가 없습니다</p>
                     <Link to="/watchlist">
@@ -53,21 +59,24 @@ const MyFavoriteWatchList = () => {
                         </CarouselButton>
                     )}
                     <WatchListItemWrapper>
-                        <WatchListItem key={favoriteData[currentIndex].id}>
+                        <WatchListItem key={myFavoriteWatchList[currentIndex].id}>
                             <ItemInfo>
-                                <Link to={`/watchlist/${favoriteData[currentIndex].id}`} className="none">
-                                    {favoriteData[currentIndex].storageName}
+                                <Link to={`/watchlist/${myFavoriteWatchList[currentIndex].id}`} className="none">
+                                    {myFavoriteWatchList[currentIndex].storageName}
                                 </Link>
                                 <div>
-                                    <span className="gapSpan">{favoriteData[currentIndex].creatorNickname}</span>
-                                    <span className="gapSpan">총 {favoriteData[currentIndex].movieCount}편</span>
-                                    <FontAwesomeIcon className="gapSpan" icon={favoriteData[currentIndex].liked ? solidheart : faHeart} />
+                                    <span className="gapSpan">{myFavoriteWatchList[currentIndex].creatorNickname}</span>
+                                    <span className="gapSpan">총 {myFavoriteWatchList[currentIndex].movieCount}편</span>
+                                    <FontAwesomeIcon
+                                        className={`gapSpan ${myFavoriteWatchList[currentIndex].liked ? 'liked' : ''}`}
+                                        icon={myFavoriteWatchList[currentIndex].liked ? solidheart : faHeart}
+                                        onClick={() => handleLikeToggle(myFavoriteWatchList[currentIndex].id)} />
                                 </div>
                             </ItemInfo>
                             <Movies>
-                                {favoriteData[currentIndex].movies.slice(0, 4).map((movie) => (
+                                {myFavoriteWatchList[currentIndex].movies.slice(0, 4).map((movie) => (
                                     <Movie key={movie.id}>
-                                        <MovieImage src={movie.poster} alt={movie.title} />
+                                        <MovieImage src={movie.poster} alt={movie.title} loading='lazy' />
                                         <MovieInfo>
                                             <h4>{movie.title}</h4>
                                             <span>{movie.genres.map(genre => genre.split(' (')[0]).join(' / ')}</span>
@@ -77,7 +86,7 @@ const MyFavoriteWatchList = () => {
                             </Movies>
                         </WatchListItem>
                     </WatchListItemWrapper>
-                    {currentIndex < favoriteData.length - 1 && (
+                    {currentIndex < myFavoriteWatchList.length - 1 && (
                         <CarouselButton className="next" onClick={handleNext}>
                             <FontAwesomeIcon icon={faAngleRight} />
                         </CarouselButton>
