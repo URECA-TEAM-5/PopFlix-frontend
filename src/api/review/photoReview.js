@@ -1,9 +1,18 @@
 import request from '../axios';
 import { sample_data } from '../../components/review/data/photo-review-sample';
 
-export const getReviewById = (id) => {
-  console.log(`[ getReviewById ]`);
-  return sample_data.find((item) => item.reviewId === id);
+const GET_PHOTO_REVIEW = '/api/photo-reviews/';
+
+export const apiGetPhtoReview = async (id) => {
+  console.log(`[ apiGetPhtoReview ]`);
+  try {
+    const response = await request.get(GET_PHOTO_REVIEW + id);
+    console.log(response.data);
+    return response.data;
+  } catch (e) {
+    console.log(`[ apiGetPhtoReview ] >> ${e}`);
+  }
+  return '';
 };
 
 export const handleCommentLike = (id, state) => {

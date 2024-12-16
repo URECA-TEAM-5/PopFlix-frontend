@@ -7,7 +7,7 @@ import AddComment from './AddComment';
 const CommentList = ({ reviewData }) => {
   return (
     <>
-      {reviewData && (
+      {reviewData.comments && (
         <CommentListContainer className="comment-list-container">
           <div className="inner__section">
             <CommentHeader />

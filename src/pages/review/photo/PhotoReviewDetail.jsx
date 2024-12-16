@@ -6,7 +6,6 @@ import ReviewBody from '../../../components/review/photo/ReviewBody';
 import CommentList from '../../../components/review/comments/CommentList';
 import { usePhotoReview } from '../../../stores/review/PhotoReviewStore';
 import { useQuery } from '@tanstack/react-query';
-import LoadingSpinner from '../../../components/suspense/LoadingSpinner';
 
 const PhotoReviewDetail = () => {
   const { reviewData, setReviewData } = usePhotoReview();
@@ -21,16 +20,14 @@ const PhotoReviewDetail = () => {
 
   return (
     <>
-      <Suspense fallback={<LoadingSpinner />}>
-        {data && (
-          <PhotoReviewContainer className="photo-review-container">
-            <ReviewHeader title={'리뷰'} subTitle={reviewData.user.nickname} />
-            <ReviewImage />
-            <ReviewBody />
-            <CommentList reviewData={reviewData} />
-          </PhotoReviewContainer>
-        )}
-      </Suspense>
+      {data && (
+        <PhotoReviewContainer className="photo-review-container">
+          <ReviewHeader title={'리뷰'} subTitle={reviewData.user.nickname} />
+          <ReviewImage />
+          <ReviewBody />
+          <CommentList reviewData={reviewData} />
+        </PhotoReviewContainer>
+      )}
     </>
   );
 };

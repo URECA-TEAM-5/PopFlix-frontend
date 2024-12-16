@@ -1,13 +1,13 @@
 import { create } from 'zustand';
-import { getReviewById, handleCommentLike } from '../../api/review/photoReview';
+import { apiGetPhtoReview, handleCommentLike } from '../../api/review/photoReview';
 
 export const usePhotoReview = create((set) => ({
   reviewData: '',
-  setReviewData: (id) => {
+  setReviewData: async (id) => {
     set({ isLoading: true, error: null, message: null });
     try {
       console.log(`[ setReviewData ]`);
-      const response = getReviewById(id);
+      const response = await apiGetPhtoReview(id);
       set({ reviewData: response });
       return response;
     } catch (e) {
