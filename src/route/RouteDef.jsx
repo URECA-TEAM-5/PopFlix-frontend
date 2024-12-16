@@ -12,6 +12,7 @@ import MyPage from '../pages/mypage/Mypage';
 import WatchListEditPage from '../pages/watchlist/WatchListEditPage';
 
 import MovieListPage from '../pages/movie/MovieListPage';
+import SearchResult from '../pages/search/SearchResult';
 const MainScreens = {
   NotFound: {
     path: '*',
@@ -60,7 +61,11 @@ const MainScreens = {
   MovieList: {
     path: '/movieList',
     element: <MovieListPage />,
-  }
+  },
+  SearchResult: {
+    path: '/searchResult/:keyword',
+    element: <SearchResult />,
+  },
 };
 
 export const AppRouteDef = {
