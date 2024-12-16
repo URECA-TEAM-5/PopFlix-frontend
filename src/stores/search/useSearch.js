@@ -3,12 +3,13 @@ import { apiGetSearchMovies } from '../../api/search/search';
 
 export const useSearch = create((set) => ({
   searchResponse: '',
-  searchByKeyword: (keyword) => {
+  searchByKeyword: async (keyword) => {
     set({ isLoading: true, error: null, message: null });
     try {
       console.log(`[ searchByKeyword ]`);
-      const response = apiGetSearchMovies(keyword);
-      set({ searchResponse: response });
+      const response = await apiGetSearchMovies(keyword);
+      console.log(response);
+      set({ isLoading: false, searchResponse: response });
     } catch (e) {
       set({ error: '[ searchByKeyword ] >> error', isLoading: false });
     }

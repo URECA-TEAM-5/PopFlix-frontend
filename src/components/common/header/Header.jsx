@@ -1,20 +1,20 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { HeaderContainer } from './style/HeaderStyle';
 import MenuItem from './MenuItem';
 import HeaderIconSection from './HeaderIconSection';
 import { useHeader } from '../../../stores/common/HeaderStore';
 import Search from '../search/Search';
-import { useSearch } from '../../../stores/search/useSearch';
 
 const Header = () => {
   const { keyword, setKeyword } = useHeader();
-  const { searchByKeyword } = useSearch();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    alert(keyword);
-    searchByKeyword(keyword);
-  };
+  const handleSubmit = useCallback(
+    async (e) => {
+      e.preventDefault();
+      window.location.href = `/searchResult/${keyword}`;
+    },
+    [keyword]
+  );
 
   return (
     <HeaderContainer className="bold">
