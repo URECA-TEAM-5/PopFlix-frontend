@@ -21,6 +21,7 @@ export const MovieDetailContainer = styled.div`
 export const GenreContainer = styled.div`
   display: flex;
   justify-content: center;
+  gap: 0.625rem;
 `;
 export const GenreButton = styled.button`
   border-color: ${colors.space_gray};
@@ -40,4 +41,10 @@ export const MovieImage = styled.img`
 
 export const MovieOverview = styled.div`
   width: 100%;
+`;
+export const MovieCast = styled.div`
+display: flex;
+flex-direction: row;
+  width: 100%;
+  gap: 1rem;
 `;
