@@ -35,6 +35,7 @@ export const WatchListItemWrapper = styled.div`
     display: flex;
     justify-content: center;
     width: 90%;
+    height: 12rem;
 `;
 
 export const WatchListItem = styled.div`
@@ -70,13 +71,15 @@ export const ItemInfo = styled.div`
     .gapSpan {
         font-size: 0.938rem;
     }
+    .liked {
+        color: red;
+    }
 `;
 
 export const Movies = styled.div`
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
-    padding-top: 1rem;
     width: 100%;
 `;
 
@@ -100,6 +103,7 @@ export const MovieInfo = styled.div`
     justify-content: center;
     padding-left: 1rem;
     font-size: 0.875rem;
+    word-break: keep-all;
 `;
 
 export const CarouselButton = styled.button`

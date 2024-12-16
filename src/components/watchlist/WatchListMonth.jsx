@@ -1,8 +1,8 @@
 import { Box, Grid2 } from '@mui/material';
-import { useEffect, useMemo, useState } from 'react';
-import { data } from './data/monthData';
+import { useEffect, useState } from 'react';
 import { WatchMonthContainer } from './style/WatchListMonth';
 import { colors } from '../../global/globalStyle';
+import { getWatchlistMonthlyTop } from '../../api/watchlist/watchlist';
 
 const WatchListMonth = () => {
     const Colors = [
@@ -10,45 +10,32 @@ const WatchListMonth = () => {
         { boxcolor: "#f44280", deepcolor: "#d1336A" },
         { boxcolor: "#a442f4", deepcolor: "#8937cb" },
     ];
-
-    const [month, setMonth] = useState([]);
+    const [monthlyTopData, setMonthlyTopData] = useState(null);
+    const year = new Date().getFullYear();
+    const month = new Date().getMonth() + 1;
 
     useEffect(() => {
-        setMonth(data);
-    }, []);
-
-    const filterMonth = useMemo(() => {
-        return month.reduce((acc, item) => {
-            const { storage, movies } = item;
-            const { id: storage_id, storageName: storage_name, storageImage: storage_image } = storage;
-
-            if (!acc[storage_id]) {
-                acc[storage_id] = {
-                    storage_id,
-                    storage_name,
-                    storage_image,
-                    movies: [],
-                };
+        const fetchWatchlistMonthlyTop = async () => {
+            try {
+                const data = await getWatchlistMonthlyTop(year, month);
+                setMonthlyTopData(data);
+            } catch (error) {
+                setError(error);
             }
+        };
 
-            movies.forEach(movie => {
-                const { posterPath, title } = movie;
-                acc[storage_id].movies.push({ posterPath, title });
-            });
-
-            return acc;
-        }, {});
-    }, [month]);
+        fetchWatchlistMonthlyTop();
+    }, [year, month]);
 
     return (
         <WatchMonthContainer>
             <h4 className="extra-bold title">이 달의 인기 WatchList를 알려드려요!</h4>
             <Grid2 container spacing={3} sx={{ justifyContent: "center", width: "100%" }}>
-                {Object.values(filterMonth).map((data, index) => {
+                {monthlyTopData && monthlyTopData.map((data, index) => {
                     const { boxcolor, deepcolor } = Colors[index] || Colors[0];
                     return (
                         <Grid2
-                            key={data.storage_id}
+                            key={data.id}
                             xs={12} sm={6}
                             sx={{
                                 display: "flex",
@@ -73,13 +60,13 @@ const WatchListMonth = () => {
                                     },
                                 }}
                             >
-                                <p className="boxP">{data.storage_name}</p>
+                                <p className="boxP">{data.storageName}</p>
                                 <div>
                                     <ul className="boxUl">
                                         {data.movies.slice(0, 3).map((movie, index) => (
                                             <li key={index} className="boxLi">
-                                                <img className="boxImage" src={movie.posterPath} alt={movie.title} loading="lazy" />
-                                                <span className="regular boxSpan">{movie.title}</span>
+                                                <img className="boxImage" src={movie.poster} alt={movie.movieTitle} loading="lazy" />
+                                                <span className="regular boxSpan">{movie.movieTitle}</span>
                                             </li>
                                         ))}
                                     </ul>

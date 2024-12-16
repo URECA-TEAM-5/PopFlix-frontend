@@ -8,9 +8,6 @@ export const TiTleDiv = styled.div`
     align-items: center;
     width: 100%;
     height: 3rem;
-    .editBtnDiv {
-        padding-right: 1rem;
-    }
     button {
         width: 3rem;
         background-color: ${colors.orange};
@@ -31,6 +28,7 @@ export const MovieDiv = styled.div`
     gap: 3rem;
     width: 100%;
     padding-top: 1rem;
+    text-align: center;
     .movieImg {
         width: 6.25rem;
         height: 6.25rem;
@@ -39,18 +37,70 @@ export const MovieDiv = styled.div`
     }
     .centerDiv {
         display: flex;
+        flex-direction: column;
         justify-content: center;
-        gap: 0.5rem;
+        align-items: center;
+        gap: 0.2rem;
         button {
             border: 0;
             background-color: transparent;
             color: ${colors.cement_gray};
             cursor: pointer;
-            font-size: 0.875rem;
-
+            font-size: 0.8rem;
+            &:hover {
+                color: ${colors.orange};
+            }
             &:focus {
                 outline: none;
             }
         }
+    }
+`;
+
+export const AddMovieDiv = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding-top: 2rem;
+    .searchDiv {
+        width: 25rem;
+        padding-bottom: 2rem;
+    }
+    .addMovieList{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 3rem;
+        width: 100%;
+        text-align: center;
+    }
+    .centerDiv {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 0.2rem;
+        button {
+            border: 0;
+            background-color: transparent;
+            color: ${colors.cement_gray};
+            cursor: pointer;
+            font-size: 1.2rem;
+            &:hover {
+                color: ${colors.orange};
+            }
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+    .addMovieImg {
+        width: 6.25rem;
+        height: 6.25rem;
+        border-radius: 0.313rem;
+        object-fit: cover;
     }
 `;

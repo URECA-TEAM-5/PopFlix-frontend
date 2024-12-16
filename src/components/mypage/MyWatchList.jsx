@@ -1,38 +1,73 @@
 import { faFolder, faSquarePlus } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ImageGrid, Placeholder, PosterImage, TitleDiv, ToggleDiv, WatchListContainer, WatchListItem, WatchListItemDiv } from './style/MyWatchList';
 import { useMyWatchList } from '../../stores/mypage/MyWatchListStore';
-import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
 import NewFolderModal from '../myWatchlistModal/NewFolderModal';
+import LoadingSpinner from '../suspense/LoadingSpinner';
+import { deleteMyWatchList } from '../../api/mypage/myWatchList';
 
 const MyWatchList = () => {
     const [open, setOpen] = useState(false);
+    const { myWatchList, setMyWatchList, setIsPublic, isLoading } = useMyWatchList();
+
+    const userId = 1;
+
+    useEffect(() => {
+        setMyWatchList(userId);
+    }, [userId, setMyWatchList]);
 
     const handleClickOpen = () => setOpen(true);
 
-    const { myWatchList, setMyWatchList, setIsPublic } = useMyWatchList();
-
-    const { data } = useQuery({
-        queryKey: ['getMyWatchList'],
-        queryFn: async () => setMyWatchList(),
-        staleTime: 1000 * 60,
-    });
-
-    const handleIsPublic = async (id, currentPublicStatus) => {
-        console.log('[ handleIsPublic ]');
-        const updatedState = !currentPublicStatus;
-        await setIsPublic(id, updatedState);
-    };
-
-    const handleCopy = () => {
-        const url = window.location.href;
+    const handleCopy = (listId, isPublic) => {
+        if (!isPublic) {
+            alert('먼저 공개로 설정해주세요.');
+            return;
+        }
+        const url = `${window.location.origin}/watchlist/${listId}`;
         navigator.clipboard.writeText(url).then(() => {
             alert('링크를 복사했어요. 원하는 곳에 공유하세요!');
         }).catch(err => {
             console.error('복사 실패 ', err);
         });
+    };
+
+    const handleTogglePublic = async (storageId, isPublic, movieCount) => {
+        if (movieCount === 0) {
+            alert('편집을 눌러서 영화를 추가해주세요!');
+            return;
+        }
+        const status = await setIsPublic(storageId, userId);
+        if (status === 200) {
+            if (isPublic) {
+                alert('비공개로 변경되었습니다');
+                setMyWatchList(userId);
+            } else {
+                alert('공개로 변경되었습니다');
+                setMyWatchList(userId);
+            }
+        } else {
+            alert('변경에 실패했습니다.');
+        }
+    };
+
+    const handleDelete = async (storageId) => {
+        console.log(storageId)
+        if (window.confirm('WatchList를 삭제하시겠습니까?')) {
+            try {
+                const response = await deleteMyWatchList(storageId, userId);
+                if (response.status === 200) {
+                    alert('삭제되었습니다.');
+                    setMyWatchList(userId);
+                } else {
+                    alert('삭제 실패했습니다. 다시 시도해주세요.');
+                }
+            } catch (error) {
+                console.error(error);
+                alert('삭제 중 오류가 발생했습니다. 다시 시도해주세요.');
+            }
+        }
     };
 
     return (
@@ -48,7 +83,9 @@ const MyWatchList = () => {
                 </div>
             </TitleDiv>
             <WatchListContainer>
-                {data?.length > 0 ? (
+                {isLoading ? (
+                    <LoadingSpinner />
+                ) : myWatchList?.length > 0 ? (
                     myWatchList.map((list) => (
                         <WatchListItemDiv key={list.id}>
                             <WatchListItem>
@@ -68,22 +105,16 @@ const MyWatchList = () => {
                                         <h4 className="storageName regular">{list.storageName}</h4>
                                     )}
                                     <ToggleDiv>
-                                        {list.movies.length > 0 && (
-                                            <>
-                                                <span>공개여부</span>
-                                                <input
-                                                    role="switch"
-                                                    type="checkbox"
-                                                    checked={list.isPublic}
-                                                    onChange={() => handleIsPublic(list.id, list.isPublic)}
-                                                />
-                                            </>
-                                        )}
-                                        <Link to={`/watchlist/${list.id}/edit`} className="linkPoint">편집</Link>
-                                        {list.movies.length > 0 && (
-                                            <span className="point" onClick={handleCopy}>공유</span>
-                                        )}
-                                        <span className="point">삭제</span>
+                                        <span>공개여부</span>
+                                        <input
+                                            role="switch"
+                                            type="checkbox"
+                                            checked={list.isPublic}
+                                            onChange={() => handleTogglePublic(list.id, list.isPublic, list.movieCount)}
+                                        />
+                                        <Link to={`/watchlist/${list.id}/edit`} className="linkPoint point">편집</Link>
+                                        <span className={`point ${list.movieCount === 0 ? 'disabled' : ''}`} onClick={() => handleCopy(list.id, list.isPublic)}>공유</span>
+                                        <span className="point" onClick={() => handleDelete(list.id)}>삭제</span>
                                     </ToggleDiv>
                                 </div>
                             </WatchListItem>

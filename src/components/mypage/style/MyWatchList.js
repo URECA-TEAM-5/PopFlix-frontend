@@ -90,6 +90,10 @@ export const WatchListItem = styled.div`
             color: ${colors.orange};
         }
     }
+    .disabled {
+        pointer-events: none;
+        opacity: 0.5;
+    }
 `;
 export const ToggleDiv = styled.div`
     display: flex;
