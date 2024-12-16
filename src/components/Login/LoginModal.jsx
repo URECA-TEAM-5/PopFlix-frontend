@@ -8,7 +8,7 @@ const LoginModal = ({ isOpen, setIsOpen }) => {
     window.location.href = 'https://popflix.org/oauth2/authorization/naver';
   };
 
-  const handleGoogleLogin = () => {
+  const handleGoogleLogin = async () => {
     window.location.href = 'https://popflix.org/oauth2/authorization/google';
   };
 

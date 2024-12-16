@@ -13,7 +13,6 @@ const AddUserInfo = () => {
 
   // 프로필 사진 상태
   const [profileImage, setProfileImage] = useState(null);
-
   // 닉네임 상태
   const [nickname, setNickname] = useState('');
   // 닉네임 사용가능 여부
@@ -102,32 +101,42 @@ const AddUserInfo = () => {
     // FormData 생성
     const formData = new FormData();
 
+    // Blob URL 또는 기본 이미지 경로 확인
+    const isBlob = profileImage && profileImage.startsWith('blob:');
+
     // 데이터 생성
     const userData = {
       nickname: nickname,
-      genreId: genre_sample.find((item) => item.genre === selectedGenre).id,
+      genreId: genre_sample.find((item) => item.genre === selectedGenre)?.id,
       gender: gender,
-      defaultProfileImage: typeof profileImage === 'string' ? profileImage : null, // 기본 이미지 또는 null
+      defaultProfileImage: isBlob ? null : profileImage, // Blob URL이면 null로 설정
     };
 
-    formData.append('data', JSON.stringify(userData)); // JSON 데이터 추가
+    formData.append('data', JSON.stringify(userData));
 
-    // 업로드된 파일 추가 (기본 이미지가 아닌 경우)
-    if (typeof profileImage !== 'string') {
-      formData.append('profileImage', profileImage);
+    // Blob URL 또는 업로드된 파일 처리
+    if (isBlob) {
+      try {
+        const blobData = await fetch(profileImage).then((res) => res.blob()); // Blob 데이터를 서버로 보낼 준비
+        formData.append('profileImage', blobData, 'profileImage.jpg'); // Blob을 파일로 전송
+      } catch (error) {
+        console.error('Blob 데이터를 처리하는 중 오류 발생:', error);
+        alert('프로필 사진을 처리하는 중 오류가 발생했습니다.');
+        return;
+      }
     }
-    /*
+
     // FormData 내용 확인
     console.log('FormData 내용:');
     for (let pair of formData.entries()) {
       console.log(pair[0], pair[1]);
     }
-      */
 
     try {
-      // API 요청 (주석 처리된 signup 함수 활성화 필요)
+      // API 요청
       const response = await signup(formData);
-      console.log('회원가입 성공:', response.data);
+      console.log('회원가입 성공:', response);
+      alert('회원가입이 완료되었습니다.');
     } catch (error) {
       console.error('회원가입 실패:', error);
       alert('회원가입 중 오류가 발생했습니다.');
