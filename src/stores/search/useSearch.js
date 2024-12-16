@@ -3,6 +3,7 @@ import { apiGetSearchMovies } from '../../api/search/search';
 
 export const useSearch = create((set) => ({
   searchResponse: '',
+  setSearchResponse: (newResponse) => set({ searchResponse: newResponse }),
   searchByKeyword: async (keyword) => {
     set({ isLoading: true, error: null, message: null });
     try {
