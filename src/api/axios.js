@@ -5,64 +5,52 @@ const request = axios.create({
   withCredentials: true, // 쿠키 포함 설정
 });
 
-// AccessToken을 쿠키에서 읽는 함수
-const getAccessTokenFromCookie = () => {
-  const cookies = document.cookie.split('; ');
-  const accessTokenCookie = cookies.find((cookie) => cookie.startsWith('access_token='));
-  return accessTokenCookie ? accessTokenCookie.split('=')[1] : null;
+let AccessToken = null; // 메모리상에 AccessToken을 저장
+
+// AccessToken 발급 함수
+const refreshAccessToken = async () => {
+  try {
+    const response = await request.post('/auth/refresh');
+    AccessToken = response.data.response.accessToken;
+    console.log('새로운 AccessToken 발급 성공:', AccessToken);
+    return AccessToken;
+  } catch (error) {
+    console.error('AccessToken 발급 실패:', error);
+    throw error;
+  }
 };
 
-// 요청 인터셉터: 매 요청마다 최신 AccessToken 읽기
+// 요청 인터셉터
 request.interceptors.request.use(
   (config) => {
-    const accessToken = getAccessTokenFromCookie(); // 쿠키에서 AccessToken 읽기
-    if (accessToken) {
-      config.headers.Authorization = `Bearer ${accessToken}`;
+    console.log('현재 AccessToken:', AccessToken); // AccessToken이 null인지 확인
+    if (AccessToken) {
+      config.headers.Authorization = `Bearer ${AccessToken}`; // AccessToken이 있으면 헤더에 추가
     }
     return config;
   },
   (error) => Promise.reject(error)
 );
 
-// 응답 인터셉터: 401 에러 처리 및 AccessToken 갱신
+// 응답 인터셉터
 request.interceptors.response.use(
-  (response) => response,
+  (response) => response, // 성공 응답 그대로 반환
   async (error) => {
     if (error.response && error.response.status === 401) {
+      console.warn('401 Unauthorized. AccessToken 재발급 시도 중...');
       try {
-        // AccessToken 갱신 요청 (RefreshToken 사용)
-        await axios.post('https://popflix.org/auth/refresh', {}, { withCredentials: true });
-
-        // 새로 발급받은 AccessToken 쿠키에서 읽기
-        const newAccessToken = getAccessTokenFromCookie();
-
-        // 실패했던 요청에 새로운 AccessToken 추가
-        error.config.headers.Authorization = `Bearer ${newAccessToken}`;
-
-        // 실패했던 요청 재시도
-        return request(error.config);
+        // AccessToken 재발급 시도
+        AccessToken = await refreshAccessToken();
+        error.config.headers.Authorization = `Bearer ${AccessToken}`;
+        return axios.request(error.config); // 재요청
       } catch (refreshError) {
-        console.error('AccessToken 갱신 실패:', refreshError);
-
-        // 갱신 실패 시 로그아웃 처리
+        console.error('AccessToken 재발급 실패. 로그아웃 필요.');
+        // 로그아웃 처리 또는 메인 페이지로 리다이렉션
         window.location.href = '/';
-        return Promise.reject(refreshError);
       }
     }
-    return Promise.reject(error);
+    return Promise.reject(error); // 다른 에러는 그대로 반환
   }
 );
-
-// AccessToken 초기화 함수
-export const initializeAccessToken = async () => {
-  try {
-    // RefreshToken으로 AccessToken 갱신
-    await axios.post('https://popflix.org/auth/refresh', {}, { withCredentials: true });
-    console.log('AccessToken 초기화 완료');
-  } catch (error) {
-    console.error('AccessToken 초기화 실패:', error);
-    window.location.href = '/login'; // 로그인 페이지로 이동
-  }
-};
 
 export default request;
