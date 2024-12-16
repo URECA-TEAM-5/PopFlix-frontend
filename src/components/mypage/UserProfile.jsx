@@ -1,6 +1,7 @@
 import { Box, Button } from '@mui/material';
 import React from 'react';
 import { colors } from '../../global/globalStyle';
+import { Link } from 'react-router-dom';
 
 const UserProfile = () => {
   return (
@@ -37,7 +38,9 @@ const UserProfile = () => {
             },
           }}
         >
-          <p className="regular">편집</p>
+          <Link to="/updateUserInfo">
+            <p className="regular">편집</p>
+          </Link>
         </Button>
       </Box>
     </Box>
