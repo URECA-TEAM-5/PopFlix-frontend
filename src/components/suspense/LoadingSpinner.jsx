@@ -4,7 +4,7 @@ import { SpinnerContainer } from './style/SpinnerStyle';
 const LoadingSpinner = () => {
   return (
     <SpinnerContainer>
-      <h1>데이터를 불러오는 중 입니다</h1>
+      <img src="/assets/loadingPopcorn.gif" alt="Spinner" />
     </SpinnerContainer>
   );
 };

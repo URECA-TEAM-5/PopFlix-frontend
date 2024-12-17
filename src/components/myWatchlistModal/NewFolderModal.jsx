@@ -3,14 +3,18 @@ import { Dialog } from '@mui/material';
 import { BtnDiv, DiaglogBtn } from './style/NewFolderModal';
 import { colors } from '../../global/globalStyle';
 import NewFolderInput from './NewFolderInput';
+import { useMyWatchList } from '../../stores/mypage/MyWatchListStore';
+import { postNewFolder } from '../../api/mypage/myWatchList';
 
 const NewFolderModal = ({ open, setOpen }) => {
+    const { setMyWatchList } = useMyWatchList();
     const [error, setError] = useState();
     const [storageNameLength, setStorageNameLength] = useState(0);
     const [storageOverviewLength, setStorageOverviewLength] = useState(0);
     const storageNameRef = useRef(null);
     const storageOverviewRef = useRef(null);
 
+    const userId = 1;
     const NAME_MAX_LENGTH = 30;
     const OVERVIEW_MAX_LENGTH = 100;
 
@@ -20,10 +24,11 @@ const NewFolderModal = ({ open, setOpen }) => {
         setOpen(false);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const storageName = storageNameRef.current.value;
         const storageOverview = storageOverviewRef.current.value;
+
         if (!storageName || !storageOverview) {
             setError('내용을 입력해주세요.');
             return;
@@ -31,7 +36,24 @@ const NewFolderModal = ({ open, setOpen }) => {
         console.log('이름:', storageName, '소개:', storageOverview);
         setError('');
 
-        handleClose();
+        const folderData = {
+            userId: userId,
+            storageName: storageName,
+            storageOverview: storageOverview,
+            storageImage: null,
+        };
+
+        try {
+            const result = await postNewFolder(folderData);
+            if (result) {
+                console.log('폴더 생성 :', result);
+                handleClose();
+                setMyWatchList(userId);
+            }
+        } catch (error) {
+            setError('폴더 생성에 실패했어요.');
+            console.error('폴더 생성 오류:', error);
+        }
     };
 
     const handleInput = (e) => {

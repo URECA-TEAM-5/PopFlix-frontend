@@ -36,6 +36,35 @@ export const StorageContent = styled.div`
     .semiTitle {
         width: 100%;
     }
+    .storageImgDiv {
+        width: 11.25rem;
+        height: 11.25rem;
+        border-radius: 0.313rem;
+    }
+    .fileInput {
+        display: none;
+    }
+`;
+
+export const InputFileDiv = styled.div`
+    width: 11.25rem;
+    height: 11.25rem;
+    border-radius: 0.313rem;
+    background-color: ${colors.cement_gray};
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    .cameraIcon {
+        width: 2.5rem;
+    }
+`;
+
+export const StorageImage = styled.img`
+    width: 11.25rem;
+    height: 11.25rem;
+    object-fit: cover;
+    border-radius: 0.313rem;
 `;
 
 export const Blank = styled.div`

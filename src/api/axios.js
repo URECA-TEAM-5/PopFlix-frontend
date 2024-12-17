@@ -41,15 +41,16 @@ request.interceptors.response.use(
       try {
         // AccessToken 재발급 시도
         AccessToken = await refreshAccessToken();
+        console.log('AccessToken:', AccessToken);
         error.config.headers.Authorization = `Bearer ${AccessToken}`;
-        return axios.request(error.config); // 재요청
+        //return axios.request(error.config); // 재요청
       } catch (refreshError) {
         console.error('AccessToken 재발급 실패. 로그아웃 필요.');
         // 로그아웃 처리 또는 메인 페이지로 리다이렉션
         window.location.href = '/';
       }
     }
-    return Promise.reject(error); // 다른 에러는 그대로 반환
+    //return Promise.reject(error); // 다른 에러는 그대로 반환
   }
 );
 
