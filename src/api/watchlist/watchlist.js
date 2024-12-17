@@ -3,8 +3,8 @@ import request from '../axios';
 export const getWatchlistMonthlyTop = async (year, month) => {
     try {
         const response = await request.get(`/api/storages/monthly-top?year=${year}&month=${month}`);
-        console.log('getWatchlistMonthlyTop:', response);
-        return response;
+        console.log('getWatchlistMonthlyTop:', response.data);
+        return response.data;
     } catch (e) {
         console.log(`[getWatchlistMonthlyTop] >> ${e}`);
     }

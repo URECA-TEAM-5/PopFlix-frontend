@@ -17,9 +17,12 @@ const WatchListMonth = () => {
 
     useEffect(() => {
         const fetchWatchlistMonthlyTop = async () => {
-            const response = await getWatchlistMonthlyTop(year, month);
-            if (response && response.data) {
-                setMonthlyTopData(response.data);
+            const data = await getWatchlistMonthlyTop(year, month);
+            if (data.response) {
+                const sortedData = data.response
+                    .sort((a, b) => b.movieCount - a.movieCount)
+                    .slice(0, 3);
+                setMonthlyTopData(sortedData);
                 setError(false);
             } else {
                 setMonthlyTopData([]);
