@@ -2,7 +2,7 @@ import { styled } from 'styled-components';
 import { colors } from '../../../../global/globalStyle';
 
 export const HeaderContainer = styled.div`
-  position: sticky;
+  max-width: 57.5rem;
   width: 100%;
   height: 5rem;
   display: flex;
@@ -72,7 +72,7 @@ export const IconSection = styled.div`
   min-height: 1.2rem;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
 
   .inner__section {
@@ -80,8 +80,9 @@ export const IconSection = styled.div`
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: end;
     align-items: center;
+    gap: 1rem;
   }
 
   .icon {

@@ -2,7 +2,7 @@ import { styled } from 'styled-components';
 import { colors } from '../../../../global/globalStyle';
 
 export const FooterConatiner = styled.div`
-  max-width: 75rem;
+  max-width: 57.5rem;
   width: 100%;
   height: 9.7rem;
   line-height: 1.2;

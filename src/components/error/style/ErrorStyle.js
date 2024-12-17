@@ -6,7 +6,7 @@ export const ErrorContainer = styled.div`
   justify-items: center;
   align-content: center;
   width: 100%;
-  min-height: 90rem;
+  min-height: 55rem;
   caret-color: transparent;
 `;
 
