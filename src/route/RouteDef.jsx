@@ -13,6 +13,7 @@ import WatchListEditPage from '../pages/watchlist/WatchListEditPage';
 
 import MovieListPage from '../pages/movie/MovieListPage';
 import SearchResult from '../pages/search/SearchResult';
+import Welcome from '../pages/welcome/Welcome';
 const MainScreens = {
   NotFound: {
     path: '*',
@@ -65,6 +66,10 @@ const MainScreens = {
   SearchResult: {
     path: '/searchResult/:keyword',
     element: <SearchResult />,
+  },
+  Welcome: {
+    path: '/welcome',
+    element: <Welcome />,
   },
 };
 
