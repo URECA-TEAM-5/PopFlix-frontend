@@ -29,7 +29,7 @@ const Header = () => {
         />
         <MenuItem path="/" title="전체" />
         <MenuItem path="/watchlist" title="WatchList" />
-        <MenuItem path="/" title="리뷰왕" />
+        <MenuItem path="/welcome" title="리뷰왕" />
       </div>
       <div className="search__section">
         <Search val={keyword} setVal={setKeyword} handleClick={handleSubmit} />
