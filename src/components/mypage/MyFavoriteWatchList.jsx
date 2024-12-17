@@ -48,6 +48,7 @@ const MyFavoriteWatchList = () => {
             </TitleDiv>
             {myFavoriteWatchList.length === 0 ? (
                 <NullDiv>
+                    <img src="/assets/review_null.svg" alt="좋아요 워치리스트 없음" />
                     <p className="regular">좋아요를 누른 Watchlist가 없습니다</p>
                     <Link to="/watchlist">
                         <button className="regular">보러가기</button>

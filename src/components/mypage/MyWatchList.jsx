@@ -1,7 +1,7 @@
 import { faFolder, faSquarePlus } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
-import { ImageGrid, Placeholder, PosterImage, TitleDiv, ToggleDiv, WatchListContainer, WatchListItem, WatchListItemDiv } from './style/MyWatchList';
+import { ImageGrid, MyWatchListNullDiv, Placeholder, PosterImage, TitleDiv, ToggleDiv, WatchListContainer, WatchListItem, WatchListItemDiv } from './style/MyWatchList';
 import { useMyWatchList } from '../../stores/mypage/MyWatchListStore';
 import { Link } from 'react-router-dom';
 import NewFolderModal from '../myWatchlistModal/NewFolderModal';
@@ -123,7 +123,10 @@ const MyWatchList = () => {
                         </WatchListItemDiv>
                     ))
                 ) : (
-                    <span>새로운 WatchList를 추가하세요!</span>
+                    <MyWatchListNullDiv>
+                        <img src="/assets/popcorn_score_null.svg" alt="생성한 워치리스트 없음" />
+                        <p className="regular">New Folder를 눌러서 WatchList를 추가해주세요!</p>
+                    </MyWatchListNullDiv>
                 )}
             </WatchListContainer >
             <NewFolderModal open={open} setOpen={setOpen} />

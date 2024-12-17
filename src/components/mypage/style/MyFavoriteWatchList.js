@@ -8,10 +8,16 @@ export const TitleDiv = styled.div`
 
 export const NullDiv = styled.div`
     display: flex;
-    flex-direction: row;
-    gap: 1rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    img {
+        width: 4rem;
+    }
     button {
-        width: 4.5rem;
+        margin-top: 0.5rem;
+        width: 5.5rem;
+        height: 2rem;
         border: none;
         outline: none;
         background-color: ${colors.navy_gray} ;
