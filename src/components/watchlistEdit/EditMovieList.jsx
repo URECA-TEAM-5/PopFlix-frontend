@@ -11,7 +11,9 @@ import { useSearch } from "../../stores/search/useSearch";
 const EditMovieList = () => {
     const { myWatchList, setMyWatchList } = useMyWatchList();
     const { id } = useParams();
-    const userId = 1;
+    // const userId = 1;
+    const user = JSON.parse(localStorage.getItem('user'));
+    const userId = user ? user.userId : null;
     const watchListItem = myWatchList.find((list) => String(list.id) === String(id));
     const [keyword, setKeyword] = useState('');
 

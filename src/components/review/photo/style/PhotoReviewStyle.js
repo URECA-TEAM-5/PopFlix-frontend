@@ -3,12 +3,16 @@ import { colors } from '../../../../global/globalStyle';
 
 export const PhotoReviewContainer = styled.div`
   display: block;
+  max-width: 51.25rem;
+  width: 100%;
+  justify-items: center;
   min-height: 90vh;
 `;
 
 export const HeaderContainer = styled.div`
   display: block;
-  padding: 0 2.375rem;
+  width: 100%;
+  padding: 0 0.5rem;
   caret-color: transparent;
 
   .inner__section {
@@ -84,6 +88,7 @@ export const ImageContainer = styled.div`
 
 export const BodyContainer = styled.div`
   display: block;
+  width: 100%;
 
   .inner__section {
     padding: 3.375rem 2.375rem 0rem 2.375rem;
