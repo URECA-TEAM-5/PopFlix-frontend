@@ -72,7 +72,16 @@ const PoppleTip = ({ movieId,userId }) => {
             <PoppleText>
               <p>{poppleTip.title}</p>
               <p style={{ fontSize: '0.8125rem' }}>
-                {poppleTip.text.split(/(등록|작성|[0-9.]+점)/g).map((part, index) =>
+                {poppleTip.text.split(/(등록|편집|작성|[0-9.]+점)/g).map((part, index) =>
+                part === '편집' ? (
+                  <span
+                    key={index}
+                    onClick={handleRatingOpen}
+                    style={{ color: '#F09605', cursor: 'pointer' }}
+                  >
+                    {part}
+                  </span>
+                ) :
                   part === '등록' ? (
                     <span
                       key={index}

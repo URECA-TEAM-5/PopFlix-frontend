@@ -20,7 +20,7 @@ const RatingModal = ({ open, onClose, movieId }) => {
 
     const requestData = {
       userId: 23, // 사용자 ID
-      movieId: 1, // 영화 ID
+      movieId: movieId, // 영화 ID
       rating: selectedRating, // 선택된 점수
     };
   
