@@ -8,17 +8,16 @@ export const WatchAllContainer = styled.div`
     justify-content: center;
     align-items: center;
     .listHeader {
-        max-width: 100%;
-        min-width: 90%;
+        width: 100%;
         padding-top: 3rem;
     }
     .pointBtn {
         width: 5rem;
-        height: 2.5rem;
-        background-color: transparent;
+        height: 2.4rem;
+        background-color: ${colors.orange};
         color: ${colors.white};
         border-radius: 1.875rem;
-        border: 0.063rem solid ${colors.orange};
+        border: 0;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -45,9 +44,14 @@ export const WatchAllContainer = styled.div`
         display: flex;
         justify-content: center;
         padding: 2rem 0;
-        max-width: 100%;
-        min-width: 95%;
+        width: 100%;
     }
+`;
+
+export const WatchListCardDiv = styled.div`
+    display: flex;
+    flex: 1;
+    justify-content: center;
 `;
 
 export const WatchListCard = styled.div`
@@ -58,7 +62,7 @@ export const WatchListCard = styled.div`
     background-color: transparent;
     cursor: pointer;
     &:hover {
-        transition: box-shadow 0.1s;
+        transition: box-shadow 0.4s;
         box-shadow: 0 0 0.1rem 0.1rem rgb(132, 134, 141, 0.8);
     }
     &:focus {

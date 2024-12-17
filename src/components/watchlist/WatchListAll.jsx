@@ -45,7 +45,7 @@ const WatchListAll = () => {
     return (
         <WatchAllContainer>
             <div className="listHeader">
-                <WatchListFilter selectedFilter={selectedFilter} sortData={updateFilter} />
+                <WatchListFilter selectedFilter={selectedFilter} sortData={updateFilter} totalCount={filteredData.length} />
             </div>
             <Grid2 className="listContainer" container spacing={4}>
                 {currentItems.map((data) => (

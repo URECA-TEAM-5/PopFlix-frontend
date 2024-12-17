@@ -1,4 +1,5 @@
 import { styled } from 'styled-components';
+import { colors } from '../../../global/globalStyle';
 
 export const WatchMonthContainer = styled.div`
     width: 100%;
@@ -7,13 +8,11 @@ export const WatchMonthContainer = styled.div`
     justify-content: center;
     align-items: center;
     .banner {
-        max-width: 100%;
-        min-width: 80%;
+        width: 100%;
         padding: 2% 0;
     }
     .title {
-        max-width: 100%;
-        min-width: 98%;
+        width: 100%;
         text-align: left;
         letter-spacing: 0.01rem;
         padding-bottom: 1.5rem;
@@ -53,5 +52,19 @@ export const WatchMonthContainer = styled.div`
         width: 73%;
         padding-left: 0.7rem;
         word-wrap: break-word;
+    }
+`;
+
+export const ErrorDiv = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    p {
+        color: ${colors.cement_gray};
+    }
+    img {
+        width: 5rem;
+        object-fit: cover;
     }
 `;
