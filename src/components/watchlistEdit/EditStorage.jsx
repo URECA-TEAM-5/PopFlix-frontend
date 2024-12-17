@@ -9,7 +9,9 @@ import { updateStorage } from '../../api/mypage/myWatchList';
 const EditStorage = () => {
     const { myWatchList } = useMyWatchList();
     const { id } = useParams();
-    const userId = 1;
+    // const userId = 1;
+    const user = JSON.parse(localStorage.getItem('user'));
+    const userId = user ? user.userId : null;
 
     const watchListItem = myWatchList.find((list) => String(list.id) === String(id));
     const storageNameRef = useRef(watchListItem.storageName);
