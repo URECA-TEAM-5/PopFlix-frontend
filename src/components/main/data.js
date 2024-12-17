@@ -321,7 +321,8 @@ export const moviesData = [
   },
 ];
 export const poppleTipData = (movie) => [
-  { id: 0, icon: popcornGPA, title: movie.title + '의 팝콘 지수는', text: movie.rating+ '점 입니다!' },
+  { id: 0, icon: popcornGPA, title: movie.title + '의 팝콘 지수는', text: movie.
+    averageRating+ '점 입니다!' },
   { id: 1, icon: popcornScoreNull, title: '아직 평가를 남겨주시지 않았군요?', text: '등록을 클릭해주세요!' },
   { id: 2, icon: reviewNull, title: '작성하신 포토리뷰가 없네요!', text: '작성을 클릭해주세요!' },
 ];

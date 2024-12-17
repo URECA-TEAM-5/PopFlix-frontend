@@ -30,8 +30,8 @@ const MovieIntro = ({ movieId }) => {
     <MovieIntroContainer>
       <ReviewHeader title={movieDetail.title} subTitle={movieDetail.release_date} />
       <GenreContainer>
-        {genres.map((genre) => (
-          <GenreButton key={genre.id}>{genre.name}</GenreButton>
+        {genres.map((genre,index) => (
+          <GenreButton key={index}>{genre.name}</GenreButton>
         ))}
       </GenreContainer>
       <MovieDetailContainer>
@@ -39,8 +39,8 @@ const MovieIntro = ({ movieId }) => {
         <MovieOverview>
           <MovieCast>
             <p>#{director ? director.name : ''}</p>
-            {casts.map((cast) => (
-              <p key={cast.id}>#{cast.name}</p>
+            {casts.map((cast,index) => (
+              <p key={index}>#{cast.name}</p>
             ))}
           </MovieCast>
           <br />

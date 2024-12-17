@@ -8,9 +8,9 @@ const MovieDetailPage = () =>{
     return (
         <div>
             <MovieIntro movieId={id}/>
-            {/* <PoppleTip movieId={id}/> */}
-            {/* <ShortReview movieId={id}/> */}
-            {/* <MovieReviewTabs movieId={id}/> */}
+            <PoppleTip movieId={id}/>
+            <ShortReview movieId={id}/> 
+             <MovieReviewTabs movieId={id}/>
         </div>
     )
 }

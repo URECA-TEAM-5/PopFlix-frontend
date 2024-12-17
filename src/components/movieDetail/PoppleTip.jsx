@@ -1,16 +1,31 @@
 import { PoppleTipContainer, PoppleCard, PoppleIcon, PoppleText, PoppleCardContainer } from './style/PoppleTip';
 import { poppleTipData, moviesData } from '../main/data';
+import { getMovieRating } from '../../api/movieDetail/movieDetail';
 import PhotoReviewModal from './PhotoReviewModal';
 import RatingModal from './RatingModal';
 import { useState } from 'react';
+import { useEffect } from 'react';
 
 const PoppleTip = ({ movieId }) => {
-  const movie = moviesData[movieId - 1];
+  // const movie = moviesData[movieId - 1];
+  const [movie, setMovie] = useState([]);
   const popple = poppleTipData[movie];
   
   const [openPhotoReviewModal, setOpenPhotoReviewModal] = useState(false);
   const [openRatingModal, setOpenRatingModal] = useState(false);
 
+  const fetchMovieRating = async() =>{
+    try {
+      const response = await getMovieRating(movieId);
+      console.log("레이팅 : ",response.response);
+      setMovie(response.response);
+    } catch (error) {
+      
+    }
+  }
+  useEffect(() => {
+    fetchMovieRating();
+  },[])
   // 핸들러 함수 정의
   const handlePhotoReviewOpen = () => {
     setOpenPhotoReviewModal(true);
