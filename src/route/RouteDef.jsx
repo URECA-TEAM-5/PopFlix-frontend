@@ -48,7 +48,7 @@ const MainScreens = {
     element: <WatchListEditPage />,
   },
   PhotoReview: {
-    path: '/photo-review',
+    path: '/photo-review/:id',
     element: <PhotoReviewDetail />,
   },
   MovieDetail: {

@@ -46,3 +46,24 @@ export const ErrorButtonContainer = styled.div`
   align-items: end;
   min-height: 5.875rem;
 `;
+
+export const ErrorEmptyWrapper = styled.div`
+  display: block;
+  height: 100%;
+  justify-items: center;
+  align-content: center;
+
+  .img__empty {
+    width: 10rem;
+    height: 10rem;
+  }
+
+  .text__message {
+    font-size: 1.5rem;
+  }
+
+  .text__description {
+    font-size: 1rem;
+    color: ${colors.cement_gray};
+  }
+`;
