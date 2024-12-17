@@ -14,7 +14,10 @@ const NewFolderModal = ({ open, setOpen }) => {
     const storageNameRef = useRef(null);
     const storageOverviewRef = useRef(null);
 
-    const userId = 1;
+    // const userId = 1;
+    const user = JSON.parse(localStorage.getItem('user'));
+    const userId = user ? user.userId : null;
+
     const NAME_MAX_LENGTH = 30;
     const OVERVIEW_MAX_LENGTH = 100;
 

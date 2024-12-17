@@ -12,7 +12,9 @@ const MyWatchList = () => {
     const [open, setOpen] = useState(false);
     const { myWatchList, setMyWatchList, setIsPublic, isLoading } = useMyWatchList();
 
-    const userId = 1;
+    // const userId = 1;
+    const user = JSON.parse(localStorage.getItem('user'));
+    const userId = user ? user.userId : null;
 
     useEffect(() => {
         setMyWatchList(userId);

@@ -10,7 +10,9 @@ const MyFavoriteWatchList = () => {
     const { myFavoriteWatchList, setMyFavoriteWatchList, setStorageLike } = useMyFavoriteWatchList();
     const isLoaded = useRef(false);
 
-    const userId = 1;
+    // const userId = 1;
+    const user = JSON.parse(localStorage.getItem('user'));
+    const userId = user ? user.userId : null;
 
     useEffect(() => {
         if (!isLoaded.current) {
