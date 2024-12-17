@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useEffect, useRef } from 'react';
 import { PhotoReviewContainer } from '../../../components/review/photo/style/PhotoReviewStyle';
 import ReviewHeader from '../../../components/review/photo/ReviewHeader';
 import ReviewImage from '../../../components/review/photo/ReviewImage';

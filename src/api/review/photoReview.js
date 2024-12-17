@@ -30,7 +30,7 @@ export const apiPostAddComment = async (data) => {
   console.log(`[ apiPostAddComment ]`);
   console.log(data);
   try {
-    const response = await request.get(ADD_COMMENT, data);
+    const response = await request.post(ADD_COMMENT, data);
     console.log(response.data);
     return response.data;
   } catch (e) {
