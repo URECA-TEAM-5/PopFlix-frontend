@@ -11,10 +11,6 @@ const MovieIntro = ({ movieId }) => {
   const fetchMovieDetail = async () => {
     try {
       const response = await getMovieDetail(movieId);
-      console.log(response);
-      console.log(response.response);
-      console.log('director: ', response.response.directors[0].name);
-      console.log('cast', response.response.cast?.slice(0, 3));
       setGenres(response.response.genre_ids);
       setMovieDetail(response.response);
       setDirector(response.response.directors?.[0] || null);
