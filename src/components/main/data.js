@@ -320,11 +320,87 @@ export const moviesData = [
     overview: '미래 기술을 배경으로 한 SF 스릴러.',
   },
 ];
-export const poppleTipData = (movie) => [
-  { id: 0, icon: popcornGPA, title: movie.title + '의 팝콘 지수는', text: movie.rating+ '점 입니다!' },
-  { id: 1, icon: popcornScoreNull, title: '아직 평가를 남겨주시지 않았군요?', text: '등록을 클릭해주세요!' },
-  { id: 2, icon: reviewNull, title: '작성하신 포토리뷰가 없네요!', text: '작성을 클릭해주세요!' },
-];
+export const poppleTipData = (movie, userId) => {
+  console.log(userId); // userId가 제대로 출력되는지 확인
+  console.log('영화 정보',movie);
+  let userHasRated = false;  // let으로 변경
+  let ratingForUser = null; 
+  let rating = null;
+  if (movie && Array.isArray(movie.ratings)) {
+   ratingForUser = movie.ratings.find(rating => rating.userId === userId);
+    if (ratingForUser) {
+      console.log("찾은 평가:", ratingForUser);
+      userHasRated = true;
+      if(ratingForUser.rating == '1'){
+        rating = '별로예요';
+      }
+      else if(ratingForUser.rating == '2'){
+        rating = '그저그래요';
+      }
+      else if(ratingForUser.rating == '3'){
+        rating = '좋아요';
+      }
+      else if(ratingForUser.rating == '4'){
+        rating = '재밌어요';
+      }
+      else {
+        rating = '최고예요';
+      }
+    } else {
+      console.log("해당 userId로 등록된 평가는 없습니다.");
+    }
+  } else {
+    console.log("ratings 배열이 존재하지 않거나 비어있습니다.");
+  }
+  return [
+    { 
+      id: 0, 
+      icon: popcornGPA, 
+      title: movie.title + '의 팝콘 지수는', 
+      text: movie.averageRating + '점 입니다!' 
+    },
+    { 
+      id: 1, 
+      icon: popcornScoreNull, 
+      title: userHasRated ? `이 영화에 "${rating}"라고 평가하셨어요.`: '아직 평가를 남겨주시지 않았군요?', 
+      text: userHasRated ? '수정이나 삭제를 원하신다면 편집을 클릭해주세요!' : '등록을 클릭해주세요!' 
+    },
+    { 
+      id: 2, 
+      icon: reviewNull, 
+      title: '작성하신 포토리뷰가 없네요!', 
+      text: '작성을 클릭해주세요!' 
+    }
+  ];
+};
+// export const poppleTipData = (movie, userId) => {
+//   console.log(userId);
+//   console.log(movie);
+//   const userRating = movie.ratings.find(rating => rating.userId === userId);
+//   const userHasRated = userRating !== undefined; // 평가가 있으면 true
+
+
+//   return [
+//     {
+//       id: 0,
+//       icon: popcornGPA,
+//       title: `${movie.title}의 팝콘 지수는`,
+//       text: `${movie.averageRating}점 입니다!`
+//     },
+//     {
+//       id: 1,
+//       icon: popcornScoreNull,
+//       title: userHasRated ? `이 영화에 "${userRating.rating}"라고 평가하셨어요.`: '아직 평가를 남겨주시지 않았군요?',
+//       text: userHasRated ? '수정이나 삭제를 원하신다면 편을을 클릭해주세요!' : '등록을 클릭해주세요!'
+//     },
+//     {
+//       id: 2,
+//       icon: reviewNull,
+//       title: '작성하신 포토리뷰가 없네요!',
+//       text: '작성을 클릭해주세요!'
+//     },
+//   ];
+// };
 export const shortReviewData = [
   {id:0,review:'재밌어요!',userName:'성현짱짱'},
   {id:1,review:'여자친구랑 보기 좋아요!',userName:'강석석'},

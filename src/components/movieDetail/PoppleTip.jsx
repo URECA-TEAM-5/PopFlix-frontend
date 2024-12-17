@@ -1,16 +1,35 @@
 import { PoppleTipContainer, PoppleCard, PoppleIcon, PoppleText, PoppleCardContainer } from './style/PoppleTip';
 import { poppleTipData, moviesData } from '../main/data';
+import { getMovieRating,addRating } from '../../api/movieDetail/movieDetail';
 import PhotoReviewModal from './PhotoReviewModal';
 import RatingModal from './RatingModal';
 import { useState } from 'react';
+import { useEffect } from 'react';
 
-const PoppleTip = ({ movieId }) => {
-  const movie = moviesData[movieId - 1];
-  const popple = poppleTipData[movie];
+const PoppleTip = ({ movieId,userId }) => {
+  // const user = JSON.parse(localStorage.getItem('user'));
+  // const userId = user.userId;
+  const [movie, setMovie] = useState([]);
+  // const popple = poppleTipData(movie,userId);
   
   const [openPhotoReviewModal, setOpenPhotoReviewModal] = useState(false);
   const [openRatingModal, setOpenRatingModal] = useState(false);
 
+  const fetchMovieRating = async() =>{
+    try {
+      const response = await getMovieRating(movieId);
+      console.log("레이팅 : ",response.response);
+      // console.log("로그인한 유저 : ",user.userId);
+      console.log("로그인한 유저 2: ",userId);
+      setMovie(response.response);
+    } catch (error) {
+      
+    }
+  }
+  
+  useEffect(() => {
+    fetchMovieRating();
+  },[])
   // 핸들러 함수 정의
   const handlePhotoReviewOpen = () => {
     setOpenPhotoReviewModal(true);
@@ -44,7 +63,7 @@ const PoppleTip = ({ movieId }) => {
         <p style={{ fontWeight: 'bold' }}>팝플 Tip💫</p>
       </PoppleText>
       <PoppleCardContainer>
-        {poppleTipData(movie).map((poppleTip) => (
+        {poppleTipData(movie,userId).map((poppleTip) => (
           <PoppleCard key={poppleTip.id}>
             <PoppleIcon>
               <img src={poppleTip.icon} alt="icon" />
@@ -89,11 +108,13 @@ const PoppleTip = ({ movieId }) => {
         open={openPhotoReviewModal}
         onClose={handlePhotoReviewClose}
         onSubmit={handlePhotoReviewSubmit}
+        movieId={movieId}
       />
       <RatingModal
         open={openRatingModal}
         onClose={handleRatingClose}
         onSubmit={handleRatingSubmit}
+        movieId={movieId}
       />
     </PoppleTipContainer>
   );
