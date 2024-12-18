@@ -7,6 +7,7 @@ const PhotoReviewModal = ({ open, onClose, onSubmit, userId,movieId }) => {
   const [image, setImage] = useState(null);
   const [text, setText] = useState('');
   const [data, setData] = useState([]);
+  const [imagePreview, setImagePreview] = useState();
   const fileInputRef = useRef(null); // 파일 입력 필드 참조
 
   const fetchPhotoReview = async () => {
@@ -20,11 +21,17 @@ const PhotoReviewModal = ({ open, onClose, onSubmit, userId,movieId }) => {
     };
   
     const formData = new FormData();
-    formData.append('data', JSON.stringify(requestData));
-    console.log("전송 데이터:", requestData); // 데이터 확인용 로그
-  
+    // formData.append('review',text );
+    // formData.append('reviewImage',image );
+    // formData.append('userId',userId );
+    // formData.append('movieId',movieId );
+    formData.append('data',JSON.stringify(requestData));
+    console.log("전송 데이터:", formData); // 데이터 확인용 로그
+    for (const [key, value] of formData.entries()) {
+      console.log(`${key}: ${value}`);
+    }
     try {
-      const response = await createPhotoReview(requestData);
+      const response = await createPhotoReview(formData);
       console.log("포토 리뷰 작성 완료:", response);
       setData({ text: text, image: image });
     console.log(data);
@@ -45,9 +52,10 @@ const PhotoReviewModal = ({ open, onClose, onSubmit, userId,movieId }) => {
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     if (file) {
+      setImage(URL.createObjectURL(file));
       const reader = new FileReader();
       reader.onloadend = () => {
-        setImage(reader.result);
+        setImagePreview(reader.result)
       };
       reader.readAsDataURL(file);
     }
@@ -134,7 +142,7 @@ const PhotoReviewModal = ({ open, onClose, onSubmit, userId,movieId }) => {
         >
           {image ? (
             <img
-              src={image}
+              src={imagePreview}
               alt="첨부된 이미지"
               style={{
                 width: 150,
