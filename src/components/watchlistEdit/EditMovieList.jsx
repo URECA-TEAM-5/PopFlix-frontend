@@ -55,7 +55,6 @@ const EditMovieList = () => {
     };
 
     const handleSubmit = (e) => {
-        e.preventDefault();
         console.log(keyword);
         searchByKeyword(keyword);
     };
