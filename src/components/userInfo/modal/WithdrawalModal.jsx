@@ -3,9 +3,9 @@ import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Divider } fr
 import { colors } from '../../../global/globalStyle';
 import { WithdrawalModalButtonHover, WithdrawalModalContent } from './style/UserInfoModalStyle';
 
-const WithdrawalModal = ({ open, onClose }) => {
+const WithdrawalModal = ({ open, onClose, onSignout }) => {
   const handleConfirm = () => {
-    onClose();
+    onSignout();
   };
 
   return (
