@@ -10,11 +10,11 @@ export const EmptyResultWrapper = styled.div`
   animation: slideIn 0.5s ease-out forwards;
 
   .text__message {
-    font-size: 1.5rem;
+    font-size: ${(props) => (props.$fontSize ? `${props.$fontSize}rem` : '1.5rem')};
   }
 
   .text__description {
-    font-size: 1rem;
+    font-size: ${(props) => (props.$fontSize ? `${props.$fontSize - 0.5}rem` : '1rem')};
     color: ${colors.cement_gray};
   }
 `;

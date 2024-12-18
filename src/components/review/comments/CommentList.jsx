@@ -18,6 +18,7 @@ const CommentList = ({ reviewData }) => {
                   <CommentItem
                     isBest={index < 1 && true}
                     commentId={data.commentId}
+                    // profileImageUrl={data.user.profileImageUrl}  <<< api 수정 후 반영 예정
                     nickname={data.user.nickname}
                     createdAt={data.createdAt}
                     comment={data.comment}
