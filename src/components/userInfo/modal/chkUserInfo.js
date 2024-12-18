@@ -1,5 +1,5 @@
 export const chkUserInfo = () => {
-  if (sessionStorage.getItem('accessToekn')) {
+  if (sessionStorage.getItem('accessToken')) {
     console.log(`[ accessToken ] >> ${sessionStorage.getItem('accessToken')}`);
     return JSON.parse(sessionStorage.getItem('user'));
   }
