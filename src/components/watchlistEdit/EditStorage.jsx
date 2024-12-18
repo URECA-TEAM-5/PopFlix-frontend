@@ -1,25 +1,33 @@
-import { faBoxArchive, faMicrophone } from '@fortawesome/free-solid-svg-icons';
+import { faBoxArchive, faMicrophone, faPen } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useMyWatchList } from '../../stores/mypage/MyWatchListStore';
 import { Link, useParams } from 'react-router-dom';
-import { Blank, BlankGap, ContentLine, EditBtnDiv, Input, InputFileDiv, StorageContent, StorageImage, Textarea, TiTleDiv } from './style/EditStorage';
+import { Blank, BlankGap, ContentLine, CurrentFileDiv, EditBtnDiv, Input, InputFileDiv, StorageContent, StorageImage, Textarea, TiTleDiv } from './style/EditStorage';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { updateStorage } from '../../api/mypage/myWatchList';
+import { useAlert } from '../../stores/alert/AlertStore';
+import AlertMessage from '../common/alert/AlertMessage';
 
 const EditStorage = () => {
-    const { myWatchList } = useMyWatchList();
     const { id } = useParams();
-    // const userId = 1;
+    const { myWatchList } = useMyWatchList();
+
     const user = JSON.parse(localStorage.getItem('user'));
     const userId = user ? user.userId : null;
 
     const watchListItem = myWatchList.find((list) => String(list.id) === String(id));
+
     const storageNameRef = useRef(watchListItem.storageName);
     const overviewRef = useRef(watchListItem.overview);
     const fileInputRef = useRef(null);
-    const [storageImage, setStorageImage] = useState(null);
+
     const NAME_MAX_LENGTH = 30;
     const OVERVIEW_MAX_LENGTH = 100;
+    const [storageImage, setStorageImage] = useState(null);
+
+    const [alertType, setAlertType] = useState('');
+    const [alertMessage, setAlertMessage] = useState('');
+    const { handleAlertOpen, handleAlertClose } = useAlert();
 
     const handleInput = (e) => {
         const { name, value } = e.target;
@@ -59,35 +67,46 @@ const EditStorage = () => {
         const file = fileInputRef.current?.files[0];
 
         const formData = new FormData();
-
-        formData.append('newName', storageName);
-        formData.append('newOverview', overview);
-        formData.append('newStorageImage', file);
+        formData.append('storageImage', file);
 
         try {
-            const response = await updateStorage(id, userId, formData);
-            console.log('결과:', response);
-            alert("제목, 소개글이 수정되었습니다.");
+            await updateStorage(id, userId, storageName, overview, formData);
+            setAlertType('success');
+            setAlertMessage('제목, 소개글이 수정되었습니다.');
+            handleAlertOpen();
         } catch (error) {
             console.error('Error:', error);
-            alert("수정에 실패했습니다. 다시 시도해주세요.");
+            setAlertType('error');
+            setAlertMessage('수정에 실패했습니다. 다시 시도해주세요.');
+            handleAlertOpen();
         }
     };
 
     return (
         <>
+            <AlertMessage
+                type={alertType}
+                message={alertMessage}
+                handleClose={() => handleAlertClose()}
+            />
             <TiTleDiv>
-                <h4>WatchList 수정</h4>
-                <Link to="/mypage"><button className="bold">취소</button></Link>
+                <span className="title extra-bold">✏️ WatchList 폴더를 수정해주세요</span>
+                <Link to="/mypage"><button className="bold">X</button></Link>
             </TiTleDiv>
             <StorageContent>
                 <div className="storageImgDiv" onClick={() => fileInputRef.current?.click()}>
                     {storageImage ? (
                         <StorageImage src={storageImage} alt="보관함 이미지" />
                     ) : (
-                        <InputFileDiv>
-                            <img className="cameraIcon" src="/assets/camera.svg" alt="파일 업로드 아이콘" />
-                        </InputFileDiv>
+                        watchListItem.storageImage ? (
+                            <CurrentFileDiv>
+                                <img className="currentImg" src={watchListItem.storageImage} alt="기존 이미지" loading="lazy" />
+                            </CurrentFileDiv>
+                        ) : (
+                            <InputFileDiv>
+                                <img className="cameraIcon" src="/assets/camera.svg" alt="파일 업로드 아이콘" />
+                            </InputFileDiv>
+                        )
                     )}
                     <input className="fileInput" type="file" accept="image/*" ref={fileInputRef} onChange={handleUpload} />
                 </div>
@@ -118,8 +137,9 @@ const EditStorage = () => {
                 </div>
             </StorageContent>
             <EditBtnDiv>
-                <button onClick={handleSubmit}>Edit</button>
+                <button className="regular" onClick={handleSubmit}>수정하기</button>
             </EditBtnDiv>
+            <BlankGap></BlankGap>
             <ContentLine></ContentLine>
         </>
     );

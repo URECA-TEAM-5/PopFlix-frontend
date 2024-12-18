@@ -39,7 +39,7 @@ const WatchListMonth = () => {
 
     return (
         <WatchMonthContainer>
-            <h4 className="extra-bold title">이 달의 인기 WatchList를 알려드려요!</h4>
+            <h3 className="extra-bold title">🌟 이 달의 인기 WatchList를 알려드려요!</h3>
             {error ? (
                 <ErrorDiv>
                     <img src="/assets/api_error.svg" alt="api 에러 아이콘" />

@@ -49,7 +49,6 @@ const NewFolderModal = ({ open, setOpen }) => {
         try {
             const result = await postNewFolder(folderData);
             if (result) {
-                console.log('폴더 생성 :', result);
                 handleClose();
                 setMyWatchList(userId);
             }
@@ -74,33 +73,35 @@ const NewFolderModal = ({ open, setOpen }) => {
     };
 
     return (
-        <Dialog
-            open={open}
-            onClose={handleClose}
-            PaperProps={{
-                component: 'form',
-                onSubmit: handleSubmit,
-                style: {
-                    backgroundColor: `${colors.navy_gray}`,
-                    color: `${colors.white}`,
-                }
-            }}
-        >
-            <NewFolderInput
-                storageNameRef={storageNameRef}
-                storageOverviewRef={storageOverviewRef}
-                error={error}
-                NAME_MAX_LENGTH={NAME_MAX_LENGTH}
-                OVERVIEW_MAX_LENGTH={OVERVIEW_MAX_LENGTH}
-                handleInput={handleInput}
-                storageNameLength={storageNameLength}
-                storageOverviewLength={storageOverviewLength}
-            />
-            <BtnDiv className="bold">
-                <DiaglogBtn type="button" onClick={handleClose}>취소</DiaglogBtn>
-                <DiaglogBtn type="submit">생성하기</DiaglogBtn>
-            </BtnDiv>
-        </Dialog>
+        <>
+            <Dialog
+                open={open}
+                onClose={handleClose}
+                PaperProps={{
+                    component: 'form',
+                    onSubmit: handleSubmit,
+                    style: {
+                        backgroundColor: `${colors.navy_gray}`,
+                        color: `${colors.white}`,
+                    }
+                }}
+            >
+                <NewFolderInput
+                    storageNameRef={storageNameRef}
+                    storageOverviewRef={storageOverviewRef}
+                    error={error}
+                    NAME_MAX_LENGTH={NAME_MAX_LENGTH}
+                    OVERVIEW_MAX_LENGTH={OVERVIEW_MAX_LENGTH}
+                    handleInput={handleInput}
+                    storageNameLength={storageNameLength}
+                    storageOverviewLength={storageOverviewLength}
+                />
+                <BtnDiv className="bold">
+                    <DiaglogBtn type="button" onClick={handleClose}>취소</DiaglogBtn>
+                    <DiaglogBtn type="submit">생성하기</DiaglogBtn>
+                </BtnDiv>
+            </Dialog>
+        </>
     );
 };
 

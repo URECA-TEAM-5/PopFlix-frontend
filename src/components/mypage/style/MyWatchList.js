@@ -10,6 +10,9 @@ export const TitleDiv = styled.div`
     .point {
         cursor: pointer;
     }
+    .orangeIcon {
+        color: ${colors.orange};
+    }
 `;
 
 export const WatchListContainer = styled.div`
