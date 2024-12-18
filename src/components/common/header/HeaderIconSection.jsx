@@ -18,9 +18,14 @@ const HeaderIconSection = () => {
           <Link to="/alarm">
             <FontAwesomeIcon className="icon" icon={faBell} size="xl" />
           </Link>
-          {localStorage.getItem('accessToken') ? (
+          {sessionStorage.getItem('accessToken') ? (
             <>
-              <img className="profile" src="/assets/profile_1.svg" alt="profile" onClick={() => setIsMyInfoModalOpen(true)} style={{ cursor: 'pointer' }} />
+              {(() => {
+                const user = JSON.parse(sessionStorage.getItem('user')); // User 정보 가져오기
+                const profileImage = user?.profileImage || user?.data?.defaultProfileImage; // profileImage 우선 사용
+
+                return <img className="profile" src={profileImage} alt="profile" onClick={() => setIsMyInfoModalOpen(true)} style={{ cursor: 'pointer' }} />;
+              })()}
               <MyInfoModal open={isMyInfoModalOpen} onClose={() => setIsMyInfoModalOpen(false)} />
             </>
           ) : (

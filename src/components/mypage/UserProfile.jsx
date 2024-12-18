@@ -13,17 +13,17 @@ const UserProfile = () => {
           height: '6rem',
           borderRadius: '50%',
           backgroundColor: colors.navy_gray,
-          border: `0.0625rem solid ${colors.white}`,
+          border: `0.0625rem solid ${colors.orange}`,
+          overflow: 'hidden',
         }}
       >
-        <img
-          src="/assets/profile_1.svg"
-          alt="User Profile"
-          style={{
-            width: '100%',
-            height: '100%',
-          }}
-        />
+        {' '}
+        {(() => {
+          const user = JSON.parse(sessionStorage.getItem('user')); // User 정보 가져오기
+          const profileImage = user?.profileImage || user?.data?.defaultProfileImage; // profileImage 우선 사용
+
+          return <img className="profile" src={profileImage} alt="profile" style={{ cursor: 'pointer', width: '100%', height: '100%' }} />;
+        })()}
       </Box>
       <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', pl: '2rem', pt: '1.5rem' }}>
         <h3>사용자</h3>
