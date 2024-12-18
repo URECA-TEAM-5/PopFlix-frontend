@@ -12,15 +12,15 @@ const Welcome = () => {
           const userInfoResponse = await request.get('/auth/me');
           const userInfo = userInfoResponse.data.response;
 
-          // 사용자 정보를 localStorage에 저장
-          localStorage.setItem('user', JSON.stringify(userInfo));
+          // 사용자 정보를 sessionStorage에 저장
+          sessionStorage.setItem('user', JSON.stringify(userInfo));
 
           // AccessToken 발급
           const accessTokenResponse = await request.post('/auth/refresh');
           const accessToken = accessTokenResponse.data.response.accessToken;
 
           // AccessToken 저장
-          localStorage.setItem('accessToken', accessToken);
+          sessionStorage.setItem('accessToken', accessToken);
 
           // 모든 작업이 끝나면 /main 페이지로 이동
           window.location.href = '/';
