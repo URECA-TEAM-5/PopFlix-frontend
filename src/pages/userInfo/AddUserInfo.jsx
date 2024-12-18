@@ -137,6 +137,7 @@ const AddUserInfo = () => {
       const response = await signup(formData);
       console.log('회원가입 성공:', response);
       alert('회원가입이 완료되었습니다.');
+      window.location.href = '/welcome'; // 회원가입 성공하면 환영페이지로 이동
     } catch (error) {
       console.error('회원가입 실패:', error);
       alert('회원가입 중 오류가 발생했습니다.');

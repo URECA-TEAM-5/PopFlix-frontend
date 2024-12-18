@@ -7,9 +7,13 @@ import { Link } from 'react-router-dom';
 import NewFolderModal from '../myWatchlistModal/NewFolderModal';
 import LoadingSpinner from '../suspense/LoadingSpinner';
 import { deleteMyWatchList } from '../../api/mypage/myWatchList';
+import { Alert, Snackbar } from '@mui/material';
 
 const MyWatchList = () => {
     const [open, setOpen] = useState(false);
+    const [modalOpen, setModalOpen] = useState(false);
+    const [message, setMessage] = useState('');
+    const [severity, setSeverity] = useState('success');
     const { myWatchList, setMyWatchList, setIsPublic, isLoading } = useMyWatchList();
     const isLoaded = useRef(false);
     // const userId = 1;
@@ -23,54 +27,66 @@ const MyWatchList = () => {
         }
     }, [isLoaded, userId, setMyWatchList]);
 
-    const handleClickOpen = () => setOpen(true);
+    const handleClickOpen = () => setModalOpen(true);
+
+    const showSnackbar = (msg, severity = 'success') => {
+        setMessage(msg);
+        setSeverity(severity);
+        setOpen(true);
+    };
+
+    const handleCloseSnackbar = () => {
+        setOpen(false);
+    };
 
     const handleCopy = (listId, isPublic) => {
         if (!isPublic) {
-            alert('먼저 공개로 설정해주세요.');
+            showSnackbar('먼저 공개로 설정해주세요.', 'error');
             return;
         }
         const url = `${window.location.origin}/watchlist/${listId}`;
         navigator.clipboard.writeText(url).then(() => {
-            alert('링크를 복사했어요. 원하는 곳에 공유하세요!');
+            showSnackbar('링크를 복사했어요. 원하는 곳에 공유하세요!', 'success');
         }).catch(err => {
             console.error('복사 실패 ', err);
+            showSnackbar('복사 실패', 'error');
         });
     };
 
     const handleTogglePublic = async (storageId, isPublic, movieCount) => {
         if (movieCount === 0) {
-            alert('편집을 눌러서 영화를 추가해주세요!');
+            showSnackbar('편집을 눌러서 영화를 추가해주세요!', 'warning');
             return;
         }
         const status = await setIsPublic(storageId, userId);
         if (status === 200) {
             if (isPublic) {
-                alert('비공개로 변경되었습니다');
+                showSnackbar('비공개로 변경되었습니다', 'success');
                 setMyWatchList(userId);
             } else {
-                alert('공개로 변경되었습니다');
+                showSnackbar('공개로 변경되었습니다', 'success');
                 setMyWatchList(userId);
             }
+            setMyWatchList(userId);
         } else {
-            alert('변경에 실패했습니다.');
+            showSnackbar('변경에 실패했습니다.', 'error');
         }
     };
 
     const handleDelete = async (storageId) => {
-        console.log(storageId)
+        console.log(storageId);
         if (window.confirm('WatchList를 삭제하시겠습니까?')) {
             try {
                 const response = await deleteMyWatchList(storageId, userId);
                 if (response.status === 200) {
-                    alert('삭제되었습니다.');
+                    showSnackbar('삭제되었습니다.', 'success');
                     setMyWatchList(userId);
                 } else {
-                    alert('삭제 실패했습니다. 다시 시도해주세요.');
+                    showSnackbar('삭제 실패했습니다. 다시 시도해주세요.', 'error');
                 }
             } catch (error) {
                 console.error(error);
-                alert('삭제 중 오류가 발생했습니다. 다시 시도해주세요.');
+                showSnackbar('삭제 중 오류가 발생했습니다. 다시 시도해주세요.', 'error');
             }
         }
     };
@@ -132,7 +148,20 @@ const MyWatchList = () => {
                     </MyWatchListNullDiv>
                 )}
             </WatchListContainer >
-            <NewFolderModal open={open} setOpen={setOpen} />
+            <Snackbar
+                open={open}
+                autoHideDuration={2000}
+                onClose={handleCloseSnackbar}
+                anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'right'
+                }}
+            >
+                <Alert onClose={handleCloseSnackbar} severity={severity} sx={{ width: '100%' }}>
+                    <span>{message}</span>
+                </Alert>
+            </Snackbar>
+            <NewFolderModal open={modalOpen} setOpen={setModalOpen} />
         </>
     );
 };

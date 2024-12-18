@@ -5,22 +5,29 @@ import { IconSection } from './style/HeaderStyle';
 import { Link } from 'react-router-dom';
 import LoginModal from '../../Login/LoginModal';
 import MyInfoModal from '../../userInfo/modal/MyInfoModal';
+import { chkUserInfo } from '../../userInfo/modal/chkUserInfo';
 
 const HeaderIconSection = () => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isMyInfoModalOpen, setIsMyInfoModalOpen] = useState(false);
-
   return (
     <>
       <IconSection>
         <div className="inner__section">
           <FontAwesomeIcon className="icon" icon={faMoon} size="xl" />
-          <Link to="/alarm">
-            <FontAwesomeIcon className="icon" icon={faBell} size="xl" />
-          </Link>
-          {localStorage.getItem('accessToken') ? (
+          {chkUserInfo() && (
+            <Link to="/alarm">
+              <FontAwesomeIcon className="icon" icon={faBell} size="xl" />
+            </Link>
+          )}
+          {sessionStorage.getItem('accessToken') ? (
             <>
-              <img className="profile" src="/assets/profile_1.svg" alt="profile" onClick={() => setIsMyInfoModalOpen(true)} style={{ cursor: 'pointer' }} />
+              {(() => {
+                const user = JSON.parse(sessionStorage.getItem('user')); // User 정보 가져오기
+                const profileImage = user?.profileImage || user?.data?.defaultProfileImage; // profileImage 우선 사용
+
+                return <img className="profile" src={profileImage} alt="profile" onClick={() => setIsMyInfoModalOpen(true)} style={{ cursor: 'pointer' }} />;
+              })()}
               <MyInfoModal open={isMyInfoModalOpen} onClose={() => setIsMyInfoModalOpen(false)} />
             </>
           ) : (

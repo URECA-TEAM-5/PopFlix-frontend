@@ -42,6 +42,7 @@ request.interceptors.response.use(
         // AccessToken 재발급 시도
         AccessToken = await refreshAccessToken();
         console.log('AccessToken:', AccessToken);
+        sessionStorage.setItem('accessToken', AccessToken);
         error.config.headers.Authorization = `Bearer ${AccessToken}`;
         //return axios.request(error.config); // 재요청
       } catch (refreshError) {

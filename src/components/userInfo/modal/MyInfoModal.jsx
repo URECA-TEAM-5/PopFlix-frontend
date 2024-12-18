@@ -4,7 +4,7 @@ import { MyInfoModalButton, MyInfoModalUserGreet, MyInfoModalUserName } from './
 import request from '../../../api/axios';
 
 export default function MyInfoModal({ open, onClose }) {
-  const storedUserData = localStorage.getItem('user');
+  const storedUserData = sessionStorage.getItem('user');
   const parsedUserData = storedUserData ? JSON.parse(storedUserData) : null;
   const nickname = parsedUserData?.nickname || '';
 
@@ -14,11 +14,11 @@ export default function MyInfoModal({ open, onClose }) {
       await request.post('/auth/logout');
       console.log('로그아웃 성공');
 
-      // localStorage 정보 제거
-      localStorage.removeItem('accessToken');
-      localStorage.removeItem('user');
+      // sessionStorage 정보 제거
+      sessionStorage.removeItem('accessToken');
+      sessionStorage.removeItem('user');
 
-      // 로그인 페이지로 이동
+      // 메인 페이지로 이동
       window.location.href = '/';
     } catch (error) {
       console.error(' 로그아웃 실패:', error);
@@ -34,9 +34,9 @@ export default function MyInfoModal({ open, onClose }) {
         sx: {
           width: '15rem',
           height: '8rem',
-          position: 'absolute',
-          top: '10%',
-          right: '3%',
+          position: 'fix',
+          bottom: '310px',
+          left: '530px',
           m: 0,
           backgroundColor: 'rgba(0, 0, 0, 0.5)',
         },
