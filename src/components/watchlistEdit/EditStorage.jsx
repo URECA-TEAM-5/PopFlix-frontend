@@ -52,12 +52,14 @@ const EditStorage = () => {
         };
     }, [storageImage]);
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
         const storageName = storageNameRef.current.value;
         const overview = overviewRef.current.value;
         const file = fileInputRef.current?.files[0];
 
         const formData = new FormData();
+
         formData.append('newName', storageName);
         formData.append('newOverview', overview);
         formData.append('newStorageImage', file);
