@@ -33,7 +33,7 @@ const MovieIntro = () => {
         <MovieImage src={movieData.poster_path} alt={movieData.title} />
         <MovieOverview>
           <MovieCast>
-            <p>#{movieData.director ? movieData.director[0].name : ''}</p>
+            <p>#{movieData.directors ? movieData.directors[0].name : ''}</p>
             {movieData.cast.slice(0, 3).map((cast, index) => (
               <p key={index}>#{cast.name}</p>
             ))}

@@ -4,14 +4,15 @@ import PhotoReviewModal from './PhotoReviewModal';
 import RatingModal from './RatingModal';
 import { useState } from 'react';
 import { useMovieDetail } from '../../stores/movieDetail/MovieDetailStore';
+import { useEffect } from 'react';
 
 const PoppleTip = ({ movieId, userId }) => {
-  const { ratingData } = useMovieDetail();
+  const { ratingData,setRatingData } = useMovieDetail();
   // const user = JSON.parse(localStorage.getItem('user'));
   // const userId = user.userId;
   // const [movie, setMovie] = useState([]);
   // const popple = poppleTipData(movie,userId);
-
+ 
   const [openPhotoReviewModal, setOpenPhotoReviewModal] = useState(false);
   const [openRatingModal, setOpenRatingModal] = useState(false);
 
@@ -25,9 +26,9 @@ const PoppleTip = ({ movieId, userId }) => {
   //   } catch (error) {}
   // };
 
-  // useEffect(() => {
-  //   fetchMovieRating();
-  // }, []);
+  useEffect(() => {
+
+  },[ratingData])
   // 핸들러 함수 정의
   const handlePhotoReviewOpen = () => {
     setOpenPhotoReviewModal(true);
@@ -48,6 +49,8 @@ const PoppleTip = ({ movieId, userId }) => {
   const handleRatingSubmit = () => {
     console.log('Rating submitted!');
     setOpenRatingModal(false);
+      console.log('setRatingData')
+      setRatingData(movieId);
   };
 
   const handlePhotoReviewSubmit = () => {
@@ -105,8 +108,8 @@ const PoppleTip = ({ movieId, userId }) => {
       </PoppleCardContainer>
 
       {/* 모달 컴포넌트 */}
-      <PhotoReviewModal open={openPhotoReviewModal} onClose={handlePhotoReviewClose} onSubmit={handlePhotoReviewSubmit} movieId={movieId} />
-      <RatingModal open={openRatingModal} onClose={handleRatingClose} onSubmit={handleRatingSubmit} movieId={movieId} />
+      <PhotoReviewModal open={openPhotoReviewModal} onClose={handlePhotoReviewClose} onSubmit={handlePhotoReviewSubmit} movieId={movieId} userId={userId} />
+      <RatingModal open={openRatingModal} onClose={handleRatingClose} onSubmit={handleRatingSubmit} movieId={movieId} userId={userId} />
     </PoppleTipContainer>
   );
 };

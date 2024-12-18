@@ -1,10 +1,10 @@
 import { create } from 'zustand';
-import { getMovieDetail, getMovieRating } from '../../api/movieDetail/movieDetail';
+import { getMovieDetail, getMovieRating,getPhotoReviewsByMovie } from '../../api/movieDetail/movieDetail';
 
 export const useMovieDetail = create((set) => ({
   movieData: '',
   ratingData: '',
-
+  photoReviewData: '',
   setMovieData: async (id) => {
     set({ isLoading: true, error: null, message: null });
     try {
@@ -28,4 +28,16 @@ export const useMovieDetail = create((set) => ({
       set({ error: '[ setRatingData ] >> error', isLoading: false });
     }
   },
+  setPhotoReviewData: async (id) => {
+    set({ isLoading: true, error: null, message: null });
+    try {
+      console.log(`[ getPhotoReviewsByMovie ]`);
+      const response = await getPhotoReviewsByMovie(id);
+      set({ isLoading: false, photoReviewData: response });
+      return response;
+    } catch (e) {
+      set({ error: '[ getPhotoReviewsByMovie ] >> error', isLoading: false });
+    }
+  },
+  
 }));

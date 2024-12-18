@@ -2,10 +2,11 @@ import { Modal, Box, Button } from '@mui/material';
 import { colors } from '../../global/globalStyle';
 import { addRating } from '../../api/movieDetail/movieDetail';
 import { useState } from 'react';
+import { useMovieDetail } from '../../stores/movieDetail/MovieDetailStore';
 
-const RatingModal = ({ open, onClose, movieId }) => {
+const RatingModal = ({ open, onClose,onSubmit, movieId , userId}) => {
   const [selectedRating, setSelectedRating] = useState(null); // 선택된 점수 상태 관리
-
+  const {ratingData,setRatingData} = useMovieDetail();
   // 점수를 선택했을 때 상태 업데이트
   const handleSelectRating = (rating) => {
     setSelectedRating(rating);
@@ -17,9 +18,10 @@ const RatingModal = ({ open, onClose, movieId }) => {
       alert("점수를 선택해주세요.");
       return;
     }
+    
 
     const requestData = {
-      userId: 23, // 사용자 ID
+      userId: userId, // 사용자 ID
       movieId: movieId, // 영화 ID
       rating: selectedRating, // 선택된 점수
     };
@@ -29,14 +31,15 @@ const RatingModal = ({ open, onClose, movieId }) => {
     try {
       const response = await addRating(requestData);
       console.log("팝콘지수 추가 성공:", response);
-      onClose(); // 모달 닫기
+      onSubmit(); // 모달 닫기
     } catch (error) {
-      console.error("팝콘지수 추가 실패:", error);
+      // console.error("팝콘지수 추가 실패:", error.response.data.message);
+      alert(error.response.data.message);
     }
   };
 
   return (
-    <Modal open={open} onClose={onClose}>
+    <Modal open={open} onClose={onClose} onSubmit={onSubmit}>
       <Box
         sx={{
           position: 'absolute',
