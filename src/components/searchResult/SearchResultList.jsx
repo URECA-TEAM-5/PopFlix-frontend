@@ -9,7 +9,7 @@ import DefaultButton from '../common/buttons/DefaultButton';
 import { colors } from '../../global/globalStyle';
 import { Link } from 'react-router-dom';
 import Loading from '../common/loading/Loading';
-import SearchEmptyResult from './SearchEmptyResult';
+import EmptyResult from '../common/emptyResult/EmptyResult';
 
 const SearchResultList = () => {
   const [isClicked, setIsClicked] = useState(false);
@@ -73,7 +73,7 @@ const SearchResultList = () => {
             })
           ) : (
             <>
-              <SearchEmptyResult message={'검색된 영화가 없습니다'} />
+              <EmptyResult message={'검색된 영화가 없습니다'} />
             </>
           )}
         </ResultListWrapper>

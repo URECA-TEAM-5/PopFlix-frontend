@@ -14,8 +14,6 @@ import WatchListEditPage from '../pages/watchlist/WatchListEditPage';
 import MovieListPage from '../pages/movie/MovieListPage';
 import SearchResult from '../pages/search/SearchResult';
 import Welcome from '../pages/welcome/Welcome';
-import Loading from '../components/common/loading/Loading';
-import SearchEmptyResult from '../components/searchResult/SearchEmptyResult';
 import AlaramEmpty from '../components/alarm/AlaramEmpty';
 const MainScreens = {
   NotFound: {

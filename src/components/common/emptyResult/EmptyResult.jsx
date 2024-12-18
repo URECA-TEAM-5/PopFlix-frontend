@@ -1,7 +1,7 @@
 import React from 'react';
-import { EmptyResultImage, EmptyResultWrapper } from './style/SearchResultStyle';
+import { EmptyResultImage, EmptyResultWrapper } from './style/EmptyResultStyle';
 
-const SearchEmptyResult = ({ img, message, description, size, p }) => {
+const EmptyResult = ({ img, message, description, size, p }) => {
   return (
     <EmptyResultWrapper $padding={p}>
       <EmptyResultImage className="img__empty" $size={size} src={img ? img : '/assets/review_null.svg'} alt="empty images" />
@@ -11,4 +11,4 @@ const SearchEmptyResult = ({ img, message, description, size, p }) => {
   );
 };
 
-export default SearchEmptyResult;
+export default EmptyResult;
