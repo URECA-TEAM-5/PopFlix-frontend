@@ -5,19 +5,21 @@ import { IconSection } from './style/HeaderStyle';
 import { Link } from 'react-router-dom';
 import LoginModal from '../../Login/LoginModal';
 import MyInfoModal from '../../userInfo/modal/MyInfoModal';
+import { chkUserInfo } from '../../userInfo/modal/chkUserInfo';
 
 const HeaderIconSection = () => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isMyInfoModalOpen, setIsMyInfoModalOpen] = useState(false);
-
   return (
     <>
       <IconSection>
         <div className="inner__section">
           <FontAwesomeIcon className="icon" icon={faMoon} size="xl" />
-          <Link to="/alarm">
-            <FontAwesomeIcon className="icon" icon={faBell} size="xl" />
-          </Link>
+          {chkUserInfo() && (
+            <Link to="/alarm">
+              <FontAwesomeIcon className="icon" icon={faBell} size="xl" />
+            </Link>
+          )}
           {sessionStorage.getItem('accessToken') ? (
             <>
               {(() => {
