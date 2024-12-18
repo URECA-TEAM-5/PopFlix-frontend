@@ -82,11 +82,12 @@ export const IconSection = styled.div`
     flex-direction: row;
     justify-content: end;
     align-items: center;
-    gap: 1rem;
+    gap: 1.5rem;
   }
 
   .icon {
-    font-size: 1.8rem;
+    font-size: 2rem;
+    padding: 0 0.2rem;
     color: ${colors.white};
 
     &:hover {
