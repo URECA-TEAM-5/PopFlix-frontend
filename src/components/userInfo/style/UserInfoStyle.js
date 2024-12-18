@@ -10,7 +10,7 @@ export const UserInfoGenreTitle = styled.p`
 export const UserInfoImageProfileImage = styled.img`
   width: 100%;
   height: 100%;
-  objectfit: coever;
+  object-fit: cover;
   borderradius: 50%;
 `;
 

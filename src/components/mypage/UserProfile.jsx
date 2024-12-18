@@ -2,8 +2,10 @@ import { Box, Button } from '@mui/material';
 import React from 'react';
 import { colors } from '../../global/globalStyle';
 import { Link } from 'react-router-dom';
+import { chkUserInfo } from '../userInfo/modal/chkUserInfo';
 
 const UserProfile = () => {
+  const user = chkUserInfo(); // User 정보 가져오기
   return (
     <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', pt: '3rem' }}>
       <Box
@@ -19,14 +21,13 @@ const UserProfile = () => {
       >
         {' '}
         {(() => {
-          const user = JSON.parse(sessionStorage.getItem('user')); // User 정보 가져오기
           const profileImage = user?.profileImage || user?.data?.defaultProfileImage; // profileImage 우선 사용
 
           return <img className="profile" src={profileImage} alt="profile" style={{ cursor: 'pointer', width: '100%', height: '100%' }} />;
         })()}
       </Box>
       <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', pl: '2rem', pt: '1.5rem' }}>
-        <h3>사용자</h3>
+        <h3>{user.nickname}</h3>
         <Button
           sx={{
             p: '0rem',
