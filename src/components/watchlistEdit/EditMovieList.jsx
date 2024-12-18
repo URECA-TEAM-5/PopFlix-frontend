@@ -1,12 +1,13 @@
 import { useParams } from "react-router-dom";
 import { useMyWatchList } from "../../stores/mypage/MyWatchListStore";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faList } from "@fortawesome/free-solid-svg-icons";
 import { AddMovieDiv, MovieDiv, TiTleDiv } from "./style/EditMoviList";
 import { addMovie, deleteMovie } from "../../api/watchlist/watchlist";
 import Search from "../common/search/Search";
 import { useState } from "react";
 import { useSearch } from "../../stores/search/useSearch";
+import AlertMessage from "../common/alert/AlertMessage";
+import { useAlert } from "../../stores/alert/AlertStore";
+import EmptyResult from "../common/emptyResult/EmptyResult";
 
 const EditMovieList = () => {
     const { myWatchList, setMyWatchList } = useMyWatchList();
@@ -18,20 +19,21 @@ const EditMovieList = () => {
     const [keyword, setKeyword] = useState('');
 
     const { searchByKeyword, searchResponse, setSearchResponse } = useSearch();
+    const { handleAlertOpen, handleAlertClose } = useAlert();
 
     const handleDeleteMovie = async (movieId) => {
         if (window.confirm('보관함에서 해당 영화를 삭제하시겠습니까?')) {
             try {
                 const response = await deleteMovie(id, userId, movieId);
                 if (response.status === 200) {
-                    alert('삭제되었습니다.');
                     setMyWatchList(userId);
+                    handleAlertOpen('success', '삭제되었습니다.');
                 } else {
-                    alert('삭제 실패했습니다. 다시 시도해주세요.');
+                    handleAlertOpen('error', '삭제 실패했습니다. 다시 시도해주세요.');
                 }
             } catch (error) {
                 console.error(error);
-                alert('삭제 중 오류가 발생했습니다. 다시 시도해주세요.');
+                handleAlertOpen('error', '삭제 중 오류가 발생했습니다. 다시 시도해주세요.');
             }
         }
     };
@@ -44,26 +46,28 @@ const EditMovieList = () => {
             const response = await addMovie(id, userId, data);
             if (response) {
                 setMyWatchList(userId);
+                handleAlertOpen('success', '추가되었습니다.');
                 setSearchResponse('');
             } else {
-                alert('추가하지 못했습니다. 다시 시도해주세요.');
+                handleAlertOpen('error', '추가하지 못했습니다. 다시 시도해주세요.');
             }
         }
     };
 
     const handleSubmit = (e) => {
-        e.preventDefault();
         console.log(keyword);
         searchByKeyword(keyword);
     };
 
     return (
         <>
+            <AlertMessage
+                type={''}
+                message={''}
+                handleClose={() => handleAlertClose()}
+            />
             <TiTleDiv>
-                <div>
-                    <FontAwesomeIcon icon={faList} />
-                    <span className="bold"> List</span>
-                </div>
+                <span className="extra-bold">✏️ 영화를 수정해주세요!</span>
             </TiTleDiv>
             {watchListItem.movies.length > 0 ? (
                 <MovieDiv>
@@ -78,7 +82,11 @@ const EditMovieList = () => {
                     ))}
                 </MovieDiv >
             ) : (
-                <p className="regular">보관함에 영화가 없습니다. 추가해주세요!</p>
+                <EmptyResult
+                    message="보관함에 영화가 없습니다. 추가해주세요!"
+                    size="5"
+                    fontSize="1.1"
+                />
             )}
             <AddMovieDiv>
                 <div className="searchDiv">
@@ -95,10 +103,10 @@ const EditMovieList = () => {
                             {searchResponse.map((item, index) => {
                                 return (
                                     <div key={index}>
-                                        <img className="addMovieImg" src={item.posterUrl} alt="이미지" loading="lazy" />
+                                        <img className="addMovieImg" src={item.poster_path} alt="이미지" loading="lazy" />
                                         <div className="centerDiv">
                                             <span className="regular">{item.title}</span>
-                                            <button onClick={() => handleAddMovie(item.movieId)}>+</button>
+                                            <button onClick={() => handleAddMovie(item.id)}>+</button>
                                         </div>
                                     </div>
                                 )

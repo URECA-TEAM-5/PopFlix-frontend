@@ -1,19 +1,21 @@
-import { faFolder, faSquarePlus } from '@fortawesome/free-regular-svg-icons';
+import { faFolder } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useRef, useState } from 'react';
-import { ImageGrid, MyWatchListNullDiv, Placeholder, PosterImage, TitleDiv, ToggleDiv, WatchListContainer, WatchListItem, WatchListItemDiv } from './style/MyWatchList';
+import { ImageGrid, OpacityDiv, Placeholder, PosterImage, TitleDiv, ToggleDiv, WatchListContainer, WatchListItem, WatchListItemDiv } from './style/MyWatchList';
 import { useMyWatchList } from '../../stores/mypage/MyWatchListStore';
 import { Link } from 'react-router-dom';
 import NewFolderModal from '../myWatchlistModal/NewFolderModal';
-import LoadingSpinner from '../suspense/LoadingSpinner';
 import { deleteMyWatchList } from '../../api/mypage/myWatchList';
-import { Alert, Snackbar } from '@mui/material';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import AlertMessage from '../common/alert/AlertMessage';
+import { useAlert } from '../../stores/alert/AlertStore';
+import Loading from '../common/loading/Loading';
+import EmptyResult from '../common/emptyResult/EmptyResult';
 
 const MyWatchList = () => {
-    const [open, setOpen] = useState(false);
     const [modalOpen, setModalOpen] = useState(false);
-    const [message, setMessage] = useState('');
-    const [severity, setSeverity] = useState('success');
+    const { handleAlertOpen, handleAlertClose } = useAlert();
+
     const { myWatchList, setMyWatchList, setIsPublic, isLoading } = useMyWatchList();
     const isLoaded = useRef(false);
     // const userId = 1;
@@ -29,47 +31,37 @@ const MyWatchList = () => {
 
     const handleClickOpen = () => setModalOpen(true);
 
-    const showSnackbar = (msg, severity = 'success') => {
-        setMessage(msg);
-        setSeverity(severity);
-        setOpen(true);
-    };
-
-    const handleCloseSnackbar = () => {
-        setOpen(false);
-    };
-
     const handleCopy = (listId, isPublic) => {
         if (!isPublic) {
-            showSnackbar('먼저 공개로 설정해주세요.', 'error');
+            handleAlertOpen('warning', '먼저 공개로 설정해주세요.');
             return;
         }
         const url = `${window.location.origin}/watchlist/${listId}`;
         navigator.clipboard.writeText(url).then(() => {
-            showSnackbar('링크를 복사했어요. 원하는 곳에 공유하세요!', 'success');
+            handleAlertOpen('success', '링크를 복사했어요. 원하는 곳에 공유하세요!');
         }).catch(err => {
             console.error('복사 실패 ', err);
-            showSnackbar('복사 실패', 'error');
+            handleAlertOpen('error', '복사하지 못했습니다. 잠시후 다시 시도해주세요.');
         });
     };
 
     const handleTogglePublic = async (storageId, isPublic, movieCount) => {
         if (movieCount === 0) {
-            showSnackbar('편집을 눌러서 영화를 추가해주세요!', 'warning');
+            handleAlertOpen('warning', '편집을 눌러서 영화를 추가해주세요!');
             return;
         }
         const status = await setIsPublic(storageId, userId);
         if (status === 200) {
             if (isPublic) {
-                showSnackbar('비공개로 변경되었습니다', 'success');
+                handleAlertOpen('success', '비공개로 변경되었습니다.');
                 setMyWatchList(userId);
             } else {
-                showSnackbar('공개로 변경되었습니다', 'success');
+                handleAlertOpen('success', '공개로 변경되었습니다.');
                 setMyWatchList(userId);
             }
             setMyWatchList(userId);
         } else {
-            showSnackbar('변경에 실패했습니다.', 'error');
+            handleAlertOpen('error', '변경 중 오류가 발생했습니다. 다시 시도해주세요.');
         }
     };
 
@@ -79,33 +71,38 @@ const MyWatchList = () => {
             try {
                 const response = await deleteMyWatchList(storageId, userId);
                 if (response.status === 200) {
-                    showSnackbar('삭제되었습니다.', 'success');
+                    handleAlertOpen('success', '삭제되었습니다.');
                     setMyWatchList(userId);
                 } else {
-                    showSnackbar('삭제 실패했습니다. 다시 시도해주세요.', 'error');
+                    handleAlertOpen('error', '삭제 중 오류가 발생했습니다. 다시 시도해주세요.');
                 }
             } catch (error) {
                 console.error(error);
-                showSnackbar('삭제 중 오류가 발생했습니다. 다시 시도해주세요.', 'error');
+                handleAlertOpen('error', '삭제 중 오류가 발생했습니다. 다시 시도해주세요.');
             }
         }
     };
 
     return (
-        <>
+        <OpacityDiv>
+            <AlertMessage
+                type={''}
+                message={''}
+                handleClose={() => handleAlertClose()}
+            />
             <TitleDiv>
                 <div>
                     <FontAwesomeIcon icon={faFolder} />
                     <span className="bold"> 작성한 WatchList</span>
                 </div>
                 <div onClick={handleClickOpen}>
-                    <FontAwesomeIcon icon={faSquarePlus} />
+                    <FontAwesomeIcon icon={faPlus} className="orangeIcon bold" />
                     <span className="regular point"> New Folder</span>
                 </div>
             </TitleDiv>
             <WatchListContainer>
                 {isLoading ? (
-                    <LoadingSpinner />
+                    <Loading message="로딩 중입니다." />
                 ) : myWatchList?.length > 0 ? (
                     myWatchList.map((list) => (
                         <WatchListItemDiv key={list.id}>
@@ -142,27 +139,16 @@ const MyWatchList = () => {
                         </WatchListItemDiv>
                     ))
                 ) : (
-                    <MyWatchListNullDiv>
-                        <img src="/assets/popcorn_score_null.svg" alt="생성한 워치리스트 없음" />
-                        <p className="regular">New Folder를 눌러서 WatchList를 추가해주세요!</p>
-                    </MyWatchListNullDiv>
+                    <EmptyResult
+                        img="/assets/popcorn_score_null.svg"
+                        message="New Folder를 눌러서 WatchList를 추가해주세요!"
+                        size="4"
+                        fontSize="1.1"
+                    />
                 )}
             </WatchListContainer >
-            <Snackbar
-                open={open}
-                autoHideDuration={2000}
-                onClose={handleCloseSnackbar}
-                anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'right'
-                }}
-            >
-                <Alert onClose={handleCloseSnackbar} severity={severity} sx={{ width: '100%' }}>
-                    <span>{message}</span>
-                </Alert>
-            </Snackbar>
             <NewFolderModal open={modalOpen} setOpen={setModalOpen} />
-        </>
+        </OpacityDiv>
     );
 };
 

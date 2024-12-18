@@ -6,8 +6,10 @@ export const TiTleDiv = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    margin-top: 2rem;
     width: 100%;
     height: 3rem;
+    font-size: 1.2rem;
     button {
         width: 3rem;
         background-color: ${colors.orange};

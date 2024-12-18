@@ -3,7 +3,7 @@ import { colors } from '../../../global/globalStyle';
 
 export const TitleDiv = styled.div`
     width: 100%;
-    padding: 1rem 0;
+    padding: 2rem 0 1rem 0;
 `;
 
 export const NullDiv = styled.div`
@@ -15,7 +15,6 @@ export const NullDiv = styled.div`
         width: 4rem;
     }
     button {
-        margin-top: 0.5rem;
         width: 5.5rem;
         height: 2rem;
         border: none;

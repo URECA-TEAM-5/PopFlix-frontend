@@ -43,9 +43,9 @@ export const deleteMyWatchList = async (storageId, userId) => {
     }
 }
 
-export const updateStorage = async (storageId, userId, formData) => {
+export const updateStorage = async (storageId, userId, newName, newOverview, formData) => {
     try {
-        const response = await request.put(`/api/update/${storageId}?userId=${userId}`, formData, {
+        const response = await request.put(`/api/storages/update/${storageId}?userId=${userId}&newName=${newName}&newOverview=${newOverview}`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
             },
