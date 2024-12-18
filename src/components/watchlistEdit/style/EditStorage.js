@@ -36,6 +36,7 @@ export const StorageContent = styled.div`
     width: 100%;
     .semiTitle {
         width: 100%;
+        font-size: 1.1rem;
     }
     .storageImgDiv {
         padding-top: 1rem;
@@ -122,7 +123,7 @@ export const Input = styled.input`
     box-shadow: none;
     border: 0;
     border-bottom: 0.063rem solid ${colors.space_gray};;
-    font-size: 0.938rem;
+    font-size: 1.1rem;
     text-indent: 3rem;
     &:focus {
         outline: none;
@@ -137,7 +138,7 @@ export const Textarea = styled.textarea`
     box-shadow: none;
     border: 0;
     border-bottom: 0.063rem solid ${colors.space_gray};
-    font-size: 0.938rem;
+    font-size: 1.1rem;
     text-indent: 3rem;
     resize: none;
     &:focus {

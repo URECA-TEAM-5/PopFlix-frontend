@@ -86,6 +86,7 @@ const EditMovieList = () => {
                 <EmptyResult
                     message="보관함에 영화가 없습니다. 추가해주세요!"
                     size="5"
+                    fontSize="1.1"
                 />
             )}
             <AddMovieDiv>

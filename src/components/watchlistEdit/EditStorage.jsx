@@ -1,4 +1,4 @@
-import { faBoxArchive, faMicrophone, faPen } from '@fortawesome/free-solid-svg-icons';
+import { faBoxArchive, faMicrophone } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useMyWatchList } from '../../stores/mypage/MyWatchListStore';
 import { Link, useParams } from 'react-router-dom';

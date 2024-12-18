@@ -1,6 +1,6 @@
 import { Box, Grid2 } from '@mui/material';
 import { useEffect, useRef, useState } from 'react';
-import { ErrorDiv, WatchMonthContainer } from './style/WatchListMonth';
+import { WatchMonthContainer } from './style/WatchListMonth';
 import { colors } from '../../global/globalStyle';
 import { getWatchlistMonthlyTop } from '../../api/watchlist/watchlist';
 import { Link } from 'react-router-dom';
@@ -45,6 +45,7 @@ const WatchListMonth = () => {
                 <EmptyResult
                     img="/assets/api_error.svg"
                     message="지금은 데이터를 불러올 수 없어요"
+                    fontSize="1.1"
                 />
             ) : (
                 <Grid2 container spacing={3} sx={{ justifyContent: "center", width: "100%" }}>

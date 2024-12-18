@@ -54,6 +54,7 @@ const MyFavoriteWatchList = () => {
                         message="좋아요를 누른 Watchlist가 없습니다"
                         size="4"
                         p="1"
+                        fontSize="1.1"
                     />
                     <Link to="/watchlist">
                         <button className="regular">보러가기</button>

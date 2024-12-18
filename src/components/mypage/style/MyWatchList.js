@@ -1,6 +1,18 @@
 import { styled } from 'styled-components';
 import { colors } from '../../../global/globalStyle';
 
+export const OpacityDiv = styled.div`
+    animation: opacity 0.3s ease-out forwards;
+    @keyframes opacity {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+`;
+
 export const TitleDiv = styled.div`
     width: 100%;
     display: flex;
