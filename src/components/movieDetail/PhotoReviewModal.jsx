@@ -2,12 +2,40 @@ import React, { useState, useRef } from 'react';
 import { Modal, Box, Button, TextField } from '@mui/material';
 import { colors } from '../../global/globalStyle';
 import { useEffect } from 'react';
-
-const PhotoReviewModal = ({ open, onClose, onSubmit }) => {
+import {createPhotoReview} from '../../api/movieDetail/movieDetail.js';
+const PhotoReviewModal = ({ open, onClose, onSubmit, userId,movieId }) => {
   const [image, setImage] = useState(null);
   const [text, setText] = useState('');
   const [data, setData] = useState([]);
   const fileInputRef = useRef(null); // 파일 입력 필드 참조
+
+  const fetchPhotoReview = async () => {
+    
+  
+    const requestData = {
+      review: text,
+      reviewImage: image,
+      userId: userId, // 사용자 ID
+      movieId: movieId, // 영화 ID
+    };
+  
+    const formData = new FormData();
+    formData.append('data', JSON.stringify(requestData));
+    console.log("전송 데이터:", requestData); // 데이터 확인용 로그
+  
+    try {
+      const response = await createPhotoReview(requestData);
+      console.log("포토 리뷰 작성 완료:", response);
+      setData({ text: text, image: image });
+    console.log(data);
+    setText('');
+    setImage(null);
+      onSubmit(); // 모달 닫기
+    } catch (error) {
+      // console.error("팝콘지수 추가 실패:", error.response.data.message);
+      alert(error.response.data.message);
+    }
+  };
   useEffect(() => {
     if (text && image) {
       setData({ text, image });
@@ -165,7 +193,7 @@ const PhotoReviewModal = ({ open, onClose, onSubmit }) => {
           {/* 등록 버튼 */}
           <Button
             variant="outlined"
-            onClick={handleSubmit}
+            onClick={fetchPhotoReview}
             disabled={isSubmitDisabled}
             sx={{
               boxShadow: 'none',

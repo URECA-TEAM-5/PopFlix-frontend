@@ -5,7 +5,8 @@ const popflixURL = 'https://popflix.org';
 
 const GET_MOVIE_DETAIL = '/api/movies/';
 const GET_MOVIE_RATING = '/api/movies/';
-
+const POST_CREATE_PHOTOREVIEW = '/api/photo-reviews';
+const GET_PHOTOREVIEW = '/api/photo-reviews/movie/';
 export const getMovieDetail = async (id) => {
   console.log('[ getMovieDetail ]');
   // const movieDetailData = await axios.get(localURL+`/api/movies/${id}/details`);
@@ -15,7 +16,7 @@ export const getMovieDetail = async (id) => {
 
   try {
     const response = await request.get(GET_MOVIE_DETAIL + `${id}/details`);
-    console.log(response.data.response);
+    console.log("영화 인트로 정보 :",response.data.response);
     return response.data.response;
   } catch (e) {
     console.log(`[ getMovieDetail ] >> ${e}`);
@@ -54,3 +55,31 @@ export const addRating = async (data) => {
     throw error; // 에러를 호출한 곳으로 전달
   }
 };
+export const createPhotoReview = async(data) =>{
+  console.log("포토 리뷰 작성 데이터 : ",data);
+  try {
+     
+    //  const formData = new FormData();
+    //  formData.append('review', review);
+    //  formData.append('reviewImage', reviewImage); // reviewImage는 File 객체여야 함
+    //  formData.append('userId', userId);
+    //  formData.append('movieId', movieId);
+    const moviewCreatePhotoReview = await request.post(POST_CREATE_PHOTOREVIEW,data, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    return moviewCreatePhotoReview;
+  } catch (error) {
+    
+  }
+};
+export const getPhotoReviewsByMovie = async(movieId) => {
+  try {
+    const photoReviewData = await request.get(GET_PHOTOREVIEW+`${movieId}`)
+    console.log("photoReviewData : ",photoReviewData.data);
+    return photoReviewData.data;
+  } catch (error) {
+    console.error(error);
+  }
+}

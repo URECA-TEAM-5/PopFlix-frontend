@@ -1,6 +1,8 @@
 import React from 'react';
 import { Grid2, Card, CardMedia } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { useMovieDetail } from '../../../stores/movieDetail/MovieDetailStore';
+import { useEffect } from 'react';
 const photoReviews = [
   { id: 1, image: 'https://via.placeholder.com/300' },
   { id: 2, image: 'https://via.placeholder.com/300' },
@@ -12,23 +14,28 @@ const photoReviews = [
 
 const PhotoReviewTab = () => {
   const navigate = useNavigate();
- const handlePhotoDetail = () => {
-  navigate('/photo-review')
+  const {photoReviewData} = useMovieDetail();
+  
+ const handlePhotoDetail = (reviewId) => {
+  navigate(`/photo-review/${reviewId}`)
+  
  }
   return (
     
-      <Grid2 container justifyContent="center" alignItems="center" spacing={0.5}>
-        {photoReviews.map((review) => (
-          <Grid2 xs={4} sm={4} md={4} key={review.id}>
-            <Card onClick={handlePhotoDetail}>
+      <Grid2 container justifyContent="center" alignItems="center" spacing={1}>
+        {photoReviewData.map((review,index) => (
+          <Grid2 xs={4} sm={4} md={4} key={index}>
+            <Card onClick={() => handlePhotoDetail(review.reviewId)}>
               <CardMedia
                 component="img"
                 sx={{
-                  width: '100%',
-                  height: 'auto',
-                  objectFit: 'cover',
+                  maxWidth:'300px',
+                  maxHeight:'300px',
+                  minHeight:'250px',
+                  
+                  // objectFit: 'cover',
                 }}
-                image={review.image}
+                image={review.reviewImage}
                 alt={`Photo Review ${review.id}`}
               />
             </Card>

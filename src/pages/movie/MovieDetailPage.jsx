@@ -7,7 +7,7 @@ import { useEffect, useRef } from 'react';
 import { useMovieDetail } from '../../stores/movieDetail/MovieDetailStore';
 
 const MovieDetailPage = () => {
-  const { movieData, setMovieData, setRatingData } = useMovieDetail();
+  const { movieData, setMovieData,ratingData, setRatingData ,setPhotoReviewData} = useMovieDetail();
   const { id } = useParams();
   const user = JSON.parse(localStorage.getItem('user'));
   const { userId } = user; // userId를 올바르게 추출
@@ -26,6 +26,7 @@ const MovieDetailPage = () => {
       // 영화 정보 불러오기 => zustand에 저장 ( await 처리 필수 )
       setMovieData(id);
       setRatingData(id);
+      setPhotoReviewData(id);
     }
   }, []);
 
@@ -37,7 +38,7 @@ const MovieDetailPage = () => {
           <MovieIntro />
           <PoppleTip movieId={id} userId={userId} />
           {/* <ShortReview movieId={id} /> */}
-          {/* <MovieReviewTabs movieId={id}/> */}
+          <MovieReviewTabs movieId={id}/>
         </div>
       ) : (
         <h1>로딩중 ~</h1>
