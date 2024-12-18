@@ -1,6 +1,6 @@
 import { faFolder, faSquarePlus } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ImageGrid, MyWatchListNullDiv, Placeholder, PosterImage, TitleDiv, ToggleDiv, WatchListContainer, WatchListItem, WatchListItemDiv } from './style/MyWatchList';
 import { useMyWatchList } from '../../stores/mypage/MyWatchListStore';
 import { Link } from 'react-router-dom';
@@ -11,14 +11,17 @@ import { deleteMyWatchList } from '../../api/mypage/myWatchList';
 const MyWatchList = () => {
     const [open, setOpen] = useState(false);
     const { myWatchList, setMyWatchList, setIsPublic, isLoading } = useMyWatchList();
-
+    const isLoaded = useRef(false);
     // const userId = 1;
     const user = JSON.parse(localStorage.getItem('user'));
     const userId = user ? user.userId : null;
 
     useEffect(() => {
-        setMyWatchList(userId);
-    }, [userId, setMyWatchList]);
+        if (!isLoaded.current) {
+            isLoaded.current = true;
+            setMyWatchList(userId);
+        }
+    }, [isLoaded, userId, setMyWatchList]);
 
     const handleClickOpen = () => setOpen(true);
 

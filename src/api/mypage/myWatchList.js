@@ -50,8 +50,8 @@ export const updateStorage = async (storageId, userId, formData) => {
                 'Content-Type': 'multipart/form-data',
             },
         });
-        console.log('updateStorage:', response.data);
-        return response.data;
+        console.log('updateStorage:', response);
+        return response;
     } catch (e) {
         console.log(`[updateStorage] >> ${e}`);
     }
