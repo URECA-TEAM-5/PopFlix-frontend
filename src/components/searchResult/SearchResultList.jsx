@@ -73,7 +73,7 @@ const SearchResultList = () => {
             })
           ) : (
             <>
-              <SearchEmptyResult size={7} message={'검색된 영화가 없습니다'} />
+              <SearchEmptyResult message={'검색된 영화가 없습니다'} />
             </>
           )}
         </ResultListWrapper>

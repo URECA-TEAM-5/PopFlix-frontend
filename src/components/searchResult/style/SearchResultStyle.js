@@ -135,7 +135,7 @@ export const EmptyResultWrapper = styled.div`
   display: block;
   justify-items: center;
   width: 100%;
-  padding: 2rem 0;
+  padding: ${(props) => (props.$padding ? `${props.$padding}rem 0` : '2rem 0')};
   caret-color: transparent;
   animation: slideIn 0.5s ease-out forwards;
 
