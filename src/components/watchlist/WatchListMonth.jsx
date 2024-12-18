@@ -1,8 +1,9 @@
 import { Box, Grid2 } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ErrorDiv, WatchMonthContainer } from './style/WatchListMonth';
 import { colors } from '../../global/globalStyle';
 import { getWatchlistMonthlyTop } from '../../api/watchlist/watchlist';
+import { Link } from 'react-router-dom';
 
 const WatchListMonth = () => {
     const Colors = [
@@ -14,24 +15,27 @@ const WatchListMonth = () => {
     const [error, setError] = useState(false);
     const year = new Date().getFullYear();
     const month = new Date().getMonth() + 1;
+    const isLoaded = useRef(false);
 
     useEffect(() => {
-        const fetchWatchlistMonthlyTop = async () => {
-            const data = await getWatchlistMonthlyTop(year, month);
-            if (data.response) {
-                const sortedData = data.response
-                    .sort((a, b) => b.movieCount - a.movieCount)
-                    .slice(0, 3);
-                setMonthlyTopData(sortedData);
-                setError(false);
-            } else {
-                setMonthlyTopData([]);
-                setError(true);
-            }
-        };
-
-        fetchWatchlistMonthlyTop();
-    }, [year, month]);
+        if (!isLoaded.current) {
+            isLoaded.current = true;
+            const fetchWatchlistMonthlyTop = async () => {
+                const data = await getWatchlistMonthlyTop(year, month);
+                if (data.response) {
+                    const sortedData = data.response
+                        .sort((a, b) => b.movieCount - a.movieCount)
+                        .slice(0, 3);
+                    setMonthlyTopData(sortedData);
+                    setError(false);
+                } else {
+                    setMonthlyTopData([]);
+                    setError(true);
+                }
+            };
+            fetchWatchlistMonthlyTop();
+        }
+    }, [isLoaded, year, month]);
 
     return (
         <WatchMonthContainer>
@@ -72,13 +76,19 @@ const WatchListMonth = () => {
                                         },
                                     }}
                                 >
-                                    <p className="boxP">{data.storageName}</p>
+                                    <p className="boxP">
+                                        <Link to={`/watchlist/${data.id}`} className="linkStorage">
+                                            {data.storageName}
+                                        </Link>
+                                    </p>
                                     <div>
                                         <ul className="boxUl">
                                             {data.movies.slice(0, 3).map((movie, index) => (
                                                 <li key={index} className="boxLi">
                                                     <img className="boxImage" src={movie.poster} alt={movie.movieTitle} loading="lazy" />
-                                                    <span className="regular boxSpan">{movie.movieTitle}</span>
+                                                    <span className="regular boxSpan">
+                                                        <Link to={`/movieDetail/${movie.id}`} className="linkMovie">{movie.movieTitle}</Link>
+                                                    </span>
                                                 </li>
                                             ))}
                                         </ul>

@@ -32,6 +32,29 @@ export const WatchMonthContainer = styled.div`
         align-items: center;
         padding: 0.3rem 0;
     }
+    @keyframes slideIn {
+        0% {
+            transform: translateY(-10px);
+            opacity: 0;
+        }
+        100% {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+    .boxLi {
+        animation: slideIn 0.5s ease-out forwards;
+        opacity: 0;
+    }
+    .boxUl li:nth-child(1) {
+        animation-delay: 0.2s;
+    }
+    .boxUl li:nth-child(2) {
+        animation-delay: 0.3s;
+    }
+    .boxUl li:nth-child(3) {
+        animation-delay: 0.4s;
+    }
     .boxP {
         display: flex;
         align-items: center;
@@ -52,6 +75,22 @@ export const WatchMonthContainer = styled.div`
         width: 73%;
         padding-left: 0.7rem;
         word-wrap: break-word;
+    }
+    .linkMovie {
+        color: ${colors.white};
+        cursor: pointer;
+    }
+    .linkMovie:hover {
+        font-size: 1.02rem;
+        transition-duration: 0.4s;
+    }
+    .linkStorage {
+        color: ${colors.white};
+        cursor: pointer;
+    }
+    .linkStorage:hover {
+        font-size: 1.01rem;
+        transition-duration: 0.5s;
     }
 `;
 
