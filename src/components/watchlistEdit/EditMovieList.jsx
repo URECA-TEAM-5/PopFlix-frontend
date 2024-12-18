@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useSearch } from "../../stores/search/useSearch";
 import AlertMessage from "../common/alert/AlertMessage";
 import { useAlert } from "../../stores/alert/AlertStore";
+import EmptyResult from "../common/emptyResult/EmptyResult";
 
 const EditMovieList = () => {
     const { myWatchList, setMyWatchList } = useMyWatchList();
@@ -18,9 +19,6 @@ const EditMovieList = () => {
     const [keyword, setKeyword] = useState('');
 
     const { searchByKeyword, searchResponse, setSearchResponse } = useSearch();
-
-    const [alertType, setAlertType] = useState('');
-    const [alertMessage, setAlertMessage] = useState('');
     const { handleAlertOpen, handleAlertClose } = useAlert();
 
     const handleDeleteMovie = async (movieId) => {
@@ -28,20 +26,14 @@ const EditMovieList = () => {
             try {
                 const response = await deleteMovie(id, userId, movieId);
                 if (response.status === 200) {
-                    setAlertType('success');
-                    setAlertMessage('삭제되었습니다.');
-                    handleAlertOpen();
                     setMyWatchList(userId);
+                    handleAlertOpen('success', '삭제되었습니다.');
                 } else {
-                    setAlertType('error');
-                    setAlertMessage('삭제 실패했습니다. 다시 시도해주세요.');
-                    handleAlertOpen();
+                    handleAlertOpen('error', '삭제 실패했습니다. 다시 시도해주세요.');
                 }
             } catch (error) {
                 console.error(error);
-                setAlertType('error');
-                setAlertMessage('삭제 중 오류가 발생했습니다. 다시 시도해주세요.');
-                handleAlertOpen();
+                handleAlertOpen('error', '삭제 중 오류가 발생했습니다. 다시 시도해주세요.');
             }
         }
     };
@@ -53,15 +45,11 @@ const EditMovieList = () => {
             };
             const response = await addMovie(id, userId, data);
             if (response) {
-                setAlertType('success');
-                setAlertMessage('추가되었습니다.');
-                handleAlertOpen();
                 setMyWatchList(userId);
+                handleAlertOpen('success', '추가되었습니다.');
                 setSearchResponse('');
             } else {
-                setAlertType('error');
-                setAlertMessage('추가하지 못했습니다. 다시 시도해주세요.');
-                handleAlertOpen();
+                handleAlertOpen('error', '추가하지 못했습니다. 다시 시도해주세요.');
             }
         }
     };
@@ -75,8 +63,8 @@ const EditMovieList = () => {
     return (
         <>
             <AlertMessage
-                type={alertType}
-                message={alertMessage}
+                type={''}
+                message={''}
                 handleClose={() => handleAlertClose()}
             />
             <TiTleDiv>
@@ -95,7 +83,10 @@ const EditMovieList = () => {
                     ))}
                 </MovieDiv >
             ) : (
-                <p className="regular">보관함에 영화가 없습니다. 추가해주세요!</p>
+                <EmptyResult
+                    message="보관함에 영화가 없습니다. 추가해주세요!"
+                    size="5"
+                />
             )}
             <AddMovieDiv>
                 <div className="searchDiv">

@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { CarouselButton, Contatiner, ItemInfo, Movie, MovieImage, MovieInfo, Movies, NullDiv, TitleDiv, WatchListItem, WatchListItemWrapper } from './style/MyFavoriteWatchList';
 import { useEffect, useRef, useState } from 'react';
 import { useMyFavoriteWatchList } from '../../stores/mypage/MyFavoriteWatchListStore';
+import EmptyResult from '../common/emptyResult/EmptyResult';
 
 const MyFavoriteWatchList = () => {
     const { myFavoriteWatchList, setMyFavoriteWatchList, setStorageLike } = useMyFavoriteWatchList();
@@ -48,8 +49,12 @@ const MyFavoriteWatchList = () => {
             </TitleDiv>
             {myFavoriteWatchList.length === 0 ? (
                 <NullDiv>
-                    <img src="/assets/review_null.svg" alt="좋아요 워치리스트 없음" />
-                    <p className="regular">좋아요를 누른 Watchlist가 없습니다</p>
+                    <EmptyResult
+                        img="/assets/review_null.svg"
+                        message="좋아요를 누른 Watchlist가 없습니다"
+                        size="4"
+                        p="1"
+                    />
                     <Link to="/watchlist">
                         <button className="regular">보러가기</button>
                     </Link>

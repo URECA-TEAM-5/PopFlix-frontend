@@ -25,8 +25,6 @@ const EditStorage = () => {
     const OVERVIEW_MAX_LENGTH = 100;
     const [storageImage, setStorageImage] = useState(null);
 
-    const [alertType, setAlertType] = useState('');
-    const [alertMessage, setAlertMessage] = useState('');
     const { handleAlertOpen, handleAlertClose } = useAlert();
 
     const handleInput = (e) => {
@@ -71,22 +69,18 @@ const EditStorage = () => {
 
         try {
             await updateStorage(id, userId, storageName, overview, formData);
-            setAlertType('success');
-            setAlertMessage('제목, 소개글이 수정되었습니다.');
-            handleAlertOpen();
+            handleAlertOpen('success', '보관함이 수정되었습니다.');
         } catch (error) {
             console.error('Error:', error);
-            setAlertType('error');
-            setAlertMessage('수정에 실패했습니다. 다시 시도해주세요.');
-            handleAlertOpen();
+            handleAlertOpen('error', '수정에 실패했습니다. 다시 시도해주세요.');
         }
     };
 
     return (
         <>
             <AlertMessage
-                type={alertType}
-                message={alertMessage}
+                type={''}
+                message={''}
                 handleClose={() => handleAlertClose()}
             />
             <TiTleDiv>

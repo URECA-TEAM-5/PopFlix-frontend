@@ -4,6 +4,7 @@ import { ErrorDiv, WatchMonthContainer } from './style/WatchListMonth';
 import { colors } from '../../global/globalStyle';
 import { getWatchlistMonthlyTop } from '../../api/watchlist/watchlist';
 import { Link } from 'react-router-dom';
+import EmptyResult from '../common/emptyResult/EmptyResult';
 
 const WatchListMonth = () => {
     const Colors = [
@@ -41,10 +42,10 @@ const WatchListMonth = () => {
         <WatchMonthContainer>
             <h3 className="extra-bold title">🌟 이 달의 인기 WatchList를 알려드려요!</h3>
             {error ? (
-                <ErrorDiv>
-                    <img src="/assets/api_error.svg" alt="api 에러 아이콘" />
-                    <p className="regular">지금은 데이터를 불러올 수 없어요</p>
-                </ErrorDiv>
+                <EmptyResult
+                    img="/assets/api_error.svg"
+                    message="지금은 데이터를 불러올 수 없어요"
+                />
             ) : (
                 <Grid2 container spacing={3} sx={{ justifyContent: "center", width: "100%" }}>
                     {monthlyTopData && monthlyTopData.map((data, index) => {

@@ -7,10 +7,6 @@ export const WatchMonthContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    .banner {
-        width: 100%;
-        padding: 2% 0;
-    }
     .title {
         width: 100%;
         text-align: left;

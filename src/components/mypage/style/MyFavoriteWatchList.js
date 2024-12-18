@@ -15,7 +15,6 @@ export const NullDiv = styled.div`
         width: 4rem;
     }
     button {
-        margin-top: 0.5rem;
         width: 5.5rem;
         height: 2rem;
         border: none;

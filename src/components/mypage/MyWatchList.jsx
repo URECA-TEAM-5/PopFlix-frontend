@@ -5,17 +5,15 @@ import { ImageGrid, MyWatchListNullDiv, Placeholder, PosterImage, TitleDiv, Togg
 import { useMyWatchList } from '../../stores/mypage/MyWatchListStore';
 import { Link } from 'react-router-dom';
 import NewFolderModal from '../myWatchlistModal/NewFolderModal';
-import LoadingSpinner from '../suspense/LoadingSpinner';
 import { deleteMyWatchList } from '../../api/mypage/myWatchList';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import AlertMessage from '../common/alert/AlertMessage';
 import { useAlert } from '../../stores/alert/AlertStore';
+import Loading from '../common/loading/Loading';
+import EmptyResult from '../common/emptyResult/EmptyResult';
 
 const MyWatchList = () => {
     const [modalOpen, setModalOpen] = useState(false);
-
-    const [alertType, setAlertType] = useState('');
-    const [alertMessage, setAlertMessage] = useState('');
     const { handleAlertOpen, handleAlertClose } = useAlert();
 
     const { myWatchList, setMyWatchList, setIsPublic, isLoading } = useMyWatchList();
@@ -35,49 +33,35 @@ const MyWatchList = () => {
 
     const handleCopy = (listId, isPublic) => {
         if (!isPublic) {
-            setAlertType('warning');
-            setAlertMessage('먼저 공개로 설정해주세요.');
-            handleAlertOpen();
+            handleAlertOpen('warning', '먼저 공개로 설정해주세요.');
             return;
         }
         const url = `${window.location.origin}/watchlist/${listId}`;
         navigator.clipboard.writeText(url).then(() => {
-            setAlertType('success');
-            setAlertMessage('링크를 복사했어요. 원하는 곳에 공유하세요!');
-            handleAlertOpen();
+            handleAlertOpen('success', '링크를 복사했어요. 원하는 곳에 공유하세요!');
         }).catch(err => {
             console.error('복사 실패 ', err);
-            setAlertType('error');
-            setAlertMessage('복사하지 못했습니다. 잠시후 다시 시도해주세요.');
-            handleAlertOpen();
+            handleAlertOpen('error', '복사하지 못했습니다. 잠시후 다시 시도해주세요.');
         });
     };
 
     const handleTogglePublic = async (storageId, isPublic, movieCount) => {
         if (movieCount === 0) {
-            setAlertType('warning');
-            setAlertMessage('편집을 눌러서 영화를 추가해주세요!');
-            handleAlertOpen();
+            handleAlertOpen('warning', '편집을 눌러서 영화를 추가해주세요!');
             return;
         }
         const status = await setIsPublic(storageId, userId);
         if (status === 200) {
             if (isPublic) {
-                setAlertType('success');
-                setAlertMessage('비공개로 변경되었습니다.');
-                handleAlertOpen();
+                handleAlertOpen('success', '비공개로 변경되었습니다.');
                 setMyWatchList(userId);
             } else {
-                setAlertType('success');
-                setAlertMessage('공개로 변경되었습니다.');
-                handleAlertOpen();
+                handleAlertOpen('success', '공개로 변경되었습니다.');
                 setMyWatchList(userId);
             }
             setMyWatchList(userId);
         } else {
-            setAlertType('error');
-            setAlertMessage('변경 중 오류가 발생했습니다. 다시 시도해주세요.');
-            handleAlertOpen();
+            handleAlertOpen('error', '변경 중 오류가 발생했습니다. 다시 시도해주세요.');
         }
     };
 
@@ -87,26 +71,25 @@ const MyWatchList = () => {
             try {
                 const response = await deleteMyWatchList(storageId, userId);
                 if (response.status === 200) {
-                    setAlertType('success');
-                    setAlertMessage('삭제되었습니다.');
-                    handleAlertOpen();
+                    handleAlertOpen('success', '삭제되었습니다.');
                     setMyWatchList(userId);
                 } else {
-                    setAlertType('error');
-                    setAlertMessage('삭제 중 오류가 발생했습니다. 다시 시도해주세요.');
-                    handleAlertOpen();
+                    handleAlertOpen('error', '삭제 중 오류가 발생했습니다. 다시 시도해주세요.');
                 }
             } catch (error) {
                 console.error(error);
-                setAlertType('error');
-                setAlertMessage('삭제 중 오류가 발생했습니다. 다시 시도해주세요.');
-                handleAlertOpen();
+                handleAlertOpen('error', '삭제 중 오류가 발생했습니다. 다시 시도해주세요.');
             }
         }
     };
 
     return (
         <>
+            <AlertMessage
+                type={''}
+                message={''}
+                handleClose={() => handleAlertClose()}
+            />
             <TitleDiv>
                 <div>
                     <FontAwesomeIcon icon={faFolder} />
@@ -119,7 +102,7 @@ const MyWatchList = () => {
             </TitleDiv>
             <WatchListContainer>
                 {isLoading ? (
-                    <LoadingSpinner />
+                    <Loading message="로딩 중입니다." />
                 ) : myWatchList?.length > 0 ? (
                     myWatchList.map((list) => (
                         <WatchListItemDiv key={list.id}>
@@ -156,17 +139,13 @@ const MyWatchList = () => {
                         </WatchListItemDiv>
                     ))
                 ) : (
-                    <MyWatchListNullDiv>
-                        <img src="/assets/popcorn_score_null.svg" alt="생성한 워치리스트 없음" />
-                        <p className="regular">New Folder를 눌러서 WatchList를 추가해주세요!</p>
-                    </MyWatchListNullDiv>
+                    <EmptyResult
+                        img="/assets/popcorn_score_null.svg"
+                        message="New Folder를 눌러서 WatchList를 추가해주세요!"
+                        size="4"
+                    />
                 )}
             </WatchListContainer >
-            <AlertMessage
-                type={alertType}
-                message={alertMessage}
-                handleClose={() => handleAlertClose()}
-            />
             <NewFolderModal open={modalOpen} setOpen={setModalOpen} />
         </>
     );
