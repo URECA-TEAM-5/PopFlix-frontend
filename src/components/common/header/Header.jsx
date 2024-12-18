@@ -8,13 +8,9 @@ import Search from '../search/Search';
 const Header = () => {
   const { keyword, setKeyword } = useHeader();
 
-  const handleSubmit = useCallback(
-    async (e) => {
-      e.preventDefault();
-      window.location.href = `/searchResult/${keyword}`;
-    },
-    [keyword]
-  );
+  const handleSubmit = useCallback(async () => {
+    window.location.href = `/searchResult/${keyword}`;
+  }, [keyword]);
 
   return (
     <HeaderContainer className="bold">
