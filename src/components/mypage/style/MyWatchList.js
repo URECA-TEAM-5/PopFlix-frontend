@@ -16,6 +16,16 @@ export const WatchListContainer = styled.div`
     padding-bottom: 1rem;
 `;
 
+export const MyWatchListNullDiv = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    img {
+        width: 3.5rem;
+    }
+`;
+
 export const WatchListItemDiv = styled.div`
     width: 100%;
     display: flex;

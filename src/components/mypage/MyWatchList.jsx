@@ -1,7 +1,7 @@
 import { faFolder, faSquarePlus } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useEffect, useState } from 'react';
-import { ImageGrid, Placeholder, PosterImage, TitleDiv, ToggleDiv, WatchListContainer, WatchListItem, WatchListItemDiv } from './style/MyWatchList';
+import { useEffect, useRef, useState } from 'react';
+import { ImageGrid, MyWatchListNullDiv, Placeholder, PosterImage, TitleDiv, ToggleDiv, WatchListContainer, WatchListItem, WatchListItemDiv } from './style/MyWatchList';
 import { useMyWatchList } from '../../stores/mypage/MyWatchListStore';
 import { Link } from 'react-router-dom';
 import NewFolderModal from '../myWatchlistModal/NewFolderModal';
@@ -11,14 +11,17 @@ import { deleteMyWatchList } from '../../api/mypage/myWatchList';
 const MyWatchList = () => {
     const [open, setOpen] = useState(false);
     const { myWatchList, setMyWatchList, setIsPublic, isLoading } = useMyWatchList();
-
+    const isLoaded = useRef(false);
     // const userId = 1;
     const user = JSON.parse(localStorage.getItem('user'));
     const userId = user ? user.userId : null;
 
     useEffect(() => {
-        setMyWatchList(userId);
-    }, [userId, setMyWatchList]);
+        if (!isLoaded.current) {
+            isLoaded.current = true;
+            setMyWatchList(userId);
+        }
+    }, [isLoaded, userId, setMyWatchList]);
 
     const handleClickOpen = () => setOpen(true);
 
@@ -123,7 +126,10 @@ const MyWatchList = () => {
                         </WatchListItemDiv>
                     ))
                 ) : (
-                    <span>새로운 WatchList를 추가하세요!</span>
+                    <MyWatchListNullDiv>
+                        <img src="/assets/popcorn_score_null.svg" alt="생성한 워치리스트 없음" />
+                        <p className="regular">New Folder를 눌러서 WatchList를 추가해주세요!</p>
+                    </MyWatchListNullDiv>
                 )}
             </WatchListContainer >
             <NewFolderModal open={open} setOpen={setOpen} />
