@@ -3,8 +3,8 @@ import React from 'react';
 import { colors } from '../../../global/globalStyle';
 import { useAlert } from '../../../stores/alert/AlertStore';
 
-const AlertMessage = ({ message, handleClose, type }) => {
-  const { alertOpen } = useAlert();
+const AlertMessage = ({ handleClose }) => {
+  const { alertOpen, alertMessage, alertType } = useAlert();
 
   return (
     <>
@@ -17,9 +17,9 @@ const AlertMessage = ({ message, handleClose, type }) => {
           horizontal: 'right',
         }}
       >
-        <Alert severity={type} sx={{ width: '20rem', height: '3rem', alignItems: 'center', fontSize: '1rem' }}>
+        <Alert severity={alertType} sx={{ width: '20rem', height: '3rem', alignItems: 'center', fontSize: '1rem' }}>
           <span className="regular" style={{ color: colors.space_gray }}>
-            {message}
+            {alertMessage}
           </span>
         </Alert>
       </Snackbar>
