@@ -4,18 +4,15 @@ import { apiGetHotCommnetList, apiGetPhtoReview, apiPostAddComment, handleCommen
 export const usePhotoReview = create((set) => ({
   reviewData: '',
   comments: '',
-  sorting: 'latest',
-  setSorting: (state) => set({ sorting: state }),
-
-  setReviewData: async (id) => {
+  setReviewData: async (id, state) => {
     set({ isLoading: true, error: null, message: null });
     try {
-      console.log(`[ setReviewData ] >> sort: ${sorting}`);
-      if (sorting === 'latest') {
+      console.log(`[ setReviewData ] >> sort: ${state}`);
+      if (state === 'latest') {
         const response = await apiGetPhtoReview(id);
         set({ reviewData: response, comments: response.comments });
         return response;
-      } else if (sorting === 'hot') {
+      } else if (state === 'hot') {
         const response = await apiGetHotCommnetList(id);
         console.log(response);
         set({ comments: response });
@@ -25,7 +22,6 @@ export const usePhotoReview = create((set) => ({
       set({ error: '[ setReviewData ] >> error', isLoading: false });
     }
   },
-
   setIsLiked: async (id, state) => {
     set({ isLoading: true, error: null, message: null });
     try {
@@ -37,7 +33,6 @@ export const usePhotoReview = create((set) => ({
       set({ error: '[ setReviewData ] >> error', isLoading: false });
     }
   },
-
   addComment: async (data) => {
     set({ isLoading: true, error: null, message: null });
     try {
