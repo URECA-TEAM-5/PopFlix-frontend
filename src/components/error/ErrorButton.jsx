@@ -8,7 +8,7 @@ const ErrorButton = () => {
 
   return (
     <ErrorButtonContainer>
-      <DefaultButton name={'메인으로'} w={9.25} h={2.5} onClick={() => navigate('/')} />
+      <DefaultButton name={'메인으로'} w={9.25} h={2.5} onClick={() => navigate('/main')} />
     </ErrorButtonContainer>
   );
 };
