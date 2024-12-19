@@ -1,5 +1,5 @@
 .slideContainer {
-  width: 60%;
+  width: 100%;
 }
 .container {
     display: flex;
@@ -7,7 +7,7 @@
     align-items: center;     /* 수직 중앙 정렬 */
     width: 100%;
     height: auto;            /* 슬라이더의 높이에 맞추기 위해 높이를 100%로 설정 */
-    padding: 10px;  
+     
 }
 .imageWrapper {
     display: flex;
@@ -16,7 +16,7 @@
   }
   
   .image {
-   width: 40%; /* 이미지의 최대 너비를 부모 요소에 맞춤 */
+   width: 100%; /* 이미지의 최대 너비를 부모 요소에 맞춤 */
     height: auto;    /* 이미지의 비율을 유지 */
     object-fit: contain; /* 이미지 비율을 유지하며 잘리지 않도록 함 */
     display: block;  /* 이미지가 inline-block 형식이 아니라 block으로 설정 */

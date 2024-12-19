@@ -21,7 +21,7 @@ const UserProfile = () => {
       >
         {' '}
         {(() => {
-          const profileImage = user?.profileImage || user?.data?.defaultProfileImage; // profileImage 우선 사용
+          const profileImage = user?.profileImage || user?.data?.defaultProfileImage;
 
           return <img className="profile" src={profileImage} alt="profile" style={{ cursor: 'pointer', width: '100%', height: '100%' }} />;
         })()}

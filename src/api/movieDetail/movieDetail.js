@@ -57,26 +57,16 @@ export const addRating = async (data) => {
 };
 
 // 포토리뷰 추가 api 기능
-export const createPhotoReview = async(formData) =>{
-//   console.log("포토 리뷰 작성 데이터 : ",formData);
-//   try {
-//     const moviewCreatePhotoReview = await axios.post(`${popflixURL}+${POST_CREATE_PHOTOREVIEW},${formData}`)
-//     return moviewCreatePhotoReview.data;
-//   } catch (error) {
-//     console.error(error)
-//   }
+export const createPhotoReview = async (review, reviewImageFile, movieId, userId) => {
   try {
-     
-    //  const formData = new FormData();
-    //  formData.append('review', review);
-    //  formData.append('reviewImage', reviewImage); // reviewImage는 File 객체여야 함
-    //  formData.append('userId', userId);
-    //  formData.append('movieId', movieId);
-    const moviewCreatePhotoReview = await request.post(POST_CREATE_PHOTOREVIEW,formData,{
-      headers: {
-        'Content-Type': 'multipart/form-data', // FormData로 요청 시 필수 헤더
-      },
-    });
+    const formData = new FormData();
+    formData.append('review', review);
+    formData.append('reviewImage', reviewImageFile); // 실제 File 객체여야 합니다.
+    formData.append('movieId', movieId);
+    formData.append('userId', userId);
+    // Content-Type을 직접 지정하지 않습니다. Axios가 자동으로 multipart/form-data로 처리합니다.
+    const moviewCreatePhotoReview = await request.post(POST_CREATE_PHOTOREVIEW, formData);
+    console.log('moviewCreatePhotoReview : ',moviewCreatePhotoReview);
     return moviewCreatePhotoReview;
   } catch (error) {
     console.error(error);
