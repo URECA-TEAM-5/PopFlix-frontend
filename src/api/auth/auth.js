@@ -39,7 +39,8 @@ export const apiUpdateUserInfo = async (formData) => {
       },
     })
     .then(async () => await apiGetUserInfo());
-  return response;
+  sessionStorage.setItem('user', JSON.stringify(response.data.response));
+  return response.data.response;
 };
 
 export const apiDeleteSignout = async (userId) => {

@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { apiGetUserInfo, apiPostSignup } from '../../api/auth/auth';
+import { apiGetUserInfo, apiPostSignup, apiUpdateUserInfo } from '../../api/auth/auth';
 
 export const useUserInfo = create((set) => ({
   userInfo: '',
@@ -14,11 +14,11 @@ export const useUserInfo = create((set) => ({
     }
   },
 
-  updateUserInfo: async () => {
+  updateUserInfo: async (formData) => {
     set({ isLoading: true, error: null, message: null });
     try {
       console.log(`[ updateUserInfo ]`);
-      const response = await apiUpdateUserInfo();
+      const response = await apiUpdateUserInfo(formData);
       set({ userInfo: response });
     } catch (e) {
       set({ error: '[ updateUserInfo ] >> error', isLoading: false });
