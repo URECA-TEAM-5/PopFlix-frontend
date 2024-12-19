@@ -17,6 +17,7 @@ const MovieList = ({ rows = 2, columns = 4, showMoreButton = true }) => {
   const [pageGroup, setPageGroup] = useState(0); // 페이지 그룹 (5개씩 묶어 보여주기)
   const [pageNumbers, setPageNumbers] = useState([]); // 페이지 번호 리스트
   const [movieApiPage, setMovieApiPage] = useState(0);
+  const [selectedPage,setSelectedPage] = useState('');
   const [totalMovies, setTotalMovies] = useState(0);
   const navigate = useNavigate();
   const size = 200;
@@ -35,10 +36,10 @@ const MovieList = ({ rows = 2, columns = 4, showMoreButton = true }) => {
   const fetchMovies = async (genre) => {
     try {
       // API 요청에서 장르와 페이지를 전달
-      const response = await getMovieList(movieApiPage, size, genre);
+      const response = await getMovieList(movieApiPage, size, genre,'');
       console.log('영화 데이터 : ', response.response);
       console.log('총 영화 개수 : ', response.response.totalElements);
-  
+
       // 상태 업데이트
       setTotalMovies(response.response.totalElements);
       setMovies(response.response.content);
@@ -49,18 +50,17 @@ const MovieList = ({ rows = 2, columns = 4, showMoreButton = true }) => {
       console.error('Failed to fetch movies:', error);
     }
   };
-  
+
   // 장르 버튼 클릭 이벤트 핸들러
   const handleGenreChange = (genre) => {
     setSelectedGenre(genre);
-    console.log('선택된 장르 : ',genre);
+    console.log('선택된 장르 : ', genre);
     setMovieApiPage(0); // API 페이지 초기화
     fetchMovies(genre); // 선택한 장르로 영화 데이터 가져오기
   };
   useEffect(() => {
     fetchMovies(); // 초기 데이터 가져오기
   }, []);
-  
 
   useEffect(() => {
     // 페이지 번호를 새로 계산
@@ -68,8 +68,8 @@ const MovieList = ({ rows = 2, columns = 4, showMoreButton = true }) => {
     const startPage = pageGroup * pagesToShow + 1;
     const endPage = Math.min(startPage + pagesToShow - 1, totalPages);
     const pageNumbersArray = Array.from({ length: endPage - startPage + 1 }, (_, index) => startPage + index);
-    setPageNumbers(pageNumbersArray); 
-  }, [filteredMovies, pageGroup]); 
+    setPageNumbers(pageNumbersArray);
+  }, [filteredMovies, pageGroup]);
 
   // 현재 페이지에 표시할 영화 계산
   const indexOfLastMovie = page * moviesPerPage;
@@ -109,7 +109,7 @@ const MovieList = ({ rows = 2, columns = 4, showMoreButton = true }) => {
       {/* 장르 버튼 */}
       <div id="genre-buttons-container" className={styles.genreButtonsContainer}>
         <Slider {...settings.current}>
-          <button className={`${styles.genreButton} ${selectedGenre === 'All' ? styles.genreButtonSelected : ''}`}  onClick={() => handleGenreChange('All')}>
+          <button className={`${styles.genreButton} ${selectedGenre === 'All' ? styles.genreButtonSelected : ''}`} onClick={() => handleGenreChange('All')}>
             전체
           </button>
           {genres.map((genre, index) => (
@@ -158,7 +158,9 @@ const MovieList = ({ rows = 2, columns = 4, showMoreButton = true }) => {
 
           {/* 페이지 번호들 */}
           {pageNumbers.map((number) => (
-            <button key={number} className={`${styles.pageButton} ${page === number ? styles.activePageButton : ''}`} onClick={() => handlePageChange(number)}>
+            <button key={number}className={`${styles.pageButton} ${
+              selectedPage === number ? styles.pageButtonSelected : ""
+            }`} onClick={() => handlePageChange(number)}>
               {number}
             </button>
           ))}

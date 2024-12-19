@@ -113,6 +113,32 @@
   justify-content: center;
   gap: 0.625rem;
 }
+.pageButton {
+  color: white;
+}
+.pageButton:hover {
+  background-color: orange; /* 기본 호버 스타일 */
+  border-color: #f09605;
+  color: white;
+}
+.pageButtonSelected {
+  border-color: #f09605;
+  background-color: #f09605; /* 선택된 버튼의 배경색 */
+  color: white;
+}
+.pageButton:focus {
+
+  outline: none;
+}
+
+.activePageButton {
+  background-color: orange;
+  color: #fff;
+}
+
+.activePageButton:hover {
+  background-color: orange; /* 클릭된 버튼 호버 스타일 */
+}
 .moviePage > button {
   background-color: #000000;
 }
@@ -125,4 +151,5 @@
   color: #f09605;
   border-color: #2e2f31;
   font-size: bold;
+  padding: 0.2rem;
 }
