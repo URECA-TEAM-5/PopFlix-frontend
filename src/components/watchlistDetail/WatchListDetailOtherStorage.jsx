@@ -1,25 +1,44 @@
+import { useParams } from "react-router-dom";
+import { useWatchListDetail } from "../../stores/watchlist/WatchListDetailStore";
 import WatchListLikeButton from "../watchlist/WatchListLikeButton";
 import { OtherList } from "./style/WatchListDetailOtherStorage";
 
-const DetailOtherStorage = ({ otherData = [], username, handleClickLike }) => {
+const DetailOtherStorage = () => {
+    const { id } = useParams();
 
+    const user = JSON.parse(localStorage.getItem('user'));
+    const userId = user ? user.userId : null;
+    const { otherStorage, watchListDetail, setOtherStorage, setIsLiked } = useWatchListDetail();
+
+    const handleOtherLikeToggle = async (storageId) => {
+        await setIsLiked(storageId, userId);
+        setOtherStorage(id, userId);
+    };
     return (
         <OtherList>
-            {username && <h4>{username}님의 다른 WatchList</h4>}
-            {otherData.length > 0 ? (
+            {watchListDetail?.storage?.username && (
+                <h4>{watchListDetail.storage.username}님의 다른 WatchList</h4>
+            )}
+            {otherStorage.length > 0 ? (
                 <>
                     <div className="imageContainer">
-                        {otherData.map((item, index) => (
-                            <img
-                                key={index}
-                                src={item.storageImage}
-                                alt={item.storageName}
-                                loading="lazy"
-                            />
+                        {otherStorage.map((item) => (
+                            <div key={item.id} className="imageWrapper">
+                                {item.storageImage ? (
+                                    <img
+                                        src={item.storageImage}
+                                        alt={item.storageName}
+                                        loading="lazy"
+                                        className="image"
+                                    />
+                                ) : (
+                                    <div className="imagePlaceholder"></div>
+                                )}
+                            </div>
                         ))}
                     </div>
                     <div className="textContainer">
-                        {otherData.map((item, index) => (
+                        {otherStorage.map((item, index) => (
                             <div key={index}>
                                 <p className="title regular">{item.storageName}</p>
                                 <div className="count regular">
@@ -30,7 +49,7 @@ const DetailOtherStorage = ({ otherData = [], username, handleClickLike }) => {
                                             isLiked={item.isLiked}
                                             likeCount={item.likeCount}
                                             className={item.isLiked ? 'heartlike' : ''}
-                                            onClick={() => handleClickLike(item.id, !item.isLiked ? 'like' : 'unlike', 'other')}
+                                            onClick={() => handleOtherLikeToggle(item.id)}
                                         />
                                     </div>
                                 </div>

@@ -1,8 +1,13 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { MovieDetails, MovieItem, MovieList, MovieListTitle } from "./style/WatchListDetailMovieList";
 import { faList } from "@fortawesome/free-solid-svg-icons";
+import { useWatchListDetail } from "../../stores/watchlist/WatchListDetailStore";
 
-const DetailMovieList = ({ movies }) => {
+const DetailMovieList = () => {
+
+    const { watchListDetail } = useWatchListDetail();
+    const movies = watchListDetail?.movies;
+
     return (
         <>
             <MovieListTitle>
