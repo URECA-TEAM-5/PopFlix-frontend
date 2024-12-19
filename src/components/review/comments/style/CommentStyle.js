@@ -7,6 +7,18 @@ export const CommentListContainer = styled.div`
   justify-items: center;
   padding-top: 3.75rem;
 
+  animation: fadeIn 0.5s ease-out forwards;
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+      color: ${colors.orange};
+    }
+  }
+
   .inner__section {
     max-width: 43.75rem;
     width: 100%;
@@ -71,6 +83,7 @@ export const CommentItemContainer = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: end;
+  color: ${colors.white};
   caret-color: transparent;
 
   .comments__item {
@@ -97,6 +110,7 @@ export const CommentItemContainer = styled.div`
   }
 
   .profile__image {
+    border-radius: 50%;
     width: 100%;
     height: 100%;
     object-fit: cover;

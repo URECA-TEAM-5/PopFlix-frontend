@@ -23,11 +23,13 @@ export const usePhotoReview = create((set) => ({
     }
   },
 
-  setIsLiked: (id, state) => {
+  setIsLiked: async (id, state) => {
     set({ isLoading: true, error: null, message: null });
     try {
       console.log(`[ setIsLiked ]`);
-      handleCommentLike(id, state);
+      const status = await handleCommentLike(id, state);
+      console.log(`[status >> ${status}] [${id}]번 댓글에 ${state ? '좋아요' : '좋아요 해제'}가 등록되었습니다!`);
+      return status;
     } catch (e) {
       set({ error: '[ setReviewData ] >> error', isLoading: false });
     }
