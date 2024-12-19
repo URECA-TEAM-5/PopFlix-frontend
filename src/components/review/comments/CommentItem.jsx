@@ -44,7 +44,7 @@ const CommentItem = ({ isBest, commentId, profileImageUrl, nickname, createdAt, 
                     <IconCheckLiked $isClicked={likedState.current}>
                       <FontAwesomeIcon icon={likedState.current ? heartFilled : heartEmpty} />
                     </IconCheckLiked>
-                    <span>{likeCount && likeCount}</span>
+                    <span>{likeCount + (likedState.current ? 1 : 0) * 1}</span>
                   </div>
                 }
                 onClick={handleIsLiked}
