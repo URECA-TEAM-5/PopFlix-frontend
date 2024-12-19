@@ -37,7 +37,6 @@ export const handleCommentLike = async (id, state) => {
   try {
     const response = state ? await request.post(API_PATH) : await request.delete(API_PATH);
     if (response.status === 200) {
-      // console.log(`[${id}]번 댓글에 ${state ? '좋아요' : '좋아요 해제'}가 등록되었습니다!`);
       console.log(response);
       return true;
     }

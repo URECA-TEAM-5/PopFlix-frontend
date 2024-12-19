@@ -4,7 +4,7 @@ import DefaultButton from '../../common/buttons/DefaultButton';
 import OutlineButton from '../../common/buttons/OutlineButton';
 import DefaultBadge from '../../common/badge/DefaultBadge';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMessage, faHeart as heartEmpty } from '@fortawesome/free-regular-svg-icons';
+import { faHeart as heartEmpty } from '@fortawesome/free-regular-svg-icons';
 import { faHeart as heartFilled } from '@fortawesome/free-solid-svg-icons';
 import { colors } from '../../../global/globalStyle';
 import { usePhotoReview } from '../../../stores/review/PhotoReviewStore';
