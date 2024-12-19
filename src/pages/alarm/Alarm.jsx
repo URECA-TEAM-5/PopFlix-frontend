@@ -22,7 +22,7 @@ const Alarm = () => {
         handleAlertOpen('warning', '로그인 후 사용이 가능합니다');
       }
     }
-  }, []);
+  });
 
   const { data } = useQuery({
     queryKey: ['userAlarmList'],
@@ -43,7 +43,7 @@ const Alarm = () => {
       />
       {data && (
         <AlarmContainer className="alarm-container">
-          {data.length == 0 ? (
+          {data.length === 0 ? (
             <AlaramEmpty />
           ) : (
             <div className="alarm-inner__section">

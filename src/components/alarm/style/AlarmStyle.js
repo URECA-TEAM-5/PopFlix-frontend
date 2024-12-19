@@ -134,21 +134,34 @@ export const TopSection = styled.div`
 `;
 
 export const EmptyMessageContainer = styled.div`
-  min-height: 80rem;
+  min-height: 30rem;
+  height: 100%;
+  padding: 4rem 0;
   display: block;
   justify-items: center;
   align-content: center;
+  color: ${colors.white};
+
+  animation: fadeIn 0.3s ease-out forwards;
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 
   .image__empty {
-    width: 21.4375rem;
-    height: 14.6875rem;
+    width: 8.5rem;
+    height: 8.5rem;
   }
 
   .text__section {
     width: 27rem;
     height: 8.75rem;
-    padding: 1.375rem 2.75rem;
-    font-size: 2.5rem;
+    font-size: 1.7rem;
     line-height: 1.2;
     display: flex;
     flex-direction: column;
@@ -161,9 +174,12 @@ export const EmptyMessageContainer = styled.div`
   }
 
   .button__section {
-    padding-top: 5rem;
+    padding-top: 1rem;
     width: 32.875rem;
     height: 16.625rem;
+    display: block;
+    justify-items: center;
+    animation: fadeIn 2.5s ease-out forwards;
   }
 
   .button__image {
@@ -179,8 +195,9 @@ export const EmptyMessageContainer = styled.div`
   }
 
   .button {
+    max-width: 30rem;
     width: 100%;
-    height: 5.5rem;
+    height: 5rem;
     border-radius: 2.5rem;
     font-size: 1.5rem;
     display: flex;

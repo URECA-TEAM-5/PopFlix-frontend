@@ -22,7 +22,6 @@ const HeaderIconSection = () => {
     <>
       <IconSection>
         <div className="inner__section">
-          <FontAwesomeIcon className="icon" icon={faMoon} size="xl" />
           {chkLogin.current && (
             <Link to="/alarm">
               <FontAwesomeIcon className="icon" icon={faBell} size="xl" />
