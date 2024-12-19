@@ -28,7 +28,6 @@ const Welcome = () => {
 
           // AccessToken 저장
           sessionStorage.setItem('accessToken', accessToken);
-          // 모든 작업이 끝나면 main 페이지로 이동
         } catch (error) {
           window.location.href = '/';
           handleAlertOpen('error', '다시 로그인 해주세요.');
