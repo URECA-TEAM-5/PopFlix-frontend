@@ -5,9 +5,10 @@ import MovieReviewTabs from '../../components/movieDetail/movieReviewTabs/MovieR
 import { useParams } from 'react-router-dom';
 import { useEffect, useRef } from 'react';
 import { useMovieDetail } from '../../stores/movieDetail/MovieDetailStore';
+import Loading from '../../components/common/loading/Loading';
 
 const MovieDetailPage = () => {
-  const { movieData, setMovieData,ratingData, setRatingData ,setPhotoReviewData} = useMovieDetail();
+  const { movieData, setMovieData, ratingData, setRatingData, setPhotoReviewData } = useMovieDetail();
   const { id } = useParams();
   const user = JSON.parse(localStorage.getItem('user'));
   const { userId } = user; // userId를 올바르게 추출
@@ -38,10 +39,10 @@ const MovieDetailPage = () => {
           <MovieIntro />
           <PoppleTip movieId={id} userId={userId} />
           {/* <ShortReview movieId={id} /> */}
-          <MovieReviewTabs movieId={id}/>
+          <MovieReviewTabs movieId={id} />
         </div>
       ) : (
-        <h1>로딩중 ~</h1>
+        <Loading />
       )}
     </>
   );
