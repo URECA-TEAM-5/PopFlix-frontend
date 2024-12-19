@@ -4,18 +4,21 @@ import { BaseLayout, GlobalStyle } from '../global/globalStyle';
 import Header from '../components/common/header/Header';
 import Footer from '../components/common/footer/Footer';
 import ScrollToTop from './ScrollToTop';
+import { useLanding } from '../stores/landing/LandingStore';
 
 const DefaultLayout = () => {
+  const { streaming } = useLanding();
+
   return (
     <>
       <GlobalStyle />
       <BaseLayout className="base-layout regular">
-        <Header className="header" />
+        {!streaming && <Header className="header" />}
         <ScrollToTop />
         <div className="app-pages__section">
           <AppPages />
         </div>
-        <Footer className="footer" />
+        {!streaming && <Footer className="footer" />}
       </BaseLayout>
     </>
   );
