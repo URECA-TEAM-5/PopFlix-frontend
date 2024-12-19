@@ -6,7 +6,8 @@ export const PhotoReviewContainer = styled.div`
   max-width: 51.25rem;
   width: 100%;
   justify-items: center;
-  min-height: 90vh;
+  min-height: 50vh;
+  padding: 1.5rem 0;
 
   animation: fadeIn 0.5s ease-out forwards;
 
