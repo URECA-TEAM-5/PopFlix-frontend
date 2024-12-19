@@ -1,51 +1,38 @@
 import { create } from 'zustand';
-import { fetchDetailData, fetchOtherStorage, handleOtherStorageLike, handleStorageLike } from '../../api/watchlistDetail/watchlistDetail';
+import { getOtherStorage, getWatchlistDetail, postDetailStorageLike } from '../../api/watchlistDetail/watchlistDetail';
 
-export const useWatchList = create((set) => ({
-    watchListDetail: null,
-    otherStorage: null,
-    setwatchListDetail: async (id) => {
+export const useWatchListDetail = create((set) => ({
+    watchListDetail: [],
+    otherStorage: [],
+    setWatchListDetail: async (storageId, userId) => {
         set({ isLoading: true, error: null, message: null });
         try {
-            const response = await fetchDetailData({ queryKey: ['detailData', id] });
-            if(response) {
-                set({ watchListDetail: response });
-                return response;
-            }
+            console.log(`[ setWatchListDetail ]`);
+            const response = await getWatchlistDetail(storageId, userId);
+            set({ watchListDetail: response, isLoading: false});
         } catch (e) {
-            set({ error: `[setwatchListDetail] >> error: ${e}`, isLoading: false });
+            set({ error: '[ setWatchListDetail ] >> error', isLoading: false});
         }
     },
-    setOtherStorage: async () => {
+    setOtherStorage: async (storageId, userId) => {
         set({ isLoading: true, error: null, message: null });
         try {
-            const response = await fetchOtherStorage();
-            if (response) {
-                set({ otherStorage: response });
-                return response;
-            }
+            console.log(`[ setOtherStorage ]`);
+            const response = await getOtherStorage(storageId, userId);
+            set({ otherStorage: response, isLoading: false});
         } catch (e) {
-            set({ error: `[setOtherData] >> error: ${e}`, isLoading: false });
+            set({ error: '[ setOtherStorage ] >> error', isLoading: false});
         }
     },
-    setIsLiked: async (id, state) => {
+    setIsLiked: async (storageId, userId) => {
         set({ isLoading: true, error: null, message: null });
         try {
             console.log(`[ setIsLiked ]`);
-            if (state === 'detail') {
-                if (watchListDetail) {
-                    handleStorageLike(id, state);
-                    set({ watchListDetail: [...watchListDetail] });
-                }
-            }
-            if (state === 'other') {
-                if (otherStorage) {
-                    handleOtherStorageLike(id, state);
-                    set({ otherStorage: [...otherStorage] });
-                }
-            }
+            const response = await postDetailStorageLike(storageId, userId);
+            set({ isLoading: false });
+            return response.status;
         } catch (e) {
-            set({ error: '[setIsLiked] >> error: ' + e, isLoading: false });
+            set({ error: '[ setIsLiked ] >> error', isLoading: false });
         }
-    },
+    }
 }));

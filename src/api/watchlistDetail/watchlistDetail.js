@@ -1,30 +1,31 @@
-import { detailData } from '../../components/watchlistDetail/data/detailData';
-import { otherData } from '../../components/watchlistDetail/data/otherData';
 import request from '../axios';
 
-export const fetchDetailData = async ({ queryKey }) => {
-    const id = queryKey[1];
-    return detailData.find(item => item.storage.id === parseInt(id));
-};
-
-export const fetchOtherStorage = async () => {
-    return otherData;
-};
-
-export const handleStorageLike = (id, state) => {
-    const storage = detailData[0].storage;
-    const item = storage.find(item => item.id === id);
-    if (item) {
-        item.isLiked = state;
-        console.log(`[${item.id}]번 보관함에 ${state ? '좋아요' : '좋아요 해제'}가 등록되었습니다!`);
+export const getWatchlistDetail = async (storageId, userId) => {
+    try {
+        const response = await request.get(`/api/storages/${storageId}/details?userId=${userId}`);
+        console.log('getWatchlistDetail:', response.data.response);
+        return response.data.response;
+    } catch (e) {
+        console.log(`[getWatchlistDetail] >> ${e}`);
     }
 };
 
-export const handleOtherStorageLike = (id, state) => {
-    const storage = otherData[0].storage;
-    const item = storage.find(item => item.id === id);
-    if (item) {
-        item.isLiked = state;
-        console.log(`[${item.id}]번 보관함에 ${state ? '좋아요' : '좋아요 해제'}가 등록되었습니다!`);
+export const getOtherStorage = async (storageId, userId) => {
+    try {
+        const response = await request.get(`/api/storages/${storageId}/others?userId=${userId}`);
+        console.log('getOthersWatchlist:', response.data.response);
+        return response.data.response;
+    } catch (e) {
+        console.log(`[getOthersWatchlist] >> ${e}`);
+    }
+};
+
+export const postDetailStorageLike = async (storageId, userId) => {
+    try {
+        const response = await request.post(`/api/storages/${storageId}/like?userId=${userId}`);
+        console.log('postDetailStorageLike:', response);
+        return response;
+    } catch (e) {
+        console.log(`[postDetailStorageLike] >> ${e}`);
     }
 };

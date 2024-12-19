@@ -1,62 +1,36 @@
-import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import DetailOtherStorage from './WatchListDetailOtherStorage';
 import DetailStorage from './WatchListDetailStorage';
 import DetailMovieList from './WatchListDetailMovieList';
-import { useWatchList } from '../../stores/watchlist/WatchListDetailStore';
-import { fetchDetailData, fetchOtherStorage } from '../../api/watchlistDetail/watchlistDetail';
+import { useEffect, useRef } from 'react';
+import { OpacityDiv } from './style/WatchListDetail';
+import { useWatchListDetail } from '../../stores/watchlist/WatchListDetailStore';
 
 const WatchListDetail = () => {
     const { id } = useParams();
-    const { watchListDetail, setwatchListDetail, otherStorage, setOtherStorage, setIsLiked } = useWatchList();
 
-    const { data: detailData } = useQuery(
-        {
-            queryKey: ['detailData', id],
-            queryFn: () => fetchDetailData({ queryKey: ['detailData', id] }),
-            enabled: !watchListDetail,
-            onSuccess: (data) => {
-                if (data) {
-                    setwatchListDetail(id);
-                }
-            },
+    const { watchListDetail, setWatchListDetail, setOtherStorage } = useWatchListDetail();
+    const isLoaded = useRef(false);
+
+    const user = JSON.parse(localStorage.getItem('user'));
+    const userId = user ? user.userId : null;
+
+    useEffect(() => {
+        if (!isLoaded.current) {
+            isLoaded.current = true;
+            setWatchListDetail(id, userId);
+            setOtherStorage(id, userId);
         }
-    );
-
-    const { data: otherData } = useQuery({
-        queryKey: ['otherData'],
-        queryFn: fetchOtherStorage,
-        enabled: !otherStorage,
-        onSuccess: (data) => {
-            if (data) {
-                setOtherStorage();
-            }
-        },
-    });
-
-    const handleClickLike = (id, state, dataType) => {
-        if (dataType === 'detail') {
-            setIsLiked(id, state, 'detail');
-        } else if (dataType === 'other') {
-            setIsLiked(id, state, 'other');
-        }
-    };
+    }, [id, userId, setWatchListDetail, setOtherStorage]);
 
     return (
-        <>
-            {detailData?.storage && (
-                <DetailStorage
-                    storage={detailData.storage}
-                    handleClickLike={(state) => handleClickLike(detailData.storage.id, state, 'detail')}
-                />
+        <OpacityDiv>
+            {watchListDetail?.storage && (
+                <DetailStorage />
             )}
-            <DetailMovieList movies={detailData?.movies} />
-            <DetailOtherStorage
-                otherData={otherData}
-                username={detailData?.storage?.username}
-                handleClickLike={handleClickLike}
-            />
-        </>
+            <DetailMovieList />
+            <DetailOtherStorage />
+        </OpacityDiv>
     );
 };
 
