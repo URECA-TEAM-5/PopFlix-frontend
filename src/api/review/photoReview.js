@@ -5,7 +5,7 @@ const GET_PHOTO_REVIEW = '/api/photo-reviews';
 const GET_HOT_PHOTO_REVIEW = '/api/photo-review-comments/review';
 const ADD_COMMENT = '/api/photo-review-comments';
 const HANDLE_COMMENT_LIKE = '/api/photo-review-comments';
-const userId = await chkUserInfo().userId;
+const userId = chkUserInfo().userId;
 
 export const apiGetPhtoReview = async (id) => {
   console.log(`[ apiGetPhtoReview ]`);
