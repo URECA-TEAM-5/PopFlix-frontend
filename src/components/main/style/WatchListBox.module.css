@@ -1,0 +1,158 @@
+/* 전체 컨테이너 */
+.container {
+  display: flex;
+  flex-direction: column;
+ 
+  margin-bottom: 2.8125rem;
+  width: 100%;
+}
+.watchListBoxContainer {
+  padding: 0 2rem;
+}
+
+/* 제목 스타일 */
+.watchListTitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1.25rem;
+}
+
+/* WatchList 박스 - 카드들이 가로로 나열되도록 설정 */
+.watchListBox {
+  width: 100%;
+  max-width: 57.5rem; /* 컴포넌트 크기 제한*/
+  min-width: 51.25rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.6125rem;
+  flex-wrap: nowrap; /* 카드들이 한 줄로 나열되도록 */
+  overflow-x: auto;
+  justify-content: center;  /* 리스트박스를 수평 중앙 정렬 */
+}
+
+/* 카드 스타일 */
+.watchListCard {
+  width: 18%;
+  height: 100%;
+  /* width: 10.9375rem; */
+  height: 15rem; /* 카드 높이를 고정 */
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.3125rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #25292e;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+/* 이미지 영역 */
+.cardImageContainer {
+  height: 65%; /* 이미지가 카드 높이의 60% 차지 */
+  overflow: hidden;
+}
+
+.cardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 이미지가 잘리더라도 비율에 맞게 채움 */
+}
+
+/* 텍스트 및 좋아요 영역 */
+.cardContent {
+  font-weight: normal;
+  font-size: 0.875rem;
+  color: white;
+  height: 35%; /* 텍스트가 카드 높이의 40% 차지 */
+  padding: 0.625rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* 제목 스타일 */
+.cardTitle {
+  font-size: 0.875rem;
+  font-weight: normal;
+  margin: 0;
+}
+
+/* 좋아요 및 리스트 항목 영역 */
+.cardFooter {
+  font-size: 0.9rem;
+  color: white;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.p {
+  width: 100%;
+  max-width: 57.5rem;
+  /* justify-content: flex-start; */
+  /* padding-bottom: 1rem; */
+  padding: 1rem 2rem;
+}
+
+
+/* @media (max-width: 90rem) {
+  .watchListBox {
+    max-width: 57.5rem;
+    width: 100%;
+  }
+}
+
+@media (max-width: 64rem) {
+  
+  .watchListBox {
+    gap: 1.25rem;
+    flex-wrap: nowrap;  
+    justify-content: space-around;  
+    overflow-x: auto;
+  }
+
+  .watchListCard {
+    width: 20%; 
+    height: auto; 
+  }
+}
+
+@media (max-width: 48rem) {
+  
+  .watchListBox {
+    gap: 1rem;
+    justify-content: space-around;
+    overflow-x: auto;
+  }
+
+  .watchListCard {
+    width: 20%; 
+    height: auto; 
+  }
+
+  .cardContent {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 30rem) {
+  
+  .watchListBox {
+    flex-wrap: nowrap;
+    align-items: center;
+    overflow-x: auto;
+  }
+
+  .watchListCard {
+    width: 20%; 
+    height: auto;
+  }
+
+  .cardImageContainer {
+    height: 50%; 
+  }
+
+  .p {
+    padding: 1rem 0;
+  } 
+  
+} */

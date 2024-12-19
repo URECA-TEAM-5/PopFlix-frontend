@@ -22,5 +22,15 @@ module.exports = {
     ],
     'no-unused-vars': 'off',
     'react-refresh/only-export-components': 'off', // 모든 export 허용
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        js: 'never',
+        jsx: 'never',
+        ts: 'never',
+        tsx: 'never',
+      },
+    ],
   },
 };

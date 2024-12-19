@@ -1,0 +1,155 @@
+.container {
+  position: relative;
+  max-width: 57.5rem;
+  /* width: 100%; */
+}
+.movieGridContainer {
+  display: flex;
+  justify-content: center;
+}
+.movieGrid {
+  gap: 0.625rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+@media (max-width: 820px) {
+  .movieGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .movieGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 400px) {
+  .movieGrid {
+    grid-template-columns: 1fr; /* 화면이 600px 이하일 때 1열로 변경 */
+  }
+}
+
+.movieImage {
+  width: 10.625rem;
+  height: 14.125rem;
+  border-radius: 0.313rem;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease; /* 애니메이션 효과 */
+}
+.movieImage:hover {
+  transform: scale(1.02); /* 이미지 확대 효과 */
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3); /* 그림자 효과 */
+}
+.movieCard {
+  padding: 0.625rem;
+  border-radius: 0.625rem;
+  width: 10.625rem;
+  text-align: center;
+  cursor: pointer;
+}
+.movieTitle {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+.movieStats {
+  width: 100%; /* 카드 너비에 맞춤 */
+  display: flex; /*수평 정렬 */
+  justify-content: space-around; /* 요소 간의 여백 균등 분배 */
+  align-items: center; /* 세로축 가운데 정렬 */
+  height: 0.125rem;
+  font-size: 0.825rem;
+}
+.movieIcon {
+  width: 0.825rem;
+  height: 0.825rem;
+  margin-right: 0.425rem;
+}
+.movieStats {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.movieRating,
+.movieLikes {
+  display: flex;
+  align-items: center;
+}
+
+.genreButtonsContainer {
+  padding: 1rem 2rem;
+}
+
+.genreButton {
+  width: 5rem;
+  height: 2.5rem;
+  font-size: 0.7rem;
+  text-align: center;
+  background-color: #000000;
+  color: #84868d;
+  border: none;
+  border: 0.111rem solid #2e2f31;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+.genreButton:hover {
+  background-color: #f09605;
+  border-color: #f09605;
+  color: white;
+}
+
+.genreButtonSelected {
+  border-color: #f09605;
+  background-color: #f09605; /* 선택된 버튼의 배경색 */
+  color: white;
+}
+.genreButton:focus {
+  outline: none;
+}
+.moviePage {
+  display: flex;
+  justify-content: center;
+  gap: 0.625rem;
+}
+.pageButton {
+  color: white;
+}
+.pageButton:hover {
+  background-color: orange; /* 기본 호버 스타일 */
+  border-color: #f09605;
+  color: white;
+}
+.pageButtonSelected {
+  border-color: #f09605;
+  background-color: #f09605; /* 선택된 버튼의 배경색 */
+  color: white;
+}
+.pageButton:focus {
+
+  outline: none;
+}
+
+.activePageButton {
+  background-color: orange;
+  color: #fff;
+}
+
+.activePageButton:hover {
+  background-color: orange; /* 클릭된 버튼 호버 스타일 */
+}
+.moviePage > button {
+  background-color: #000000;
+}
+.viewMoreBtn {
+  position: absolute; /* 절대 위치 지정 */
+  display: flex;
+  justify-content: flex-end;
+  right: 1rem; /* 우측 여백 */
+  background-color: #000000;
+  color: #f09605;
+  border-color: #2e2f31;
+  font-size: bold;
+  padding: 0.2rem;
+}
