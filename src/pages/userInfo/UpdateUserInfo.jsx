@@ -13,6 +13,7 @@ import AlertMessage from '../../components/common/alert/AlertMessage';
 
 const UpdateUserInfo = () => {
   const { handleAlertOpen, handleAlertClose } = useAlert();
+  const { updateUserInfo } = useUserInfo();
 
   // 로그인한 유저 정보
   const user = chkUserInfo();
@@ -154,9 +155,8 @@ const UpdateUserInfo = () => {
     }
 
     try {
-      await apiUpdateUserInfo(user.userId, formData);
+      await useUserInfo(formData);
       handleAlertOpen('success', '회원가입이 완료되었습니다.');
-      sessionStorage.setItem('user', JSON.stringify(userData));
       window.location.href = '/';
     } catch (error) {
       handleAlertOpen('error', '회원가입 중 오류가 발생했습니다.');

@@ -1,3 +1,4 @@
+import { chkUserInfo } from '../../components/userInfo/modal/chkUserInfo';
 import request from '../axios';
 
 const GET_AUTH_ME = '/auth/me';
@@ -29,12 +30,15 @@ export const apiCheckDuplicate = async (nickname) => {
   }
 };
 
-export const apiUpdateUserInfo = async (userId, formData) => {
-  const response = await request.patch(UPDATEUSER + userId, formData, {
-    headers: {
-      'content-Type': 'multipart/form-data',
-    },
-  });
+export const apiUpdateUserInfo = async (formData) => {
+  const userId = chkUserInfo().userId;
+  const response = await request
+    .patch(UPDATEUSER + userId, formData, {
+      headers: {
+        'content-Type': 'multipart/form-data',
+      },
+    })
+    .then(async () => await apiGetUserInfo());
   return response;
 };
 

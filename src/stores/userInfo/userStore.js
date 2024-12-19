@@ -3,14 +3,25 @@ import { apiGetUserInfo, apiPostSignup } from '../../api/auth/auth';
 
 export const useUserInfo = create((set) => ({
   userInfo: '',
-  setUserInfo: () => {
+  setUserInfo: async () => {
     set({ isLoading: true, error: null, message: null });
     try {
       console.log(`[ setUserInfo ]`);
-      const response = apiGetUserInfo();
+      const response = await apiGetUserInfo();
       set({ userInfo: response });
     } catch (e) {
       set({ error: '[ setUserInfo ] >> error', isLoading: false });
+    }
+  },
+
+  updateUserInfo: async () => {
+    set({ isLoading: true, error: null, message: null });
+    try {
+      console.log(`[ updateUserInfo ]`);
+      const response = await apiUpdateUserInfo();
+      set({ userInfo: response });
+    } catch (e) {
+      set({ error: '[ updateUserInfo ] >> error', isLoading: false });
     }
   },
 
