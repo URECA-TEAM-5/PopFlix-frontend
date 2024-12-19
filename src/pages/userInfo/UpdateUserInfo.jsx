@@ -154,10 +154,10 @@ const UpdateUserInfo = () => {
     }
 
     try {
-      const response = await apiUpdateUserInfo(user.userId, formData);
-
+      await apiUpdateUserInfo(user.userId, formData);
       handleAlertOpen('success', '회원가입이 완료되었습니다.');
-      window.location.href = '/welcome';
+      sessionStorage.setItem('user', userData);
+      window.location.href = '/';
     } catch (error) {
       handleAlertOpen('error', '회원가입 중 오류가 발생했습니다.');
     }
