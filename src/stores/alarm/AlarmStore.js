@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { getAlarmList } from '../../api/alarm/alarm';
+import { apiGetAlarmList } from '../../api/alarm/alarm';
 
 export const useAlarm = create((set) => ({
   alarmList: [],
@@ -7,7 +7,7 @@ export const useAlarm = create((set) => ({
     set({ isLoading: true, error: null, message: null });
     try {
       console.log(`[ setAlarmList ]`);
-      const response = getAlarmList();
+      const response = apiGetAlarmList();
       set({ reviewData: response });
       return response;
     } catch (e) {
