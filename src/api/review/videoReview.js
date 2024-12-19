@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const youtubeApi = async (movieTitle) => {
   try {
-    const videoResponse = await axios.get('https://youtube.googleapis.com/youtube/v3/videos', {
+    const videoResponse = await axios.get('https://youtube.googleapis.com/youtube/v3/search', {
       params: {
         part: 'snippet',
         q: movieTitle+'리뷰',

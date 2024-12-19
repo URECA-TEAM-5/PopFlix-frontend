@@ -23,7 +23,6 @@ const MovieDetailPage = () => {
       console.log('로그인 유저 정보 :', user);
       console.log('로그인 유저 제발 :', user.userId);
       console.log('유저 정보:', userId);
-
       // 영화 정보 불러오기 => zustand에 저장 ( await 처리 필수 )
       setMovieData(id);
       setRatingData(id);

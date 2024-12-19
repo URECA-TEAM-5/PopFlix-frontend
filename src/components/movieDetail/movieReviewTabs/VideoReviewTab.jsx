@@ -1,36 +1,43 @@
 import { useEffect, useState, useRef } from 'react';
-import { moviesData } from '../../main/data';
-import { youtubeApi } from '../../../api/review/videoReview';
+// import { moviesData } from '../../main/data';
+// import { youtubeApi } from '../../../api/review/videoReview';
 import { useVideoReviewStore } from '../../../stores/review/videoReviewStore';
 import { VideoReviewTabContainer } from './style/VideoReviewTab';
-const VideoReviewTab = ({ movieId }) => {
-  const movie = moviesData[movieId - 1];
+import { useMovieDetail } from '../../../stores/movieDetail/MovieDetailStore';
+
+const VideoReviewTab = ({ movieId}) => {
+  const [isLoading, setIsLoading] = useState(true);
+
   const { youtubeVideos, setYoutubeVideos, setLoading } = useVideoReviewStore();
-
+  // const fetchVideo = async () => {
+  //   if (youtubeVideos.length === 0) {
+  //     setLoading(true);
+  //     try {
+  //       const videoData = await youtubeApi(movieData.title);
+  //       console.log('영상리뷰 데이터 : ', videoData);
+  //       setYoutubeVideos(videoData);
+  //       setLoading(false);
+  //     } catch (error) {
+  //       console.error('Error fetching YouTube video:', error);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   }
+  // };
   useEffect(() => {
-    const fetchVideo = async () => {
-      if (youtubeVideos.length === 0) {
-        setLoading(true);
-        try {
-          const videoData = await youtubeApi(movie.title);
-          console.log('영상리뷰 데이터 : ', videoData);
-          setYoutubeVideos(videoData);
-        } catch (error) {
-          console.error('Error fetching YouTube video:', error);
-        } finally {
-          setLoading(false);
-        }
-      }
-    };
-
-    fetchVideo();
-  }, [movie.title, youtubeVideos.length, setYoutubeVideos, setLoading]);
+   if(isLoading){
+    
+    console.log('movieId : ',movieId);
+    
+    // fetchVideo();
+   }
+  }, [isLoading]);
 
   return (
     <VideoReviewTabContainer>
       {youtubeVideos.length > 0 ? (
-        youtubeVideos.map((video) => (
-          <div key={video.id.videoId}>
+        youtubeVideos.map((video,index) => (
+          <div key={index}>
             <iframe
               width="560"
               height="315"

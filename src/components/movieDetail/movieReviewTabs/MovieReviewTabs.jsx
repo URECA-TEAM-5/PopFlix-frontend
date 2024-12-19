@@ -3,7 +3,7 @@ import PhotoReviewTab from './PhotoReviewTab';
 import ShortReviewTab from './ShortReviewTab';
 import VideoReviewTab from './VideoReviewTab';
 import { MovieReviewContainer, MovieReviewTabMenu, MovieReviewTab, Content } from './style/MovieReviewTabs';
-const MovieReviewTabs = ({ movieId }) => {
+const MovieReviewTabs = ({ movieId}) => {
   const [activeTab, setActiveTab] = useState('photos');
   const reviewTabSelect = () => {
     switch (activeTab) {
@@ -12,7 +12,7 @@ const MovieReviewTabs = ({ movieId }) => {
       case 'shorts':
         return <ShortReviewTab movieId={movieId} />;
       case 'videos':
-        return <VideoReviewTab movieId={movieId} />;
+        return <VideoReviewTab movieId={movieId}/>;
       default:
         return null;
     }
