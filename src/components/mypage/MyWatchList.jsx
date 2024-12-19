@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 import NewFolderModal from '../myWatchlistModal/NewFolderModal';
 import { deleteMyWatchList } from '../../api/mypage/myWatchList';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import AlertMessage from '../common/alert/AlertMessage';
 import { useAlert } from '../../stores/alert/AlertStore';
 import Loading from '../common/loading/Loading';
 import EmptyResult from '../common/emptyResult/EmptyResult';
@@ -88,7 +87,6 @@ const MyWatchList = () => {
 
   return (
     <OpacityDiv>
-      <AlertMessage type={''} message={''} handleClose={() => handleAlertClose()} />
       <TitleDiv>
         <div>
           <FontAwesomeIcon icon={faFolder} />

@@ -6,6 +6,7 @@ import NewFolderInput from './NewFolderInput';
 import { useMyWatchList } from '../../stores/mypage/MyWatchListStore';
 import { postNewFolder } from '../../api/mypage/myWatchList';
 import { chkUserInfo } from '../userInfo/modal/chkUserInfo';
+import { useAlert } from '../../stores/alert/AlertStore';
 
 const NewFolderModal = ({ open, setOpen }) => {
     const { setMyWatchList } = useMyWatchList();
@@ -16,7 +17,7 @@ const NewFolderModal = ({ open, setOpen }) => {
     const storageOverviewRef = useRef(null);
 
     const userId = chkUserInfo().userId;
-
+    const { handleAlertOpen, handleAlertClose } = useAlert();
     const NAME_MAX_LENGTH = 30;
     const OVERVIEW_MAX_LENGTH = 100;
 
@@ -49,6 +50,7 @@ const NewFolderModal = ({ open, setOpen }) => {
             const result = await postNewFolder(folderData);
             if (result) {
                 handleClose();
+                handleAlertOpen('success', '폴더를 생성했습니다.');
                 setMyWatchList(userId);
             }
         } catch (error) {
