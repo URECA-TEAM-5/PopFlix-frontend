@@ -18,12 +18,12 @@ const Header = () => {
         <img
           className="img__logo"
           onClick={() => {
-            window.location = '/';
+            window.location = '/main';
           }}
           src="/assets/logo.svg"
           alt="로고 이미지"
         />
-        <MenuItem path="/" title="전체" />
+        <MenuItem path="/main" title="전체" />
         <MenuItem path="/watchlist" title="WatchList" />
       </div>
       <div className="search__section">

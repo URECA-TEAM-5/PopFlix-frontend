@@ -22,7 +22,7 @@ const MainScreens = {
     element: <NotFound />,
   },
   Main: {
-    path: '/',
+    path: '/main',
     element: <MainPage />,
   },
   AddUserInfo: {
@@ -78,7 +78,7 @@ const MainScreens = {
     element: <AlaramEmpty />,
   },
   LandingPage: {
-    path: '/landingPage',
+    path: '/',
     element: <LandingPage />,
   },
 };
