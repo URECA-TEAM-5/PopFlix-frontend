@@ -15,6 +15,7 @@ import MovieListPage from '../pages/movie/MovieListPage';
 import SearchResult from '../pages/search/SearchResult';
 import Welcome from '../pages/welcome/Welcome';
 import AlaramEmpty from '../components/alarm/AlaramEmpty';
+import LandingPage from '../pages/landing/landingPage';
 const MainScreens = {
   NotFound: {
     path: '*',
@@ -75,6 +76,10 @@ const MainScreens = {
   EmptyAlarm: {
     path: '/empty',
     element: <AlaramEmpty />,
+  },
+  LandingPage: {
+    path: '/landingPage',
+    element: <LandingPage />,
   },
 };
 

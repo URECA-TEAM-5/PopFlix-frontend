@@ -17,6 +17,7 @@ const UserProfile = () => {
           backgroundColor: colors.navy_gray,
           border: `0.0625rem solid ${colors.orange}`,
           overflow: 'hidden',
+          objectFit: 'cover',
         }}
       >
         {' '}

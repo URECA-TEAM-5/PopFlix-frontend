@@ -11,7 +11,7 @@ const App = () => {
       <DefaultLayout />
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
-  )
+  );
 };
 
 export default App;
