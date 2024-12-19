@@ -155,7 +155,7 @@ const UpdateUserInfo = () => {
     }
 
     try {
-      await useUserInfo(formData);
+      await updateUserInfo(formData);
       handleAlertOpen('success', '회원가입이 완료되었습니다.');
       window.location.href = '/';
     } catch (error) {
