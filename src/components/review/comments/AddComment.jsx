@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowTurnDown } from '@fortawesome/free-solid-svg-icons';
 import { usePhotoReview } from '../../../stores/review/PhotoReviewStore';
 import { useParams } from 'react-router-dom';
+import { chkUserInfo } from '../../userInfo/modal/chkUserInfo';
 
 const AddComment = () => {
   const [val, setVal] = useState('');
@@ -11,11 +12,10 @@ const AddComment = () => {
   const { id } = useParams();
 
   const handleAddCommnet = async (e) => {
-    e.preventDefault();
     const data = {
       comment: val,
       reviewId: id,
-      userId: 9, // userId 수정 필요 ( 현재는 고정값 )
+      userId: chkUserInfo().userId, // userId 수정 필요 ( 현재는 고정값 )
     };
     await addComment(data);
     alert(val);
