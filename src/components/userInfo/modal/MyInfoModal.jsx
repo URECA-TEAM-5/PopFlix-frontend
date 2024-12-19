@@ -2,27 +2,27 @@ import { Dialog, DialogContent, Button, Box } from '@mui/material';
 import { colors } from '../../../global/globalStyle';
 import { MyInfoModalButton, MyInfoModalUserGreet, MyInfoModalUserName } from './style/UserInfoModalStyle';
 import request from '../../../api/axios';
+import { useAlert } from '../../../stores/alert/AlertStore';
+import AlertMessage from '../../common/alert/AlertMessage';
 
 export default function MyInfoModal({ open, onClose }) {
+  const { handleAlertOpen, handleAlertClose } = useAlert();
+
   const storedUserData = sessionStorage.getItem('user');
   const parsedUserData = storedUserData ? JSON.parse(storedUserData) : null;
   const nickname = parsedUserData?.nickname || '';
 
   const logout = async () => {
     try {
-      // 로그아웃 요청 (RefreshToken 쿠키 삭제)
       await request.post('/auth/logout');
-      console.log('로그아웃 성공');
+      handleAlertOpen('success', '로그아웃 성공');
 
-      // sessionStorage 정보 제거
       sessionStorage.removeItem('accessToken');
       sessionStorage.removeItem('user');
 
-      // 메인 페이지로 이동
       window.location.href = '/';
     } catch (error) {
-      console.error(' 로그아웃 실패:', error);
-      alert('로그아웃 중 오류가 발생했습니다.');
+      handleAlertOpen('error', '로그아웃 중 오류가 발생했습니다.');
     }
   };
 
@@ -35,13 +35,14 @@ export default function MyInfoModal({ open, onClose }) {
           width: '15rem',
           height: '8rem',
           position: 'fix',
-          bottom: '310px',
-          left: '530px',
+          bottom: '19.38rem',
+          left: '26.5rem',
           m: 0,
           backgroundColor: 'rgba(0, 0, 0, 0.5)',
         },
       }}
     >
+      <AlertMessage type={''} message={''} handleClose={() => handleAlertClose()} />
       <DialogContent
         sx={{
           p: '1rem',
@@ -73,7 +74,7 @@ export default function MyInfoModal({ open, onClose }) {
             }}
             onClick={() => {
               onClose();
-              window.location.href = '/mypage'; // /mypage로 이동
+              window.location.href = '/mypage';
             }}
           >
             <MyInfoModalButton className="bold">마이페이지</MyInfoModalButton>

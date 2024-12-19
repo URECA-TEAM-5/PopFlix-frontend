@@ -1,10 +1,10 @@
 import request from '../axios';
 
-const GET_AUTH_ME = '/auth/me'; // 현재 로그인 하고 있는 사람 정보
-const SIGNUP = '/api/users/register'; // 회원가입
-const CHECKDUPLICATE = '/api/users/check-nickname?nickname='; // 닉네임 중복 확인
-const UPDATEUSER = '/api/users/'; // 유저정보 업데이트
-const SIGNOUT = '/api/users/'; // 회원탈퇴
+const GET_AUTH_ME = '/auth/me';
+const SIGNUP = '/api/users/register';
+const CHECKDUPLICATE = '/api/users/check-nickname?nickname=';
+const UPDATEUSER = '/api/users/';
+const SIGNOUT = '/api/users/';
 
 export const apiGetUserInfo = async () => {
   console.log('[ apiGetUserInfo ]');
@@ -17,7 +17,7 @@ export const apiPostSignup = async (formData) => {
   console.log('[ apiPostSignup ]');
   const response = await request.post(SIGNUP, formData, {
     headers: {
-      'Content-Type': 'multipart/form-data', // FormData로 요청 시 필수 헤더
+      'Content-Type': 'multipart/form-data',
     },
   });
   console.log(response);

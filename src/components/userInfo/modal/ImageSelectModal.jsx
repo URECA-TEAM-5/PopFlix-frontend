@@ -28,7 +28,6 @@ const ImageSelectModal = ({ onSelectDefaultImage, onSelectDeviceImage, onClose }
           px: 4,
         }}
       >
-        {/* 기본 이미지 적용 버튼 */}
         <Button
           fullWidth
           sx={{
@@ -49,7 +48,6 @@ const ImageSelectModal = ({ onSelectDefaultImage, onSelectDeviceImage, onClose }
           <ImageSelectModalButton className="bold">기본 이미지 적용</ImageSelectModalButton>
         </Button>
 
-        {/* 디바이스에서 사진 선택 버튼 */}
         <Button
           fullWidth
           sx={{
@@ -70,7 +68,6 @@ const ImageSelectModal = ({ onSelectDefaultImage, onSelectDeviceImage, onClose }
           <ImageSelectModalButton className="bold">디바이스에서 사진 선택</ImageSelectModalButton>
         </Button>
 
-        {/* 구분선 */}
         <Divider
           sx={{
             bgcolor: colors.cement_gray,
@@ -79,7 +76,6 @@ const ImageSelectModal = ({ onSelectDefaultImage, onSelectDeviceImage, onClose }
           }}
         />
 
-        {/* 취소 버튼 */}
         <Button
           fullWidth
           sx={{

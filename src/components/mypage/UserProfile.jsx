@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { chkUserInfo } from '../userInfo/modal/chkUserInfo';
 
 const UserProfile = () => {
-  const user = chkUserInfo(); // User 정보 가져오기
+  const user = chkUserInfo();
   return (
     <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', pt: '3rem' }}>
       <Box
