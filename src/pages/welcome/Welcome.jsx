@@ -1,8 +1,15 @@
 import React, { useEffect, useRef } from 'react';
 import request from '../../api/axios';
+import LoadingSpinner from '../../components/suspense/LoadingSpinner';
+import { Box } from '@mui/material';
+import { useAlert } from '../../stores/alert/AlertStore';
+import AlertMessage from '../../components/common/alert/AlertMessage';
+import { useNavigate } from 'react-router-dom';
 
 const Welcome = () => {
+  const { handleAlertOpen, handleAlertClose } = useAlert();
   const isLoad = useRef(false);
+  const useNav = useNavigate();
   useEffect(() => {
     if (!isLoad.current) {
       isLoad.current = true;
@@ -21,13 +28,9 @@ const Welcome = () => {
 
           // AccessToken 저장
           sessionStorage.setItem('accessToken', accessToken);
-
-          // 모든 작업이 끝나면 /main 페이지로 이동
-          window.location.href = '/';
         } catch (error) {
-          console.error('사용자 정보 초기화 실패:', error);
-          alert('다시 로그인 해주세요.');
           window.location.href = '/';
+          handleAlertOpen('error', '다시 로그인 해주세요.');
         }
       };
 
@@ -36,9 +39,28 @@ const Welcome = () => {
   }, []);
 
   return (
-    <div>
-      <h1>환영합니다람쥐!!!</h1>
-    </div>
+    <Box
+      sx={{
+        height: '70vh',
+        position: 'relative',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+
+        '& > div > img': {
+          position: 'absolute',
+          top: '40%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+        },
+      }}
+    >
+      <AlertMessage type={''} message={''} handleClose={() => handleAlertClose()} />
+      <LoadingSpinner />
+      <h2 className="bold" style={{ marginTop: '1.5rem', marginLeft: '1.5rem' }}>
+        Loading ...
+      </h2>
+    </Box>
   );
 };
 

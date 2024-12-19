@@ -5,20 +5,20 @@ import CommentItem from './CommentItem';
 import AddComment from './AddComment';
 import ErrorEmpty from '../../error/ErrorEmpty';
 
-const CommentList = ({ reviewData }) => {
+const CommentList = ({ comments }) => {
   return (
     <>
       <CommentListContainer className="comment-list-container">
-        {reviewData.comments ? (
+        {comments ? (
           <div className="inner__section">
             <CommentHeader />
-            {reviewData.comments.map((data, index) => {
+            {comments.map((data, index) => {
               return (
                 <div key={`${data.commentId}-${index}`}>
                   <CommentItem
                     isBest={index < 1 && true}
                     commentId={data.commentId}
-                    // profileImageUrl={data.user.profileImageUrl}  <<< api 수정 후 반영 예정
+                    profileImageUrl={data.user.profileImageUrl}
                     nickname={data.user.nickname}
                     createdAt={data.createdAt}
                     comment={data.comment}

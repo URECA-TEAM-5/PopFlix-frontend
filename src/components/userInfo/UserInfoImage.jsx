@@ -10,7 +10,7 @@ const UserInfoImage = ({ profileImage, setProfileImage }) => {
   const [isDefaultImageSelectModalOpen, setIsDefaultImageSelectModalOpen] = useState(false);
   const fileInputRef = useRef(null);
 
-  // 파일 업로드 핸들러
+  // 파일 업로드
   const handleFileUpload = useCallback(
     (event) => {
       const file = event.target.files[0];
@@ -21,15 +21,13 @@ const UserInfoImage = ({ profileImage, setProfileImage }) => {
     [setProfileImage]
   );
 
-  // 모달 열기 함수
+  // 모달 열기
   const handleOpenImageSelectModal = () => {
-    console.log('모달 열기 요청');
     setIsImageSelectModalOpen(true);
   };
 
-  // 모달 닫기 함수 delay 안넣으면 안닫힘
+  // 모달 닫기
   const closeModalWithDelay = () => {
-    console.log('모달 닫기 요청');
     setTimeout(() => {
       setIsImageSelectModalOpen(false);
     });
@@ -90,7 +88,7 @@ const UserInfoImage = ({ profileImage, setProfileImage }) => {
           <UserInfoImageCameraIcon src="/assets/camera.svg" alt="카메라 아이콘" />
         </Box>
 
-        {/* ImageSelectModal */}
+        {/* 사진 선택 모달 */}
         {isImageSelectModalOpen && (
           <ImageSelectModal
             onSelectDefaultImage={() => {
@@ -105,7 +103,7 @@ const UserInfoImage = ({ profileImage, setProfileImage }) => {
           />
         )}
 
-        {/* DefaultImageSelectModal */}
+        {/* 기본 사진 선택 모달 */}
         {isDefaultImageSelectModalOpen && (
           <DefaultImageSelectModal
             open={isDefaultImageSelectModalOpen}

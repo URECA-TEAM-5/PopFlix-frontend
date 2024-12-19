@@ -7,28 +7,31 @@ import CommentList from '../../../components/review/comments/CommentList';
 import { usePhotoReview } from '../../../stores/review/PhotoReviewStore';
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
+import Loading from '../../../components/common/loading/Loading';
 
 const PhotoReviewDetail = () => {
-  const { reviewData, setReviewData } = usePhotoReview();
+  const { reviewData, comments, setReviewData } = usePhotoReview();
   const { id } = useParams();
 
   const { data } = useQuery({
     queryKey: ['photoReviewDetail'],
     queryFn: async () => {
-      return await setReviewData(id);
+      return await setReviewData(id, 'latest');
     },
     staleTime: 1000 * 10,
   });
 
   return (
     <>
-      {data && (
+      {data ? (
         <PhotoReviewContainer className="photo-review-container">
           <ReviewHeader title={'리뷰'} subTitle={reviewData.user.nickname} />
           <ReviewImage />
           <ReviewBody />
-          <CommentList reviewData={reviewData} />
+          <CommentList comments={comments} />
         </PhotoReviewContainer>
+      ) : (
+        <Loading />
       )}
     </>
   );

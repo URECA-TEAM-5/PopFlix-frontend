@@ -1,20 +1,27 @@
 import React, { useState } from 'react';
 import { CommentListHeader, TextFilter } from './style/CommentStyle';
 import { usePhotoReview } from '../../../stores/review/PhotoReviewStore';
+import { useParams } from 'react-router-dom';
 
 const CommentHeader = () => {
-  const { reviewData } = usePhotoReview();
-  const [filterState, setFilterState] = useState('hot');
+  const { reviewData, setReviewData } = usePhotoReview();
+  const [filterState, setFilterState] = useState('latest');
+  const { id } = useParams();
+
+  const handleCategory = (category) => {
+    setFilterState(category);
+    setReviewData(id, category);
+  };
 
   return (
     <CommentListHeader>
       <div className="comments__head">
         <span>{`전체 ${reviewData.comments.length}개`}</span>
         <div className="div__row">
-          <TextFilter onClick={() => setFilterState('인기 순')} $isClicked={filterState === '인기 순'}>
+          <TextFilter onClick={() => handleCategory('hot')} $isClicked={filterState === 'hot'}>
             인기 순
           </TextFilter>
-          <TextFilter onClick={() => setFilterState('최신 순')} $isClicked={filterState === '최신 순'}>
+          <TextFilter onClick={() => handleCategory('latest')} $isClicked={filterState === 'latest'}>
             최신 순
           </TextFilter>
         </div>
