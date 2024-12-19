@@ -4,12 +4,12 @@ import { Storage, StorageInfo } from "./style/WatchListDetailStorage";
 import WatchListLikeButton from "../watchlist/WatchListLikeButton";
 import { useParams } from "react-router-dom";
 import { useWatchListDetail } from "../../stores/watchlist/WatchListDetailStore";
+import { chkUserInfo } from "../userInfo/modal/chkUserInfo";
 
 const DetailStorage = () => {
     const { id } = useParams();
 
-    const user = JSON.parse(localStorage.getItem('user'));
-    const userId = user ? user.userId : null;
+    const userId = chkUserInfo().userId;
     const { watchListDetail, setWatchListDetail, setIsLiked } = useWatchListDetail();
     const handleCopy = () => {
         const url = window.location.href;

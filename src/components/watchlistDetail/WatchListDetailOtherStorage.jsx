@@ -6,11 +6,11 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import EmptyResult from "../common/emptyResult/EmptyResult";
+import { chkUserInfo } from "../userInfo/modal/chkUserInfo";
 
 const DetailOtherStorage = () => {
     const { id } = useParams();
-    const user = JSON.parse(localStorage.getItem('user'));
-    const userId = user ? user.userId : null;
+    const userId = chkUserInfo().userId;
     const { otherStorage, watchListDetail, setOtherStorage, setIsLiked } = useWatchListDetail();
 
     const handleOtherLikeToggle = async (storageId) => {

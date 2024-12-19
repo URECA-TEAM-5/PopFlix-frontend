@@ -6,14 +6,13 @@ import { CarouselButton, Contatiner, ItemInfo, Movie, MovieImage, MovieInfo, Mov
 import { useEffect, useRef, useState } from 'react';
 import { useMyFavoriteWatchList } from '../../stores/mypage/MyFavoriteWatchListStore';
 import EmptyResult from '../common/emptyResult/EmptyResult';
+import { chkUserInfo } from '../userInfo/modal/chkUserInfo';
 
 const MyFavoriteWatchList = () => {
     const { myFavoriteWatchList, setMyFavoriteWatchList, setStorageLike } = useMyFavoriteWatchList();
     const isLoaded = useRef(false);
 
-    // const userId = 1;
-    const user = JSON.parse(localStorage.getItem('user'));
-    const userId = user ? user.userId : null;
+    const userId = chkUserInfo().userId;
 
     useEffect(() => {
         if (!isLoaded.current) {

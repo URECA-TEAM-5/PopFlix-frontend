@@ -7,13 +7,13 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { updateStorage } from '../../api/mypage/myWatchList';
 import { useAlert } from '../../stores/alert/AlertStore';
 import AlertMessage from '../common/alert/AlertMessage';
+import { chkUserInfo } from '../userInfo/modal/chkUserInfo';
 
 const EditStorage = () => {
     const { id } = useParams();
     const { myWatchList } = useMyWatchList();
 
-    const user = JSON.parse(localStorage.getItem('user'));
-    const userId = user ? user.userId : null;
+    const userId = chkUserInfo().userId;
 
     const watchListItem = myWatchList.find((list) => String(list.id) === String(id));
 
