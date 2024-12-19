@@ -19,7 +19,7 @@ const UserInfoNickname = ({ nickname, onChange, onCheckDuplicate }) => {
             input: { color: 'white', height: '1.063rem', fontFamily: 'SUIT-Bold, sans-serif' },
             '& .MuiInputBase-input::placeholder': {
               fontFamily: 'SUIT-Bold, sans-serif',
-              color: '#84868c',
+              color: colors.cement_gray,
             },
             '& .MuiOutlinedInput-root': {
               '&.Mui-focused .MuiOutlinedInput-notchedOutline': {

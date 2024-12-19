@@ -33,7 +33,6 @@ const DefaultImageSelectModal = ({ onSelectImage, onClose }) => {
       >
         <DefaultImageSelectModalTitle className="bold">기본 이미지 선택</DefaultImageSelectModalTitle>
 
-        {/* 구분선 */}
         <Divider
           sx={{
             bgcolor: colors.cement_gray,
@@ -42,7 +41,6 @@ const DefaultImageSelectModal = ({ onSelectImage, onClose }) => {
           }}
         />
 
-        {/* 이미지 배치 */}
         <Box
           sx={{
             display: 'grid',

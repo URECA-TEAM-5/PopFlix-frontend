@@ -14,6 +14,7 @@ import WatchListEditPage from '../pages/watchlist/WatchListEditPage';
 import MovieListPage from '../pages/movie/MovieListPage';
 import SearchResult from '../pages/search/SearchResult';
 import Welcome from '../pages/welcome/Welcome';
+import AlaramEmpty from '../components/alarm/AlaramEmpty';
 const MainScreens = {
   NotFound: {
     path: '*',
@@ -70,6 +71,10 @@ const MainScreens = {
   Welcome: {
     path: '/welcome',
     element: <Welcome />,
+  },
+  EmptyAlarm: {
+    path: '/empty',
+    element: <AlaramEmpty />,
   },
 };
 

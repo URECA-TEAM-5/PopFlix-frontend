@@ -6,7 +6,7 @@ export const ResultWrapper = styled.div`
   width: 100%;
   display: block;
   justify-items: center;
-  min-height: 90rem;
+  min-height: 30rem;
   caret-color: transparent;
 `;
 
@@ -14,6 +14,17 @@ export const MessageWrapper = styled.div`
   display: block;
   justify-items: center;
   color: ${colors.white};
+
+  animation: slideIn 0.5s ease-out forwards;
+
+  @keyframes slideIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 
   .text__highlight {
     color: ${colors.orange};
@@ -44,6 +55,16 @@ export const ResultItem = styled.div`
   align-items: center;
   width: 100%;
   height: 11.375rem;
+  animation: slideIn 0.5s ease-out forwards;
+
+  @keyframes slideIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 
   .result__poster-image {
     max-width: 7.75rem;
@@ -68,6 +89,12 @@ export const ResultItem = styled.div`
     padding-right: 1rem;
     font-size: 1.5rem;
     color: ${colors.white};
+  }
+
+  .text__cast,
+  .text__genre {
+    color: ${colors.cement_gray};
+    margin-right: 0.5rem;
   }
 
   .text__man-info {

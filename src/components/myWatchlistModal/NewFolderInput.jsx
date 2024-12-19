@@ -4,7 +4,7 @@ import { DiaglogContent, ErrorDiv, InputText, InputTextArea } from "./style/NewF
 const NewFolderInput = ({ storageNameRef, storageOverviewRef, error, NAME_MAX_LENGTH, OVERVIEW_MAX_LENGTH, handleInput, storageNameLength, storageOverviewLength }) => {
     return (
         <DiaglogContent>
-            <h3>WatchList 폴더를 생성해주세요.</h3>
+            <h3>📁 WatchList 폴더를 생성해주세요.</h3>
             <ErrorDiv>
                 {error && <span className="bold">{error}</span>}
             </ErrorDiv>

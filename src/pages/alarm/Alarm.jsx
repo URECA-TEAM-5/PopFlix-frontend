@@ -19,7 +19,7 @@ const Alarm = () => {
     if (!isLoaded.current) {
       isLoaded.current = true;
       if (!chkUserInfo()) {
-        handleAlertOpen();
+        handleAlertOpen('warning', '로그인 후 사용이 가능합니다');
       }
     }
   }, []);
@@ -38,8 +38,7 @@ const Alarm = () => {
         type={'warning'}
         message={'로그인 후 사용이 가능합니다'}
         handleClose={() => {
-          handleAlertClose();
-          // window.location.href = '/';
+          handleAlertClose('/');
         }}
       />
       {data && (

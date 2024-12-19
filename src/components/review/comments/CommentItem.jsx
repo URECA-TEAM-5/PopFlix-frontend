@@ -9,7 +9,7 @@ import { faHeart as heartFilled } from '@fortawesome/free-solid-svg-icons';
 import { colors } from '../../../global/globalStyle';
 import { usePhotoReview } from '../../../stores/review/PhotoReviewStore';
 
-const CommentItem = ({ isBest, commentId, nickname, createdAt, comment, likeCount, isLiked }) => {
+const CommentItem = ({ isBest, commentId, profileImageUrl, nickname, createdAt, comment, likeCount, isLiked }) => {
   const { setIsLiked } = usePhotoReview();
   const likedState = useRef(isLiked);
 
@@ -24,7 +24,7 @@ const CommentItem = ({ isBest, commentId, nickname, createdAt, comment, likeCoun
       <div className="comments__item">
         <div className="profile__section">
           <div className="profile">
-            <img className="profile__image" src="/assets/profile_1.svg" alt="프로필 이미지" />
+            <img className="profile__image" src={profileImageUrl ? profileImageUrl : '/assets/profile_1.svg'} alt="프로필 이미지" />
           </div>
         </div>
         <div className="div__column">
@@ -44,7 +44,7 @@ const CommentItem = ({ isBest, commentId, nickname, createdAt, comment, likeCoun
                     <IconCheckLiked $isClicked={likedState.current}>
                       <FontAwesomeIcon icon={likedState.current ? heartFilled : heartEmpty} />
                     </IconCheckLiked>
-                    <span>{likeCount ? likeCount : 'likeCount'}</span>
+                    <span>{likeCount + (likedState.current ? 1 : 0) * 1}</span>
                   </div>
                 }
                 onClick={handleIsLiked}
