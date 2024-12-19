@@ -91,6 +91,7 @@ export const BaseLayout = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 0.5rem 1rem;
+  caret-color: transparent;
 
   .app-pages__section {
     width: 100%;
