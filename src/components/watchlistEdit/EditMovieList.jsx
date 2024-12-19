@@ -8,13 +8,12 @@ import { useSearch } from "../../stores/search/useSearch";
 import AlertMessage from "../common/alert/AlertMessage";
 import { useAlert } from "../../stores/alert/AlertStore";
 import EmptyResult from "../common/emptyResult/EmptyResult";
+import { chkUserInfo } from "../userInfo/modal/chkUserInfo";
 
 const EditMovieList = () => {
     const { myWatchList, setMyWatchList } = useMyWatchList();
     const { id } = useParams();
-    // const userId = 1;
-    const user = JSON.parse(localStorage.getItem('user'));
-    const userId = user ? user.userId : null;
+    const userId = chkUserInfo().userId;
     const watchListItem = myWatchList.find((list) => String(list.id) === String(id));
     const [keyword, setKeyword] = useState('');
 

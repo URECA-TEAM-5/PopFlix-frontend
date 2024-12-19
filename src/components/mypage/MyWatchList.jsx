@@ -11,6 +11,7 @@ import AlertMessage from '../common/alert/AlertMessage';
 import { useAlert } from '../../stores/alert/AlertStore';
 import Loading from '../common/loading/Loading';
 import EmptyResult from '../common/emptyResult/EmptyResult';
+import { chkUserInfo } from '../userInfo/modal/chkUserInfo';
 
 const MyWatchList = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -18,9 +19,8 @@ const MyWatchList = () => {
 
   const { myWatchList, setMyWatchList, setIsPublic, isLoading } = useMyWatchList();
   const isLoaded = useRef(false);
-  // const userId = 1;
-  const user = JSON.parse(localStorage.getItem('user'));
-  const userId = user ? user.userId : null;
+
+  const userId = chkUserInfo().userId;
 
   useEffect(() => {
     if (!isLoaded.current) {
