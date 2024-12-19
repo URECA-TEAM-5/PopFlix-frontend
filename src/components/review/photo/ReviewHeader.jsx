@@ -6,6 +6,7 @@ import { faHeart as heartFilled } from '@fortawesome/free-solid-svg-icons';
 import { HeaderContainer } from './style/PhotoReviewStyle';
 import { IconCheckLiked } from '../comments/style/CommentStyle';
 import { useNavigate } from 'react-router-dom';
+import { usePhotoReview } from '../../../stores/review/PhotoReviewStore';
 
 const ReviewHeader = ({ title, subTitle, handleLike }) => {
   const [isClicked, setIsClicked] = useState(false);

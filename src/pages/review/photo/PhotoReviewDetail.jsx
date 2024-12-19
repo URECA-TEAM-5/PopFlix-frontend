@@ -10,13 +10,13 @@ import { useParams } from 'react-router-dom';
 import Loading from '../../../components/common/loading/Loading';
 
 const PhotoReviewDetail = () => {
-  const { reviewData, comments, setReviewData } = usePhotoReview();
+  const { reviewData, comments, sorting, setReviewData } = usePhotoReview();
   const { id } = useParams();
 
   const { data } = useQuery({
     queryKey: ['photoReviewDetail'],
     queryFn: async () => {
-      return await setReviewData(id, 'latest');
+      return await setReviewData(id);
     },
     staleTime: 1000 * 10,
   });
