@@ -64,7 +64,7 @@ const UpdateUserInfo = () => {
   // 닉네임 중복 확인
   const checkDuplicate = async () => {
     if (nickname === originalNickname) {
-      alert('닉네임을 변경하고 중복확인해주세요.');
+      handleAlertOpen('warning', '닉네임을 변경하고 중복확인해주세요.');
       return;
     }
 

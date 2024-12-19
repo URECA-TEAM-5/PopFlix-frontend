@@ -4,15 +4,18 @@ import { apiGetHotCommnetList, apiGetPhtoReview, apiPostAddComment, handleCommen
 export const usePhotoReview = create((set) => ({
   reviewData: '',
   comments: '',
-  setReviewData: async (id, state) => {
+  sorting: 'latest',
+  setSorting: (state) => set({ sorting: state }),
+
+  setReviewData: async (id) => {
     set({ isLoading: true, error: null, message: null });
     try {
-      console.log(`[ setReviewData ] >> sort: ${state}`);
-      if (state === 'latest') {
+      console.log(`[ setReviewData ] >> sort: ${sorting}`);
+      if (sorting === 'latest') {
         const response = await apiGetPhtoReview(id);
         set({ reviewData: response, comments: response.comments });
         return response;
-      } else if (state === 'hot') {
+      } else if (sorting === 'hot') {
         const response = await apiGetHotCommnetList(id);
         console.log(response);
         set({ comments: response });
