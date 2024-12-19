@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import styles from './style/WatchListBox.module.css';
 import { getWatchlistMonthlyTop } from '../../api/watchlist/watchlist';
-import { is } from 'date-fns/locale';
 
 const WatchListBox = () => {
   const [watchListBox, setWatchListBox] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const navigate = useNavigate();
   const fetchMovies = async () => {
     try {
       const response = await getWatchlistMonthlyTop(2024, 12);
@@ -20,14 +17,13 @@ const WatchListBox = () => {
   };
 
   useEffect(() => {
-    if(isLoading){
+    if (isLoading) {
       fetchMovies();
     }
-    
   }, [isLoading]);
-  const handleWatchListDetail = (id) =>{
-    navigate(`watchList/${id}`);
-  }
+  const handleWatchListDetail = (id) => {
+    window.location.href = `/watchList/${id}`;
+  };
 
   return (
     <div className={styles.container}>
@@ -37,8 +33,7 @@ const WatchListBox = () => {
       ) : (
         <div className={styles.watchListBox}>
           {watchListBox.map((item, index) => (
-            <div key={index} className={styles.watchListCard}
-            onClick={() => handleWatchListDetail(item.id)}>
+            <div key={index} className={styles.watchListCard} onClick={() => handleWatchListDetail(item.id)}>
               <div className={styles.cardImageContainer}>
                 <img src={item.storageImage} alt={item.watchListTitle} className={styles.cardImage} />
               </div>
