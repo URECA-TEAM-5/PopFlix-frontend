@@ -6,12 +6,12 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useRef } from 'react';
 import { useMovieDetail } from '../../stores/movieDetail/MovieDetailStore';
 import Loading from '../../components/common/loading/Loading';
+import { chkUserInfo } from '../../components/userInfo/modal/chkUserInfo';
 
 const MovieDetailPage = () => {
   const { movieData, setMovieData, ratingData, setRatingData, setPhotoReviewData } = useMovieDetail();
   const { id } = useParams();
-  const user = JSON.parse(localStorage.getItem('user'));
-  const { userId } = user; // userId를 올바르게 추출
+  const userId = chkUserInfo().userId;
   const isLoaded = useRef(false);
 
   useEffect(() => {
@@ -19,10 +19,6 @@ const MovieDetailPage = () => {
     if (!isLoaded.current) {
       isLoaded.current = true;
 
-      // 회원정보 확인
-      console.log('로그인 유저 정보 :', user);
-      console.log('로그인 유저 제발 :', user.userId);
-      console.log('유저 정보:', userId);
       // 영화 정보 불러오기 => zustand에 저장 ( await 처리 필수 )
       setMovieData(id);
       setRatingData(id);

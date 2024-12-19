@@ -90,6 +90,8 @@ export const BaseLayout = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 0.5rem 1rem;
+
   .app-pages__section {
     width: 100%;
     max-width: 57.5rem;
