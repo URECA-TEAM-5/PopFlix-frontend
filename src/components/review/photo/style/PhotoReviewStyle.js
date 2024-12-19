@@ -7,6 +7,18 @@ export const PhotoReviewContainer = styled.div`
   width: 100%;
   justify-items: center;
   min-height: 90vh;
+
+  animation: fadeIn 0.5s ease-out forwards;
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+      color: ${colors.orange};
+    }
+  }
 `;
 
 export const HeaderContainer = styled.div`
