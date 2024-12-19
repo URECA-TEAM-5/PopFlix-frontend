@@ -10,6 +10,7 @@ import { apiCheckDuplicate, apiDeleteSignout, apiUpdateUserInfo } from '../../ap
 import { chkUserInfo } from '../../components/userInfo/modal/chkUserInfo';
 import { useAlert } from '../../stores/alert/AlertStore';
 import AlertMessage from '../../components/common/alert/AlertMessage';
+import { useUserInfo } from '../../stores/userInfo/userStore';
 
 const UpdateUserInfo = () => {
   const { handleAlertOpen, handleAlertClose } = useAlert();
