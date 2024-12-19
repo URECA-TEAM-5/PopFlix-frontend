@@ -23,13 +23,11 @@ const UserInfoImage = ({ profileImage, setProfileImage }) => {
 
   // 모달 열기
   const handleOpenImageSelectModal = () => {
-    console.log('모달 열기 요청');
     setIsImageSelectModalOpen(true);
   };
 
   // 모달 닫기
   const closeModalWithDelay = () => {
-    console.log('모달 닫기 요청');
     setTimeout(() => {
       setIsImageSelectModalOpen(false);
     });

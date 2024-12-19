@@ -9,6 +9,7 @@ import WithdrawalModal from '../../components/userInfo/modal/WithdrawalModal';
 import { apiCheckDuplicate, apiDeleteSignout, apiUpdateUserInfo } from '../../api/auth/auth';
 import { chkUserInfo } from '../../components/userInfo/modal/chkUserInfo';
 import { useAlert } from '../../stores/alert/AlertStore';
+import AlertMessage from '../../components/common/alert/AlertMessage';
 
 const UpdateUserInfo = () => {
   const { handleAlertOpen, handleAlertClose } = useAlert();
@@ -164,6 +165,7 @@ const UpdateUserInfo = () => {
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%', p: '5rem 0rem' }}>
+      <AlertMessage type={''} message={''} handleClose={() => handleAlertClose()} />
       <Box
         sx={{
           width: '100%',
