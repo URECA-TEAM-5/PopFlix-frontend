@@ -28,6 +28,7 @@ export const useMovieDetail = create((set) => ({
       set({ error: '[ setRatingData ] >> error', isLoading: false });
     }
   },
+  
   setPhotoReviewData: async (id) => {
     set({ isLoading: true, error: null, message: null });
     try {

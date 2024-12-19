@@ -1,10 +1,11 @@
 import popcornGPA from '/assets/popcorn_GPA.svg';
 import reviewNull from '/assets/review_null.svg';
 import popcornScoreNull from '/assets/popcorn_score_null.svg';
+
 export const todayPickMoviesData = [
-  { id: 1, image: 'https://i.namu.wiki/i/JoJX0cuRBfLvH0Xr4ptiGKMjgLxg20eycTsY6YxCTpnFfifOew3DqEk8CqjcHjT5XgYeCuoMcDxWQzIhIXr-5w.webp' },
-  { id: 2, image: 'https://i.namu.wiki/i/jkXbUYN8qXanA4sO3jyMvBgS_l-mCr8cqdnii9ZTRHIQfX-cTVTM5ZY0bOfFHNBI5BQZq4XJjaheQI-kolj8vA.webp' },
-  { id: 3, image: 'https://i.namu.wiki/i/29l8fINcGXd9do3-fjRx0C0zgb_nLDdT0XSZgQFKgRQBMMiEL6OsqouE8Apb3-7FXvMtQNklmQvi_--NL712Vw.webp' },
+  { id: 1, image: '/assets/movie1.svg' },
+  { id: 2, image: '/assets/movie2.svg' },
+  { id: 3, image: '/assets/movie3.svg' },
 ];
 export const genres = [
   '액션',
