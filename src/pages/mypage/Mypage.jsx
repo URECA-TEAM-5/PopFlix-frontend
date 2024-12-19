@@ -3,8 +3,11 @@ import MyWatchList from '../../components/mypage/MyWatchList';
 import MyFavoriteWatchList from '../../components/mypage/MyFavoriteWatchList';
 import { colors } from '../../global/globalStyle';
 import UserProfile from '../../components/mypage/UserProfile';
+import AlertMessage from '../../components/common/alert/AlertMessage';
+import { useAlert } from '../../stores/alert/AlertStore';
 
 const MyPage = () => {
+  const { handleAlertOpen, handleAlertClose } = useAlert();
   return (
     <Container>
       <UserProfile />
@@ -17,6 +20,7 @@ const MyPage = () => {
         }}
       />
       <MyWatchList />
+      <AlertMessage type={''} message={''} handleClose={() => handleAlertClose()} />
       <MyFavoriteWatchList />
     </Container>
   );
