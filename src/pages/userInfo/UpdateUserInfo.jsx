@@ -8,9 +8,14 @@ import { colors } from '../../global/globalStyle';
 import WithdrawalModal from '../../components/userInfo/modal/WithdrawalModal';
 import { apiCheckDuplicate, apiDeleteSignout, apiUpdateUserInfo } from '../../api/auth/auth';
 import { chkUserInfo } from '../../components/userInfo/modal/chkUserInfo';
+import { useAlert } from '../../stores/alert/AlertStore';
 
 const UpdateUserInfo = () => {
-  const user = chkUserInfo(); // 유저정보 SessionStroage로 부터 가져오기
+  const { handleAlertOpen, handleAlertClose } = useAlert();
+
+  // 로그인한 유저 정보
+  const user = chkUserInfo();
+
   // 장르 리스트
   const genre_sample = [
     { genre: '모험', id: 12 },
@@ -32,6 +37,7 @@ const UpdateUserInfo = () => {
     { genre: '전쟁', id: 10752 },
     { genre: 'TV영화', id: 10770 },
   ];
+
   // 유저 정보
   const originalNickname = user.nickname;
   const initialProfileImage = user?.profileImage || user?.defaultProfileImage || '';
@@ -47,9 +53,8 @@ const UpdateUserInfo = () => {
   // 상태관리
   const [profileImage, setProfileImage] = useState(initialProfileImage);
   const [nickname, setNickname] = useState(initialNickname);
-  const [isNicknameValid, setIsNicknameValid] = useState(''); // 닉네임 유효 상태: '', true, false
+  const [isNicknameValid, setIsNicknameValid] = useState('');
   const [selectedGenre, setSelectedGenre] = useState(() => {
-    // 장르 id를 기반으로 genre를 찾아서 반환해야 함
     const genreObj = genre_sample.find((g) => g.id === initialGenreId);
     return genreObj ? genreObj.genre : genre_sample[0].genre;
   });
@@ -66,29 +71,28 @@ const UpdateUserInfo = () => {
       const isAvailable = await apiCheckDuplicate(nickname);
 
       if (isAvailable) {
-        alert('사용 가능한 닉네임입니다.');
+        handleAlertOpen('success', '사용 가능한 닉네임입니다.');
         setIsNicknameValid(true); // 닉네임 유효 상태 업데이트
       } else {
-        alert('이미 사용 중인 닉네임입니다.');
+        handleAlertOpen('error', '이미 사용 중인 닉네임입니다.');
         setIsNicknameValid(false);
       }
     } catch (error) {
-      console.error('닉네임 중복 확인 실패:', error);
-      alert('중복 확인 중 오류가 발생했습니다.');
+      handleAlertOpen('error', '중복 확인 중 오류가 발생했습니다.');
     }
   };
 
-  // 핸들러
+  // 실시간 닉네임 유효성 확인
   const handleNicknameChange = (event) => {
     const value = event.target.value;
 
     // 유효성 검사
     if (value.length > 10) {
-      alert('닉네임은 10자 이내로 작성해주세요.');
+      handleAlertOpen('error', '닉네임은 10자 이내로 작성해주세요.');
       return;
     }
     if (/\s/.test(value)) {
-      alert('공백은 입력할 수 없습니다.');
+      handleAlertOpen('error', '공백은 입력할 수 없습니다.');
       return;
     }
     setNickname(value);
@@ -100,75 +104,61 @@ const UpdateUserInfo = () => {
       setIsNicknameValid('');
     }
   };
+
   const handleGenreChange = (event) => setSelectedGenre(event.target.value);
   const handleGenderChange = (event) => setGender(event.target.value);
 
-  // 회원탈퇴 로직
+  // 회원탈퇴
   const handleSignout = async () => {
     try {
-      await apiDeleteSignout(user.userId); // userId는 user 데이터 구조에 맞게 수정
-      alert('회원탈퇴가 완료되었습니다.');
+      await apiDeleteSignout(user.userId);
+      handleAlertOpen('success', '회원탈퇴가 완료되었습니다.');
       sessionStorage.clear();
-      window.location.href = '/'; // 메인 페이지로 이동
+      window.location.href = '/';
     } catch (error) {
-      alert('회원탈퇴에 실패하였습니다.');
-      console.error(error);
+      handleAlertOpen('error', '회원탈퇴에 실패하였습니다.');
     } finally {
       handleCloseModal();
     }
   };
 
-  const handleUpdateUserInfo = async (e) => {
-    e.preventDefault();
+  // 회원정보 변경
+  const handleUpdateUserInfo = async (event) => {
+    event.preventDefault();
 
     if (nickname !== originalNickname && !isNicknameValid) {
-      alert('닉네임 중복 확인을 해주세요.');
+      handleAlertOpen('error', '닉네임 중복 확인을 해주세요.');
       return;
     }
 
-    // FormData 생성
     const formData = new FormData();
-
-    // Blob URL 또는 기본 이미지 경로 확인
     const isBlob = profileImage && profileImage.startsWith('blob:');
-
-    // 데이터 생성
     const userData = {
       nickname: nickname,
       genreId: genre_sample.find((item) => item.genre === selectedGenre)?.id,
       gender: gender,
-      defaultProfileImage: isBlob ? null : profileImage, // Blob URL이면 null로 설정
+      defaultProfileImage: isBlob ? null : profileImage,
     };
 
     formData.append('data', JSON.stringify(userData));
 
-    // Blob URL 또는 업로드된 파일 처리
     if (isBlob) {
       try {
-        const blobData = await fetch(profileImage).then((res) => res.blob()); // Blob 데이터를 서버로 보낼 준비
-        formData.append('profileImage', blobData, 'profileImage.jpg'); // Blob을 파일로 전송
+        const blobData = await fetch(profileImage).then((res) => res.blob());
+        formData.append('profileImage', blobData, 'profileImage.jpg');
       } catch (error) {
-        console.error('Blob 데이터를 처리하는 중 오류 발생:', error);
-        alert('프로필 사진을 처리하는 중 오류가 발생했습니다.');
+        handleAlertOpen('error', '프로필 사진을 처리하는 중 오류가 발생했습니다.');
         return;
       }
     }
 
-    // // FormData 내용 확인
-    // console.log('FormData 내용:');
-    // for (let pair of formData.entries()) {
-    //   console.log(pair[0], pair[1]);
-    // }
-
     try {
-      // API 요청
       const response = await apiUpdateUserInfo(user.userId, formData);
-      console.log('회원가입 성공:', response);
-      alert('회원가입이 완료되었습니다.');
-      window.location.href = '/welcome'; // 회원가입 성공하면 환영페이지로 이동
+
+      handleAlertOpen('success', '회원가입이 완료되었습니다.');
+      window.location.href = '/welcome';
     } catch (error) {
-      console.error('회원가입 실패:', error);
-      alert('회원가입 중 오류가 발생했습니다.');
+      handleAlertOpen('error', '회원가입 중 오류가 발생했습니다.');
     }
   };
 
