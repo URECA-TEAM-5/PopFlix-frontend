@@ -52,6 +52,8 @@ export const MovieDetails = styled.div`
     display: flex;
     flex-grow: 1;
     justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
     span {
         flex: 1;
         text-align: center;

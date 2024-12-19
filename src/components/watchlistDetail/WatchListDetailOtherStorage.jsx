@@ -2,10 +2,13 @@ import { useParams } from "react-router-dom";
 import { useWatchListDetail } from "../../stores/watchlist/WatchListDetailStore";
 import WatchListLikeButton from "../watchlist/WatchListLikeButton";
 import { OtherList } from "./style/WatchListDetailOtherStorage";
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import EmptyResult from "../common/emptyResult/EmptyResult";
 
 const DetailOtherStorage = () => {
     const { id } = useParams();
-
     const user = JSON.parse(localStorage.getItem('user'));
     const userId = user ? user.userId : null;
     const { otherStorage, watchListDetail, setOtherStorage, setIsLiked } = useWatchListDetail();
@@ -14,36 +17,55 @@ const DetailOtherStorage = () => {
         await setIsLiked(storageId, userId);
         setOtherStorage(id, userId);
     };
+
+    const getSliderSettings = () => {
+        const itemsCount = otherStorage.length
+        if (itemsCount > 5) {
+            return {
+                dots: true,
+                infinite: false,
+                speed: 700,
+                slidesToShow: 5,
+                slidesToScroll: 2,
+            };
+        } else {
+            return {
+                dots: true,
+                infinite: false,
+                speed: 500,
+                slidesToShow: itemsCount,
+                slidesToScroll: 1,
+                variableWidth: true,
+            };
+        }
+    };
+
     return (
         <OtherList>
             {watchListDetail?.storage?.username && (
                 <h4>{watchListDetail.storage.username}님의 다른 WatchList</h4>
             )}
             {otherStorage.length > 0 ? (
-                <>
-                    <div className="imageContainer">
-                        {otherStorage.map((item) => (
-                            <div key={item.id} className="imageWrapper">
-                                {item.storageImage ? (
-                                    <img
-                                        src={item.storageImage}
-                                        alt={item.storageName}
-                                        loading="lazy"
-                                        className="image"
-                                    />
-                                ) : (
-                                    <div className="imagePlaceholder"></div>
-                                )}
-                            </div>
-                        ))}
-                    </div>
-                    <div className="textContainer">
-                        {otherStorage.map((item, index) => (
-                            <div key={index}>
+                <Slider {...getSliderSettings()} className="carousel">
+                    {otherStorage.map((item) => (
+                        <div key={item.id} className="imageWrapper">
+                            {item.storageImage ? (
+                                <img
+                                    src={item.storageImage}
+                                    alt={item.storageName}
+                                    loading="lazy"
+                                    className="image"
+                                />
+                            ) : (
+                                <div className="imagePlaceholder"></div>
+                            )}
+                            <div className="textWrapper">
                                 <p className="title regular">{item.storageName}</p>
                                 <div className="count regular">
-                                    <span>{item.movieCount}</span>
-                                    <span>편</span>
+                                    <div>
+                                        <span>{item.movieCount}</span>
+                                        <span>편</span>
+                                    </div>
                                     <div className="likeCount">
                                         <WatchListLikeButton
                                             isLiked={item.isLiked}
@@ -54,11 +76,16 @@ const DetailOtherStorage = () => {
                                     </div>
                                 </div>
                             </div>
-                        ))}
-                    </div>
-                </>
+                        </div>
+                    ))}
+                </Slider>
             ) : (
-                <p>다른 WatchList가 없습니다.</p>
+                <EmptyResult
+                    message="해당 유저가 작성한 다른 WatchList는 없습니다."
+                    size="4"
+                    p="1"
+                    fontSize="1.1"
+                />
             )}
         </OtherList>
     );
