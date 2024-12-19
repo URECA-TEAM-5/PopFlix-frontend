@@ -53,6 +53,18 @@ export const ErrorEmptyWrapper = styled.div`
   justify-items: center;
   align-content: center;
 
+  animation: fadeIn 0.3s ease-out forwards;
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+      color: ${colors.orange};
+    }
+  }
+
   .img__empty {
     width: 10rem;
     height: 10rem;
